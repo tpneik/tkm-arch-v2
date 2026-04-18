@@ -1,0 +1,99 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Dịch vụ",
+    "projects": "Dự án",
+    "contact": "Liên hệ",
+    "getInTouch": "Liên hệ"
+  },
+  "hero": {
+    "tagline": "Innovative Design Solutions",
+    "titlePart1": "Kiến tạo",
+    "titleHighlight": "Không gian",
+    "titlePart2": "tương lai",
+    "description": "Giao thoa giữa nghệ thuật và kỹ thuật để tạo nên không gian bền vững, đầy cảm hứng. Từ ý tưởng đến hiện thực, chúng tôi đồng hành cùng tầm nhìn của bạn.",
+    "viewProjects": "Xem dự án",
+    "ourServices": "Dịch vụ",
+    "established": "Est. 2016"
+  },
+  "services": {
+    "label": "Chuyên môn",
+    "title": "Lĩnh vực hoạt động",
+    "items": [
+      "Thiết kế công trình dân dụng và công nghiệp",
+      "Thiết kế quy hoạch và xây dựng",
+      "Thiết kế và thi công trang trí nội ngoại thất",
+      "Thiết kế và thi công cảnh quan cây xanh",
+      "Tư vấn quản lý dự án",
+      "Thiết kế và thi công hạ tầng kỹ thuật",
+      "Tư vấn đầu tư (trừ tư vấn kế toán, tài chính và pháp lý)",
+      "Tư vấn đấu thầu",
+      "Quản lý dự án đầu tư xây dựng",
+      "Kiểm định chất lượng công trình",
+      "Lập dự án đầu tư",
+      "Thẩm tra thiết kế công trình dân dụng và công nghiệp",
+      "Thẩm tra thiết kế quy hoạch xây dựng",
+      "Thẩm tra thiết kế và thi công hạ tầng kỹ thuật",
+      "Kinh doanh thiết bị - vật tư xây dựng, nội thất",
+      "Thi công xây dựng công trình dân dụng và công nghiệp",
+      "Tư vấn, tổ chức thi tuyển chọn phương án thiết kế: ý tưởng thiết kế kiến trúc;...",
+      "Dịch vụ cây xanh chuyên nghiệp: Tư vấn thiết kế, trồng mới và bảo dưỡng cảnh quan định kỳ cho mọi công trình."
+    ]
+  },
+  "portfolio": {
+    "label": "Portfolio",
+    "title": "Công trình tiêu biểu",
+    "viewAll": "Xem tất cả"
+  },
+  "contact": {
+    "label": "Contact Us",
+    "titlePart1": "Kiến tạo",
+    "titleHighlight": "sự khác biệt",
+    "titlePart2": "cùng nhau",
+    "description": "Từ những ấp ủ ban đầu đến khi hoàn thiện, chúng tôi đồng hành cùng bạn để khai phá mọi tiềm năng và biến những dự định thành không gian sống đầy cảm hứng.",
+    "ourStudio": "Địa chỉ",
+    "studioAddress": "Tầng 2, 456 Xô Viết Nghệ Tĩnh, phường Thạnh Mỹ Tây, Tp. Hồ Chí Minh",
+    "callUs": "Gọi cho chúng tôi",
+    "phone": "+84 (0)965 939 989",
+    "emailUs": "Email",
+    "email": "archthietkemoi@gmail.com",
+    "fullName": "Họ và tên",
+    "namePlaceholder": "John Doe",
+    "emailAddress": "Địa chỉ email",
+    "emailPlaceholder": "john@example.com",
+    "subject": "Chủ đề",
+    "subjectResidential": "Dự án dân dụng",
+    "subjectCommercial": "Dự án thương mại",
+    "subjectInterior": "Thiết kế nội thất",
+    "subjectOther": "Khác",
+    "message": "Lời nhắn",
+    "messagePlaceholder": "Hãy cho chúng tôi biết về dự án của bạn...",
+    "sendMessage": "Gửi tin nhắn"
+  },
+  "footer": {
+    "tagline": "Crafting timeless spaces that harmonize with their environment and elevate the human experience.",
+    "explore": "Khám phá",
+    "servicesTitle": "Dịch vụ",
+    "connect": "Kết nối",
+    "architecturalDesign": "Thiết kế kiến trúc",
+    "interiorArchitecture": "Thiết kế nội thất",
+    "constructionManagement": "Quản lý xây dựng",
+    "landscapeDesign": "Thiết kế cảnh quan",
+    "copyright": "© 2021 ThietKeMoi Architecture. All Rights Reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "location": "Hồ Chí Minh, Việt Nam"
+  },
+  "projects": {
+    "pageTitle": "Dự án",
+    "noEntries": "Không tìm thấy dự án nào."
+  },
+  "projectDetail": {
+    "description": "Mô Tả",
+    "previous": "Trước",
+    "next": "Tiếp",
+    "otherProjects": "Dự Án Khác",
+    "viewAll": "Tất cả Dự án",
+    "notFound": "Không tìm thấy dự án"
+  }
+}

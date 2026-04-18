@@ -1,0 +1,241 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { useT } from "next-i18next/client";
+import { localizedHref } from "@/i18n/routes";
+import { projects, projectHref } from "@/data/projects";
+
+const DEFAULT_IMG =
+  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
+
+const ProjectDetail = () => {
+  const params = useParams<{ id: string; lng: string; seo?: string[] }>();
+  const { id, lng } = params;
+  const router = useRouter();
+  const { t } = useT("common");
+  const lang = (lng || "en") as "en" | "vi";
+  const [imgLoaded, setImgLoaded] = useState(false);
+
+  const currentIndex = projects.findIndex((p) => p.id === id);
+  const project = projects[currentIndex];
+  const prevProject = projects[currentIndex - 1] || null;
+  const nextProject = projects[currentIndex + 1] || null;
+
+  // Related: 3 other projects (same category first, then others)
+  const related = projects
+    .filter((p) => p.id !== id)
+    .sort((a, b) => {
+      if (a.category === project?.category && b.category !== project?.category) return -1;
+      if (a.category !== project?.category && b.category === project?.category) return 1;
+      return 0;
+    })
+    .slice(0, 3);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setImgLoaded(false);
+  }, [id]);
+
+  // Redirect to canonical SEO URL if segments are missing
+  useEffect(() => {
+    if (!project) return;
+    const canonical = projectHref(project, lang);
+    const currentPath = window.location.pathname;
+    if (currentPath !== canonical) {
+      router.replace(canonical);
+    }
+  }, [project, lang, router]);
+
+  if (!project)
+    return (
+      <div className="h-screen flex items-center justify-center uppercase tracking-widest text-brand-gray text-sm">
+        {t("projectDetail.notFound")}
+      </div>
+    );
+
+  const pd = {
+    title: project[lang].title,
+    description: project[lang].description,
+    details: project[lang].details,
+    category: project[lang].categoryLabel,
+  };
+
+  return (
+    <div className="bg-brand-light text-brand-dark min-h-screen">
+      {/* ─── HERO ─── */}
+      <div className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden">
+        {/* Back button */}
+        <Link
+          href={localizedHref("projects", lng)}
+          className="absolute top-32 left-6 md:left-12 lg:left-24 z-20 inline-flex items-center justify-center p-2 gap-2 text-white/75 hover:text-white transition-colors text-[10px] tracking-[0.3em] uppercase font-bold bg-brand-dark/20 backdrop-blur-sm rounded-full px-4"
+        >
+          <ArrowLeft size={14} />
+          {t("navbar.projects")}
+        </Link>
+
+        {/* Hero image */}
+        <img
+          key={`hero-${id}`}
+          src={project.thumbnail || DEFAULT_IMG}
+          alt={pd.title}
+          onLoad={() => setImgLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${imgLoaded ? "opacity-100" : "opacity-0"}`}
+          referrerPolicy="no-referrer"
+        />
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-brand-dark/80 via-brand-dark/20 to-transparent" />
+
+        {/* Hero title overlay */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 px-6 md:px-12 lg:px-24 pb-12 md:pb-20">
+          <p className="text-[10px] md:text-[11px] font-bold tracking-[0.32em] uppercase mb-4 text-white/70">
+            {pd.category}
+          </p>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif tracking-tight uppercase leading-tight max-w-4xl text-white">
+            {pd.title}
+          </h1>
+        </div>
+      </div>
+
+      {/* ─── MAIN CONTENT ─── */}
+      <div className="flex flex-col lg:flex-row max-w-[1600px] mx-auto">
+        {/* LEFT: Specs panel */}
+        <div className="lg:w-[40%] border-r border-brand-dark/5 bg-white/50">
+          <div className="lg:sticky lg:top-24 px-6 md:px-12 lg:px-16 py-12 md:py-20">
+            {/* Details grid */}
+            <div className="space-y-0">
+              {Object.entries(pd.details).map(([key, value], i) => (
+                <div
+                  key={key}
+                  className={`py-6 ${i !== 0 ? "border-t border-brand-dark/5" : ""}`}
+                >
+                  <h6 className="text-[9px] font-bold tracking-[0.35em] uppercase mb-3 text-brand-gray">
+                    {key}
+                  </h6>
+                  <p className="text-base font-medium tracking-wide text-brand-dark">
+                    {Array.isArray(value) ? value.join(" · ") : value}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Description */}
+            <div className="border-t border-brand-dark/5 pt-8 mt-4">
+              <h6 className="text-[9px] font-bold tracking-[0.35em] uppercase mb-5 text-brand-gray">
+                {t("projectDetail.description")}
+              </h6>
+              <p className="text-base leading-relaxed font-light text-brand-dark/80">
+                {pd.description}
+              </p>
+            </div>
+
+            {/* Prev / Next navigation */}
+            <div className="border-t border-brand-dark/5 mt-12 pt-8 flex gap-8">
+              {prevProject && (
+                <Link
+                  href={projectHref(prevProject, lang)}
+                  className="flex-1 group text-left"
+                >
+                  <p className="text-[9px] tracking-[0.35em] uppercase mb-2 text-brand-gray group-hover:text-brand-blue transition-colors">
+                    ← {t("projectDetail.previous")}
+                  </p>
+                  <p className="text-xs font-bold tracking-wider uppercase transition-colors line-clamp-2 group-hover:text-brand-blue">
+                    {prevProject[lang].title}
+                  </p>
+                </Link>
+              )}
+              {nextProject && (
+                <Link
+                  href={projectHref(nextProject, lang)}
+                  className="flex-1 group text-right"
+                >
+                  <p className="text-[9px] tracking-[0.35em] uppercase mb-2 text-brand-gray group-hover:text-brand-blue transition-colors">
+                    {t("projectDetail.next")} →
+                  </p>
+                  <p className="text-xs font-bold tracking-wider uppercase transition-colors line-clamp-2 group-hover:text-brand-blue">
+                    {nextProject[lang].title}
+                  </p>
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT: Image gallery */}
+        <div className="lg:w-[60%] p-6 md:p-12 lg:p-16 space-y-8 md:space-y-12">
+          {project.gallery.map((img, i) => (
+            <div key={i} className="overflow-hidden rounded-xl shadow-lg">
+              <img
+                src={img || DEFAULT_IMG}
+                alt={`${pd.title} ${i + 1}`}
+                className="w-full h-auto hover:scale-105 transition-transform duration-1000"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ─── RELATED PROJECTS ─── */}
+      <div className="border-t border-brand-dark/5 px-6 md:px-12 lg:px-24 py-20 md:py-32 bg-white">
+        <p className="text-[10px] font-bold tracking-[0.45em] uppercase mb-12 text-brand-gray">
+          {t("projectDetail.otherProjects")}
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+          {related.map((p) => {
+            const rt = {
+              title: p[lang].title,
+              category: p[lang].categoryLabel,
+            };
+            return (
+              <div key={p.id} className="group">
+                <Link
+                  href={projectHref(p, lang)}
+                  className="block aspect-[4/3] overflow-hidden relative rounded-xl bg-brand-light shadow-md"
+                >
+                  <img
+                    src={p.thumbnail || DEFAULT_IMG}
+                    alt={rt.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/40 transition-colors duration-500" />
+                  <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                    <ArrowUpRight size={18} className="text-brand-dark" />
+                  </div>
+                </Link>
+                <div className="pt-6">
+                  <p className="text-[9px] tracking-[0.35em] uppercase mb-2 text-brand-blue font-bold">
+                    {rt.category}
+                  </p>
+                  <h4 className="text-lg font-serif tracking-wide uppercase group-hover:text-brand-blue transition-colors leading-snug">
+                    {rt.title}
+                  </h4>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* View all */}
+        <div className="mt-16 text-center">
+          <Link
+            href={localizedHref("projects", lng)}
+            className="inline-flex items-center gap-4 text-[11px] font-bold tracking-[0.3em] uppercase border-2 border-brand-dark/10 hover:border-brand-blue hover:text-brand-blue transition-all px-10 py-5 group rounded-full"
+          >
+            {t("projectDetail.viewAll")}
+            <ArrowRight
+              size={14}
+              className="group-hover:translate-x-2 transition-transform"
+            />
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProjectDetail;

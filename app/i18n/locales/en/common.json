@@ -1,0 +1,99 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "projects": "Projects",
+    "contact": "Contact",
+    "getInTouch": "Get in Touch"
+  },
+  "hero": {
+    "tagline": "Innovative Design Solutions",
+    "titlePart1": "Shaping the",
+    "titleHighlight": "Future",
+    "titlePart2": "of Space",
+    "description": "We blend artistic vision with structural precision to create environments that inspire and endure. From concept to completion, we build your vision.",
+    "viewProjects": "View Our Projects",
+    "ourServices": "Our Services",
+    "established": "Est. 2016"
+  },
+  "services": {
+    "label": "What We Do",
+    "title": "Our Services",
+    "items": [
+      "Architectural design of Civil & Industrial Projects",
+      "Construction Planning Design",
+      "Interior - Exterior Design & Construction",
+      "Landscape Design & Construction",
+      "Project management Consultancy",
+      "Technical infrastructure Projects Design & Construction",
+      "Investment Consulting Activities (except Accounting, Financial and Legal Consulting)",
+      "Bidding Consultancy",
+      "Construction Investment project management",
+      "Quality inspection of construction works",
+      "Establish investment projects",
+      "Verification architectural designs of civil and industrial projects",
+      "Verification of construction planning design",
+      "Verification the design and construction of technical infrastructure works",
+      "Trading in equipment - building materials, furniture",
+      "Civil & Industrial Construction",
+      "Consulting, organizing contests to select design proposals: architectural design concept;...",
+      "Professional Greenery Services: Design, planting, and periodic landscape maintenance for all types of projects."
+    ]
+  },
+  "portfolio": {
+    "label": "Our Portfolio",
+    "title": "Featured Projects",
+    "viewAll": "View All Projects"
+  },
+  "contact": {
+    "label": "Contact Us",
+    "titlePart1": "Let's Build Something",
+    "titleHighlight": "Exceptional",
+    "titlePart2": "Together",
+    "description": "Whether you have a specific project in mind or just want to explore possibilities, our team is ready to help you navigate the journey from vision to reality.",
+    "ourStudio": "Address",
+    "studioAddress": "2nd Floor, 456 Xo Viet Nghe Tinh, Thanh My Tay, HCMC",
+    "callUs": "Call Us",
+    "phone": "+84 (0)965 939 989",
+    "emailUs": "Email",
+    "email": "archthietkemoi@gmail.com",
+    "fullName": "Full Name",
+    "namePlaceholder": "John Doe",
+    "emailAddress": "Email Address",
+    "emailPlaceholder": "john@example.com",
+    "subject": "Subject",
+    "subjectResidential": "Residential Project",
+    "subjectCommercial": "Commercial Project",
+    "subjectInterior": "Interior Design",
+    "subjectOther": "Other",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your project...",
+    "sendMessage": "Send Message"
+  },
+  "footer": {
+    "tagline": "Crafting timeless spaces that harmonize with their environment and elevate the human experience.",
+    "explore": "Explore",
+    "servicesTitle": "Services",
+    "connect": "Connect",
+    "architecturalDesign": "Architectural Design",
+    "interiorArchitecture": "Interior Architecture",
+    "constructionManagement": "Construction Management",
+    "landscapeDesign": "Landscape Design",
+    "copyright": "© 2021 ThietKeMoi Architecture. All Rights Reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "location": "HCMC, Vietnam"
+  },
+  "projects": {
+    "pageTitle": "Projects",
+    "noEntries": "No entries found."
+  },
+  "projectDetail": {
+    "description": "Description",
+    "previous": "Previous",
+    "next": "Next",
+    "otherProjects": "Other Projects",
+    "viewAll": "View All Projects",
+    "notFound": "Project not found"
+  }
+}
