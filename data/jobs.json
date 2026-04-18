@@ -1,0 +1,86 @@
+[
+  {
+    "id": "senior-architect",
+    "date": "2025-07-18",
+    "en": {
+      "title": "Senior Architect",
+      "salary": "Negotiable",
+      "workingTime": "Fulltime, Monday - Friday",
+      "education": "Architect, English",
+      "experience": "7-10 years",
+      "location": "Negotiable",
+      "description": [
+        "Assist in the design and development of architectural projects from conceptual sketches through to construction documentation.",
+        "Create and modify architectural drawings using AutoCAD, Revit, and other design software.",
+        "Collaborate with team members to produce presentations, renderings, and visual aids for client meetings.",
+        "Conduct site visits and surveys to gather necessary data for project development.",
+        "Support the preparation of project proposals, including technical specifications and design narratives.",
+        "Coordinate with other disciplines (SMEP) to facilitate integrated design solutions.",
+        "Stay up-to-date with industry trends, materials, and technologies to enhance design solutions.",
+        "Participate in team meetings and contribute ideas and feedback to improve project progress and team collaboration.",
+        "Ensure compliance with local building codes and regulations."
+      ]
+    },
+    "vi": {
+      "title": "Kiến Trúc Sư Cao Cấp",
+      "salary": "Thương lượng",
+      "workingTime": "Toàn thời gian, Thứ 2 - Thứ 6",
+      "education": "Kiến trúc, Tiếng Anh",
+      "experience": "7-10 năm",
+      "location": "Thương lượng",
+      "description": [
+        "Hỗ trợ thiết kế và phát triển các dự án kiến trúc từ phác thảo ý tưởng đến hồ sơ thi công.",
+        "Tạo và chỉnh sửa bản vẽ kiến trúc bằng AutoCAD, Revit và các phần mềm thiết kế khác.",
+        "Phối hợp với các thành viên trong nhóm để tạo bài thuyết trình, hình ảnh phối cảnh cho các buổi họp với khách hàng.",
+        "Thực hiện khảo sát công trường để thu thập dữ liệu cần thiết cho dự án.",
+        "Hỗ trợ chuẩn bị hồ sơ đề xuất dự án, bao gồm thông số kỹ thuật và thuyết minh thiết kế.",
+        "Phối hợp với các bộ phận khác (SMEP) để đảm bảo thiết kế tích hợp.",
+        "Cập nhật xu hướng ngành, vật liệu và công nghệ mới để nâng cao giải pháp thiết kế.",
+        "Tham gia họp nhóm và đóng góp ý tưởng, phản hồi để cải thiện tiến độ dự án.",
+        "Đảm bảo tuân thủ các quy chuẩn và quy định xây dựng địa phương."
+      ]
+    }
+  },
+  {
+    "id": "architect",
+    "date": "2025-07-18",
+    "en": {
+      "title": "Architect",
+      "salary": "Negotiable",
+      "workingTime": "Fulltime, Monday - Friday",
+      "education": "Architect, English",
+      "experience": "4-6 years",
+      "location": "Negotiable",
+      "description": [
+        "Assist in the design and development of architectural projects from conceptual sketches through to construction documentation.",
+        "Create and modify architectural drawings using AutoCAD, Revit, and other design software.",
+        "Collaborate with team members to produce presentations, renderings, and visual aids for client meetings.",
+        "Conduct site visits and surveys to gather necessary data for project development.",
+        "Support the preparation of project proposals, including technical specifications and design narratives.",
+        "Coordinate with other disciplines (SMEP) to facilitate integrated design solutions.",
+        "Stay up-to-date with industry trends, materials, and technologies to enhance design solutions.",
+        "Participate in team meetings and contribute ideas and feedback to improve project progress and team collaboration.",
+        "Ensure compliance with local building codes and regulations."
+      ]
+    },
+    "vi": {
+      "title": "Kiến Trúc Sư",
+      "salary": "Thương lượng",
+      "workingTime": "Toàn thời gian, Thứ 2 - Thứ 6",
+      "education": "Kiến trúc, Tiếng Anh",
+      "experience": "4-6 năm",
+      "location": "Thương lượng",
+      "description": [
+        "Hỗ trợ thiết kế và phát triển các dự án kiến trúc từ phác thảo ý tưởng đến hồ sơ thi công.",
+        "Tạo và chỉnh sửa bản vẽ kiến trúc bằng AutoCAD, Revit và các phần mềm thiết kế khác.",
+        "Phối hợp với các thành viên trong nhóm để tạo bài thuyết trình, hình ảnh phối cảnh cho các buổi họp với khách hàng.",
+        "Thực hiện khảo sát công trường để thu thập dữ liệu cần thiết cho dự án.",
+        "Hỗ trợ chuẩn bị hồ sơ đề xuất dự án, bao gồm thông số kỹ thuật và thuyết minh thiết kế.",
+        "Phối hợp với các bộ phận khác (SMEP) để đảm bảo thiết kế tích hợp.",
+        "Cập nhật xu hướng ngành, vật liệu và công nghệ mới để nâng cao giải pháp thiết kế.",
+        "Tham gia họp nhóm và đóng góp ý tưởng, phản hồi để cải thiện tiến độ dự án.",
+        "Đảm bảo tuân thủ các quy chuẩn và quy định xây dựng địa phương."
+      ]
+    }
+  }
+]

@@ -47,7 +47,8 @@ export default function Navbar() {
     { name: t("navbar.home"), href: isHome ? "#home" : `/${lng}` },
     { name: t("navbar.services"), href: isHome ? "#services" : `/${lng}/#services` },
     { name: t("navbar.projects"), href: localizedHref("projects", lng) },
-    { name: t("navbar.contact"), href: isHome ? "#contact" : `/${lng}/#contact` },
+    { name: t("navbar.about"), href: localizedHref("about", lng) },
+    { name: t("navbar.careers"), href: localizedHref("careers", lng) },
   ];
 
   const [isTablet, setIsTablet] = useState(false);
@@ -166,7 +167,7 @@ export default function Navbar() {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <a
-                href="#contact"
+                href={isHome ? "#contact" : `/${lng}/#contact`}
                 className="bg-brand-blue text-white px-8 py-2.5 rounded-full text-sm font-bold hover:bg-brand-dark hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
               >
                 {t("navbar.getInTouch")}
@@ -277,7 +278,7 @@ export default function Navbar() {
                   className="mt-6 sm:mt-12"
                 >
                   <a
-                    href="#contact"
+                    href={isHome ? "#contact" : `/${lng}/#contact`}
                     onClick={() => setIsOpen(false)}
                     className="bg-brand-blue text-white px-10 py-4 sm:px-16 sm:py-5 rounded-full font-bold text-lg sm:text-xl hover:bg-white hover:text-brand-blue transition-all shadow-2xl shadow-brand-blue/20 inline-block"
                   >

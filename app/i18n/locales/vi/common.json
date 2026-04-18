@@ -4,6 +4,8 @@
     "services": "Dịch vụ",
     "projects": "Dự án",
     "contact": "Liên hệ",
+    "about": "Về chúng tôi",
+    "careers": "Tuyển dụng",
     "getInTouch": "Liên hệ"
   },
   "hero": {
@@ -95,5 +97,127 @@
     "otherProjects": "Dự Án Khác",
     "viewAll": "Tất cả Dự án",
     "notFound": "Không tìm thấy dự án"
+  },
+  "about": {
+    "hero": {
+      "tagline": "Hành Trình Của Chúng Tôi",
+      "titleLine1": "Lặng Lẽ Kiến Tạo",
+      "titleLine2": "Không Gian Tinh Tế"
+    },
+    "story": {
+      "p1": "Với gần một thập kỷ trong lĩnh vực kiến trúc tại Việt Nam, TKM Architecture luôn kiên định theo đuổi sứ mệnh kiến tạo những không gian sống chu đáo và ý nghĩa.",
+      "p2": "Chúng tôi may mắn được trau dồi chuyên môn qua đa dạng quy mô — từ các công trình thương mại, nhà ở đến tổ hợp phức hợp và quy hoạch đô thị.",
+      "p3": "Bằng việc kết hợp tầm nhìn quốc tế với sự thấu hiểu sâu sắc bản địa, chúng tôi tập trung hoàn thiện nghề để mang lại giá trị đích thực cho cộng đồng."
+    },
+    "stats": {
+      "years": "9+",
+      "yearsLabel": "Năm Kinh Nghiệm",
+      "projectsDone": "50+",
+      "projectsLabel": "Dự Án Thành Công"
+    },
+    "services": {
+      "sectionLabel": "Dịch Vụ",
+      "catalogLabel": "TKM_Danh_Muc_Dich_Vu",
+      "prev": "Trước",
+      "next": "Tiếp",
+      "items": [
+        {
+          "id": "01",
+          "title": "QUY HOẠCH ĐÔ THỊ",
+          "brief": "Định hình tương lai đô thị thông qua chiến lược phát triển bền vững.",
+          "scopes": ["Khu đô thị mới", "Khu nông nghiệp công nghệ cao", "Khu công nghiệp"]
+        },
+        {
+          "id": "02",
+          "title": "TỔ HỢP",
+          "brief": "Thiết kế không gian đa chức năng thúc đẩy cộng đồng và công nghệ.",
+          "scopes": ["Tổ hợp công nghệ cao", "Tổ hợp đa chức năng", "Tổ hợp lưu trú", "Tổ hợp giải trí"]
+        },
+        {
+          "id": "03",
+          "title": "CÔNG TRÌNH",
+          "brief": "Kiến tạo các công trình biểu tượng định nghĩa lại đường chân trời.",
+          "scopes": ["Công trình văn hóa & giải trí", "Trung tâm thương mại & dịch vụ", "Nhà ở cao tầng", "Tòa nhà văn phòng"]
+        },
+        {
+          "id": "04",
+          "title": "THIẾT KẾ",
+          "brief": "Tinh chỉnh linh hồn xúc giác và thị giác của kiến trúc.",
+          "scopes": ["Thiết kế nội thất & cảnh quan", "Thiết kế mặt tiền", "Thiết kế chiếu sáng nghệ thuật"]
+        },
+        {
+          "id": "05",
+          "title": "QUẢN LÝ",
+          "brief": "Đảm bảo vận hành lâu dài và xuất sắc công nghệ trong môi trường xây dựng.",
+          "scopes": ["Quản lý tòa nhà / đô thị thông minh", "Quản lý khu nghỉ dưỡng"]
+        }
+      ]
+    },
+    "team": {
+      "label": "Gặp Gỡ Những Nhà Tầm Nhìn",
+      "title": "Đằng Sau TKM Architecture",
+      "members": [
+        {
+          "name": "Nam Nguyễn",
+          "role": "Kiến Trúc Sư Trưởng",
+          "bio": "Nhà lãnh đạo tầm nhìn với đam mê tích hợp yếu tố văn hóa Việt vào kiến trúc hiện đại."
+        },
+        {
+          "name": "Huy Nguyễn",
+          "role": "Kiến Trúc Sư",
+          "bio": "Chuyên gia về phát triển đô thị bền vững và thực thi kỹ thuật chi tiết."
+        }
+      ]
+    },
+    "cta": {
+      "titlePart1": "Cùng Kiến Tạo",
+      "titleHighlight": "Tương Lai",
+      "titlePart2": "Bền Vững",
+      "button": "Hợp Tác Cùng TKM"
+    }
+  },
+  "careers": {
+    "hero": {
+      "tagline": "Gia Nhập Đội Ngũ",
+      "titlePart1": "Tuyển Dụng tại",
+      "titleHighlight": "TKM",
+      "p1": "Phương châm của chúng tôi dựa trên sự hiểu biết rằng thành công của một dự án không chỉ đến từ việc mang lại sự chuyên nghiệp, giá trị và giải pháp sáng tạo, mà còn từ sự nhạy bén và đáp ứng kịp thời với Khách hàng và các bên liên quan.",
+      "p2": "Mỗi môi trường chúng tôi tạo ra đều được thiết kế phù hợp với bức tranh toàn cảnh, nhưng được điều chỉnh cho phù hợp với thương hiệu, quan điểm và bối cảnh địa phương riêng biệt. Chúng tôi tin rằng thành công của dự án không đạt được khi hoàn thành thiết kế ý tưởng, mà khi nó được hiện thực hóa đúng như tầm nhìn ban đầu."
+    },
+    "jobs": {
+      "title": "Vị Trí Tuyển Dụng",
+      "workingTime": "Thời Gian Làm Việc",
+      "education": "Trình Độ & Ngoại Ngữ",
+      "experienceLabel": "Kinh Nghiệm",
+      "description": "Mô Tả Công Việc",
+      "applyNow": "Ứng Tuyển Ngay"
+    },
+    "form": {
+      "title": "Gửi Đơn Ứng Tuyển",
+      "subtitle": "Vui lòng điền đầy đủ thông tin bên dưới (* : bắt buộc)",
+      "position": "Vị Trí",
+      "positionPlaceholder": "Chọn vị trí",
+      "positionOther": "Khác",
+      "address": "Địa Chỉ",
+      "addressPlaceholder": "Địa chỉ hiện tại của bạn",
+      "fullName": "Họ và Tên",
+      "fullNamePlaceholder": "Nhập họ và tên đầy đủ",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "phone": "Số Điện Thoại",
+      "phonePlaceholder": "Số điện thoại của bạn",
+      "message": "Lời Nhắn",
+      "messagePlaceholder": "Hãy cho chúng tôi biết về bạn và mục tiêu nghề nghiệp...",
+      "file1Label": "CV / Hồ sơ (Tệp 1)",
+      "file2Label": "Tài liệu bổ sung (Tệp 2)",
+      "selectFile": "Chọn Tệp",
+      "fileHint": "rar, zip, doc, pdf < 5MB",
+      "submit": "Gửi Đơn Ứng Tuyển"
+    },
+    "success": {
+      "title": "Cảm Ơn Bạn!",
+      "message": "Đơn ứng tuyển của bạn đã được tiếp nhận thành công. Đội ngũ HR sẽ xem xét hồ sơ và liên hệ nếu phù hợp với yêu cầu.",
+      "submitAnother": "Gửi đơn ứng tuyển khác"
+    }
   }
 }

@@ -9,8 +9,15 @@ export const routeMap = {
     en: "projects",
     vi: "du-an",
   },
+  about: {
+    en: "about",
+    vi: "ve-chung-toi",
+  },
+  careers: {
+    en: "careers",
+    vi: "tuyen-dung",
+  },
   // Future routes — just add entries here:
-  // about:   { en: "about-us",  vi: "ve-chung-toi" },
   // contact: { en: "contact",   vi: "lien-he" },
 } as const;
 

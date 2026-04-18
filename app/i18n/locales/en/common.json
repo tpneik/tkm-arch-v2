@@ -4,6 +4,8 @@
     "services": "Services",
     "projects": "Projects",
     "contact": "Contact",
+    "about": "About",
+    "careers": "Careers",
     "getInTouch": "Get in Touch"
   },
   "hero": {
@@ -95,5 +97,127 @@
     "otherProjects": "Other Projects",
     "viewAll": "View All Projects",
     "notFound": "Project not found"
+  },
+  "about": {
+    "hero": {
+      "tagline": "Our Journey",
+      "titleLine1": "Quietly Crafting",
+      "titleLine2": "Thoughtful Spaces"
+    },
+    "story": {
+      "p1": "With nearly a decade in the architectural landscape of Vietnam, TKM Architecture remains dedicated to the quiet pursuit of creating thoughtful living spaces.",
+      "p2": "We have been fortunate to cultivate our expertise across a diverse range of scales — from commercial and residential projects to complex developments and urban planning.",
+      "p3": "By blending global insights with deep local understanding, we focus on refining our craft to deliver authentic value to the community."
+    },
+    "stats": {
+      "years": "9+",
+      "yearsLabel": "Years of Experience",
+      "projectsDone": "50+",
+      "projectsLabel": "Successful Projects"
+    },
+    "services": {
+      "sectionLabel": "Services",
+      "catalogLabel": "TKM_Services_Catalog",
+      "prev": "Prev",
+      "next": "Next",
+      "items": [
+        {
+          "id": "01",
+          "title": "URBAN PLANNING",
+          "brief": "Shaping the future of cities through strategic growth and sustainable zoning.",
+          "scopes": ["New metropolitan areas", "High-tech Agricultural Zones", "Industrial Areas"]
+        },
+        {
+          "id": "02",
+          "title": "COMPLEXES",
+          "brief": "Designing multi-purpose spaces that foster community and technological synergy.",
+          "scopes": ["High-tech Complexes", "Multifunctional Complexes", "Accommodation Complexes", "Recreational Complexes"]
+        },
+        {
+          "id": "03",
+          "title": "BUILDINGS",
+          "brief": "Architecting iconic structures that redefine skylines and celebrate human experience.",
+          "scopes": ["Cultural & Recreation Buildings", "Service & Trading Centres", "Residential High-rise", "Office Buildings"]
+        },
+        {
+          "id": "04",
+          "title": "DESIGN",
+          "brief": "Refining the tactile and visual soul of architecture through meticulous detail.",
+          "scopes": ["Interior & Landscape Design", "Facade Design", "Art Lighting Design"]
+        },
+        {
+          "id": "05",
+          "title": "MANAGEMENT",
+          "brief": "Ensuring operational longevity and technological excellence in the built environment.",
+          "scopes": ["Smart Building / City Management", "Resort Management"]
+        }
+      ]
+    },
+    "team": {
+      "label": "Meet the Visionaries",
+      "title": "Behind TKM Architecture",
+      "members": [
+        {
+          "name": "Nam Nguyen",
+          "role": "Principal Architect",
+          "bio": "Visionary leader with a passion for integrating Vietnamese cultural elements into modern architecture."
+        },
+        {
+          "name": "Huy Nguyen",
+          "role": "Architect",
+          "bio": "Expert in sustainable urban development and detailed technical execution."
+        }
+      ]
+    },
+    "cta": {
+      "titlePart1": "Building the",
+      "titleHighlight": "Future",
+      "titlePart2": "Together",
+      "button": "Collaborate With TKM"
+    }
+  },
+  "careers": {
+    "hero": {
+      "tagline": "Join Our Team",
+      "titlePart1": "Careers at",
+      "titleHighlight": "TKM",
+      "p1": "Our customs are grounded in the understanding that the success of a project is based as much upon delivering professionalism, value, and creative solutions, as to sensitivity and responsiveness to Client, and a projects stakeholders.",
+      "p2": "Each environment we create is designed in response to the bigger picture, yet tailored to suit unique brand, perspectives and local context. We believe that the success of a project is not achieved when we complete the concept design, but when it is realized in the image envisioned."
+    },
+    "jobs": {
+      "title": "Job Openings",
+      "workingTime": "Working Time",
+      "education": "Education & Languages",
+      "experienceLabel": "Experience",
+      "description": "Job Description",
+      "applyNow": "Apply Now"
+    },
+    "form": {
+      "title": "Submit Application",
+      "subtitle": "Please complete the information below (* : required)",
+      "position": "Position",
+      "positionPlaceholder": "Select a position",
+      "positionOther": "Other",
+      "address": "Address",
+      "addressPlaceholder": "Your current address",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Enter your full name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "phone": "Phone",
+      "phonePlaceholder": "Your phone number",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about yourself and your career goals...",
+      "file1Label": "CV / Portfolio (File 1)",
+      "file2Label": "Additional Docs (File 2)",
+      "selectFile": "Select File",
+      "fileHint": "rar, zip, doc, pdf < 5MB",
+      "submit": "Submit Application"
+    },
+    "success": {
+      "title": "Thank You!",
+      "message": "Your application has been received successfully. Our HR team will review your profile and contact you if it matches our requirements.",
+      "submitAnother": "Submit another application"
+    }
   }
 }
