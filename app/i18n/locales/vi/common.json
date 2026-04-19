@@ -45,7 +45,8 @@
   "portfolio": {
     "label": "Portfolio",
     "title": "Công trình tiêu biểu",
-    "viewAll": "Xem tất cả"
+    "viewAll": "Xem tất cả",
+    "viewProject": "Xem dự án"
   },
   "contact": {
     "label": "Contact Us",

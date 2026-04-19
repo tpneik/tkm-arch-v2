@@ -45,7 +45,8 @@
   "portfolio": {
     "label": "Our Portfolio",
     "title": "Featured Projects",
-    "viewAll": "View All Projects"
+    "viewAll": "View All Projects",
+    "viewProject": "View Project"
   },
   "contact": {
     "label": "Contact Us",
