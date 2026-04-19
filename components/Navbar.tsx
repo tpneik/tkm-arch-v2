@@ -1,24 +1,48 @@
 "use client";
 
 import { motion, useScroll, useSpring, useMotionValueEvent, AnimatePresence } from "motion/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname, useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref, buildLangSwitchHref } from "@/i18n/routes";
+import { projects } from "@/data/projects";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [projectsDropdownOpen, setProjectsDropdownOpen] = useState(false);
+  const [mobileProjectsExpanded, setMobileProjectsExpanded] = useState(false);
+  const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
   const { lng } = useParams<{ lng: string }>();
   const { t } = useT("common");
+  const lang = (lng || "en") as "en" | "vi";
 
   const otherLng = lng === "en" ? "vi" : "en";
   // Strip the /lng prefix to check if we're on home
   const pathWithoutLng = pathname.replace(`/${lng}`, "") || "/";
   const isHome = pathWithoutLng === "/" || pathWithoutLng === "";
+
+  // Build unique category list with localized labels
+  const categoryItems = Array.from(
+    new Map(
+      projects.map((p) => [
+        p.category,
+        { key: p.category, label: p[lang].categoryLabel },
+      ])
+    ).values()
+  );
+
+  const handleDropdownEnter = () => {
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+    setProjectsDropdownOpen(true);
+  };
+  const handleDropdownLeave = () => {
+    dropdownTimeout.current = setTimeout(() => setProjectsDropdownOpen(false), 150);
+  };
 
   const { scrollY, scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -120,32 +144,99 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-10">
             <div className="flex items-center gap-8">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative group"
-                >
-                  {link.href.startsWith("#") || (link.href.startsWith(`/${lng}/#`) && isHome) ? (
-                    <a
-                      href={link.href}
-                      className="text-sm uppercase tracking-widest font-bold text-brand-dark/70 hover:text-brand-blue transition-colors relative"
+              {navLinks.map((link, index) => {
+                const isProjectsLink = link.href === localizedHref("projects", lng);
+
+                // Projects link with dropdown
+                if (isProjectsLink) {
+                  return (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative"
+                      onMouseEnter={handleDropdownEnter}
+                      onMouseLeave={handleDropdownLeave}
                     >
-                      {link.name}
-                    </a>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      className="text-sm uppercase tracking-widest font-bold text-brand-dark/70 hover:text-brand-blue transition-colors relative"
-                    >
-                      {link.name}
-                    </Link>
-                  )}
-                  <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-blue transition-all duration-300 group-hover:w-full"></div>
-                </motion.div>
-              ))}
+                      <Link
+                        href={link.href}
+                        className="text-sm uppercase tracking-widest font-bold text-brand-dark/70 hover:text-brand-blue transition-colors relative flex items-center gap-1"
+                      >
+                        {link.name}
+                        <ChevronDown
+                          size={12}
+                          className={`transition-transform duration-200 ${projectsDropdownOpen ? "rotate-180" : ""}`}
+                        />
+                      </Link>
+                      <div className={`absolute -bottom-1 left-0 h-[2px] bg-brand-blue transition-all duration-300 ${projectsDropdownOpen ? "w-full" : "w-0"}`} />
+
+                      {/* Dropdown */}
+                      <AnimatePresence>
+                        {projectsDropdownOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
+                            className="absolute top-full left-1/2 -translate-x-1/2 mt-4 bg-white rounded-xl shadow-xl border border-brand-dark/5 py-2 min-w-[200px] z-50"
+                          >
+                            {/* Invisible bridge to prevent gap hover-out */}
+                            <div className="absolute -top-4 left-0 right-0 h-4" />
+                            {categoryItems.map((cat) => (
+                              <Link
+                                key={cat.key}
+                                href={`${localizedHref("projects", lng)}?filter=${cat.key.toLowerCase().replace(/\s+/g, "-")}`}
+                                onClick={() => setProjectsDropdownOpen(false)}
+                                className="block px-5 py-2.5 text-xs uppercase tracking-[0.15em] font-bold text-brand-dark/60 hover:text-brand-blue hover:bg-brand-light/60 transition-all"
+                              >
+                                {cat.label}
+                              </Link>
+                            ))}
+                            <div className="border-t border-brand-dark/5 mt-1 pt-1">
+                              <Link
+                                href={localizedHref("projects", lng)}
+                                onClick={() => setProjectsDropdownOpen(false)}
+                                className="block px-5 py-2.5 text-xs uppercase tracking-[0.15em] font-bold text-brand-blue hover:bg-brand-light/60 transition-all"
+                              >
+                                {t("portfolio.viewAll")}
+                              </Link>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                }
+
+                // Regular nav links
+                return (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="relative group"
+                  >
+                    {link.href.startsWith("#") || (link.href.startsWith(`/${lng}/#`) && isHome) ? (
+                      <a
+                        href={link.href}
+                        className="text-sm uppercase tracking-widest font-bold text-brand-dark/70 hover:text-brand-blue transition-colors relative"
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm uppercase tracking-widest font-bold text-brand-dark/70 hover:text-brand-blue transition-colors relative"
+                      >
+                        {link.name}
+                      </Link>
+                    )}
+                    <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-blue transition-all duration-300 group-hover:w-full" />
+                  </motion.div>
+                );
+              })}
             </div>
 
             {/* Language Switcher */}
@@ -225,53 +316,85 @@ export default function Navbar() {
 
             <div className="flex flex-col items-center gap-6 sm:gap-10 z-10 cursor-default py-20 px-6 max-h-full overflow-y-auto w-full">
               <div className="flex flex-col items-center gap-6 sm:gap-10" onClick={(e) => e.stopPropagation()}>
-                {navLinks.map((link, i) => (
-                  <motion.div
-                    key={link.name}
-                    custom={i}
-                    variants={linkVariants}
-                    className="overflow-hidden group"
-                  >
-                    {link.href.startsWith("#") ? (
-                      <a
-                        href={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white hover:text-brand-blue transition-all block text-center relative"
-                      >
-                        <span className="relative z-10">{link.name}</span>
-                        <motion.span
-                          className="absolute bottom-2 left-0 w-0 h-4 bg-brand-blue/20 -z-0 group-hover:w-full transition-all duration-500"
-                        />
-                      </a>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white hover:text-brand-blue transition-all block text-center relative"
-                      >
-                        <span className="relative z-10">{link.name}</span>
-                        <motion.span
-                          className="absolute bottom-2 left-0 w-0 h-4 bg-brand-blue/20 -z-0 group-hover:w-full transition-all duration-500"
-                        />
-                      </Link>
-                    )}
-                  </motion.div>
-                ))}
+                {navLinks.map((link, i) => {
+                  const isProjectsLink = link.href === localizedHref("projects", lng);
 
-                {/* Mobile Language Switcher */}
-                <motion.div
-                  custom={navLinks.length}
-                  variants={linkVariants}
-                  className="overflow-hidden"
-                >
-                  <Link
-                    href={langSwitchHref}
-                    onClick={() => setIsOpen(false)}
-                    className="text-2xl sm:text-3xl font-serif font-bold text-white/50 hover:text-brand-blue transition-all block text-center"
-                  >
-                    {otherLng === "vi" ? "🇻🇳 Tiếng Việt" : "🇬🇧 English"}
-                  </Link>
-                </motion.div>
+                  return (
+                    <motion.div
+                      key={link.name}
+                      custom={i}
+                      variants={linkVariants}
+                      className="overflow-hidden group flex flex-col items-center"
+                    >
+                      {link.href.startsWith("#") ? (
+                        <a
+                          href={link.href}
+                          onClick={() => setIsOpen(false)}
+                          className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white hover:text-brand-blue transition-all block text-center relative"
+                        >
+                          <span className="relative z-10">{link.name}</span>
+                          <motion.span
+                            className="absolute bottom-2 left-0 w-0 h-4 bg-brand-blue/20 -z-0 group-hover:w-full transition-all duration-500"
+                          />
+                        </a>
+                      ) : isProjectsLink ? (
+                        <>
+                          <button
+                            onClick={(e) => { e.stopPropagation(); setMobileProjectsExpanded(!mobileProjectsExpanded); }}
+                            className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white hover:text-brand-blue transition-all text-center relative flex items-center gap-3"
+                          >
+                            <span className="relative z-10">{link.name}</span>
+                            <ChevronDown
+                              size={24}
+                              className={`transition-transform duration-300 ${mobileProjectsExpanded ? "rotate-180" : ""}`}
+                            />
+                          </button>
+                          <AnimatePresence>
+                            {mobileProjectsExpanded && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="overflow-hidden flex flex-col items-center gap-3 mt-3"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                {categoryItems.map((cat) => (
+                                  <Link
+                                    key={cat.key}
+                                    href={`${localizedHref("projects", lng)}?filter=${cat.key.toLowerCase().replace(/\s+/g, "-")}`}
+                                    onClick={() => { setIsOpen(false); setMobileProjectsExpanded(false); }}
+                                    className="text-lg sm:text-xl font-bold text-white/50 hover:text-brand-blue transition-colors uppercase tracking-widest"
+                                  >
+                                    {cat.label}
+                                  </Link>
+                                ))}
+                                <Link
+                                  href={localizedHref("projects", lng)}
+                                  onClick={() => { setIsOpen(false); setMobileProjectsExpanded(false); }}
+                                  className="text-lg sm:text-xl font-bold text-brand-blue hover:text-white transition-colors uppercase tracking-widest"
+                                >
+                                  {t("portfolio.viewAll")}
+                                </Link>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsOpen(false)}
+                          className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white hover:text-brand-blue transition-all block text-center relative"
+                        >
+                          <span className="relative z-10">{link.name}</span>
+                          <motion.span
+                            className="absolute bottom-2 left-0 w-0 h-4 bg-brand-blue/20 -z-0 group-hover:w-full transition-all duration-500"
+                          />
+                        </Link>
+                      )}
+                    </motion.div>
+                  );
+                })}
 
                 <motion.div
                   custom={navLinks.length + 1}
@@ -310,6 +433,14 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* Fixed floating language switcher — mobile/tablet only */}
+      <Link
+        href={langSwitchHref}
+        className={`lg:hidden fixed bottom-6 right-6 z-[70] w-11 h-11 rounded-full bg-white shadow-lg border border-brand-dark/10 flex items-center justify-center text-xs font-bold uppercase tracking-wider text-brand-dark/70 hover:text-brand-blue hover:shadow-xl hover:scale-110 active:scale-95 transition-all ${isOpen ? "hidden" : ""}`}
+        aria-label="Switch language"
+      >
+        {otherLng.toUpperCase()}
+      </Link>
     </>
   );
 }

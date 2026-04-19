@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "../globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import LoadingScreen from "@/components/LoadingScreen";
 import { initServerI18next, getT, getResources, generateI18nStaticParams } from "next-i18next/server";
 import { I18nProvider } from "next-i18next/client";
 import i18nConfig from "../../i18n.config";
@@ -41,6 +42,7 @@ export default async function RootLayout(props: LayoutProps<"/[lng]">) {
     <html lang={lng} dir={dir(lng)} className={`h-full ${inter.variable} ${playfair.variable}`}>
       <body className="min-h-full flex flex-col">
         <I18nProvider language={lng} resources={resources}>
+          <LoadingScreen />
           <Navbar />
           {children}
           <Footer />
