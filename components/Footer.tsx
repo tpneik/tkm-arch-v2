@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { useT } from "next-i18next/client";
+import { socialLinks } from "@/data/socials";
 
 export default function Footer() {
   const { t } = useT("common");
@@ -19,10 +20,10 @@ export default function Footer() {
                 alt="ThietKeMoi Architecture"
                 width={1024}
                 height={360}
-                className="h-10 w-auto brightness-0 invert"
+                className="h-20 w-auto brightness-0 invert"
               />
             </div>
-            <p className="text-white/40 font-light leading-relaxed">
+            <p className="text-lg font-serif italic text-white/50 leading-relaxed">
               {t("footer.tagline")}
             </p>
           </div>
@@ -49,12 +50,30 @@ export default function Footer() {
 
           <div>
             <h4 className="text-sm uppercase tracking-widest font-bold mb-6">{t("footer.connect")}</h4>
-            <ul className="space-y-4 text-white/60 font-light">
-              <li><a href="#" className="hover:text-brand-blue transition-colors">Instagram</a></li>
-              <li><a href="#" className="hover:text-brand-blue transition-colors">LinkedIn</a></li>
-              <li><a href="#" className="hover:text-brand-blue transition-colors">Facebook</a></li>
-              <li><a href="#" className="hover:text-brand-blue transition-colors">Twitter</a></li>
-            </ul>
+            <div className="flex gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-brand-blue hover:border-brand-blue transition-all hover:scale-110"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox={social.viewBox || "0 0 24 24"}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    dangerouslySetInnerHTML={{ __html: social.icon }}
+                  />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 

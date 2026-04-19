@@ -74,7 +74,7 @@
     "sendMessage": "Gửi tin nhắn"
   },
   "footer": {
-    "tagline": "Crafting timeless spaces that harmonize with their environment and elevate the human experience.",
+    "tagline": "Kiến tạo không gian trường tồn, giao hòa cùng thiên nhiên và nâng tầm giá trị sống.",
     "explore": "Khám phá",
     "servicesTitle": "Dịch vụ",
     "connect": "Kết nối",
@@ -127,31 +127,52 @@
           "id": "01",
           "title": "QUY HOẠCH ĐÔ THỊ",
           "brief": "Định hình tương lai đô thị thông qua chiến lược phát triển bền vững.",
-          "scopes": ["Khu đô thị mới", "Khu nông nghiệp công nghệ cao", "Khu công nghiệp"]
+          "scopes": [
+            "Khu đô thị mới",
+            "Khu nông nghiệp công nghệ cao",
+            "Khu công nghiệp"
+          ]
         },
         {
           "id": "02",
           "title": "TỔ HỢP",
           "brief": "Thiết kế không gian đa chức năng thúc đẩy cộng đồng và công nghệ.",
-          "scopes": ["Tổ hợp công nghệ cao", "Tổ hợp đa chức năng", "Tổ hợp lưu trú", "Tổ hợp giải trí"]
+          "scopes": [
+            "Tổ hợp công nghệ cao",
+            "Tổ hợp đa chức năng",
+            "Tổ hợp lưu trú",
+            "Tổ hợp giải trí"
+          ]
         },
         {
           "id": "03",
           "title": "CÔNG TRÌNH",
           "brief": "Kiến tạo các công trình biểu tượng định nghĩa lại đường chân trời.",
-          "scopes": ["Công trình văn hóa & giải trí", "Trung tâm thương mại & dịch vụ", "Nhà ở cao tầng", "Tòa nhà văn phòng"]
+          "scopes": [
+            "Công trình văn hóa & giải trí",
+            "Trung tâm thương mại & dịch vụ",
+            "Nhà ở cao tầng",
+            "Tòa nhà văn phòng"
+          ]
         },
         {
           "id": "04",
           "title": "THIẾT KẾ",
           "brief": "Tinh chỉnh linh hồn xúc giác và thị giác của kiến trúc.",
-          "scopes": ["Thiết kế nội thất & cảnh quan", "Thiết kế mặt tiền", "Thiết kế chiếu sáng nghệ thuật"]
+          "scopes": [
+            "Thiết kế nội thất & cảnh quan",
+            "Thiết kế mặt tiền",
+            "Thiết kế chiếu sáng nghệ thuật"
+          ]
         },
         {
           "id": "05",
           "title": "QUẢN LÝ",
           "brief": "Đảm bảo vận hành lâu dài và xuất sắc công nghệ trong môi trường xây dựng.",
-          "scopes": ["Quản lý tòa nhà / đô thị thông minh", "Quản lý khu nghỉ dưỡng"]
+          "scopes": [
+            "Quản lý tòa nhà / đô thị thông minh",
+            "Quản lý khu nghỉ dưỡng"
+          ]
         }
       ]
     },
