@@ -94,6 +94,7 @@ const ProjectsPage = () => {
                   transition={{ duration: 0.8, ease: "circOut" }}
                   src={project.thumbnail || DEFAULT_IMG}
                   alt={project[lang].title}
+                  onError={(e) => { (e.target as HTMLImageElement).src = DEFAULT_IMG; }}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />

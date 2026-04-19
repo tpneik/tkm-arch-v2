@@ -82,6 +82,7 @@ const ProjectDetail = () => {
           src={project.thumbnail || DEFAULT_IMG}
           alt={pd.title}
           onLoad={() => setImgLoaded(true)}
+          onError={(e) => { e.currentTarget.src = DEFAULT_IMG; }}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${imgLoaded ? "opacity-100" : "opacity-0"}`}
           referrerPolicy="no-referrer"
         />
@@ -171,6 +172,7 @@ const ProjectDetail = () => {
               <img
                 src={img || DEFAULT_IMG}
                 alt={`${pd.title} ${i + 1}`}
+                onError={(e) => { e.currentTarget.src = DEFAULT_IMG; }}
                 className="w-full h-auto hover:scale-105 transition-transform duration-1000"
                 referrerPolicy="no-referrer"
               />
@@ -199,6 +201,7 @@ const ProjectDetail = () => {
                   <img
                     src={p.thumbnail || DEFAULT_IMG}
                     alt={rt.title}
+                    onError={(e) => { e.currentTarget.src = DEFAULT_IMG; }}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     referrerPolicy="no-referrer"
                   />
