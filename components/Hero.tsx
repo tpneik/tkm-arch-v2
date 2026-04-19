@@ -25,7 +25,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-2xl"
+          className="max-w-2xl pt-24 md:pt-0"
         >
           <span className="text-brand-blue uppercase tracking-[0.4em] text-sm font-bold mb-4 block">
             {t("hero.tagline")}
