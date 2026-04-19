@@ -55,6 +55,20 @@ const ProjectsPage = () => {
       );
   };
 
+  // Build localized category list: { key: "Commercial", label: "Thương mại" }
+  const localizedCategories = useMemo(() => {
+    const map = new Map<string, string>();
+    projects.forEach((p) => {
+      if (!map.has(p.category)) {
+        map.set(p.category, p[lang].categoryLabel);
+      }
+    });
+    return [
+      { key: "All", label: t("projects.allFilter") ?? "All" },
+      ...Array.from(map, ([key, label]) => ({ key, label })),
+    ];
+  }, [lang, t]);
+
   return (
     <div className="pt-32 pb-20 min-h-screen bg-brand-light text-brand-dark">
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
@@ -64,18 +78,18 @@ const ProjectsPage = () => {
 
         {/* Filter Bar */}
         <div className="flex flex-wrap gap-x-6 md:gap-x-10 gap-y-4 mb-8 md:mb-14 pb-7 md:pb-9 border-b border-brand-dark/10">
-          {categories.map((cat) => (
+          {localizedCategories.map((cat) => (
             <button
-              key={cat}
-              onClick={() => handleFilter(cat)}
+              key={cat.key}
+              onClick={() => handleFilter(cat.key)}
               className={`text-[10px] font-bold uppercase tracking-[0.2em] transition-all cursor-pointer ${
-                filter === cat.toLowerCase().replace(/\s+/g, "-") ||
-                (filter === "all" && cat === "All")
+                filter === cat.key.toLowerCase().replace(/\s+/g, "-") ||
+                (filter === "all" && cat.key === "All")
                   ? "text-brand-blue border-b-2 border-brand-blue pb-2"
                   : "text-brand-gray hover:text-brand-dark"
               }`}
             >
-              {cat}
+              {cat.label}
             </button>
           ))}
         </div>

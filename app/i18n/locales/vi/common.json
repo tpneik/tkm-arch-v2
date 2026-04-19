@@ -89,6 +89,7 @@
   },
   "projects": {
     "pageTitle": "Dự án",
+    "allFilter": "Tất cả",
     "noEntries": "Không tìm thấy dự án nào."
   },
   "projectDetail": {

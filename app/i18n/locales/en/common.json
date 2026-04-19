@@ -89,6 +89,7 @@
   },
   "projects": {
     "pageTitle": "Projects",
+    "allFilter": "All",
     "noEntries": "No entries found."
   },
   "projectDetail": {
