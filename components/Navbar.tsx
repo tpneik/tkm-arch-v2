@@ -4,6 +4,7 @@ import { motion, useScroll, useSpring, useMotionValueEvent, AnimatePresence } fr
 import { useState, useEffect } from "react";
 import { usePathname, useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { useT } from "next-i18next/client";
 import { localizedHref, buildLangSwitchHref } from "@/i18n/routes";
 
@@ -105,14 +106,14 @@ export default function Navbar() {
             transition={{ duration: 0.6 }}
           >
             <Link href={`/${lng}`} className="flex items-center gap-2 group">
-              <div className="flex flex-col">
-                <span className="text-2xl font-serif font-bold tracking-tighter text-brand-blue leading-none group-hover:scale-105 transition-transform origin-left">
-                  THIETKEMOI
-                </span>
-                <span className="text-[10px] uppercase tracking-[0.3em] text-brand-gray font-medium">
-                  Architecture
-                </span>
-              </div>
+              <Image
+                src="/logo-thietkemoi.svg"
+                alt="ThietKeMoi Architecture"
+                width={1024}
+                height={360}
+                className="h-16 w-auto group-hover:scale-105 transition-transform origin-left"
+                priority
+              />
             </Link>
           </motion.div>
 

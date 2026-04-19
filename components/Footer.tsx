@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import Image from "next/image";
 import { useT } from "next-i18next/client";
 
 export default function Footer() {
@@ -12,13 +13,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           <div className="lg:col-span-1">
-            <div className="flex flex-col mb-6">
-              <span className="text-2xl font-serif font-bold tracking-tighter text-brand-blue leading-none">
-                THIETKEMOI
-              </span>
-              <span className="text-[10px] uppercase tracking-[0.3em] text-brand-gray font-medium">
-                Architecture
-              </span>
+            <div className="mb-6">
+              <Image
+                src="/logo-thietkemoi.svg"
+                alt="ThietKeMoi Architecture"
+                width={1024}
+                height={360}
+                className="h-10 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-white/40 font-light leading-relaxed">
               {t("footer.tagline")}
