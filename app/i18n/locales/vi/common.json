@@ -5,7 +5,7 @@
     "projects": "Dự án",
     "contact": "Liên hệ",
     "about": "Về chúng tôi",
-    "careers": "Tuyển dụng",
+    "blogs": "Blogs",
     "getInTouch": "Liên hệ"
   },
   "hero": {
@@ -22,24 +22,10 @@
     "label": "Chuyên môn",
     "title": "Lĩnh vực hoạt động",
     "items": [
-      "Thiết kế công trình dân dụng và công nghiệp",
-      "Thiết kế quy hoạch và xây dựng",
+      "Thiết kế và thi công kiến trúc nhà ở dân dụng, công nghiệp",
       "Thiết kế và thi công trang trí nội ngoại thất",
-      "Thiết kế và thi công cảnh quan cây xanh",
-      "Tư vấn quản lý dự án",
-      "Thiết kế và thi công hạ tầng kỹ thuật",
-      "Tư vấn đầu tư (trừ tư vấn kế toán, tài chính và pháp lý)",
-      "Tư vấn đấu thầu",
-      "Quản lý dự án đầu tư xây dựng",
-      "Kiểm định chất lượng công trình",
-      "Lập dự án đầu tư",
-      "Thẩm tra thiết kế công trình dân dụng và công nghiệp",
-      "Thẩm tra thiết kế quy hoạch xây dựng",
-      "Thẩm tra thiết kế và thi công hạ tầng kỹ thuật",
-      "Kinh doanh thiết bị - vật tư xây dựng, nội thất",
-      "Thi công xây dựng công trình dân dụng và công nghiệp",
-      "Tư vấn, tổ chức thi tuyển chọn phương án thiết kế: ý tưởng thiết kế kiến trúc;...",
-      "Dịch vụ cây xanh chuyên nghiệp: Tư vấn thiết kế, trồng mới và bảo dưỡng cảnh quan định kỳ cho mọi công trình."
+      "Thiết kế và thi công cảnh quan",
+      "Giải pháp Cải tổ Kiến trúc & Làm mới Không gian"
     ]
   },
   "portfolio": {
@@ -99,6 +85,16 @@
     "otherProjects": "Dự Án Khác",
     "viewAll": "Tất cả Dự án",
     "notFound": "Không tìm thấy dự án"
+  },
+  "blogs": {
+    "pageTitle": "Bài viết",
+    "allFilter": "Tất cả",
+    "noEntries": "Không tìm thấy bài viết nào.",
+    "previous": "Trước",
+    "next": "Tiếp",
+    "otherBlogs": "Bài Viết Khác",
+    "viewAll": "Xem Tất Cả Bài Viết",
+    "notFound": "Không tìm thấy bài viết"
   },
   "about": {
     "hero": {

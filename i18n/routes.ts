@@ -13,9 +13,13 @@ export const routeMap = {
     en: "about",
     vi: "ve-chung-toi",
   },
-  careers: {
-    en: "careers",
-    vi: "tuyen-dung",
+  // careers: {
+  //   en: "careers",
+  //   vi: "tuyen-dung",
+  // },
+  blogs: {
+    en: "blogs",
+    vi: "blogs",
   },
   // Future routes — just add entries here:
   // contact: { en: "contact",   vi: "lien-he" },

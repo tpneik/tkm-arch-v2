@@ -5,7 +5,7 @@
     "projects": "Projects",
     "contact": "Contact",
     "about": "About",
-    "careers": "Careers",
+    "blogs": "Blogs",
     "getInTouch": "Get in Touch"
   },
   "hero": {
@@ -23,23 +23,9 @@
     "title": "Our Services",
     "items": [
       "Architectural design of Civil & Industrial Projects",
-      "Construction Planning Design",
       "Interior - Exterior Design & Construction",
       "Landscape Design & Construction",
-      "Project management Consultancy",
-      "Technical infrastructure Projects Design & Construction",
-      "Investment Consulting Activities (except Accounting, Financial and Legal Consulting)",
-      "Bidding Consultancy",
-      "Construction Investment project management",
-      "Quality inspection of construction works",
-      "Establish investment projects",
-      "Verification architectural designs of civil and industrial projects",
-      "Verification of construction planning design",
-      "Verification the design and construction of technical infrastructure works",
-      "Trading in equipment - building materials, furniture",
-      "Civil & Industrial Construction",
-      "Consulting, organizing contests to select design proposals: architectural design concept;...",
-      "Professional Greenery Services: Design, planting, and periodic landscape maintenance for all types of projects."
+      "Architectural Restructuring & Space Reviving Solutions"
     ]
   },
   "portfolio": {
@@ -100,6 +86,16 @@
     "viewAll": "View All Projects",
     "notFound": "Project not found"
   },
+  "blogs": {
+    "pageTitle": "Blog",
+    "allFilter": "All",
+    "noEntries": "No articles found.",
+    "previous": "Previous",
+    "next": "Next",
+    "otherBlogs": "More Articles",
+    "viewAll": "View All Articles",
+    "notFound": "Article not found"
+  },
   "about": {
     "hero": {
       "tagline": "Our Journey",
@@ -127,31 +123,52 @@
           "id": "01",
           "title": "URBAN PLANNING",
           "brief": "Shaping the future of cities through strategic growth and sustainable zoning.",
-          "scopes": ["New metropolitan areas", "High-tech Agricultural Zones", "Industrial Areas"]
+          "scopes": [
+            "New metropolitan areas",
+            "High-tech Agricultural Zones",
+            "Industrial Areas"
+          ]
         },
         {
           "id": "02",
           "title": "COMPLEXES",
           "brief": "Designing multi-purpose spaces that foster community and technological synergy.",
-          "scopes": ["High-tech Complexes", "Multifunctional Complexes", "Accommodation Complexes", "Recreational Complexes"]
+          "scopes": [
+            "High-tech Complexes",
+            "Multifunctional Complexes",
+            "Accommodation Complexes",
+            "Recreational Complexes"
+          ]
         },
         {
           "id": "03",
           "title": "BUILDINGS",
           "brief": "Architecting iconic structures that redefine skylines and celebrate human experience.",
-          "scopes": ["Cultural & Recreation Buildings", "Service & Trading Centres", "Residential High-rise", "Office Buildings"]
+          "scopes": [
+            "Cultural & Recreation Buildings",
+            "Service & Trading Centres",
+            "Residential High-rise",
+            "Office Buildings"
+          ]
         },
         {
           "id": "04",
           "title": "DESIGN",
           "brief": "Refining the tactile and visual soul of architecture through meticulous detail.",
-          "scopes": ["Interior & Landscape Design", "Facade Design", "Art Lighting Design"]
+          "scopes": [
+            "Interior & Landscape Design",
+            "Facade Design",
+            "Art Lighting Design"
+          ]
         },
         {
           "id": "05",
           "title": "MANAGEMENT",
           "brief": "Ensuring operational longevity and technological excellence in the built environment.",
-          "scopes": ["Smart Building / City Management", "Resort Management"]
+          "scopes": [
+            "Smart Building / City Management",
+            "Resort Management"
+          ]
         }
       ]
     },

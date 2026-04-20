@@ -73,7 +73,7 @@ export default function Navbar() {
     { name: t("navbar.services"), href: isHome ? "#services" : `/${lng}/#services` },
     { name: t("navbar.projects"), href: localizedHref("projects", lng) },
     { name: t("navbar.about"), href: localizedHref("about", lng) },
-    { name: t("navbar.careers"), href: localizedHref("careers", lng) },
+    { name: t("navbar.blogs"), href: localizedHref("blogs", lng) },
   ];
 
   const [isTablet, setIsTablet] = useState(false);

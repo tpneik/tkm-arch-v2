@@ -1,0 +1,90 @@
+[
+  {
+    "id": "1",
+    "category": "Design",
+    "thumbnail": "/blog1.jpg",
+    "date": "2025-03-15",
+    "en": {
+      "title": "5 Trends Shaping Modern Architecture in 2025",
+      "slug": "5-trends-shaping-modern-architecture-2025",
+      "categoryLabel": "Design",
+      "categorySlug": "design",
+      "excerpt": "From biophilic design to adaptive reuse, explore the architectural movements defining our built environment this year.",
+      "content": "Architecture is constantly evolving, shaped by technological advances, environmental concerns, and shifting cultural values. In 2025, several key trends are redefining how we design and build spaces.\n\n## 1. Biophilic Design Goes Mainstream\n\nThe integration of natural elements into built environments is no longer a luxury—it's a necessity. Research consistently shows that biophilic design improves occupant well-being, productivity, and mental health. Expect to see more living walls, natural ventilation systems, and organic material palettes in both residential and commercial projects.\n\n## 2. Adaptive Reuse Over New Construction\n\nWith sustainability at the forefront, architects are increasingly transforming existing structures rather than building from scratch. Old warehouses become vibrant co-working spaces, abandoned factories transform into cultural centers, and heritage buildings find new purpose while preserving their historical character.\n\n## 3. Mass Timber Construction\n\nCross-laminated timber (CLT) is revolutionizing mid-rise and even high-rise construction. Timber structures sequester carbon, reduce construction waste, and create warm, inviting interiors. Several cities around the world are now embracing timber as a primary structural material.\n\n## 4. Smart Building Integration\n\nIoT sensors, AI-driven climate control, and responsive building systems are becoming standard in new construction. These technologies optimize energy use, enhance comfort, and provide valuable data for building management.\n\n## 5. Community-Centric Design\n\nArchitects are prioritizing shared spaces, mixed-use developments, and inclusive design principles. The focus is shifting from isolated buildings to interconnected communities that promote social interaction and well-being."
+    },
+    "vi": {
+      "title": "5 Xu hướng Định hình Kiến trúc Hiện đại 2025",
+      "slug": "5-xu-huong-dinh-hinh-kien-truc-hien-dai-2025",
+      "categoryLabel": "Thiết kế",
+      "categorySlug": "thiet-ke",
+      "excerpt": "Từ thiết kế sinh học đến tái sử dụng thích ứng, khám phá các xu hướng kiến trúc định hình môi trường xây dựng năm nay.",
+      "content": "Kiến trúc không ngừng phát triển, được định hình bởi những tiến bộ công nghệ, mối quan tâm về môi trường và sự thay đổi giá trị văn hóa. Năm 2025, một số xu hướng chính đang tái định nghĩa cách chúng ta thiết kế và xây dựng không gian.\n\n## 1. Thiết kế Sinh học Trở nên Phổ biến\n\nViệc tích hợp các yếu tố tự nhiên vào môi trường xây dựng không còn là xa xỉ—đó là điều cần thiết. Nghiên cứu liên tục cho thấy thiết kế sinh học cải thiện sức khỏe, năng suất và tinh thần của người sử dụng.\n\n## 2. Tái sử dụng Thích ứng Thay vì Xây mới\n\nVới tính bền vững đặt lên hàng đầu, các kiến trúc sư ngày càng chuyển đổi các công trình hiện có thay vì xây dựng từ đầu.\n\n## 3. Xây dựng bằng Gỗ Khối\n\nGỗ dán chéo (CLT) đang cách mạng hóa xây dựng trung tầng và thậm chí cao tầng.\n\n## 4. Tích hợp Tòa nhà Thông minh\n\nCảm biến IoT, điều khiển khí hậu bằng AI và hệ thống tòa nhà phản hồi đang trở thành tiêu chuẩn trong xây dựng mới.\n\n## 5. Thiết kế Hướng đến Cộng đồng\n\nCác kiến trúc sư đang ưu tiên không gian chung, phát triển đa chức năng và nguyên tắc thiết kế bao trùm."
+    }
+  },
+  {
+    "id": "2",
+    "category": "Construction",
+    "thumbnail": "/blog2.jpg",
+    "date": "2025-02-20",
+    "en": {
+      "title": "Understanding the Construction Process: From Blueprint to Reality",
+      "slug": "understanding-construction-process-blueprint-to-reality",
+      "categoryLabel": "Construction",
+      "categorySlug": "construction",
+      "excerpt": "A comprehensive guide to the phases of construction, from initial planning through final handover.",
+      "content": "Building a structure is a complex journey that requires careful planning, skilled execution, and meticulous oversight. Understanding each phase of construction helps clients set realistic expectations and make informed decisions.\n\n## Phase 1: Pre-Construction Planning\n\nBefore any ground is broken, the project undergoes extensive planning. This includes site analysis, feasibility studies, budget estimation, and regulatory compliance review. A well-planned project saves time and money during execution.\n\n## Phase 2: Design Development\n\nThe architectural vision takes shape through detailed drawings, 3D renderings, and material selections. This collaborative phase involves architects, engineers, and clients working together to refine every aspect of the design.\n\n## Phase 3: Construction Execution\n\nWith plans finalized and permits secured, construction begins. This phase involves foundation work, structural framing, MEP (mechanical, electrical, plumbing) installation, and exterior finishing.\n\n## Phase 4: Quality Control & Handover\n\nFinal inspections, quality checks, and punch-list items are addressed before the project is handed over to the client. Proper documentation and maintenance guidelines ensure the building performs as designed for years to come."
+    },
+    "vi": {
+      "title": "Hiểu về Quy trình Xây dựng: Từ Bản vẽ đến Thực tế",
+      "slug": "hieu-ve-quy-trinh-xay-dung-tu-ban-ve-den-thuc-te",
+      "categoryLabel": "Xây dựng",
+      "categorySlug": "xay-dung",
+      "excerpt": "Hướng dẫn toàn diện về các giai đoạn xây dựng, từ lập kế hoạch ban đầu đến bàn giao cuối cùng.",
+      "content": "Xây dựng một công trình là một hành trình phức tạp đòi hỏi sự lập kế hoạch cẩn thận, thực hiện có kỹ năng và giám sát tỉ mỉ.\n\n## Giai đoạn 1: Lập kế hoạch Trước Xây dựng\n\nTrước khi khởi công, dự án trải qua quá trình lập kế hoạch kỹ lưỡng bao gồm phân tích địa điểm, nghiên cứu khả thi, ước tính ngân sách và đánh giá tuân thủ quy định.\n\n## Giai đoạn 2: Phát triển Thiết kế\n\nTầm nhìn kiến trúc được hình thành thông qua bản vẽ chi tiết, hình ảnh 3D và lựa chọn vật liệu.\n\n## Giai đoạn 3: Thi công Xây dựng\n\nVới kế hoạch hoàn thiện và giấy phép được đảm bảo, việc xây dựng bắt đầu.\n\n## Giai đoạn 4: Kiểm soát Chất lượng & Bàn giao\n\nKiểm tra cuối cùng, kiểm soát chất lượng và các hạng mục cần hoàn thiện được giải quyết trước khi dự án được bàn giao cho khách hàng."
+    }
+  },
+  {
+    "id": "3",
+    "category": "Interior",
+    "thumbnail": "/blog3.jpg",
+    "date": "2025-01-10",
+    "en": {
+      "title": "The Art of Interior Space Planning",
+      "slug": "the-art-of-interior-space-planning",
+      "categoryLabel": "Interior",
+      "categorySlug": "interior",
+      "excerpt": "How thoughtful interior planning transforms ordinary rooms into extraordinary living experiences.",
+      "content": "Interior space planning is the foundation of great design. It's the invisible framework that determines how a space feels, flows, and functions.\n\n## Understanding Flow and Circulation\n\nGreat interior design begins with understanding how people move through a space. Circulation paths should feel natural and intuitive, guiding occupants effortlessly from one area to another.\n\n## The Power of Proportions\n\nThe relationship between furniture size, ceiling height, and room dimensions creates the psychological experience of a space. Well-proportioned rooms feel comfortable without being cramped or cavernous.\n\n## Light as a Design Element\n\nNatural light is the most powerful tool in interior design. The direction, quality, and quantity of light dramatically affect how colors appear, how spaces feel, and how occupants' moods are influenced.\n\n## Material Selection and Texture\n\nTexture adds depth and interest to interiors. Combining smooth and rough, matte and glossy, natural and manufactured materials creates rich, layered environments that engage all the senses."
+    },
+    "vi": {
+      "title": "Nghệ thuật Quy hoạch Không gian Nội thất",
+      "slug": "nghe-thuat-quy-hoach-khong-gian-noi-that",
+      "categoryLabel": "Nội thất",
+      "categorySlug": "noi-that",
+      "excerpt": "Cách quy hoạch nội thất chu đáo biến những căn phòng bình thường thành trải nghiệm sống phi thường.",
+      "content": "Quy hoạch không gian nội thất là nền tảng của thiết kế tuyệt vời. Đó là khung vô hình quyết định cách một không gian được cảm nhận, lưu thông và hoạt động.\n\n## Hiểu về Lưu thông và Sự Di chuyển\n\nThiết kế nội thất tuyệt vời bắt đầu bằng việc hiểu cách mọi người di chuyển qua không gian.\n\n## Sức mạnh của Tỷ lệ\n\nMối quan hệ giữa kích thước đồ nội thất, chiều cao trần và kích thước phòng tạo nên trải nghiệm tâm lý của một không gian.\n\n## Ánh sáng như một Yếu tố Thiết kế\n\nÁnh sáng tự nhiên là công cụ mạnh mẽ nhất trong thiết kế nội thất.\n\n## Lựa chọn Vật liệu và Kết cấu\n\nKết cấu thêm chiều sâu và sự thú vị cho nội thất. Kết hợp các vật liệu mịn và thô, mờ và bóng, tự nhiên và nhân tạo tạo ra môi trường phong phú, nhiều lớp."
+    }
+  },
+  {
+    "id": "4",
+    "category": "Design",
+    "thumbnail": "/blog4.jpg",
+    "date": "2024-12-05",
+    "en": {
+      "title": "Sustainable Architecture: Building for Tomorrow",
+      "slug": "sustainable-architecture-building-for-tomorrow",
+      "categoryLabel": "Design",
+      "categorySlug": "design",
+      "excerpt": "Exploring sustainable design strategies that minimize environmental impact while maximizing human comfort.",
+      "content": "Sustainable architecture is no longer optional—it's imperative. As the building sector accounts for nearly 40% of global carbon emissions, architects and builders must embrace practices that reduce our environmental footprint.\n\n## Passive Design Strategies\n\nPassive design leverages natural forces—sun, wind, and thermal mass—to maintain comfortable indoor environments without excessive energy input. Proper orientation, natural ventilation, and thermal insulation are foundational principles.\n\n## Renewable Energy Integration\n\nSolar panels, wind turbines, and geothermal systems are becoming standard features in forward-thinking buildings. These systems reduce operational costs and carbon output while increasing energy independence.\n\n## Water Conservation\n\nRainwater harvesting, greywater recycling, and water-efficient landscaping are essential components of sustainable design. These strategies reduce water consumption while maintaining beautiful, functional landscapes.\n\n## Life Cycle Assessment\n\nTrue sustainability considers the entire life cycle of a building—from material extraction through construction, operation, and eventual demolition or renovation. Life cycle assessment tools help architects make informed decisions about materials and systems."
+    },
+    "vi": {
+      "title": "Kiến trúc Bền vững: Xây dựng cho Ngày mai",
+      "slug": "kien-truc-ben-vung-xay-dung-cho-ngay-mai",
+      "categoryLabel": "Thiết kế",
+      "categorySlug": "thiet-ke",
+      "excerpt": "Khám phá các chiến lược thiết kế bền vững giúp giảm thiểu tác động môi trường đồng thời tối đa hóa sự thoải mái.",
+      "content": "Kiến trúc bền vững không còn là tùy chọn—đó là điều bắt buộc. Khi ngành xây dựng chiếm gần 40% lượng khí thải carbon toàn cầu, kiến trúc sư và nhà xây dựng phải áp dụng các phương pháp giảm dấu chân môi trường.\n\n## Chiến lược Thiết kế Thụ động\n\nThiết kế thụ động tận dụng các lực tự nhiên—mặt trời, gió và khối nhiệt—để duy trì môi trường trong nhà thoải mái mà không cần tiêu thụ năng lượng quá mức.\n\n## Tích hợp Năng lượng Tái tạo\n\nTấm pin mặt trời, tuabin gió và hệ thống địa nhiệt đang trở thành tính năng tiêu chuẩn trong các tòa nhà tiến bộ.\n\n## Bảo tồn Nước\n\nThu hoạch nước mưa, tái chế nước xám và cảnh quan tiết kiệm nước là các thành phần thiết yếu của thiết kế bền vững.\n\n## Đánh giá Vòng đời\n\nTính bền vững thực sự xem xét toàn bộ vòng đời của một tòa nhà—từ khai thác vật liệu qua xây dựng, vận hành và cuối cùng là phá dỡ hoặc cải tạo."
+    }
+  }
+]

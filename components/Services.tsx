@@ -4,23 +4,10 @@ import { motion, useAnimationFrame, useMotionValue } from "motion/react";
 import { useT } from "next-i18next/client";
 
 const serviceImages = [
-  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1429497419816-9ca5cfb4571a?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
+  "/service1.jpg",
+  "/service2.jpg",
+  "/service3.jpg",
+  "/service4.png",
 ];
 
 export default function Services() {
@@ -37,8 +24,8 @@ export default function Services() {
     image: serviceImages[i % serviceImages.length],
   }));
 
-  // Triple the list to ensure enough content for infinite drag in both directions
-  const duplicatedServices = [...services, ...services, ...services];
+  // 5x duplication to ensure smooth infinite scroll even with few items
+  const duplicatedServices = [...services, ...services, ...services, ...services, ...services];
 
   const x = useMotionValue(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,10 +38,10 @@ export default function Services() {
   useEffect(() => {
     const calculateWidth = () => {
       if (contentRef.current) {
-        const width = contentRef.current.scrollWidth / 3;
+        const width = contentRef.current.scrollWidth / 5;
         setBaseWidth(width);
-        // Start in the middle set
-        x.set(-width);
+        // Start at the 2nd set (middle zone)
+        x.set(-width * 2);
       }
     };
 
@@ -71,9 +58,11 @@ export default function Services() {
     const moveBy = speed * (delta / 16.67);
     let currentX = x.get() - moveBy;
 
-    // Seamless wrapping logic
-    if (currentX <= -baseWidth * 2) {
+    // Seamless wrapping: keep within the middle 3 sets
+    if (currentX <= -baseWidth * 3) {
       currentX += baseWidth;
+    } else if (currentX >= -baseWidth) {
+      currentX -= baseWidth;
     }
 
     x.set(currentX);
@@ -92,7 +81,7 @@ export default function Services() {
     let currentX = x.get();
 
     // Real-time wrapping during drag to prevent running out of cards
-    if (currentX <= -baseWidth * 2) {
+    if (currentX <= -baseWidth * 3) {
       x.set(currentX + baseWidth);
     } else if (currentX >= -baseWidth) {
       x.set(currentX - baseWidth);
