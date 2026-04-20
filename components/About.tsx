@@ -65,7 +65,7 @@ function TiltCard({
 
 /* ─── Team member images (shared, not translated) ─── */
 const TEAM_IMAGES = [
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop",
+  "/Nam_founder.jpg",
   "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop",
 ];
 
