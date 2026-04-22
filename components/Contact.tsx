@@ -1,15 +1,18 @@
 "use client";
-import { motion } from "motion/react";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { Phone, Mail, MapPin, Send, ArrowLeft } from "lucide-react";
 import { useT } from "next-i18next/client";
+import Image from "next/image";
 
 export default function Contact() {
   const { t } = useT("common");
+  const [showForm, setShowForm] = useState(false);
 
   return (
     <section id="contact" className="section-padding bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-20">
           <div>
             <span className="text-brand-blue uppercase tracking-[0.3em] text-xs font-bold mb-4 block">
               {t("contact.label")}
@@ -53,53 +56,82 @@ export default function Contact() {
             </div>
           </div>
 
+          {/* Right column: Image card ↔ Google Form toggle */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-brand-light p-8 md:p-12 rounded-3xl"
+            className="rounded-2xl md:rounded-3xl overflow-hidden relative min-h-[320px] sm:min-h-[400px] md:min-h-[500px]"
           >
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold">{t("contact.fullName")}</label>
-                  <input
-                    type="text"
-                    placeholder={t("contact.namePlaceholder")}
-                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors"
+            <AnimatePresence mode="wait">
+              {!showForm ? (
+                /* ── Image Card with CTA button ────────────── */
+                <motion.div
+                  key="image-card"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, scale: 0.97 }}
+                  transition={{ duration: 0.35 }}
+                  className="relative w-full h-full min-h-[320px] sm:min-h-[400px] md:min-h-[500px]"
+                >
+                  <Image
+                    src="/service1.jpg"
+                    alt="Contact TKM Architecture"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                   />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold">{t("contact.emailAddress")}</label>
-                  <input
-                    type="email"
-                    placeholder={t("contact.emailPlaceholder")}
-                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors"
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest font-bold">{t("contact.subject")}</label>
-                <select className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors">
-                  <option>{t("contact.subjectResidential")}</option>
-                  <option>{t("contact.subjectCommercial")}</option>
-                  <option>{t("contact.subjectInterior")}</option>
-                  <option>{t("contact.subjectOther")}</option>
-                </select>
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest font-bold">{t("contact.message")}</label>
-                <textarea
-                  rows={5}
-                  placeholder={t("contact.messagePlaceholder")}
-                  className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors resize-none"
-                ></textarea>
-              </div>
-              <button className="w-full bg-brand-blue text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-opacity-90 transition-all">
-                {t("contact.sendMessage")}
-                <Send className="w-4 h-4" />
-              </button>
-            </form>
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                  {/* Content over image */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-12">
+                    <p className="hidden sm:block text-white/80 font-light text-sm mb-6 max-w-sm leading-relaxed">
+                      {t("contact.description")}
+                    </p>
+                    <button
+                      onClick={() => setShowForm(true)}
+                      className="group flex items-center gap-2 sm:gap-3 bg-brand-blue text-white px-5 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-widest hover:bg-brand-blue/90 active:scale-95 transition-all w-fit"
+                    >
+                      {t("contact.sendMessage")}
+                      <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
+                </motion.div>
+              ) : (
+                /* ── Google Form ────────────────────────────── */
+                <motion.div
+                  key="google-form"
+                  initial={{ opacity: 0, scale: 1.02 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.35 }}
+                  className="bg-brand-light w-full"
+                >
+                  {/* Back button */}
+                  <button
+                    onClick={() => setShowForm(false)}
+                    className="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-brand-blue hover:text-brand-blue/70 active:scale-95 transition-all px-4 sm:px-6 pt-4 sm:pt-5 pb-2"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    {t("projectDetail.previous")}
+                  </button>
+
+                  <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLScjqkeoVgkbaGcO8LLJ20phx2amdLZZupxFCQ--sc_XbA8s0g/viewform?embedded=true"
+                    width="100%"
+                    frameBorder="0"
+                    marginHeight={0}
+                    marginWidth={0}
+                    className="w-full border-0 h-[1300px] sm:h-[1200px] md:h-[1100px]"
+                    title="Contact Form"
+                    loading="lazy"
+                  >
+                    Đang tải…
+                  </iframe>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>
