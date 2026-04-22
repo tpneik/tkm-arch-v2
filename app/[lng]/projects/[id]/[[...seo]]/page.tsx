@@ -37,6 +37,9 @@ const ProjectDetail = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     setImgLoaded(false);
+    // Fallback: if onLoad doesn't fire within 1s, force the image visible
+    const timer = setTimeout(() => setImgLoaded(true), 1000);
+    return () => clearTimeout(timer);
   }, [id]);
 
   // Redirect to canonical SEO URL if segments are missing
