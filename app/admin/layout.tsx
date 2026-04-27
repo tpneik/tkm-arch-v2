@@ -20,7 +20,6 @@ const inter = Inter({
 });
 
 const NAV_ITEMS = [
-  { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/projects", label: "Projects", icon: FolderKanban },
   { href: "/admin/blogs", label: "Blogs", icon: FileText },
 ];
@@ -74,12 +73,19 @@ export default function AdminLayout({
             --admin-muted: #8B8D97;
             --admin-accent: #3B82F6;
             --admin-accent-hover: #2563EB;
-            --admin-content-bg: #F8F9FB;
-            --admin-content-text: #1A1D26;
-            --admin-card-bg: #FFFFFF;
-            --admin-card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            /* Unified dark mode for main content */
+            --admin-content-bg: #090A0F;
+            --admin-content-text: #E4E5E9;
+            --admin-card-bg: #1A1D26;
+            --admin-card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --admin-sidebar-w: 260px;
             --admin-transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Aliases used in project pages */
+            --admin-primary: var(--admin-accent);
+            --admin-card: var(--admin-card-bg);
+            --admin-text-muted: var(--admin-muted);
+            --admin-danger: #EF4444;
           }
 
           .admin-body {
