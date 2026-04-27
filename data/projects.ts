@@ -35,19 +35,33 @@ export const categories: string[] = [
 /* ──────────────────── Helpers ──────────────────── */
 
 /**
- * Build a full SEO-friendly project URL.
+ * Build a full SEO-friendly project URL (without numeric ID).
  *
  * Uses the pre-baked `slug` and `categorySlug` from the JSON data
  * so no runtime slug computation is needed.
  *
  * @example
- *   projectHref(project, "en") → "/en/projects/1/commercial/1994-coffee-an-giang"
- *   projectHref(project, "vi") → "/vi/du-an/1/thuong-mai/quan-ca-phe-1994-an-giang"
+ *   projectHref(project, "en") → "/en/projects/cong-trinh-khac/1994-coffee-an-giang"
+ *   projectHref(project, "vi") → "/vi/du-an/cong-trinh-khac/quan-ca-phe-1994-an-giang"
  */
 export function projectHref(project: Project, lng: string): string {
   const lang = (lng || "en") as "en" | "vi";
   const baseSlug =
     (routeMap.projects as Record<string, string>)[lang] ?? "projects";
   const p = project[lang];
-  return `/${lang}/${baseSlug}/${project.id}/${p.categorySlug}/${p.slug}`;
+  return `/${lang}/${baseSlug}/${p.categorySlug}/${p.slug}`;
+}
+
+/**
+ * Find a project index by categorySlug + slug combo for a given language.
+ * Returns -1 if not found.
+ */
+export function findProjectBySlugs(
+  categorySlug: string,
+  slug: string,
+  lang: "en" | "vi"
+): number {
+  return projects.findIndex(
+    (p) => p[lang].categorySlug === categorySlug && p[lang].slug === slug
+  );
 }

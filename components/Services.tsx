@@ -17,7 +17,8 @@ export default function Services() {
   const [baseWidth, setBaseWidth] = useState(0);
   const { t } = useT("common");
 
-  const serviceItems: string[] = t("services.items", { returnObjects: true }) as unknown as string[];
+  const rawItems = t("services.items", { returnObjects: true });
+  const serviceItems: string[] = Array.isArray(rawItems) ? rawItems : [];
 
   const services = serviceItems.map((title, i) => ({
     title,

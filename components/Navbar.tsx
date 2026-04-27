@@ -29,10 +29,12 @@ export default function Navbar() {
   // Build unique category list with localized labels
   const categoryItems = Array.from(
     new Map(
-      projects.map((p) => [
-        p.category,
-        { key: p.category, label: p[lang].categoryLabel },
-      ])
+      projects
+        .filter((p) => p[lang]?.categoryLabel)
+        .map((p) => [
+          p.category,
+          { key: p.category, label: p[lang].categoryLabel },
+        ])
     ).values()
   );
 

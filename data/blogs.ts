@@ -35,21 +35,35 @@ export const blogCategories: string[] = [
 /* ──────────────────── Helpers ──────────────────── */
 
 /**
- * Build a full SEO-friendly blog URL.
+ * Build a full SEO-friendly blog URL (without numeric ID).
  *
  * Uses the pre-baked `slug` and `categorySlug` from the JSON data
  * so no runtime slug computation is needed.
  *
  * @example
- *   blogHref(blog, "en") → "/en/blogs/1/design/5-trends-shaping-modern-architecture-2025"
- *   blogHref(blog, "vi") → "/vi/blogs/1/thiet-ke/5-xu-huong-dinh-hinh-kien-truc-hien-dai-2025"
+ *   blogHref(blog, "en") → "/en/blogs/design/5-trends-shaping-modern-architecture-2025"
+ *   blogHref(blog, "vi") → "/vi/blogs/thiet-ke/5-xu-huong-dinh-hinh-kien-truc-hien-dai-2025"
  */
 export function blogHref(blog: Blog, lng: string): string {
   const lang = (lng || "en") as "en" | "vi";
   const baseSlug =
     (routeMap.blogs as Record<string, string>)[lang] ?? "blogs";
   const b = blog[lang];
-  return `/${lang}/${baseSlug}/${blog.id}/${b.categorySlug}/${b.slug}`;
+  return `/${lang}/${baseSlug}/${b.categorySlug}/${b.slug}`;
+}
+
+/**
+ * Find a blog index by categorySlug + slug combo for a given language.
+ * Returns -1 if not found.
+ */
+export function findBlogBySlugs(
+  categorySlug: string,
+  slug: string,
+  lang: "en" | "vi"
+): number {
+  return blogs.findIndex(
+    (b) => b[lang].categorySlug === categorySlug && b[lang].slug === slug
+  );
 }
 
 /**

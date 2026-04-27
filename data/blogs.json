@@ -2,7 +2,7 @@
   {
     "id": "1",
     "category": "Design",
-    "thumbnail": "/blog1.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop",
     "date": "2025-03-15",
     "en": {
       "title": "5 Trends Shaping Modern Architecture in 2025",
@@ -24,7 +24,7 @@
   {
     "id": "2",
     "category": "Construction",
-    "thumbnail": "/blog2.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop",
     "date": "2025-02-20",
     "en": {
       "title": "Understanding the Construction Process: From Blueprint to Reality",
@@ -46,7 +46,7 @@
   {
     "id": "3",
     "category": "Interior",
-    "thumbnail": "/blog3.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2070&auto=format&fit=crop",
     "date": "2025-01-10",
     "en": {
       "title": "The Art of Interior Space Planning",
@@ -68,7 +68,7 @@
   {
     "id": "4",
     "category": "Design",
-    "thumbnail": "/blog4.jpg",
+    "thumbnail": "https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=2070&auto=format&fit=crop",
     "date": "2024-12-05",
     "en": {
       "title": "Sustainable Architecture: Building for Tomorrow",

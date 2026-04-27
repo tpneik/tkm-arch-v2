@@ -6,27 +6,27 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { projects, projectHref } from "@/data/projects";
+import { projects, projectHref, findProjectBySlugs } from "@/data/projects";
 
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
 
 const ProjectDetail = () => {
-  const params = useParams<{ id: string; lng: string; seo?: string[] }>();
-  const { id, lng } = params;
+  const params = useParams<{ categorySlug: string; slug: string; lng: string }>();
+  const { categorySlug, slug, lng } = params;
   const router = useRouter();
   const { t } = useT("common");
   const lang = (lng || "en") as "en" | "vi";
   const [imgLoaded, setImgLoaded] = useState(false);
 
-  const currentIndex = projects.findIndex((p) => p.id === id);
-  const project = projects[currentIndex];
-  const prevProject = projects[currentIndex - 1] || null;
-  const nextProject = projects[currentIndex + 1] || null;
+  const currentIndex = findProjectBySlugs(categorySlug, slug, lang);
+  const project = currentIndex >= 0 ? projects[currentIndex] : undefined;
+  const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
+  const nextProject = currentIndex >= 0 && currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 
   // Related: 3 other projects (same category first, then others)
   const related = projects
-    .filter((p) => p.id !== id)
+    .filter((p) => p.id !== project?.id)
     .sort((a, b) => {
       if (a.category === project?.category && b.category !== project?.category) return -1;
       if (a.category !== project?.category && b.category === project?.category) return 1;
@@ -40,17 +40,7 @@ const ProjectDetail = () => {
     // Fallback: if onLoad doesn't fire within 1s, force the image visible
     const timer = setTimeout(() => setImgLoaded(true), 1000);
     return () => clearTimeout(timer);
-  }, [id]);
-
-  // Redirect to canonical SEO URL if segments are missing
-  useEffect(() => {
-    if (!project) return;
-    const canonical = projectHref(project, lang);
-    const currentPath = window.location.pathname;
-    if (currentPath !== canonical) {
-      router.replace(canonical);
-    }
-  }, [project, lang, router]);
+  }, [categorySlug, slug]);
 
   if (!project)
     return (
@@ -81,7 +71,7 @@ const ProjectDetail = () => {
 
         {/* Hero image */}
         <img
-          key={`hero-${id}`}
+          key={`hero-${categorySlug}-${slug}`}
           src={project.thumbnail || DEFAULT_IMG}
           alt={pd.title}
           onLoad={() => setImgLoaded(true)}

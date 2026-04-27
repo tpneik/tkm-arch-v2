@@ -26,7 +26,7 @@ const nextConfig: NextConfig = {
             source: `/${lang}/${slug}`,
             destination: `/${lang}/${internalRoute}`,
           });
-          // Also handle sub-paths (e.g., /vi/du-an/123 → /vi/projects/123)
+          // Also handle sub-paths (e.g., /vi/du-an/cong-trinh-khac/slug → /vi/projects/cong-trinh-khac/slug)
           rewrites.push({
             source: `/${lang}/${slug}/:path*`,
             destination: `/${lang}/${internalRoute}/:path*`,

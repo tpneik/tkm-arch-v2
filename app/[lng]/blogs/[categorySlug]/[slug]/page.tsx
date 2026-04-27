@@ -1,32 +1,32 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { blogs, blogHref, formatBlogDate } from "@/data/blogs";
+import { blogs, blogHref, findBlogBySlugs, formatBlogDate } from "@/data/blogs";
 
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
 
 const BlogDetail = () => {
-  const params = useParams<{ id: string; lng: string; seo?: string[] }>();
-  const { id, lng } = params;
-  const router = useRouter();
+  const params = useParams<{ categorySlug: string; slug: string; lng: string }>();
+  const { categorySlug, slug, lng } = params;
   const { t } = useT("common");
   const lang = (lng || "en") as "en" | "vi";
   const [imgLoaded, setImgLoaded] = useState(false);
+  const heroImgRef = useRef<HTMLImageElement>(null);
 
-  const currentIndex = blogs.findIndex((b) => b.id === id);
-  const blog = blogs[currentIndex];
-  const prevBlog = blogs[currentIndex - 1] || null;
-  const nextBlog = blogs[currentIndex + 1] || null;
+  const currentIndex = findBlogBySlugs(categorySlug, slug, lang);
+  const blog = currentIndex >= 0 ? blogs[currentIndex] : undefined;
+  const prevBlog = currentIndex > 0 ? blogs[currentIndex - 1] : null;
+  const nextBlog = currentIndex >= 0 && currentIndex < blogs.length - 1 ? blogs[currentIndex + 1] : null;
 
   // Related: 3 other blogs (same category first, then others)
   const related = blogs
-    .filter((b) => b.id !== id)
+    .filter((b) => b.id !== blog?.id)
     .sort((a, b) => {
       if (a.category === blog?.category && b.category !== blog?.category) return -1;
       if (a.category !== blog?.category && b.category === blog?.category) return 1;
@@ -37,17 +37,16 @@ const BlogDetail = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     setImgLoaded(false);
-  }, [id]);
-
-  // Redirect to canonical SEO URL if segments are missing
-  useEffect(() => {
-    if (!blog) return;
-    const canonical = blogHref(blog, lang);
-    const currentPath = window.location.pathname;
-    if (currentPath !== canonical) {
-      router.replace(canonical);
-    }
-  }, [blog, lang, router]);
+    // After hydration / navigation, the browser may have already loaded the
+    // cached image before React attached the onLoad handler. Check on next tick.
+    const timer = requestAnimationFrame(() => {
+      const img = heroImgRef.current;
+      if (img?.complete && img.naturalWidth > 0) {
+        setImgLoaded(true);
+      }
+    });
+    return () => cancelAnimationFrame(timer);
+  }, [categorySlug, slug]);
 
   if (!blog)
     return (
@@ -102,7 +101,8 @@ const BlogDetail = () => {
 
         {/* Hero image */}
         <img
-          key={`hero-${id}`}
+          ref={heroImgRef}
+          key={`hero-${categorySlug}-${slug}`}
           src={blog.thumbnail || DEFAULT_IMG}
           alt={bd.title}
           onLoad={() => setImgLoaded(true)}
