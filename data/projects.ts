@@ -1,5 +1,10 @@
 import { routeMap } from "@/i18n/routes";
 import projectData from "./projects.json";
+import {
+  projectCategories,
+  getProjectCategorySlugs,
+  getProjectCategoryLabels,
+} from "./categories";
 
 /* ──────────────────── Types ──────────────────── */
 
@@ -21,16 +26,17 @@ export interface Project {
   vi: ProjectLang;
 }
 
+/* ──────────────────── Re-exports ──────────────────── */
+
+export { projectCategories, getProjectCategorySlugs, getProjectCategoryLabels };
+
 /* ──────────────────── Data ──────────────────── */
 
 /** All projects — imported from projects.json (single source of truth) */
 export const projects: Project[] = projectData as Project[];
 
-/** Unique category list for filter UI */
-export const categories: string[] = [
-  "All",
-  ...Array.from(new Set(projects.map((p) => p.category))),
-];
+/** Unique category list for filter UI (slugs) */
+export const categories: string[] = getProjectCategorySlugs();
 
 /* ──────────────────── Helpers ──────────────────── */
 

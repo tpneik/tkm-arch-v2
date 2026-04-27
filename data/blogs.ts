@@ -1,5 +1,10 @@
 import { routeMap } from "@/i18n/routes";
 import blogData from "./blogs.json";
+import {
+  blogCategories as blogCategoryList,
+  getBlogCategorySlugs,
+  getBlogCategoryLabels,
+} from "./categories";
 
 /* ──────────────────── Types ──────────────────── */
 
@@ -21,16 +26,17 @@ export interface Blog {
   vi: BlogLang;
 }
 
+/* ──────────────────── Re-exports ──────────────────── */
+
+export { blogCategoryList, getBlogCategorySlugs, getBlogCategoryLabels };
+
 /* ──────────────────── Data ──────────────────── */
 
 /** All blogs — imported from blogs.json (single source of truth) */
 export const blogs: Blog[] = blogData as Blog[];
 
-/** Unique category list for filter UI */
-export const blogCategories: string[] = [
-  "All",
-  ...Array.from(new Set(blogs.map((b) => b.category))),
-];
+/** Unique category list for filter UI (slugs) */
+export const blogCategories: string[] = getBlogCategorySlugs();
 
 /* ──────────────────── Helpers ──────────────────── */
 

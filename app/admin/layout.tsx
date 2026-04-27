@@ -8,6 +8,7 @@ import {
   LayoutDashboard,
   FolderKanban,
   FileText,
+  Tags,
   LogOut,
   Menu,
   X,
@@ -22,6 +23,7 @@ const inter = Inter({
 const NAV_ITEMS = [
   { href: "/admin/projects", label: "Projects", icon: FolderKanban },
   { href: "/admin/blogs", label: "Blogs", icon: FileText },
+  { href: "/admin/categories", label: "Categories", icon: Tags },
 ];
 
 export default function AdminLayout({
