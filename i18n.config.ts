@@ -5,6 +5,7 @@ const i18nConfig: I18nConfig = {
   fallbackLng: 'en',
   defaultNS: 'common',
   ns: ['common'],
+  ignoredPaths: ['/api', '/_next', '/static', '/admin'],
   resourceLoader: (language: string, namespace: string) =>
     import(`./app/i18n/locales/${language}/${namespace}.json`),
 }
