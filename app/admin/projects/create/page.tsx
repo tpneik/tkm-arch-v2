@@ -1,8 +1,11 @@
 import Link from "next/link";
 import ProjectForm from "../components/ProjectForm";
+import { getProjectCategories } from "../../actions/categories";
 import { ArrowLeft } from "lucide-react";
 
-export default function CreateProjectPage() {
+export default async function CreateProjectPage() {
+  const categories = await getProjectCategories();
+
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
       <div className="flex items-center gap-4">
@@ -15,7 +18,7 @@ export default function CreateProjectPage() {
         <h1 className="text-2xl font-bold text-[var(--admin-text)] font-sans">Add New Project</h1>
       </div>
 
-      <ProjectForm />
+      <ProjectForm initialCategories={categories} />
     </div>
   );
 }

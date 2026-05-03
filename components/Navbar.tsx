@@ -8,7 +8,7 @@ import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref, buildLangSwitchHref } from "@/i18n/routes";
-import { projects } from "@/data/projects";
+import categoriesData from "@/data/categories.json";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,17 +26,11 @@ export default function Navbar() {
   const pathWithoutLng = pathname.replace(`/${lng}`, "") || "/";
   const isHome = pathWithoutLng === "/" || pathWithoutLng === "";
 
-  // Build unique category list with localized labels
-  const categoryItems = Array.from(
-    new Map(
-      projects
-        .filter((p) => p[lang]?.categoryLabel)
-        .map((p) => [
-          p.category,
-          { key: p.category, label: p[lang].categoryLabel },
-        ])
-    ).values()
-  );
+  // Build category list from categories.json using ASCII slug as filter key
+  const categoryItems = categoriesData.projectCategories.map((cat) => ({
+    slug: cat.slug,
+    label: cat[lang]?.label ?? cat.vi.label,
+  }));
 
   const handleDropdownEnter = () => {
     if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
@@ -187,8 +181,8 @@ export default function Navbar() {
                             <div className="absolute -top-4 left-0 right-0 h-4" />
                             {categoryItems.map((cat) => (
                               <Link
-                                key={cat.key}
-                                href={`${localizedHref("projects", lng)}?filter=${cat.key.toLowerCase().replace(/\s+/g, "-")}`}
+                                key={cat.slug}
+                                href={`${localizedHref("projects", lng)}?filter=${cat.slug}`}
                                 onClick={() => setProjectsDropdownOpen(false)}
                                 className="block px-5 py-2.5 text-xs uppercase tracking-[0.15em] font-bold text-brand-dark/60 hover:text-brand-blue hover:bg-brand-light/60 transition-all"
                               >
@@ -363,8 +357,8 @@ export default function Navbar() {
                               >
                                 {categoryItems.map((cat) => (
                                   <Link
-                                    key={cat.key}
-                                    href={`${localizedHref("projects", lng)}?filter=${cat.key.toLowerCase().replace(/\s+/g, "-")}`}
+                                    key={cat.slug}
+                                    href={`${localizedHref("projects", lng)}?filter=${cat.slug}`}
                                     onClick={() => { setIsOpen(false); setMobileProjectsExpanded(false); }}
                                     className="text-lg sm:text-xl font-bold text-white/50 hover:text-brand-blue transition-colors uppercase tracking-widest"
                                   >

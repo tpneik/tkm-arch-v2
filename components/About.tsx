@@ -13,6 +13,7 @@ import { useParams } from "next/navigation";
 import { useT } from "next-i18next/client";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { localizedHref } from "@/i18n/routes";
+import ArchitectAvatar from "@/components/ArchitectAvatar";
 
 /* ─── 3D Tilt Card ─── */
 function TiltCard({
@@ -66,16 +67,15 @@ function TiltCard({
 /* ─── Team member images (shared, not translated) ─── */
 const TEAM_IMAGES = [
   "/Nam_founder.jpg",
-  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop",
 ];
 
 /* ─── Service slider images (shared, not translated) ─── */
 const SERVICE_IMAGES = [
   "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1503387762-592dee58c460?q=80&w=1931&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1507537233860-29c884c501f1?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1504917595217-d4dc5f649774?q=80&w=2070&auto=format&fit=crop",
+  "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/VILLA%20KOSH%20RONG/11_7%20-%20Photo.jpg",
+  "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/KHACH%20SAN%20CAM/02.jpg",
+  "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/VCB%20QUAN%201/1.jpg",
 ];
 
 export default function About() {
@@ -402,16 +402,20 @@ export default function About() {
                   className="group"
                 >
                   <div className="relative overflow-hidden aspect-square mb-6 bg-gray-100 rounded-2xl shadow-lg shadow-brand-dark/5">
-                    <img
-                      src={TEAM_IMAGES[i % TEAM_IMAGES.length]}
-                      alt={member.name}
-                      className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 ${
-                        isMobile
-                          ? "grayscale-0"
-                          : "grayscale group-hover:grayscale-0"
-                      }`}
-                      referrerPolicy="no-referrer"
-                    />
+                    {i === 1 ? (
+                      <ArchitectAvatar className="w-full h-full rounded-2xl" />
+                    ) : (
+                      <img
+                        src={TEAM_IMAGES[0]}
+                        alt={member.name}
+                        className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 ${
+                          isMobile
+                            ? "grayscale-0"
+                            : "grayscale group-hover:grayscale-0"
+                        }`}
+                        referrerPolicy="no-referrer"
+                      />
+                    )}
                     <div
                       className={`absolute inset-0 bg-gradient-to-t from-brand-dark/30 via-transparent to-transparent transition-opacity duration-500 ${
                         isMobile

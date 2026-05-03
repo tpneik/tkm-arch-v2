@@ -7,7 +7,7 @@ import { motion } from "motion/react";
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { blogs, blogCategories, blogHref, formatBlogDate } from "@/data/blogs";
+import { blogs, blogCategoryList, blogHref, formatBlogDate } from "@/data/blogs";
 
 const ITEMS_PER_PAGE = 6;
 const DEFAULT_IMG =
@@ -27,11 +27,7 @@ const BlogsPage = () => {
     () =>
       filter === "all"
         ? blogs
-        : blogs.filter(
-            (b) =>
-              b.category.toLowerCase().replace(/\s+/g, "-") ===
-              filter.toLowerCase()
-          ),
+        : blogs.filter((b) => b.vi.categorySlug === filter),
     [filter]
   );
 
@@ -45,29 +41,21 @@ const BlogsPage = () => {
     [filteredBlogs, currentPage]
   );
 
-  const handleFilter = (cat: string) => {
+  const handleFilter = (slug: string) => {
     setCurrentPage(1);
     const base = localizedHref("blogs", lng);
-    if (cat === "All") router.push(base);
-    else
-      router.push(
-        `${base}?filter=${cat.toLowerCase().replace(/\s+/g, "-")}`
-      );
+    if (slug === "all") router.push(base);
+    else router.push(`${base}?filter=${slug}`);
   };
 
-  // Build localized category list
-  const localizedCategories = useMemo(() => {
-    const map = new Map<string, string>();
-    blogs.forEach((b) => {
-      if (!map.has(b.category)) {
-        map.set(b.category, b[lang].categoryLabel);
-      }
-    });
-    return [
-      { key: "All", label: t("blogs.allFilter") ?? "All" },
-      ...Array.from(map, ([key, label]) => ({ key, label })),
-    ];
-  }, [lang, t]);
+  // Build localized category list from blogCategoryList (categories.json)
+  const localizedCategories = useMemo(() => [
+    { slug: "all", label: t("blogs.allFilter") ?? "All" },
+    ...blogCategoryList.map((cat) => ({
+      slug: cat.slug,
+      label: cat[lang]?.label ?? cat.vi.label,
+    })),
+  ], [lang, t]);
 
   return (
     <div className="pt-32 pb-20 min-h-screen bg-brand-light text-brand-dark">
@@ -80,11 +68,10 @@ const BlogsPage = () => {
         <div className="flex flex-wrap gap-x-6 md:gap-x-10 gap-y-4 mb-8 md:mb-14 pb-7 md:pb-9 border-b border-brand-dark/10">
           {localizedCategories.map((cat) => (
             <button
-              key={cat.key}
-              onClick={() => handleFilter(cat.key)}
+              key={cat.slug}
+              onClick={() => handleFilter(cat.slug)}
               className={`text-[10px] font-bold uppercase tracking-[0.2em] transition-all cursor-pointer ${
-                filter === cat.key.toLowerCase().replace(/\s+/g, "-") ||
-                (filter === "all" && cat.key === "All")
+                filter === cat.slug
                   ? "text-brand-blue border-b-2 border-brand-blue pb-2"
                   : "text-brand-gray hover:text-brand-dark"
               }`}
