@@ -27,11 +27,7 @@ const ProjectsPage = () => {
     () =>
       filter === "all"
         ? projects
-        : projects.filter(
-            (p) =>
-              p.category.toLowerCase().replace(/\s+/g, "-") ===
-              filter.toLowerCase()
-          ),
+        : projects.filter((p) => p.vi.categorySlug === filter),
     [filter]
   );
 
@@ -45,26 +41,25 @@ const ProjectsPage = () => {
     [filteredProjects, currentPage]
   );
 
-  const handleFilter = (cat: string) => {
+  // key = p.category which is already an ASCII slug (e.g. 'nha-pho')
+  const handleFilter = (slug: string) => {
     setCurrentPage(1);
     const base = localizedHref("projects", lng);
-    if (cat === "All") router.push(base);
-    else
-      router.push(
-        `${base}?filter=${cat.toLowerCase().replace(/\s+/g, "-")}`
-      );
+    if (slug === "all") router.push(base);
+    else router.push(`${base}?filter=${slug}`);
   };
 
-  // Build localized category list: { key: "Commercial", label: "Thương mại" }
+  // key = p.vi.categorySlug (ASCII slug, e.g. 'nha-pho') — used in ?filter= URL param
   const localizedCategories = useMemo(() => {
     const map = new Map<string, string>();
     projects.forEach((p) => {
-      if (!map.has(p.category)) {
-        map.set(p.category, p[lang].categoryLabel);
+      const slug = p.vi.categorySlug;
+      if (!map.has(slug)) {
+        map.set(slug, p[lang].categoryLabel);
       }
     });
     return [
-      { key: "All", label: t("projects.allFilter") ?? "All" },
+      { key: "all", label: t("projects.allFilter") ?? "All" },
       ...Array.from(map, ([key, label]) => ({ key, label })),
     ];
   }, [lang, t]);
@@ -83,8 +78,7 @@ const ProjectsPage = () => {
               key={cat.key}
               onClick={() => handleFilter(cat.key)}
               className={`text-[10px] font-bold uppercase tracking-[0.2em] transition-all cursor-pointer ${
-                filter === cat.key.toLowerCase().replace(/\s+/g, "-") ||
-                (filter === "all" && cat.key === "All")
+                filter === cat.key
                   ? "text-brand-blue border-b-2 border-brand-blue pb-2"
                   : "text-brand-gray hover:text-brand-dark"
               }`}

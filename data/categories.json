@@ -1,0 +1,106 @@
+{
+  "projectCategories": [
+    {
+      "id": "1",
+      "slug": "cong-trinh-khac",
+      "en": {
+        "label": "Other Projects"
+      },
+      "vi": {
+        "label": "Công trình khác"
+      }
+    },
+    {
+      "id": "2",
+      "slug": "nha-pho",
+      "en": {
+        "label": "Townhouse"
+      },
+      "vi": {
+        "label": "Nhà phố"
+      }
+    },
+    {
+      "id": "3",
+      "slug": "van-phong",
+      "en": {
+        "label": "Office"
+      },
+      "vi": {
+        "label": "Văn phòng"
+      }
+    },
+    {
+      "id": "4",
+      "slug": "chung-cu",
+      "en": {
+        "label": "Apartment"
+      },
+      "vi": {
+        "label": "Chung cư"
+      }
+    },
+    {
+      "id": "5",
+      "slug": "villa",
+      "en": {
+        "label": "Villa"
+      },
+      "vi": {
+        "label": "Villa"
+      }
+    },
+    {
+      "id": "6",
+      "slug": "noi-that",
+      "en": {
+        "label": "Interior"
+      },
+      "vi": {
+        "label": "Nội thất"
+      }
+    },
+    {
+      "id": "7",
+      "slug": "truong-hoc",
+      "en": {
+        "label": "School"
+      },
+      "vi": {
+        "label": "Trường học"
+      }
+    }
+  ],
+  "blogCategories": [
+    {
+      "id": "1",
+      "slug": "design",
+      "en": {
+        "label": "Design"
+      },
+      "vi": {
+        "label": "Thiết kế"
+      }
+    },
+    {
+      "id": "2",
+      "slug": "construction",
+      "en": {
+        "label": "Construction"
+      },
+      "vi": {
+        "label": "Xây dựng"
+      }
+    },
+    {
+      "id": "3",
+      "slug": "interior",
+      "en": {
+        "label": "Interior"
+      },
+      "vi": {
+        "label": "Nội thất"
+      }
+    }
+  ]
+}

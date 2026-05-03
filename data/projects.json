@@ -15,7 +15,7 @@
       "title": "1994 Coffee – An Giang",
       "slug": "1994-coffee-an-giang",
       "categoryLabel": "Other Projects",
-      "categorySlug": "cong-trinh-khac",
+      "categorySlug": "other-projects",
       "description": "A nostalgic coffee shop inspired by the aesthetics of 1994, blending retro charm with modern functionality in the heart of An Giang. Warm timber tones, exposed brick, and vintage signage evoke timelessness, while contemporary amenities ensure every visit feels both familiar and refreshingly new.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -60,7 +60,7 @@
       "title": "Trung Nguyen Coffee – My Tho",
       "slug": "trung-nguyen-coffee-my-tho",
       "categoryLabel": "Other Projects",
-      "categorySlug": "cong-trinh-khac",
+      "categorySlug": "other-projects",
       "description": "A flagship Trung Nguyen coffee house in My Tho, Tien Giang Province, designed to reflect the brand's heritage through rich material palettes and immersive spatial experiences. The open-plan layout encourages social interaction while private alcoves offer quiet retreats.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -105,7 +105,7 @@
       "title": "The Fox Coffee",
       "slug": "the-fox-coffee",
       "categoryLabel": "Other Projects",
-      "categorySlug": "cong-trinh-khac",
+      "categorySlug": "other-projects",
       "description": "A trendy coffee shop with bold branding and a playful atmosphere. The design balances industrial rawness with cozy warmth through exposed ceilings, custom lighting, and curated greenery that transforms every corner into an Instagram-worthy moment.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -150,7 +150,7 @@
       "title": "The Foxie Lounge",
       "slug": "the-foxie-lounge",
       "categoryLabel": "Other Projects",
-      "categorySlug": "cong-trinh-khac",
+      "categorySlug": "other-projects",
       "description": "A stylish lounge bar combining a striking facade design with sophisticated interior spaces. The two-zone concept separates a vibrant street-level café from an intimate upper-floor cocktail bar, unified by a cohesive material language of dark metals and warm wood.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -197,7 +197,7 @@
       "title": "Foxzone Entertainment – Can Tho",
       "slug": "foxzone-entertainment-can-tho",
       "categoryLabel": "Other Projects",
-      "categorySlug": "cong-trinh-khac",
+      "categorySlug": "other-projects",
       "description": "A multi-functional entertainment complex in Can Tho featuring dynamic architectural volumes and energetic interior spaces. The facility offers diverse leisure zones unified by bold graphics, atmospheric lighting, and a youthful design identity.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -242,7 +242,7 @@
       "title": "Cao Nho Restaurant",
       "slug": "cao-nho-restaurant",
       "categoryLabel": "Other Projects",
-      "categorySlug": "cong-trinh-khac",
+      "categorySlug": "other-projects",
       "description": "A modern Vietnamese restaurant celebrating local culinary traditions through warm materials, inviting lighting, and a thoughtfully crafted dining experience. The semi-open kitchen lets guests witness the artistry of each dish.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -287,7 +287,7 @@
       "title": "Minh Thu Shop – An Giang",
       "slug": "minh-thu-shop-an-giang",
       "categoryLabel": "Other Projects",
-      "categorySlug": "cong-trinh-khac",
+      "categorySlug": "other-projects",
       "description": "A contemporary retail space designed to elevate the shopping experience through clean lines, strategic lighting, and an inviting storefront. Display walls with integrated LED strips guide customers through curated product zones.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -332,7 +332,7 @@
       "title": "Pickle Ball Complex – Binh Chanh",
       "slug": "pickle-ball-complex-binh-chanh",
       "categoryLabel": "Other Projects",
-      "categorySlug": "cong-trinh-khac",
+      "categorySlug": "other-projects",
       "description": "An expansive pickleball facility in Binh Chanh with multiple court configurations, spectator areas, and a bold structural canopy. The saw-tooth roof channels prevailing winds across the courts for comfortable playing conditions.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -377,7 +377,7 @@
       "title": "Quang Ngai Spa",
       "slug": "quang-ngai-spa",
       "categoryLabel": "Other Projects",
-      "categorySlug": "cong-trinh-khac",
+      "categorySlug": "other-projects",
       "description": "A tranquil spa retreat in Quang Ngai featuring serene treatment rooms, relaxation lounges, and consultation spaces. Natural materials and soft lighting create an atmosphere of harmony and rejuvenation throughout every zone.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -422,7 +422,7 @@
       "title": "Victory Gym – Dong Thap",
       "slug": "victory-gym-dong-thap",
       "categoryLabel": "Other Projects",
-      "categorySlug": "cong-trinh-khac",
+      "categorySlug": "other-projects",
       "description": "A dynamic fitness center in Dong Thap Province designed with bold architectural volumes and energetic interior spaces. High ceilings, industrial finishes, and zone-specific lighting create an atmosphere that motivates peak performance.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -465,7 +465,7 @@
       "title": "Cam Hotel",
       "slug": "cam-hotel",
       "categoryLabel": "Townhouse",
-      "categorySlug": "nha-pho",
+      "categorySlug": "townhouse",
       "description": "A boutique hotel design featuring a distinctive facade, efficient room layouts, and welcoming common areas. The compact multi-story structure maximizes guest comfort within an urban setting through clever spatial planning.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -510,7 +510,7 @@
       "title": "Chi Dep Spa",
       "slug": "chi-dep-spa",
       "categoryLabel": "Townhouse",
-      "categorySlug": "nha-pho",
+      "categorySlug": "townhouse",
       "description": "A multi-story spa establishment featuring treatment rooms across five levels, each with a unique atmosphere. From the welcoming ground-floor reception to the serene rooftop relaxation area, the design guides guests on a vertical wellness journey.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -557,7 +557,7 @@
       "title": "My Tho Bookstore – Tien Giang",
       "slug": "my-tho-bookstore-tien-giang",
       "categoryLabel": "Office",
-      "categorySlug": "van-phong",
+      "categorySlug": "office",
       "description": "A modern bookstore design in My Tho that creates an inviting literary environment through open shelving layouts, comfortable reading zones, and warm ambient lighting that encourages browsing and discovery.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -602,7 +602,7 @@
       "title": "Hanayagi Spa",
       "slug": "hanayagi-spa",
       "categoryLabel": "Office",
-      "categorySlug": "van-phong",
+      "categorySlug": "office",
       "description": "A Japanese-inspired spa sanctuary featuring serene treatment rooms, training facilities, and consultation spaces unified by a philosophy of harmony and tranquility. Natural hinoki wood and tatami accents immerse guests in an authentic onsen-inspired journey.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -647,7 +647,7 @@
       "title": "Cho Moi Apartment – An Giang",
       "slug": "cho-moi-apartment-an-giang",
       "categoryLabel": "Apartment",
-      "categorySlug": "chung-cu",
+      "categorySlug": "apartment",
       "description": "A contemporary apartment project in Cho Moi, An Giang featuring efficient layouts and modern finishes. Each unit maximizes natural light and cross-ventilation while maintaining privacy in a dense urban context.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -694,7 +694,7 @@
       "title": "Anh Hung Apartment",
       "slug": "anh-hung-apartment",
       "categoryLabel": "Apartment",
-      "categorySlug": "chung-cu",
+      "categorySlug": "apartment",
       "description": "A modern apartment interior with multiple layout configurations, exploring furniture placement options to optimize living comfort within a compact floor plan. Clean lines and neutral tones create a serene backdrop for everyday living.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -737,7 +737,7 @@
       "title": "Townhouse – Binh Thanh",
       "slug": "townhouse-binh-thanh",
       "categoryLabel": "Townhouse",
-      "categorySlug": "nha-pho",
+      "categorySlug": "townhouse",
       "description": "A multi-story townhouse in Binh Thanh District featuring contemporary facades and refined interiors. The design maximizes natural light through strategic void placement while maintaining privacy on a narrow urban lot.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -784,7 +784,7 @@
       "title": "Chi Dao Townhouse",
       "slug": "chi-dao-townhouse",
       "categoryLabel": "Townhouse",
-      "categorySlug": "nha-pho",
+      "categorySlug": "townhouse",
       "description": "A four-story townhouse with meticulously designed interiors across every level. From the open-plan ground-floor living and kitchen to private bedrooms and a rooftop terrace, each space is crafted for comfort and elegance.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -829,7 +829,7 @@
       "title": "Chi Nha Townhouse",
       "slug": "chi-nha-townhouse",
       "categoryLabel": "Townhouse",
-      "categorySlug": "nha-pho",
+      "categorySlug": "townhouse",
       "description": "A contemporary townhouse with dedicated spaces for living, bedrooms on multiple floors, and a rooftop retreat. The design balances openness and privacy through thoughtful floor-by-floor planning with consistent material language.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -874,7 +874,7 @@
       "title": "Townhouse â€“ Go Vap",
       "slug": "townhouse-go-vap",
       "categoryLabel": "Townhouse",
-      "categorySlug": "nha-pho",
+      "categorySlug": "townhouse",
       "description": "A multi-story townhouse in Go Vap featuring bold architectural facades and refined interiors across three levels. The design integrates architecture and interior as a cohesive whole, with consistent material selections throughout.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -921,7 +921,7 @@
       "title": "Townhouse â€“ Duc Hue",
       "slug": "townhouse-duc-hue",
       "categoryLabel": "Townhouse",
-      "categorySlug": "nha-pho",
+      "categorySlug": "townhouse",
       "description": "A townhouse in Duc Hue, Long An Province with multiple design options exploring different facade treatments and interior layouts. The project showcases versatile architectural solutions adapted to the local climate and context.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -965,7 +965,7 @@
       "title": "Townhouse â€“ District 5",
       "slug": "townhouse-district-5",
       "categoryLabel": "Townhouse",
-      "categorySlug": "nha-pho",
+      "categorySlug": "townhouse",
       "description": "A refined townhouse in District 5 combining Chinese-Vietnamese architectural heritage with modern living standards. The narrow-lot design employs clever spatial strategies to deliver generous living areas and abundant natural light.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1326,7 +1326,7 @@
       "title": "Chi Minh Residence Interior",
       "slug": "chi-minh-residence-interior",
       "categoryLabel": "Interior",
-      "categorySlug": "noi-that",
+      "categorySlug": "interior",
       "description": "A residential interior project featuring modern furnishings and warm living spaces designed for everyday comfort.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1370,7 +1370,7 @@
       "title": "VCB Bank - District 1",
       "slug": "vcb-bank-district-1",
       "categoryLabel": "Interior",
-      "categorySlug": "noi-that",
+      "categorySlug": "interior",
       "description": "A premium bank branch interior in District 1 with professional finishes and client consultation areas.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1413,7 +1413,7 @@
       "title": "Robusta Office Interior",
       "slug": "robusta-office-interior",
       "categoryLabel": "Interior",
-      "categorySlug": "noi-that",
+      "categorySlug": "interior",
       "description": "A sophisticated office interior featuring open collaborative zones, private meeting rooms, and premium finishes.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1456,7 +1456,7 @@
       "title": "Linked Townhouse Interior - District 9",
       "slug": "linked-townhouse-interior-district-9",
       "categoryLabel": "Townhouse",
-      "categorySlug": "nha-pho",
+      "categorySlug": "townhouse",
       "description": "Interior design for a linked townhouse in District 9 with modern layouts.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1499,7 +1499,7 @@
       "title": "CIEC Office - Landmark 81",
       "slug": "ciec-office-landmark-81",
       "categoryLabel": "Office",
-      "categorySlug": "van-phong",
+      "categorySlug": "office",
       "description": "A prestigious office suite within Landmark 81 featuring panoramic city views and sophisticated interiors.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1543,7 +1543,7 @@
       "title": "Bernard Office",
       "slug": "bernard-office",
       "categoryLabel": "Office",
-      "categorySlug": "van-phong",
+      "categorySlug": "office",
       "description": "A multi-story office building with modern facade and flexible workspace configurations.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1588,7 +1588,7 @@
       "title": "HH3 Ba Son Tower",
       "slug": "hh3-ba-son-tower",
       "categoryLabel": "Office",
-      "categorySlug": "van-phong",
+      "categorySlug": "office",
       "description": "A high-rise office tower at Ba Son with contemporary architecture and premium curtain-wall facades.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1631,7 +1631,7 @@
       "title": "Connell Office",
       "slug": "connell-office",
       "categoryLabel": "Townhouse",
-      "categorySlug": "nha-pho",
+      "categorySlug": "townhouse",
       "description": "A multi-floor office conversion with detailed interior design across four levels.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1676,7 +1676,7 @@
       "title": "Thanh Danh Manufacturing",
       "slug": "thanh-danh-manufacturing",
       "categoryLabel": "Office",
-      "categorySlug": "van-phong",
+      "categorySlug": "office",
       "description": "An industrial production facility for a coconut processing company with efficient workflow layouts.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1719,7 +1719,7 @@
       "title": "Cao Cuu Infrastructure 2026",
       "slug": "cao-cuu-infrastructure-2026",
       "categoryLabel": "Other Projects",
-      "categorySlug": "cong-trinh-khac",
+      "categorySlug": "other-projects",
       "description": "A new infrastructure project with functional efficiency and modern construction techniques.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1764,7 +1764,7 @@
       "title": "Cao Cuu Renovation",
       "slug": "cao-cuu-renovation",
       "categoryLabel": "Other Projects",
-      "categorySlug": "cong-trinh-khac",
+      "categorySlug": "other-projects",
       "description": "A comprehensive renovation of an existing industrial complex across multiple zones.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1808,7 +1808,7 @@
       "title": "Trinh Viet Ban Secondary School",
       "slug": "trinh-viet-ban-secondary-school",
       "categoryLabel": "School",
-      "categorySlug": "truong-hoc",
+      "categorySlug": "school",
       "description": "A secondary school campus in Binh Dai with bright classrooms and outdoor learning spaces.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1852,7 +1852,7 @@
       "title": "Vang Quoi Secondary School",
       "slug": "vang-quoi-secondary-school",
       "categoryLabel": "School",
-      "categorySlug": "truong-hoc",
+      "categorySlug": "school",
       "description": "A secondary school featuring efficient classroom blocks and landscaped courtyards.",
       "details": {
         "INVESTOR": "Private Owner",
@@ -1897,7 +1897,7 @@
       "title": "Binh Dai District Committee HQ",
       "slug": "binh-dai-district-committee-hq",
       "categoryLabel": "Townhouse",
-      "categorySlug": "nha-pho",
+      "categorySlug": "townhouse",
       "description": "A government building with two design approaches - classical and modern - with dignified facades.",
       "details": {
         "INVESTOR": "Private Owner",
