@@ -1,26 +1,46 @@
 "use server";
 
-import fs from "fs/promises";
-import path from "path";
 import { revalidatePath } from "next/cache";
-import { Blog } from "@/data/blogs";
+import { connectToDatabase } from "@/lib/mongoose";
+import BlogModel from "@/models/Blog";
+import type { Blog } from "@/data/blogs";
 
-const BLOGS_FILE_PATH = path.join(process.cwd(), "data", "blogs.json");
+/** Strip Mongoose/BSON types so data is safe to pass to Client Components */
+function serialize<T>(doc: any): T {
+  return JSON.parse(JSON.stringify(doc));
+}
 
 export async function getBlogs(): Promise<Blog[]> {
   try {
-    const fileContents = await fs.readFile(BLOGS_FILE_PATH, "utf8");
-    return JSON.parse(fileContents) as Blog[];
+    await connectToDatabase();
+    const docs = await BlogModel.find({}).sort({ createdAt: -1 }).lean();
+    return docs.map((d: any) => serialize<Blog>({
+      id: d.id,
+      category: d.category,
+      thumbnail: d.thumbnail,
+      date: d.date,
+      en: d.en,
+      vi: d.vi,
+    }));
   } catch (error) {
-    console.error("Failed to read blogs data:", error);
+    console.error("Failed to fetch blogs:", error);
     return [];
   }
 }
 
 export async function getBlogById(id: string): Promise<Blog | null> {
   try {
-    const blogs = await getBlogs();
-    return blogs.find((b) => b.id === id) || null;
+    await connectToDatabase();
+    const doc: any = await BlogModel.findOne({ id }).lean();
+    if (!doc) return null;
+    return serialize<Blog>({
+      id: doc.id,
+      category: doc.category,
+      thumbnail: doc.thumbnail,
+      date: doc.date,
+      en: doc.en,
+      vi: doc.vi,
+    });
   } catch (error) {
     console.error("Failed to get blog by ID:", error);
     return null;
@@ -31,21 +51,12 @@ export async function createBlog(
   newBlog: Omit<Blog, "id">
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const blogs = await getBlogs();
+    await connectToDatabase();
 
-    const maxId = blogs.reduce((max, b) => {
-      const idNum = parseInt(b.id, 10);
-      return !isNaN(idNum) && idNum > max ? idNum : max;
-    }, 0);
+    const count = await BlogModel.countDocuments();
+    const blogData = { ...newBlog, id: String(count + 1) };
 
-    const blogWithId: Blog = {
-      ...newBlog,
-      id: (maxId + 1).toString(),
-    };
-
-    blogs.push(blogWithId);
-
-    await fs.writeFile(BLOGS_FILE_PATH, JSON.stringify(blogs, null, 2), "utf8");
+    await BlogModel.create(blogData);
     revalidatePath("/admin/blogs");
     revalidatePath("/en/blogs");
     revalidatePath("/vi/bai-viet");
@@ -61,16 +72,17 @@ export async function updateBlog(
   updatedBlog: Omit<Blog, "id">
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const blogs = await getBlogs();
-    const index = blogs.findIndex((b) => b.id === id);
+    await connectToDatabase();
+    const result = await BlogModel.findOneAndUpdate(
+      { id },
+      updatedBlog,
+      { returnDocument: 'after', runValidators: true }
+    );
 
-    if (index === -1) {
+    if (!result) {
       return { success: false, error: "Blog not found" };
     }
 
-    blogs[index] = { ...updatedBlog, id };
-
-    await fs.writeFile(BLOGS_FILE_PATH, JSON.stringify(blogs, null, 2), "utf8");
     revalidatePath("/admin/blogs");
     revalidatePath("/en/blogs");
     revalidatePath("/vi/bai-viet");
@@ -85,18 +97,13 @@ export async function deleteBlog(
   id: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const blogs = await getBlogs();
-    const filteredBlogs = blogs.filter((b) => b.id !== id);
+    await connectToDatabase();
+    const result = await BlogModel.findOneAndDelete({ id });
 
-    if (blogs.length === filteredBlogs.length) {
+    if (!result) {
       return { success: false, error: "Blog not found" };
     }
 
-    await fs.writeFile(
-      BLOGS_FILE_PATH,
-      JSON.stringify(filteredBlogs, null, 2),
-      "utf8"
-    );
     revalidatePath("/admin/blogs");
     revalidatePath("/en/blogs");
     revalidatePath("/vi/bai-viet");

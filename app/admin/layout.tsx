@@ -31,7 +31,7 @@ const NAV_ITEMS = [
   { href: "/admin/categories", label: "Categories", icon: Tags },
 ];
 
-function AdminSidebar() {
+function AdminSidebar({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
   const { user } = useUser();
@@ -139,6 +139,9 @@ function AdminSidebar() {
           </button>
         </div>
       </aside>
+
+      {/* Main Content */}
+      <main className="admin-main">{children}</main>
     </div>
   );
 }
@@ -485,9 +488,7 @@ export default function AdminLayout({
           `}</style>
 
           <AdminGate>
-            <AdminSidebar />
-            {/* Main Content */}
-            <main className="admin-main">{children}</main>
+            <AdminSidebar>{children}</AdminSidebar>
           </AdminGate>
         </body>
       </html>
