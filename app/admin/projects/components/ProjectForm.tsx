@@ -60,7 +60,17 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
 
   // ── Category state ──
   const [categories, setCategories] = useState<Category[]>(initialCategories);
-  const [category, setCategory] = useState(initialData?.category || "");
+  // initialData.category may be a Vietnamese label (legacy) or a slug — resolve to slug
+  const [category, setCategory] = useState(() => {
+    const raw = initialData?.category || "";
+    // If it already matches a slug, use it directly
+    if (initialCategories.find((c) => c.slug === raw)) return raw;
+    // Otherwise try to match by label (legacy data stores the Vietnamese label)
+    const match = initialCategories.find(
+      (c) => c.vi.label === raw || c.en.label === raw
+    );
+    return match?.slug || (initialCategories[0]?.slug ?? "");
+  });
   const [showAddCategory, setShowAddCategory] = useState(false);
   const [newCatEN, setNewCatEN] = useState("");
   const [newCatVI, setNewCatVI] = useState("");
@@ -96,7 +106,14 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
   // ── Dirty tracking: only enable Save when something changed ──
   const isDirty = (() => {
     if (!initialData) return true; // create mode — always saveable
-    if (category !== (initialData.category || "")) return true;
+    // Compare slug-to-slug (initialData.category may be a label)
+    const initCatSlug = (() => {
+      const raw = initialData.category || "";
+      if (categories.find((c) => c.slug === raw)) return raw;
+      const m = categories.find((c) => c.vi.label === raw || c.en.label === raw);
+      return m?.slug || "";
+    })();
+    if (category !== initCatSlug) return true;
     if (thumbnail !== (initialData.thumbnail || "")) return true;
     if (enTitle !== (initialData.en?.title || "")) return true;
     if (enDescription !== (initialData.en?.description || "")) return true;
@@ -323,7 +340,7 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
 
         {/* Sidebar Column */}
         <div className="space-y-8">
-          <div className="bg-[var(--admin-card-bg)] p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)]">
+          <div className="bg-[var(--admin-card-bg)] p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)] overflow-hidden">
             <h3 className="text-lg font-bold mb-4 pb-2 border-b border-[var(--admin-border)]">Category</h3>
 
             {/* Category dropdown + add button */}
@@ -332,7 +349,7 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
                 value={category}
                 onChange={(e) => handleCategorySelect(e.target.value)}
                 required
-                className="flex-1 px-3 py-2 bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)] transition-all"
+                className="flex-1 min-w-0 pl-3 pr-8 py-2 bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] text-sm truncate focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)] transition-all"
               >
                 {categories.map((cat) => (
                   <option key={cat.slug} value={cat.slug}>
