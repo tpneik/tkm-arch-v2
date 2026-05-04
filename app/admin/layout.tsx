@@ -356,6 +356,8 @@ export default function AdminLayout({
               margin-left: 0;
               padding: 20px 16px;
               padding-top: 72px;
+              overflow-x: hidden;
+              max-width: 100vw;
             }
 
             .admin-hamburger {

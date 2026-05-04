@@ -27,3 +27,19 @@
 .section-padding {
   @apply py-20 px-6 md:px-12 lg:px-24;
 }
+
+/* Thin scrollbar for horizontally-scrollable titles */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(150, 150, 150, 0.3) transparent;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  height: 2px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.3);
+  border-radius: 2px;
+}
