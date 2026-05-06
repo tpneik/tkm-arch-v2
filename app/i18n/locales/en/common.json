@@ -175,17 +175,15 @@
     "team": {
       "label": "Meet the Visionaries",
       "title": "Behind TKM Architecture",
+      "prev": "Prev",
+      "next": "Next",
       "members": [
-        {
-          "name": "Nam Nguyen",
-          "role": "Principal Architect",
-          "bio": "Visionary leader with a passion for integrating Vietnamese cultural elements into modern architecture."
-        },
-        {
-          "name": "Huy Nguyen",
-          "role": "Architect",
-          "bio": "Expert in sustainable urban development and detailed technical execution."
-        }
+        { "name": "Thanh Nam", "role": "Principal Architect", "image": "/Nam_founder.jpg" },
+        { "name": "Huy Nguyen", "role": "Project Manager", "image": "/Huy_Nguyen_QuanLyDuAn.jpg" },
+        { "name": "Hai Dang", "role": "Architect", "image": "/Hai_Dang_KienTrucSu.jpg" },
+        { "name": "Quoc Ninh", "role": "Head of Engineering", "image": "/Quoc_Ninh_Truong_Phong_Ky_Thuat.jpg" },
+        { "name": "Trong Quan", "role": "Architect", "image": "/Trong_Quan_KienTrucSu.jpg" },
+        { "name": "Truong Khang", "role": "Interior Architect", "image": "/Truong_Khang_KTS_noithat.jpg" }
       ]
     },
     "cta": {

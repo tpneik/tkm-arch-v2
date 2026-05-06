@@ -175,17 +175,15 @@
     "team": {
       "label": "Gặp Gỡ Những Nhà Tầm Nhìn",
       "title": "Đằng Sau TKM Architecture",
+      "prev": "Trước",
+      "next": "Tiếp",
       "members": [
-        {
-          "name": "Nam Nguyễn",
-          "role": "Kiến Trúc Sư Trưởng",
-          "bio": "Nhà lãnh đạo tầm nhìn với đam mê tích hợp yếu tố văn hóa Việt vào kiến trúc hiện đại."
-        },
-        {
-          "name": "Huy Nguyễn",
-          "role": "Kiến Trúc Sư",
-          "bio": "Chuyên gia về phát triển đô thị bền vững và thực thi kỹ thuật chi tiết."
-        }
+        { "name": "Thành Nam", "role": "Kiến Trúc Sư Trưởng", "image": "/Nam_founder.jpg" },
+        { "name": "Huy Nguyễn", "role": "Quản Lý Dự Án", "image": "/Huy_Nguyen_QuanLyDuAn.jpg" },
+        { "name": "Hải Đăng", "role": "Kiến Trúc Sư", "image": "/Hai_Dang_KienTrucSu.jpg" },
+        { "name": "Quốc Ninh", "role": "Trưởng Phòng Kỹ Thuật", "image": "/Quoc_Ninh_Truong_Phong_Ky_Thuat.jpg" },
+        { "name": "Trọng Quân", "role": "Kiến Trúc Sư", "image": "/Trong_Quan_KienTrucSu.jpg" },
+        { "name": "Trường Khang", "role": "Kiến Trúc Sư Nội Thất", "image": "/Truong_Khang_KTS_noithat.jpg" }
       ]
     },
     "cta": {

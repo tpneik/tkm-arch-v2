@@ -32,8 +32,15 @@ export function useMediaQuery(query: string) {
 }
 
 /**
- * Predefined hook for mobile detection (up to 768px)
+ * Predefined hook for mobile detection (up to 640px — phones)
  */
 export function useIsMobile() {
-  return useMediaQuery("(max-width: 768px)");
+  return useMediaQuery("(max-width: 640px)");
+}
+
+/**
+ * Predefined hook for tablet detection (641px–1024px — iPad, small tablets)
+ */
+export function useIsTablet() {
+  return useMediaQuery("(min-width: 641px) and (max-width: 1024px)");
 }
