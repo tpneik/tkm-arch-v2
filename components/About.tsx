@@ -11,9 +11,9 @@ import {
 import React, { useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import { useT } from "next-i18next/client";
-import { useIsMobile } from "@/hooks/useMediaQuery";
+import { useIsMobile, useIsTablet } from "@/hooks/useMediaQuery";
 import { localizedHref } from "@/i18n/routes";
-import ArchitectAvatar from "@/components/ArchitectAvatar";
+
 
 /* ─── 3D Tilt Card ─── */
 function TiltCard({
@@ -64,10 +64,7 @@ function TiltCard({
   );
 }
 
-/* ─── Team member images (shared, not translated) ─── */
-const TEAM_IMAGES = [
-  "/Nam_founder.jpg",
-];
+
 
 /* ─── Service slider images (shared, not translated) ─── */
 const SERVICE_IMAGES = [
@@ -83,6 +80,7 @@ export default function About() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
   const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
   const { lng } = useParams<{ lng: string }>();
   const { t } = useT("common");
 
@@ -93,8 +91,9 @@ export default function About() {
 
   /* ── Read team from locale ── */
   const teamRaw = t("about.team.members", { returnObjects: true });
-  const team: { name: string; role: string; bio: string }[] =
+  const team: { name: string; role: string; image: string }[] =
     Array.isArray(teamRaw) ? teamRaw : [];
+
 
   const nextSlide = () => {
     setDirection(1);
@@ -379,8 +378,8 @@ export default function About() {
         </section>
       )}
 
-      {/* ─── TEAM ─── */}
-      <section className="section-padding bg-white">
+      {/* ─── TEAM MARQUEE ─── */}
+      <section className="section-padding bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 text-center">
             <span className="text-brand-blue uppercase tracking-[0.3em] text-xs font-bold mb-4 block">
@@ -390,51 +389,90 @@ export default function About() {
               {t("about.team.title")}
             </h2>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-16 max-w-4xl mx-auto">
-            {team.map((member, i) => (
-              <TiltCard key={member.name}>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 }}
-                  className="group"
-                >
-                  <div className="relative overflow-hidden aspect-square mb-6 bg-gray-100 rounded-2xl shadow-lg shadow-brand-dark/5">
-                    {i === 1 ? (
-                      <ArchitectAvatar className="w-full h-full rounded-2xl" />
-                    ) : (
-                      <img
-                        src={TEAM_IMAGES[0]}
-                        alt={member.name}
-                        className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 ${
-                          isMobile
-                            ? "grayscale-0"
-                            : "grayscale group-hover:grayscale-0"
-                        }`}
-                        referrerPolicy="no-referrer"
-                      />
-                    )}
+        {/* Infinite marquee viewport — responsive edge masking */}
+        <div
+          className={`relative w-full mx-auto group/marquee ${
+            isMobile ? "max-w-[88vw]" : isTablet ? "max-w-[85vw]" : "max-w-[60vw]"
+          }`}
+          style={{
+            maskImage: isMobile
+              ? "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)"
+              : "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.05) 3%, rgba(0,0,0,0.4) 8%, black 14%, black 86%, rgba(0,0,0,0.4) 92%, rgba(0,0,0,0.05) 97%, transparent 100%)",
+            WebkitMaskImage: isMobile
+              ? "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)"
+              : "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.05) 3%, rgba(0,0,0,0.4) 8%, black 14%, black 86%, rgba(0,0,0,0.4) 92%, rgba(0,0,0,0.05) 97%, transparent 100%)",
+          }}
+        >
+          <div
+            className={`flex w-max group-hover/marquee:[animation-play-state:paused] motion-reduce:animate-none ${
+              isMobile
+                ? "gap-5 animate-[teamMarquee_20s_linear_infinite]"
+                : isTablet
+                  ? "gap-6 animate-[teamMarquee_22s_linear_infinite]"
+                  : "gap-8 animate-[teamMarquee_25s_linear_infinite]"
+            }`}
+          >
+            {/* Render team twice for seamless loop */}
+            {[...team, ...team].map((member, i) => (
+              <div
+                key={`${member.name}-${i}`}
+                className="flex-shrink-0"
+                style={{
+                  width: isMobile
+                    ? "70vw"
+                    : isTablet
+                      ? "calc((85vw - 1 * 1.5rem) / 2)"
+                      : "calc((60vw - 3 * 2rem) / 4)",
+                }}
+              >
+                <div className="group cursor-pointer">
+                  <div className={`relative overflow-hidden aspect-[3/4] bg-gray-100 shadow-lg shadow-brand-dark/5 transition-shadow duration-300 group-hover:shadow-xl group-hover:shadow-brand-dark/10 ${
+                    isMobile ? "mb-4 rounded-xl" : "mb-6 rounded-2xl"
+                  }`}>
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className={`w-full h-full object-cover object-top transition-all duration-700 ease-out group-hover:scale-105 ${
+                        isMobile
+                          ? "grayscale-0"
+                          : "grayscale group-hover:grayscale-0"
+                      }`}
+                      referrerPolicy="no-referrer"
+                    />
                     <div
-                      className={`absolute inset-0 bg-gradient-to-t from-brand-dark/30 via-transparent to-transparent transition-opacity duration-500 ${
+                      className={`absolute inset-0 bg-gradient-to-t from-brand-dark/50 via-brand-dark/5 to-transparent transition-opacity duration-500 ${
                         isMobile
                           ? "opacity-100"
                           : "opacity-0 group-hover:opacity-100"
                       }`}
                     />
+                    {/* Name overlay on hover */}
+                    <div
+                      className={`absolute bottom-0 left-0 right-0 p-5 transition-all duration-500 ${
+                        isMobile
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0"
+                      }`}
+                    >
+                      <h3 className={`font-serif text-white mb-1 drop-shadow-lg ${isMobile ? "text-lg" : "text-xl"}`}>
+                        {member.name}
+                      </h3>
+                      <p className="text-white/80 uppercase tracking-widest text-[10px] font-bold drop-shadow-lg">
+                        {member.role}
+                      </p>
+                    </div>
                   </div>
-                  <div className="text-center sm:text-left px-4 sm:px-0">
-                    <h3 className="text-2xl font-serif mb-1">{member.name}</h3>
-                    <p className="text-brand-blue uppercase tracking-widest text-[10px] font-bold mb-3">
+                  {/* Name below card (always visible) */}
+                  <div className="text-center px-1">
+                    <h3 className={`font-serif mb-1 transition-colors duration-300 group-hover:text-brand-blue/80 ${isMobile ? "text-base" : "text-lg md:text-xl"}`}>{member.name}</h3>
+                    <p className={`text-brand-blue uppercase tracking-widest font-bold ${isMobile ? "text-[9px]" : "text-[10px]"}`}>
                       {member.role}
                     </p>
-                    <p className="text-gray-500 font-light leading-relaxed text-sm max-w-sm mx-auto sm:mx-0">
-                      {member.bio}
-                    </p>
                   </div>
-                </motion.div>
-              </TiltCard>
+                </div>
+              </div>
             ))}
           </div>
         </div>

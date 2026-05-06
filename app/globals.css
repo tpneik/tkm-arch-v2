@@ -27,3 +27,8 @@
 .section-padding {
   @apply py-20 px-6 md:px-12 lg:px-24;
 }
+
+@keyframes teamMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
