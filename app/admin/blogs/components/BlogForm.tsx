@@ -2,70 +2,42 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Project } from "@/data/projects";
+import { Blog } from "@/data/blogs";
 import { Category } from "@/data/categories";
-import { createProject, updateProject } from "../../actions/projects";
-import { createProjectCategory } from "../../actions/categories";
-import { Save, Plus, Trash2, ArrowLeft, X, Check } from "lucide-react";
+import { createBlog, updateBlog } from "../../actions/blogs";
+import { createBlogCategory } from "../../actions/categories";
+import { Save, Plus, ArrowLeft, X, Check } from "lucide-react";
 import Link from "next/link";
-
-interface DetailField {
-  key: string;
-  value: string;
-}
-
-// Helper to convert Record to DetailField array
-const recordToDetails = (record: Record<string, string | string[]>): DetailField[] => {
-  if (!record) return [];
-  return Object.entries(record).map(([key, val]) => ({
-    key,
-    value: Array.isArray(val) ? val.join("\n") : val,
-  }));
-};
-
-// Helper to convert DetailField array back to Record
-const detailsToRecord = (fields: DetailField[]): Record<string, string | string[]> => {
-  const record: Record<string, string | string[]> = {};
-  fields.forEach(({ key, value }) => {
-    if (!key.trim()) return;
-    const lines = value.split("\n").map(v => v.trim()).filter(v => v);
-    record[key.trim()] = lines.length > 1 ? lines : (lines[0] || "");
-  });
-  return record;
-};
 
 // Auto-generate slug from title
 const generateSlug = (title: string): string => {
   return title
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "") // strip combining diacritics (Vietnamese)
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/đ/gi, "d")
     .toLowerCase()
     .trim()
-    .replace(/[^a-z0-9\s-]/g, "") // remove non-alphanumeric (except space/dash)
-    .replace(/[\s_]+/g, "-")       // spaces & underscores → dash
-    .replace(/-+/g, "-")           // collapse multiple dashes
-    .replace(/^-|-$/g, "");        // trim leading/trailing dashes
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/[\s_]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
 };
 
-interface ProjectFormProps {
-  initialData?: Project;
+interface BlogFormProps {
+  initialData?: Blog;
   initialCategories?: Category[];
 }
 
-export default function ProjectForm({ initialData, initialCategories = [] }: ProjectFormProps) {
+export default function BlogForm({ initialData, initialCategories = [] }: BlogFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // ── Category state ──
   const [categories, setCategories] = useState<Category[]>(initialCategories);
-  // initialData.category may be a Vietnamese label (legacy) or a slug — resolve to slug
   const [category, setCategory] = useState(() => {
     const raw = initialData?.category || "";
-    // If it already matches a slug, use it directly
     if (initialCategories.find((c) => c.slug === raw)) return raw;
-    // Otherwise try to match by label (legacy data stores the Vietnamese label)
     const match = initialCategories.find(
       (c) => c.vi.label === raw || c.en.label === raw
     );
@@ -78,35 +50,32 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
   const [addCatError, setAddCatError] = useState<string | null>(null);
 
   const [thumbnail, setThumbnail] = useState(initialData?.thumbnail || "");
-  const [gallery, setGallery] = useState<string[]>(initialData?.gallery || []);
+  const [date, setDate] = useState(initialData?.date || new Date().toISOString().split("T")[0]);
 
+  // EN fields
   const [enTitle, setEnTitle] = useState(initialData?.en?.title || "");
-  const [enDescription, setEnDescription] = useState(initialData?.en?.description || "");
-  const [enDetails, setEnDetails] = useState<DetailField[]>(
-    recordToDetails(initialData?.en?.details || {})
-  );
+  const [enExcerpt, setEnExcerpt] = useState(initialData?.en?.excerpt || "");
+  const [enContent, setEnContent] = useState(initialData?.en?.content || "");
 
+  // VI fields
   const [viTitle, setViTitle] = useState(initialData?.vi?.title || "");
-  const [viDescription, setViDescription] = useState(initialData?.vi?.description || "");
-  const [viDetails, setViDetails] = useState<DetailField[]>(
-    recordToDetails(initialData?.vi?.details || {})
-  );
+  const [viExcerpt, setViExcerpt] = useState(initialData?.vi?.excerpt || "");
+  const [viContent, setViContent] = useState(initialData?.vi?.content || "");
 
   // Slugs derived from titles
   const enSlug = generateSlug(enTitle);
   const viSlug = generateSlug(viTitle);
 
-  // Category labels & slugs derived from selected category — NOT manual input
+  // Category labels & slugs derived from selected category
   const selectedCat = categories.find((c) => c.slug === category);
   const enCategoryLabel = selectedCat?.en.label ?? "";
   const viCategoryLabel = selectedCat?.vi.label ?? "";
   const enCategorySlug = generateSlug(enCategoryLabel);
   const viCategorySlug = generateSlug(viCategoryLabel);
 
-  // ── Dirty tracking: only enable Save when something changed ──
+  // ── Dirty tracking ──
   const isDirty = (() => {
-    if (!initialData) return true; // create mode — always saveable
-    // Compare slug-to-slug (initialData.category may be a label)
+    if (!initialData) return true;
     const initCatSlug = (() => {
       const raw = initialData.category || "";
       if (categories.find((c) => c.slug === raw)) return raw;
@@ -115,24 +84,20 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
     })();
     if (category !== initCatSlug) return true;
     if (thumbnail !== (initialData.thumbnail || "")) return true;
+    if (date !== (initialData.date || "")) return true;
     if (enTitle !== (initialData.en?.title || "")) return true;
-    if (enDescription !== (initialData.en?.description || "")) return true;
+    if (enExcerpt !== (initialData.en?.excerpt || "")) return true;
+    if (enContent !== (initialData.en?.content || "")) return true;
     if (viTitle !== (initialData.vi?.title || "")) return true;
-    if (viDescription !== (initialData.vi?.description || "")) return true;
-    if (gallery.join("|") !== (initialData.gallery || []).join("|")) return true;
-    const initEnDetails = JSON.stringify(recordToDetails(initialData.en?.details || {}));
-    const initViDetails = JSON.stringify(recordToDetails(initialData.vi?.details || {}));
-    if (JSON.stringify(enDetails) !== initEnDetails) return true;
-    if (JSON.stringify(viDetails) !== initViDetails) return true;
+    if (viExcerpt !== (initialData.vi?.excerpt || "")) return true;
+    if (viContent !== (initialData.vi?.content || "")) return true;
     return false;
   })();
 
-  // ── When a category is selected from dropdown ──
   const handleCategorySelect = (slug: string) => {
     setCategory(slug);
   };
 
-  // ── Add new category inline ──
   const handleAddCategory = async () => {
     if (!newCatEN.trim() || !newCatVI.trim()) {
       setAddCatError("Cần nhập cả tiếng Anh và tiếng Việt.");
@@ -141,14 +106,18 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
     setAddingCat(true);
     setAddCatError(null);
     const slug = generateSlug(newCatEN);
-    const res = await createProjectCategory({ slug, en: { label: newCatEN.trim() }, vi: { label: newCatVI.trim() } });
+    const res = await createBlogCategory({
+      slug,
+      en: { label: newCatEN.trim() },
+      vi: { label: newCatVI.trim() },
+    });
     if (!res.success) {
       setAddCatError(res.error || "Thêm thất bại.");
       setAddingCat(false);
       return;
     }
     const newCat: Category = {
-      id: Date.now().toString(), // temporary; real ID assigned by server
+      id: Date.now().toString(),
       slug,
       en: { label: newCatEN.trim() },
       vi: { label: newCatVI.trim() },
@@ -166,37 +135,37 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
     setLoading(true);
     setError(null);
 
-    const projectData: Omit<Project, "id"> = {
+    const blogData: Omit<Blog, "id"> = {
       category,
       thumbnail,
-      gallery: gallery.filter(url => url.trim() !== ""),
+      date,
       en: {
         title: enTitle,
         slug: enSlug,
         categoryLabel: enCategoryLabel,
         categorySlug: enCategorySlug,
-        description: enDescription,
-        details: detailsToRecord(enDetails),
+        excerpt: enExcerpt,
+        content: enContent,
       },
       vi: {
         title: viTitle,
         slug: viSlug,
         categoryLabel: viCategoryLabel,
         categorySlug: viCategorySlug,
-        description: viDescription,
-        details: detailsToRecord(viDetails),
+        excerpt: viExcerpt,
+        content: viContent,
       },
     };
 
     try {
       if (initialData?.id) {
-        const res = await updateProject(initialData.id, projectData);
+        const res = await updateBlog(initialData.id, blogData);
         if (!res.success) throw new Error(res.error);
       } else {
-        const res = await createProject(projectData);
+        const res = await createBlog(blogData);
         if (!res.success) throw new Error(res.error);
       }
-      router.push("/admin/projects");
+      router.push("/admin/blogs");
       router.refresh();
     } catch (err: any) {
       setError(err.message || "Something went wrong.");
@@ -204,13 +173,13 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
     }
   };
 
-  const InputField = ({ label, value, onChange, required = false }: any) => (
+  const InputField = ({ label, value, onChange, required = false, type = "text" }: any) => (
     <div className="mb-4">
       <label className="block text-sm font-semibold text-[var(--admin-muted)] mb-1 uppercase tracking-wide">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       <input
-        type="text"
+        type={type}
         value={value}
         onChange={onChange}
         required={required}
@@ -219,7 +188,7 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
     </div>
   );
 
-  const TextAreaField = ({ label, value, onChange, required = false }: any) => (
+  const TextAreaField = ({ label, value, onChange, required = false, rows = 4 }: any) => (
     <div className="mb-4">
       <label className="block text-sm font-semibold text-[var(--admin-muted)] mb-1 uppercase tracking-wide">
         {label} {required && <span className="text-red-500">*</span>}
@@ -228,57 +197,9 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
         value={value}
         onChange={onChange}
         required={required}
-        rows={4}
+        rows={rows}
         className="w-full px-4 py-2 bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)] transition-all"
       />
-    </div>
-  );
-
-  const DetailsEditor = ({ title, fields, setFields }: any) => (
-    <div className="mb-6 p-4 border border-[var(--admin-border)] rounded-lg bg-[var(--admin-content-bg)]">
-      <div className="flex justify-between items-center mb-4">
-        <h4 className="font-semibold text-sm uppercase text-[var(--admin-muted)]">{title}</h4>
-        <button
-          type="button"
-          onClick={() => setFields([...fields, { key: "", value: "" }])}
-          className="flex items-center gap-1 text-sm text-[var(--admin-accent)] hover:text-[var(--admin-accent-hover)] font-medium"
-        >
-          <Plus size={16} /> Add Field
-        </button>
-      </div>
-      {fields.map((field: DetailField, index: number) => (
-        <div key={index} className="flex flex-col sm:flex-row gap-2 mb-3 items-start">
-          <input
-            type="text"
-            placeholder="Key (e.g. SCALE)"
-            value={field.key}
-            onChange={(e) => {
-              const newFields = [...fields];
-              newFields[index].key = e.target.value;
-              setFields(newFields);
-            }}
-            className="w-full sm:w-1/3 px-3 py-2 text-sm border border-[var(--admin-border)] rounded focus:ring-1 focus:ring-[var(--admin-accent)] outline-none"
-          />
-          <textarea
-            placeholder="Value (use newlines for lists)"
-            value={field.value}
-            onChange={(e) => {
-              const newFields = [...fields];
-              newFields[index].value = e.target.value;
-              setFields(newFields);
-            }}
-            rows={2}
-            className="w-full sm:w-2/3 px-3 py-2 text-sm border border-[var(--admin-border)] rounded focus:ring-1 focus:ring-[var(--admin-accent)] outline-none"
-          />
-          <button
-            type="button"
-            onClick={() => setFields(fields.filter((_: any, i: number) => i !== index))}
-            className="p-2 text-red-500 hover:bg-red-50 rounded transition-colors mt-1"
-          >
-            <Trash2 size={16} />
-          </button>
-        </div>
-      ))}
     </div>
   );
 
@@ -286,11 +207,11 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
     <form onSubmit={handleSave} className="max-w-5xl mx-auto pb-20 px-0">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-4">
         <div className="flex items-center gap-3 sm:gap-4">
-          <Link href="/admin/projects" className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+          <Link href="/admin/blogs" className="p-2 hover:bg-gray-100 rounded-full transition-colors">
             <ArrowLeft className="text-[var(--admin-muted)]" size={20} />
           </Link>
           <h1 className="text-xl sm:text-2xl font-bold text-[var(--admin-content-text)]">
-            {initialData ? "Edit Project" : "New Project"}
+            {initialData ? "Edit Blog" : "New Blog"}
           </h1>
         </div>
         <button
@@ -304,7 +225,7 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
           ].join(" ")}
         >
           <Save size={18} />
-          {loading ? "Saving..." : "Save Project"}
+          {loading ? "Saving..." : "Save Blog"}
         </button>
       </div>
 
@@ -317,33 +238,33 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Content Column */}
         <div className="lg:col-span-2 space-y-8">
-          {/* English Tab */}
+          {/* English Content */}
           <div className="bg-[var(--admin-card-bg)] p-4 sm:p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)]">
             <h2 className="text-lg font-bold mb-6 pb-2 border-b border-[var(--admin-border)] flex items-center gap-2">
               <span className="text-2xl">🇺🇸</span> English Content
             </h2>
             <InputField label="Title" value={enTitle} onChange={(e: any) => setEnTitle(e.target.value)} required />
-            <TextAreaField label="Description" value={enDescription} onChange={(e: any) => setEnDescription(e.target.value)} required />
-            <DetailsEditor title="Project Details (EN)" fields={enDetails} setFields={setEnDetails} />
+            <TextAreaField label="Excerpt" value={enExcerpt} onChange={(e: any) => setEnExcerpt(e.target.value)} required rows={3} />
+            <TextAreaField label="Content (Markdown)" value={enContent} onChange={(e: any) => setEnContent(e.target.value)} required rows={12} />
           </div>
 
-          {/* Vietnamese Tab */}
+          {/* Vietnamese Content */}
           <div className="bg-[var(--admin-card-bg)] p-4 sm:p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)]">
             <h2 className="text-lg font-bold mb-6 pb-2 border-b border-[var(--admin-border)] flex items-center gap-2">
               <span className="text-2xl">🇻🇳</span> Vietnamese Content
             </h2>
             <InputField label="Title" value={viTitle} onChange={(e: any) => setViTitle(e.target.value)} required />
-            <TextAreaField label="Description" value={viDescription} onChange={(e: any) => setViDescription(e.target.value)} required />
-            <DetailsEditor title="Project Details (VI)" fields={viDetails} setFields={setViDetails} />
+            <TextAreaField label="Excerpt" value={viExcerpt} onChange={(e: any) => setViExcerpt(e.target.value)} required rows={3} />
+            <TextAreaField label="Content (Markdown)" value={viContent} onChange={(e: any) => setViContent(e.target.value)} required rows={12} />
           </div>
         </div>
 
         {/* Sidebar Column */}
         <div className="space-y-8">
+          {/* Category */}
           <div className="bg-[var(--admin-card-bg)] p-4 sm:p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)] overflow-hidden">
             <h3 className="text-lg font-bold mb-4 pb-2 border-b border-[var(--admin-border)]">Category</h3>
 
-            {/* Category dropdown + add button */}
             <div className="flex gap-2 items-center mb-3">
               <select
                 value={category}
@@ -367,7 +288,6 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
               </button>
             </div>
 
-            {/* Selected category preview */}
             {category && (
               <div className="text-xs text-[var(--admin-muted)] mb-3 font-mono space-y-1">
                 <div>🇺🇸 EN slug: <span className="text-[var(--admin-accent)]">{enCategorySlug}</span></div>
@@ -375,7 +295,6 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
               </div>
             )}
 
-            {/* Inline add-category mini-form */}
             {showAddCategory && (
               <div className="mt-3 p-4 border border-dashed border-[var(--admin-accent)] rounded-lg space-y-3">
                 <p className="text-xs font-semibold uppercase text-[var(--admin-muted)] mb-2">Thêm danh mục mới</p>
@@ -385,7 +304,7 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
                     type="text"
                     value={newCatEN}
                     onChange={(e) => setNewCatEN(e.target.value)}
-                    placeholder="e.g. Townhouse"
+                    placeholder="e.g. Technology"
                     className="w-full px-3 py-1.5 text-sm border border-[var(--admin-border)] bg-[var(--admin-content-bg)] text-[var(--admin-content-text)] rounded focus:outline-none focus:ring-1 focus:ring-[var(--admin-accent)]"
                   />
                 </div>
@@ -395,7 +314,7 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
                     type="text"
                     value={newCatVI}
                     onChange={(e) => setNewCatVI(e.target.value)}
-                    placeholder="ví dụ: Nhà phố"
+                    placeholder="ví dụ: Công nghệ"
                     className="w-full px-3 py-1.5 text-sm border border-[var(--admin-border)] bg-[var(--admin-content-bg)] text-[var(--admin-content-text)] rounded focus:outline-none focus:ring-1 focus:ring-[var(--admin-accent)]"
                   />
                 </div>
@@ -416,74 +335,32 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
             )}
           </div>
 
+          {/* Date */}
           <div className="bg-[var(--admin-card-bg)] p-4 sm:p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)]">
-            <h3 className="text-lg font-bold mb-6 pb-2 border-b border-[var(--admin-border)]">Media</h3>
-            
-            <div className="mb-6">
-              <label className="block text-sm font-semibold text-[var(--admin-muted)] mb-2 uppercase tracking-wide">
-                Thumbnail URL
-              </label>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={thumbnail}
-                  onChange={(e) => setThumbnail(e.target.value)}
-                  placeholder="https://..."
-                  className="w-full px-3 py-2 text-sm bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)]"
-                />
-              </div>
-              {thumbnail && (
-                <div className="mt-3 aspect-video relative rounded-lg overflow-hidden border border-[var(--admin-border)]">
-                  <img src={thumbnail} alt="Thumbnail preview" className="object-cover w-full h-full" />
-                </div>
-              )}
-            </div>
+            <h3 className="text-lg font-bold mb-4 pb-2 border-b border-[var(--admin-border)]">Date</h3>
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="w-full px-3 py-2 text-sm bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)]"
+            />
+          </div>
 
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <label className="block text-sm font-semibold text-[var(--admin-muted)] uppercase tracking-wide">
-                  Gallery URLs
-                </label>
-                <button
-                  type="button"
-                  onClick={() => setGallery([...gallery, ""])}
-                  className="text-[var(--admin-accent)] hover:text-[var(--admin-accent-hover)]"
-                >
-                  <Plus size={18} />
-                </button>
+          {/* Thumbnail */}
+          <div className="bg-[var(--admin-card-bg)] p-4 sm:p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)]">
+            <h3 className="text-lg font-bold mb-4 pb-2 border-b border-[var(--admin-border)]">Thumbnail</h3>
+            <input
+              type="text"
+              value={thumbnail}
+              onChange={(e) => setThumbnail(e.target.value)}
+              placeholder="https://..."
+              className="w-full px-3 py-2 text-sm bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)]"
+            />
+            {thumbnail && (
+              <div className="mt-3 aspect-video relative rounded-lg overflow-hidden border border-[var(--admin-border)]">
+                <img src={thumbnail} alt="Thumbnail preview" className="object-cover w-full h-full" />
               </div>
-              <div className="space-y-3">
-                {gallery.map((url, i) => (
-                  <div key={i} className="flex gap-2 items-center">
-                    <div className="flex-1">
-                      <input
-                        type="text"
-                        value={url}
-                        onChange={(e) => {
-                          const newG = [...gallery];
-                          newG[i] = e.target.value;
-                          setGallery(newG);
-                        }}
-                        placeholder="https://..."
-                        className="w-full px-3 py-2 text-sm bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--admin-accent)]"
-                      />
-                    </div>
-                    {url && (
-                      <div className="w-10 h-10 rounded overflow-hidden flex-shrink-0 border border-[var(--admin-border)]">
-                        <img src={url} alt="" className="w-full h-full object-cover" />
-                      </div>
-                    )}
-                    <button
-                      type="button"
-                      onClick={() => setGallery(gallery.filter((_, idx) => idx !== i))}
-                      className="text-red-500 p-1 hover:bg-red-50 rounded"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

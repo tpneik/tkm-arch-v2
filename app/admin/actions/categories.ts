@@ -1,37 +1,13 @@
 "use server";
 
-import fs from "fs/promises";
-import path from "path";
 import { revalidatePath } from "next/cache";
+import { connectToDatabase } from "@/lib/mongoose";
+import CategoryModel from "@/models/Category";
 import type { Category } from "@/data/categories";
 
-const CATEGORIES_FILE_PATH = path.join(
-  process.cwd(),
-  "data",
-  "categories.json"
-);
-
-interface CategoriesData {
-  projectCategories: Category[];
-  blogCategories: Category[];
-}
-
-async function readCategories(): Promise<CategoriesData> {
-  try {
-    const fileContents = await fs.readFile(CATEGORIES_FILE_PATH, "utf8");
-    return JSON.parse(fileContents) as CategoriesData;
-  } catch (error) {
-    console.error("Failed to read categories data:", error);
-    return { projectCategories: [], blogCategories: [] };
-  }
-}
-
-async function writeCategories(data: CategoriesData): Promise<void> {
-  await fs.writeFile(
-    CATEGORIES_FILE_PATH,
-    JSON.stringify(data, null, 2),
-    "utf8"
-  );
+/** Strip Mongoose/BSON types so data is safe to pass to Client Components */
+function serialize<T>(doc: any): T {
+  return JSON.parse(JSON.stringify(doc));
 }
 
 function revalidateAll() {
@@ -45,31 +21,48 @@ function revalidateAll() {
   revalidatePath("/vi/bai-viet");
 }
 
+/** Map a Mongoose doc to the Category type expected by the UI */
+function toCategory(doc: any): Category {
+  return serialize<Category>({
+    id: doc._id?.toString() || doc.id,
+    slug: doc.slug,
+    en: doc.en,
+    vi: doc.vi,
+  });
+}
+
 /* ──────────── Project Categories ──────────── */
 
 export async function getProjectCategories(): Promise<Category[]> {
-  const data = await readCategories();
-  return data.projectCategories;
+  try {
+    await connectToDatabase();
+    const docs = await CategoryModel.find({ type: "project" }).sort({ id: 1 }).lean();
+    return docs.map(toCategory);
+  } catch (error) {
+    console.error("Failed to fetch project categories:", error);
+    return [];
+  }
 }
 
 export async function createProjectCategory(
   category: Omit<Category, "id">
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const data = await readCategories();
+    await connectToDatabase();
 
     // Check duplicate slug
-    if (data.projectCategories.some((c) => c.slug === category.slug)) {
+    const existing = await CategoryModel.findOne({ type: "project", slug: category.slug });
+    if (existing) {
       return { success: false, error: "Category slug already exists" };
     }
 
-    const maxId = data.projectCategories.reduce((max, c) => {
-      const n = parseInt(c.id, 10);
-      return !isNaN(n) && n > max ? n : max;
-    }, 0);
+    const count = await CategoryModel.countDocuments({ type: "project" });
+    await CategoryModel.create({
+      ...category,
+      id: String(count + 1),
+      type: "project",
+    });
 
-    data.projectCategories.push({ ...category, id: (maxId + 1).toString() });
-    await writeCategories(data);
     revalidateAll();
     return { success: true };
   } catch (error: any) {
@@ -82,24 +75,28 @@ export async function updateProjectCategory(
   category: Omit<Category, "id">
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const data = await readCategories();
-    const index = data.projectCategories.findIndex((c) => c.id === id);
-
-    if (index === -1) {
-      return { success: false, error: "Category not found" };
-    }
+    await connectToDatabase();
 
     // Check duplicate slug (exclude self)
-    if (
-      data.projectCategories.some(
-        (c) => c.slug === category.slug && c.id !== id
-      )
-    ) {
+    const duplicate = await CategoryModel.findOne({
+      type: "project",
+      slug: category.slug,
+      _id: { $ne: id },
+    });
+    if (duplicate) {
       return { success: false, error: "Category slug already exists" };
     }
 
-    data.projectCategories[index] = { ...category, id };
-    await writeCategories(data);
+    const result = await CategoryModel.findByIdAndUpdate(
+      id,
+      { slug: category.slug, en: category.en, vi: category.vi },
+      { returnDocument: 'after', runValidators: true }
+    );
+
+    if (!result) {
+      return { success: false, error: "Category not found" };
+    }
+
     revalidateAll();
     return { success: true };
   } catch (error: any) {
@@ -111,15 +108,13 @@ export async function deleteProjectCategory(
   id: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const data = await readCategories();
-    const filtered = data.projectCategories.filter((c) => c.id !== id);
+    await connectToDatabase();
+    const result = await CategoryModel.findByIdAndDelete(id);
 
-    if (filtered.length === data.projectCategories.length) {
+    if (!result) {
       return { success: false, error: "Category not found" };
     }
 
-    data.projectCategories = filtered;
-    await writeCategories(data);
     revalidateAll();
     return { success: true };
   } catch (error: any) {
@@ -130,27 +125,34 @@ export async function deleteProjectCategory(
 /* ──────────── Blog Categories ──────────── */
 
 export async function getBlogCategories(): Promise<Category[]> {
-  const data = await readCategories();
-  return data.blogCategories;
+  try {
+    await connectToDatabase();
+    const docs = await CategoryModel.find({ type: "blog" }).sort({ id: 1 }).lean();
+    return docs.map(toCategory);
+  } catch (error) {
+    console.error("Failed to fetch blog categories:", error);
+    return [];
+  }
 }
 
 export async function createBlogCategory(
   category: Omit<Category, "id">
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const data = await readCategories();
+    await connectToDatabase();
 
-    if (data.blogCategories.some((c) => c.slug === category.slug)) {
+    const existing = await CategoryModel.findOne({ type: "blog", slug: category.slug });
+    if (existing) {
       return { success: false, error: "Category slug already exists" };
     }
 
-    const maxId = data.blogCategories.reduce((max, c) => {
-      const n = parseInt(c.id, 10);
-      return !isNaN(n) && n > max ? n : max;
-    }, 0);
+    const count = await CategoryModel.countDocuments({ type: "blog" });
+    await CategoryModel.create({
+      ...category,
+      id: String(count + 1),
+      type: "blog",
+    });
 
-    data.blogCategories.push({ ...category, id: (maxId + 1).toString() });
-    await writeCategories(data);
     revalidateAll();
     return { success: true };
   } catch (error: any) {
@@ -163,23 +165,27 @@ export async function updateBlogCategory(
   category: Omit<Category, "id">
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const data = await readCategories();
-    const index = data.blogCategories.findIndex((c) => c.id === id);
+    await connectToDatabase();
 
-    if (index === -1) {
-      return { success: false, error: "Category not found" };
-    }
-
-    if (
-      data.blogCategories.some(
-        (c) => c.slug === category.slug && c.id !== id
-      )
-    ) {
+    const duplicate = await CategoryModel.findOne({
+      type: "blog",
+      slug: category.slug,
+      _id: { $ne: id },
+    });
+    if (duplicate) {
       return { success: false, error: "Category slug already exists" };
     }
 
-    data.blogCategories[index] = { ...category, id };
-    await writeCategories(data);
+    const result = await CategoryModel.findByIdAndUpdate(
+      id,
+      { slug: category.slug, en: category.en, vi: category.vi },
+      { returnDocument: 'after', runValidators: true }
+    );
+
+    if (!result) {
+      return { success: false, error: "Category not found" };
+    }
+
     revalidateAll();
     return { success: true };
   } catch (error: any) {
@@ -191,15 +197,13 @@ export async function deleteBlogCategory(
   id: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const data = await readCategories();
-    const filtered = data.blogCategories.filter((c) => c.id !== id);
+    await connectToDatabase();
+    const result = await CategoryModel.findByIdAndDelete(id);
 
-    if (filtered.length === data.blogCategories.length) {
+    if (!result) {
       return { success: false, error: "Category not found" };
     }
 
-    data.blogCategories = filtered;
-    await writeCategories(data);
     revalidateAll();
     return { success: true };
   } catch (error: any) {

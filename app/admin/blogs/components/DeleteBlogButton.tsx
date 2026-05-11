@@ -2,17 +2,17 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { deleteProject } from "../../actions/projects";
+import { deleteBlog } from "../../actions/blogs";
 
-export default function DeleteProjectButton({ id, title }: { id: string; title: string }) {
+export default function DeleteBlogButton({ id, title }: { id: string; title: string }) {
   const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
 
   const handleDelete = async () => {
-    if (confirm(`Are you sure you want to delete the project: "${title}"?`)) {
+    if (confirm(`Are you sure you want to delete the blog: "${title}"?`)) {
       setIsDeleting(true);
       try {
-        const result = await deleteProject(id);
+        const result = await deleteBlog(id);
         if (result.success) {
           router.refresh();
         } else {
@@ -21,7 +21,7 @@ export default function DeleteProjectButton({ id, title }: { id: string; title: 
         }
       } catch (error) {
         console.error(error);
-        alert("An error occurred while deleting the project.");
+        alert("An error occurred while deleting the blog.");
         setIsDeleting(false);
       }
     }
