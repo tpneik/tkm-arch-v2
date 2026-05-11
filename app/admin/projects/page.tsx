@@ -23,6 +23,7 @@ export default async function ProjectsPage() {
           <table className="w-full text-left border-collapse table-fixed">
             <thead>
               <tr className="bg-[var(--admin-bg)] border-b border-[var(--admin-border)]">
+                <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm w-16 text-center">ID</th>
                 <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">Thumbnail</th>
                 <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">Title (VI)</th>
                 <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">Category</th>
@@ -32,6 +33,7 @@ export default async function ProjectsPage() {
             <tbody className="divide-y divide-[var(--admin-border)]">
               {projects.map((project) => (
                 <tr key={project.id} className="hover:bg-[var(--admin-bg)]/50 transition-colors">
+                  <td className="p-4 text-center text-sm font-mono text-[var(--admin-text-muted)]">{project.id}</td>
                   <td className="p-4">
                     <div className="relative w-16 h-12 rounded overflow-hidden bg-[var(--admin-bg)]">
                       {project.thumbnail ? (
@@ -75,7 +77,7 @@ export default async function ProjectsPage() {
               ))}
               {projects.length === 0 && (
                 <tr>
-                  <td colSpan={4} className="p-8 text-center text-[var(--admin-text-muted)]">
+                  <td colSpan={5} className="p-8 text-center text-[var(--admin-text-muted)]">
                     No projects found. Click &quot;Add New Project&quot; to create one.
                   </td>
                 </tr>
@@ -110,6 +112,7 @@ export default async function ProjectsPage() {
               </div>
               {/* Info */}
               <div className="flex-1 min-w-0 overflow-hidden">
+                <span className="inline-block px-1.5 py-0.5 bg-[var(--admin-bg)] border border-[var(--admin-border)] rounded text-xs font-mono text-[var(--admin-text-muted)] mb-1">#{project.id}</span>
                 <div className="overflow-x-auto pb-1 scrollbar-thin">
                   <div className="font-medium text-[var(--admin-text)] text-sm leading-tight whitespace-nowrap">
                     {project.vi?.title || "No Title"}

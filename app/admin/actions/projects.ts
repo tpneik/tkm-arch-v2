@@ -13,7 +13,11 @@ function serialize<T>(doc: any): T {
 export async function getProjects(): Promise<Project[]> {
   try {
     await connectToDatabase();
-    const docs = await ProjectModel.find({}).sort({ createdAt: -1 }).lean();
+    const docs = await ProjectModel.aggregate([
+      { $addFields: { _numId: { $toInt: "$id" } } },
+      { $sort: { _numId: 1 } },
+      { $project: { _numId: 0 } },
+    ]);
     return docs.map((d: any) => serialize<Project>({
       id: d.id,
       category: d.category,

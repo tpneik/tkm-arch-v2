@@ -7,7 +7,8 @@ import { motion } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { projects, categories, projectHref } from "@/data/projects";
+import { projectHref } from "@/data/projects";
+import { useProjects } from "@/hooks/useDbData";
 
 const ITEMS_PER_PAGE = 6;
 const DEFAULT_IMG =
@@ -20,6 +21,8 @@ const ProjectsPage = () => {
   const { t } = useT("common");
   const lang = (lng || "en") as "en" | "vi";
 
+  const { projects, loading } = useProjects();
+
   const filter = searchParams.get("filter") || "all";
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -28,7 +31,7 @@ const ProjectsPage = () => {
       filter === "all"
         ? projects
         : projects.filter((p) => p.vi.categorySlug === filter),
-    [filter]
+    [filter, projects]
   );
 
   const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
@@ -62,7 +65,17 @@ const ProjectsPage = () => {
       { key: "all", label: t("projects.allFilter") ?? "All" },
       ...Array.from(map, ([key, label]) => ({ key, label })),
     ];
-  }, [lang, t]);
+  }, [lang, t, projects]);
+
+  if (loading) {
+    return (
+      <div className="pt-32 pb-20 min-h-screen bg-brand-light text-brand-dark flex items-center justify-center">
+        <div className="animate-pulse text-sm uppercase tracking-[0.3em] text-brand-gray">
+          Loading...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-32 pb-20 min-h-screen bg-brand-light text-brand-dark">

@@ -2,7 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { connectToDatabase } from "@/lib/mongoose";
-import CategoryModel from "@/models/Category";
+import mongoose from "mongoose";
+import { ObjectId } from "mongodb";
 import type { Category } from "@/data/categories";
 
 /** Strip Mongoose/BSON types so data is safe to pass to Client Components */
@@ -36,7 +37,9 @@ function toCategory(doc: any): Category {
 export async function getProjectCategories(): Promise<Category[]> {
   try {
     await connectToDatabase();
-    const docs = await CategoryModel.find({ type: "project" }).sort({ id: 1 }).lean();
+    const db = mongoose.connection.db;
+    if (!db) return [];
+    const docs = await db.collection("projectCategories").find({}).sort({ id: 1 }).toArray();
     return docs.map(toCategory);
   } catch (error) {
     console.error("Failed to fetch project categories:", error);
@@ -49,18 +52,20 @@ export async function createProjectCategory(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     await connectToDatabase();
+    const db = mongoose.connection.db;
+    if (!db) return { success: false, error: "DB not connected" };
+    const col = db.collection("projectCategories");
 
     // Check duplicate slug
-    const existing = await CategoryModel.findOne({ type: "project", slug: category.slug });
+    const existing = await col.findOne({ slug: category.slug });
     if (existing) {
       return { success: false, error: "Category slug already exists" };
     }
 
-    const count = await CategoryModel.countDocuments({ type: "project" });
-    await CategoryModel.create({
+    const count = await col.countDocuments();
+    await col.insertOne({
       ...category,
       id: String(count + 1),
-      type: "project",
     });
 
     revalidateAll();
@@ -76,21 +81,23 @@ export async function updateProjectCategory(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     await connectToDatabase();
+    const db = mongoose.connection.db;
+    if (!db) return { success: false, error: "DB not connected" };
+    const col = db.collection("projectCategories");
 
     // Check duplicate slug (exclude self)
-    const duplicate = await CategoryModel.findOne({
-      type: "project",
+    const duplicate = await col.findOne({
       slug: category.slug,
-      _id: { $ne: id },
+      _id: { $ne: new ObjectId(id) },
     });
     if (duplicate) {
       return { success: false, error: "Category slug already exists" };
     }
 
-    const result = await CategoryModel.findByIdAndUpdate(
-      id,
-      { slug: category.slug, en: category.en, vi: category.vi },
-      { returnDocument: 'after', runValidators: true }
+    const result = await col.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: { slug: category.slug, en: category.en, vi: category.vi } },
+      { returnDocument: "after" }
     );
 
     if (!result) {
@@ -109,7 +116,9 @@ export async function deleteProjectCategory(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     await connectToDatabase();
-    const result = await CategoryModel.findByIdAndDelete(id);
+    const db = mongoose.connection.db;
+    if (!db) return { success: false, error: "DB not connected" };
+    const result = await db.collection("projectCategories").findOneAndDelete({ _id: new ObjectId(id) });
 
     if (!result) {
       return { success: false, error: "Category not found" };
@@ -127,7 +136,9 @@ export async function deleteProjectCategory(
 export async function getBlogCategories(): Promise<Category[]> {
   try {
     await connectToDatabase();
-    const docs = await CategoryModel.find({ type: "blog" }).sort({ id: 1 }).lean();
+    const db = mongoose.connection.db;
+    if (!db) return [];
+    const docs = await db.collection("blogCategories").find({}).sort({ id: 1 }).toArray();
     return docs.map(toCategory);
   } catch (error) {
     console.error("Failed to fetch blog categories:", error);
@@ -140,17 +151,19 @@ export async function createBlogCategory(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     await connectToDatabase();
+    const db = mongoose.connection.db;
+    if (!db) return { success: false, error: "DB not connected" };
+    const col = db.collection("blogCategories");
 
-    const existing = await CategoryModel.findOne({ type: "blog", slug: category.slug });
+    const existing = await col.findOne({ slug: category.slug });
     if (existing) {
       return { success: false, error: "Category slug already exists" };
     }
 
-    const count = await CategoryModel.countDocuments({ type: "blog" });
-    await CategoryModel.create({
+    const count = await col.countDocuments();
+    await col.insertOne({
       ...category,
       id: String(count + 1),
-      type: "blog",
     });
 
     revalidateAll();
@@ -166,20 +179,22 @@ export async function updateBlogCategory(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     await connectToDatabase();
+    const db = mongoose.connection.db;
+    if (!db) return { success: false, error: "DB not connected" };
+    const col = db.collection("blogCategories");
 
-    const duplicate = await CategoryModel.findOne({
-      type: "blog",
+    const duplicate = await col.findOne({
       slug: category.slug,
-      _id: { $ne: id },
+      _id: { $ne: new ObjectId(id) },
     });
     if (duplicate) {
       return { success: false, error: "Category slug already exists" };
     }
 
-    const result = await CategoryModel.findByIdAndUpdate(
-      id,
-      { slug: category.slug, en: category.en, vi: category.vi },
-      { returnDocument: 'after', runValidators: true }
+    const result = await col.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: { slug: category.slug, en: category.en, vi: category.vi } },
+      { returnDocument: "after" }
     );
 
     if (!result) {
@@ -198,7 +213,9 @@ export async function deleteBlogCategory(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     await connectToDatabase();
-    const result = await CategoryModel.findByIdAndDelete(id);
+    const db = mongoose.connection.db;
+    if (!db) return { success: false, error: "DB not connected" };
+    const result = await db.collection("blogCategories").findOneAndDelete({ _id: new ObjectId(id) });
 
     if (!result) {
       return { success: false, error: "Category not found" };

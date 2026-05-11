@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { blogs, blogHref, findBlogBySlugs, formatBlogDate } from "@/data/blogs";
+import { blogHref, formatBlogDate } from "@/data/blogs";
+import { useBlogs } from "@/hooks/useDbData";
 
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
@@ -19,20 +20,33 @@ const BlogDetail = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const heroImgRef = useRef<HTMLImageElement>(null);
 
-  const currentIndex = findBlogBySlugs(categorySlug, slug, lang);
+  const { blogs, loading } = useBlogs();
+
+  const currentIndex = useMemo(
+    () =>
+      blogs.findIndex(
+        (b) => b[lang].categorySlug === categorySlug && b[lang].slug === slug
+      ),
+    [blogs, categorySlug, slug, lang]
+  );
+
   const blog = currentIndex >= 0 ? blogs[currentIndex] : undefined;
   const prevBlog = currentIndex > 0 ? blogs[currentIndex - 1] : null;
   const nextBlog = currentIndex >= 0 && currentIndex < blogs.length - 1 ? blogs[currentIndex + 1] : null;
 
   // Related: 3 other blogs (same category first, then others)
-  const related = blogs
-    .filter((b) => b.id !== blog?.id)
-    .sort((a, b) => {
-      if (a.category === blog?.category && b.category !== blog?.category) return -1;
-      if (a.category !== blog?.category && b.category === blog?.category) return 1;
-      return 0;
-    })
-    .slice(0, 3);
+  const related = useMemo(
+    () =>
+      blogs
+        .filter((b) => b.id !== blog?.id)
+        .sort((a, b) => {
+          if (a.category === blog?.category && b.category !== blog?.category) return -1;
+          if (a.category !== blog?.category && b.category === blog?.category) return 1;
+          return 0;
+        })
+        .slice(0, 3),
+    [blogs, blog]
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -47,6 +61,16 @@ const BlogDetail = () => {
     });
     return () => cancelAnimationFrame(timer);
   }, [categorySlug, slug]);
+
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <div className="animate-pulse text-sm uppercase tracking-[0.3em] text-brand-gray">
+          Loading...
+        </div>
+      </div>
+    );
+  }
 
   if (!blog)
     return (
