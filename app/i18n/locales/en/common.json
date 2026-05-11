@@ -183,6 +183,7 @@
         { "name": "Hai Dang", "role": "Architect", "image": "/Hai_Dang_KienTrucSu.jpg" },
         { "name": "Quoc Ninh", "role": "Head of Engineering", "image": "/Quoc_Ninh_Truong_Phong_Ky_Thuat.jpg" },
         { "name": "Trong Quan", "role": "Architect", "image": "/Trong_Quan_KienTrucSu.jpg" },
+        { "name": "Nguyen Huu Thanh", "role": "Head of Construction Management", "image": "/Nguyen_Huu_Thanh_TruongPhongQuanLyxayDung.jpg" },
         { "name": "Truong Khang", "role": "Interior Architect", "image": "/Truong_Khang_KTS_noithat.jpg" }
       ]
     },
