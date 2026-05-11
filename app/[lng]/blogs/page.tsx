@@ -7,7 +7,8 @@ import { motion } from "motion/react";
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { blogs, blogCategoryList, blogHref, formatBlogDate } from "@/data/blogs";
+import { blogHref, formatBlogDate } from "@/data/blogs";
+import { useBlogs, useBlogCategories } from "@/hooks/useDbData";
 
 const ITEMS_PER_PAGE = 6;
 const DEFAULT_IMG =
@@ -20,6 +21,9 @@ const BlogsPage = () => {
   const { t } = useT("common");
   const lang = (lng || "en") as "en" | "vi";
 
+  const { blogs, loading: blogsLoading } = useBlogs();
+  const { categories: blogCategoryList, loading: catsLoading } = useBlogCategories();
+
   const filter = searchParams.get("filter") || "all";
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -28,7 +32,7 @@ const BlogsPage = () => {
       filter === "all"
         ? blogs
         : blogs.filter((b) => b.vi.categorySlug === filter),
-    [filter]
+    [filter, blogs]
   );
 
   const totalPages = Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE);
@@ -48,14 +52,24 @@ const BlogsPage = () => {
     else router.push(`${base}?filter=${slug}`);
   };
 
-  // Build localized category list from blogCategoryList (categories.json)
+  // Build localized category list from DB categories
   const localizedCategories = useMemo(() => [
     { slug: "all", label: t("blogs.allFilter") ?? "All" },
     ...blogCategoryList.map((cat) => ({
       slug: cat.slug,
       label: cat[lang]?.label ?? cat.vi.label,
     })),
-  ], [lang, t]);
+  ], [lang, t, blogCategoryList]);
+
+  if (blogsLoading || catsLoading) {
+    return (
+      <div className="pt-32 pb-20 min-h-screen bg-brand-light text-brand-dark flex items-center justify-center">
+        <div className="animate-pulse text-sm uppercase tracking-[0.3em] text-brand-gray">
+          Loading...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-32 pb-20 min-h-screen bg-brand-light text-brand-dark">

@@ -1,50 +1,67 @@
 "use server";
 
-import fs from "fs/promises";
-import path from "path";
 import { revalidatePath } from "next/cache";
-import { Project } from "@/data/projects";
+import { connectToDatabase } from "@/lib/mongoose";
+import ProjectModel from "@/models/Project";
+import type { Project } from "@/data/projects";
 
-const PROJECTS_FILE_PATH = path.join(process.cwd(), "data", "projects.json");
+/** Strip Mongoose/BSON types so data is safe to pass to Client Components */
+function serialize<T>(doc: any): T {
+  return JSON.parse(JSON.stringify(doc));
+}
 
 export async function getProjects(): Promise<Project[]> {
   try {
-    const fileContents = await fs.readFile(PROJECTS_FILE_PATH, "utf8");
-    return JSON.parse(fileContents) as Project[];
+    await connectToDatabase();
+    const docs = await ProjectModel.aggregate([
+      { $addFields: { _numId: { $toInt: "$id" } } },
+      { $sort: { _numId: 1 } },
+      { $project: { _numId: 0 } },
+    ]);
+    return docs.map((d: any) => serialize<Project>({
+      id: d.id,
+      category: d.category,
+      thumbnail: d.thumbnail,
+      gallery: d.gallery,
+      en: d.en,
+      vi: d.vi,
+    }));
   } catch (error) {
-    console.error("Failed to read projects data:", error);
+    console.error("Failed to fetch projects:", error);
     return [];
   }
 }
 
 export async function getProjectById(id: string): Promise<Project | null> {
   try {
-    const projects = await getProjects();
-    return projects.find(p => p.id === id) || null;
+    await connectToDatabase();
+    const doc: any = await ProjectModel.findOne({ id }).lean();
+    if (!doc) return null;
+    return serialize<Project>({
+      id: doc.id,
+      category: doc.category,
+      thumbnail: doc.thumbnail,
+      gallery: doc.gallery,
+      en: doc.en,
+      vi: doc.vi,
+    });
   } catch (error) {
     console.error("Failed to get project by ID:", error);
     return null;
   }
 }
 
-export async function createProject(newProject: Omit<Project, "id">): Promise<{ success: boolean; error?: string }> {
+export async function createProject(
+  newProject: Omit<Project, "id">
+): Promise<{ success: boolean; error?: string }> {
   try {
-    const projects = await getProjects();
-    
-    // Generate new ID (simple numeric increment)
-    const maxId = projects.reduce((max, p) => {
-      const idNum = parseInt(p.id, 10);
-      return !isNaN(idNum) && idNum > max ? idNum : max;
-    }, 0);
-    
-    const projectWithId: Project = {
-      ...newProject,
-      id: (maxId + 1).toString(),
-    };
+    await connectToDatabase();
 
-    projects.push(projectWithId);
+    // Auto-generate id
+    const count = await ProjectModel.countDocuments();
+    const projectData = { ...newProject, id: String(count + 1) };
 
-    await fs.writeFile(PROJECTS_FILE_PATH, JSON.stringify(projects, null, 2), "utf8");
+    await ProjectModel.create(projectData);
     revalidatePath("/admin/projects");
     revalidatePath("/en/projects");
     revalidatePath("/vi/du-an");
@@ -55,18 +72,22 @@ export async function createProject(newProject: Omit<Project, "id">): Promise<{ 
   }
 }
 
-export async function updateProject(id: string, updatedProject: Omit<Project, "id">): Promise<{ success: boolean; error?: string }> {
+export async function updateProject(
+  id: string,
+  updatedProject: Omit<Project, "id">
+): Promise<{ success: boolean; error?: string }> {
   try {
-    const projects = await getProjects();
-    const index = projects.findIndex((p) => p.id === id);
+    await connectToDatabase();
+    const result = await ProjectModel.findOneAndUpdate(
+      { id },
+      updatedProject,
+      { returnDocument: 'after', runValidators: true }
+    );
 
-    if (index === -1) {
+    if (!result) {
       return { success: false, error: "Project not found" };
     }
 
-    projects[index] = { ...updatedProject, id };
-
-    await fs.writeFile(PROJECTS_FILE_PATH, JSON.stringify(projects, null, 2), "utf8");
     revalidatePath("/admin/projects");
     revalidatePath("/en/projects");
     revalidatePath("/vi/du-an");
@@ -77,16 +98,17 @@ export async function updateProject(id: string, updatedProject: Omit<Project, "i
   }
 }
 
-export async function deleteProject(id: string): Promise<{ success: boolean; error?: string }> {
+export async function deleteProject(
+  id: string
+): Promise<{ success: boolean; error?: string }> {
   try {
-    const projects = await getProjects();
-    const filteredProjects = projects.filter((p) => p.id !== id);
+    await connectToDatabase();
+    const result = await ProjectModel.findOneAndDelete({ id });
 
-    if (projects.length === filteredProjects.length) {
+    if (!result) {
       return { success: false, error: "Project not found" };
     }
 
-    await fs.writeFile(PROJECTS_FILE_PATH, JSON.stringify(filteredProjects, null, 2), "utf8");
     revalidatePath("/admin/projects");
     revalidatePath("/en/projects");
     revalidatePath("/vi/du-an");

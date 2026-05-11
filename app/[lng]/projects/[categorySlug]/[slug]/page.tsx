@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { projects, projectHref, findProjectBySlugs } from "@/data/projects";
+import { projectHref } from "@/data/projects";
+import { useProjects } from "@/hooks/useDbData";
 
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
@@ -19,20 +20,33 @@ const ProjectDetail = () => {
   const lang = (lng || "en") as "en" | "vi";
   const [imgLoaded, setImgLoaded] = useState(false);
 
-  const currentIndex = findProjectBySlugs(categorySlug, slug, lang);
+  const { projects, loading } = useProjects();
+
+  const currentIndex = useMemo(
+    () =>
+      projects.findIndex(
+        (p) => p[lang].categorySlug === categorySlug && p[lang].slug === slug
+      ),
+    [projects, categorySlug, slug, lang]
+  );
+
   const project = currentIndex >= 0 ? projects[currentIndex] : undefined;
   const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
   const nextProject = currentIndex >= 0 && currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 
   // Related: 3 other projects (same category first, then others)
-  const related = projects
-    .filter((p) => p.id !== project?.id)
-    .sort((a, b) => {
-      if (a.category === project?.category && b.category !== project?.category) return -1;
-      if (a.category !== project?.category && b.category === project?.category) return 1;
-      return 0;
-    })
-    .slice(0, 3);
+  const related = useMemo(
+    () =>
+      projects
+        .filter((p) => p.id !== project?.id)
+        .sort((a, b) => {
+          if (a.category === project?.category && b.category !== project?.category) return -1;
+          if (a.category !== project?.category && b.category === project?.category) return 1;
+          return 0;
+        })
+        .slice(0, 3),
+    [projects, project]
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -41,6 +55,16 @@ const ProjectDetail = () => {
     const timer = setTimeout(() => setImgLoaded(true), 1000);
     return () => clearTimeout(timer);
   }, [categorySlug, slug]);
+
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <div className="animate-pulse text-sm uppercase tracking-[0.3em] text-brand-gray">
+          Loading...
+        </div>
+      </div>
+    );
+  }
 
   if (!project)
     return (

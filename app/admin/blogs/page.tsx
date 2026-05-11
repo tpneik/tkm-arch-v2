@@ -1,68 +1,159 @@
-import { FileText } from "lucide-react";
+import Link from "next/link";
+import { getBlogs } from "../actions/blogs";
+import DeleteBlogButton from "./components/DeleteBlogButton";
+import Image from "next/image";
 
-export default function AdminBlogs() {
+export default async function BlogsPage() {
+  const blogs = await getBlogs();
+
   return (
-    <>
-      <style>{`
-        .placeholder-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          min-height: 60vh;
-          text-align: center;
-        }
-        .placeholder-icon {
-          width: 64px;
-          height: 64px;
-          border-radius: 16px;
-          background: #8B5CF615;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #8B5CF6;
-          margin-bottom: 20px;
-        }
-        .placeholder-icon svg {
-          width: 28px;
-          height: 28px;
-        }
-        .placeholder-title {
-          font-size: 20px;
-          font-weight: 700;
-          color: #1A1D26;
-          margin: 0 0 8px 0;
-          font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-        }
-        .placeholder-desc {
-          font-size: 14px;
-          color: #8B8D97;
-          margin: 0;
-          max-width: 360px;
-          line-height: 1.5;
-        }
-        .placeholder-badge {
-          margin-top: 16px;
-          font-size: 12px;
-          font-weight: 600;
-          color: #8B5CF6;
-          background: #8B5CF610;
-          padding: 6px 14px;
-          border-radius: 20px;
-          letter-spacing: 0.02em;
-        }
-      `}</style>
-
-      <div className="placeholder-container">
-        <div className="placeholder-icon">
-          <FileText />
-        </div>
-        <h1 className="placeholder-title">Quản lý bài viết</h1>
-        <p className="placeholder-desc">
-          Trang quản lý blog đang được phát triển. Bạn sẽ có thể thêm, sửa và xóa các bài viết tại đây.
-        </p>
-        <div className="placeholder-badge">Sắp ra mắt</div>
+    <div className="space-y-6 max-w-full overflow-hidden">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <h1 className="text-2xl font-bold text-[var(--admin-text)] font-sans">Blogs Management</h1>
+        <Link
+          href="/admin/blogs/create"
+          className="px-4 py-2 bg-[var(--admin-primary)] text-[var(--admin-bg)] font-medium rounded hover:opacity-90 transition-opacity whitespace-nowrap text-sm sm:text-base"
+        >
+          + Add New Blog
+        </Link>
       </div>
-    </>
+
+      {/* ── Desktop Table (hidden on mobile) ── */}
+      <div className="hidden md:block bg-[var(--admin-card)] border border-[var(--admin-border)] rounded-lg overflow-hidden">
+          <table className="w-full text-left border-collapse table-fixed">
+            <thead>
+              <tr className="bg-[var(--admin-bg)] border-b border-[var(--admin-border)]">
+                <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">Thumbnail</th>
+                <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">Title (VI)</th>
+                <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">Category</th>
+                <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">Date</th>
+                <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[var(--admin-border)]">
+              {blogs.map((blog) => (
+                <tr key={blog.id} className="hover:bg-[var(--admin-bg)]/50 transition-colors">
+                  <td className="p-4">
+                    <div className="relative w-16 h-12 rounded overflow-hidden bg-[var(--admin-bg)]">
+                      {blog.thumbnail ? (
+                        <Image
+                          src={blog.thumbnail}
+                          alt={blog.vi?.title || "Thumbnail"}
+                          fill
+                          className="object-cover"
+                          unoptimized
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-[var(--admin-text-muted)] text-xs">
+                          No Img
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                  <td className="p-4">
+                    <div className="font-medium text-[var(--admin-text)] truncate max-w-[300px]">
+                      {blog.vi?.title || "No Title"}
+                    </div>
+                    <div className="text-xs text-[var(--admin-text-muted)] truncate max-w-[300px]">
+                      {blog.en?.title || "No Title"}
+                    </div>
+                  </td>
+                  <td className="p-4 text-sm text-[var(--admin-text)]">
+                    <span className="inline-block px-2 py-1 bg-[var(--admin-primary)]/10 text-[var(--admin-primary)] rounded-full text-xs">
+                      {blog.category}
+                    </span>
+                  </td>
+                  <td className="p-4 text-sm text-[var(--admin-text-muted)]">
+                    {blog.date || "N/A"}
+                  </td>
+                  <td className="p-4 text-right space-x-2 whitespace-nowrap">
+                    <Link
+                      href={`/admin/blogs/${blog.id}/edit`}
+                      className="inline-block px-3 py-1 bg-[var(--admin-bg)] border border-[var(--admin-border)] text-[var(--admin-text)] hover:border-[var(--admin-primary)] hover:text-[var(--admin-primary)] rounded text-sm transition-colors"
+                    >
+                      Edit
+                    </Link>
+                    <DeleteBlogButton id={blog.id} title={blog.vi?.title || "Blog"} />
+                  </td>
+                </tr>
+              ))}
+              {blogs.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="p-8 text-center text-[var(--admin-text-muted)]">
+                    No blogs found. Click &quot;Add New Blog&quot; to create one.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+      </div>
+
+      {/* ── Mobile Card Layout (hidden on desktop) ── */}
+      <div className="md:hidden space-y-3">
+        {blogs.map((blog) => (
+          <div
+            key={blog.id}
+            className="bg-[var(--admin-card)] border border-[var(--admin-border)] rounded-lg p-3 overflow-hidden"
+          >
+            <div className="flex gap-3 items-start min-w-0">
+              {/* Thumbnail */}
+              <div className="relative w-14 h-14 rounded-lg overflow-hidden bg-[var(--admin-bg)] flex-shrink-0">
+                {blog.thumbnail ? (
+                  <Image
+                    src={blog.thumbnail}
+                    alt={blog.vi?.title || "Thumbnail"}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-[var(--admin-text-muted)] text-xs">
+                    No Img
+                  </div>
+                )}
+              </div>
+              {/* Info */}
+              <div className="flex-1 min-w-0 overflow-hidden">
+                <div className="overflow-x-auto pb-1 scrollbar-thin">
+                  <div className="font-medium text-[var(--admin-text)] text-sm leading-tight whitespace-nowrap">
+                    {blog.vi?.title || "No Title"}
+                  </div>
+                </div>
+                <div className="overflow-x-auto pb-0.5 scrollbar-thin">
+                  <div className="text-xs text-[var(--admin-text-muted)] mt-0.5 whitespace-nowrap">
+                    {blog.en?.title || "No Title"}
+                  </div>
+                </div>
+                <div className="mt-2 flex items-center gap-2 flex-wrap">
+                  <span className="inline-block px-2 py-0.5 bg-[var(--admin-primary)]/10 text-[var(--admin-primary)] rounded-full text-xs">
+                    {blog.category}
+                  </span>
+                  <span className="text-xs text-[var(--admin-text-muted)]">
+                    {blog.date || "N/A"}
+                  </span>
+                </div>
+              </div>
+            </div>
+            {/* Actions */}
+            <div className="flex gap-2 mt-3 pt-3 border-t border-[var(--admin-border)]">
+              <Link
+                href={`/admin/blogs/${blog.id}/edit`}
+                className="flex-1 text-center py-2 bg-[var(--admin-bg)] border border-[var(--admin-border)] text-[var(--admin-text)] hover:border-[var(--admin-primary)] hover:text-[var(--admin-primary)] rounded text-sm transition-colors truncate"
+              >
+                Edit
+              </Link>
+              <div className="flex-1 min-w-0">
+                <DeleteBlogButton id={blog.id} title={blog.vi?.title || "Blog"} />
+              </div>
+            </div>
+          </div>
+        ))}
+        {blogs.length === 0 && (
+          <div className="p-8 text-center text-[var(--admin-text-muted)] bg-[var(--admin-card)] border border-[var(--admin-border)] rounded-lg">
+            No blogs found. Click &quot;Add New Blog&quot; to create one.
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
