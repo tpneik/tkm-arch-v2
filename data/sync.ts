@@ -28,10 +28,10 @@ function serialize<T>(doc: unknown): T {
 /** Write JSON to the data/ directory (with pretty formatting) */
 function writeJsonFile(filename: string, data: unknown): void {
   // Vercel serverless = read-only filesystem, skip file writes
-  if (process.env.VERCEL) {
-    console.log(`[sync] ⏭️  Skipped writing ${filename} (Vercel read-only fs)`);
-    return;
-  }
+  // if (process.env.VERCEL) {
+  //   console.log(`[sync] ⏭️  Skipped writing ${filename} (Vercel read-only fs)`);
+  //   return;
+  // }
   const filePath = path.join(process.cwd(), "data", filename);
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
   console.log(`[sync] ✅ Wrote ${filePath}`);
