@@ -1,91 +1,93 @@
 [
   {
     "id": "1",
-    "category": "cong-trinh-khac",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_2%20-%20Photo.jpg",
+    "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/01_1%20-%20Photo.jpg",
     "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_2%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_5%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/1_11%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/1_15%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/03_21%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/03_25%20-%20Photo.jpg"
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/01_1%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/01_3%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/01_5%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/02_11%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/02_13%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/02_15%20-%20Photo.jpg"
     ],
     "en": {
-      "title": "1994 Coffee – An Giang",
-      "slug": "1994-coffee-an-giang",
+      "title": "Pickle Ball Complex – Binh Chanh",
+      "slug": "pickle-ball-complex-binh-chanh",
       "categoryLabel": "Other Projects",
       "categorySlug": "other-projects",
-      "description": "A nostalgic coffee shop inspired by the aesthetics of 1994, blending retro charm with modern functionality in the heart of An Giang. Warm timber tones, exposed brick, and vintage signage evoke timelessness, while contemporary amenities ensure every visit feels both familiar and refreshingly new.",
+      "description": "An expansive pickleball facility in Binh Chanh with multiple court configurations, spectator areas, and a bold structural canopy. The saw-tooth roof channels prevailing winds across the courts for comfortable playing conditions.",
       "details": {
         "INVESTOR": "Private Owner",
         "SCOPE OF WORK": [
-          "Interior Design",
+          "Architectural Design",
           "Construction"
         ],
-        "SCALE": "250 sqm",
-        "LOCATION": "An Giang Province"
+        "SCALE": "800 sqm",
+        "LOCATION": "Binh Chanh District, Ho Chi Minh City"
       }
     },
     "vi": {
-      "title": "Quán Cà Phê 1994 – An Giang",
-      "slug": "quan-ca-phe-1994-an-giang",
+      "title": "Sân Pickle Ball – Bình Chánh",
       "categoryLabel": "Công trình khác",
       "categorySlug": "cong-trinh-khac",
-      "description": "Quán cà phê mang phong cách hoài cổ lấy cảm hứng từ thập niên 1994, kết hợp nét retro với công năng hiện đại tại trung tâm An Giang.",
+      "slug": "san-pickle-ball-binh-chanh",
+      "description": "Cơ sở pickleball quy mô lớn tại Bình Chánh với nhiều cấu hình sân và mái che kết cấu mạnh mẽ.",
       "details": {
         "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
         "PHẠM VI": [
-          "Thiết kế nội thất",
+          "Thiết kế kiến trúc",
           "Thi công"
         ],
-        "QUY MÔ": "250 m²",
-        "VỊ TRÍ": "Tỉnh An Giang"
+        "QUY MÔ": "800 m²",
+        "VỊ TRÍ": "Huyện Bình Chánh, TP. Hồ Chí Minh"
       }
     }
   },
   {
     "id": "2",
     "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_1%20-%20Photo.jpg",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
     "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_1%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_3%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_7%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_12%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_18%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_22%20-%20Photo.jpg"
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_3%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_5%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/01.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/05.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/10.jpg"
     ],
     "en": {
-      "title": "Trung Nguyen Coffee – My Tho",
-      "slug": "trung-nguyen-coffee-my-tho",
+      "title": "The Foxie Lounge",
+      "slug": "the-foxie-lounge",
       "categoryLabel": "Other Projects",
       "categorySlug": "other-projects",
-      "description": "A flagship Trung Nguyen coffee house in My Tho, Tien Giang Province, designed to reflect the brand's heritage through rich material palettes and immersive spatial experiences. The open-plan layout encourages social interaction while private alcoves offer quiet retreats.",
+      "description": "A stylish lounge bar combining a striking facade design with sophisticated interior spaces. The two-zone concept separates a vibrant street-level café from an intimate upper-floor cocktail bar, unified by a cohesive material language of dark metals and warm wood.",
       "details": {
         "INVESTOR": "Private Owner",
         "SCOPE OF WORK": [
+          "Architectural Design",
           "Interior Design",
           "Construction"
         ],
-        "SCALE": "300 sqm",
-        "LOCATION": "My Tho, Tien Giang Province"
+        "SCALE": "220 sqm",
+        "LOCATION": "Ho Chi Minh City"
       }
     },
     "vi": {
-      "title": "Cà Phê Trung Nguyên – Mỹ Tho",
+      "title": "The Foxie Lounge",
       "categoryLabel": "Công trình khác",
       "categorySlug": "cong-trinh-khac",
-      "slug": "ca-phe-trung-nguyen-my-tho",
-      "description": "Quán cà phê Trung Nguyên tại Mỹ Tho, Tiền Giang, thiết kế phản ánh di sản thương hiệu qua bảng vật liệu phong phú và trải nghiệm không gian sống động.",
+      "slug": "the-foxie-lounge",
+      "description": "Quán lounge phong cách kết hợp mặt tiền ấn tượng với không gian nội thất tinh tế. Concept hai vùng tách biệt quán cà phê sôi động tầng trệt khỏi bar cocktail ấm cúng tầng trên.",
       "details": {
         "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
         "PHẠM VI": [
+          "Thiết kế kiến trúc",
           "Thiết kế nội thất",
           "Thi công"
         ],
-        "QUY MÔ": "300 m²",
-        "VỊ TRÍ": "Mỹ Tho, Tỉnh Tiền Giang"
+        "QUY MÔ": "220 m²",
+        "VỊ TRÍ": "TP. Hồ Chí Minh"
       }
     }
   },
@@ -136,48 +138,46 @@
   },
   {
     "id": "4",
-    "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
+    "category": "cong-trinh-khac",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_2%20-%20Photo.jpg",
     "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_3%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_5%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/01.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/05.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/10.jpg"
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_2%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_5%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/1_11%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/1_15%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/03_21%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/03_25%20-%20Photo.jpg"
     ],
     "en": {
-      "title": "The Foxie Lounge",
-      "slug": "the-foxie-lounge",
+      "title": "1994 Coffee – An Giang",
+      "slug": "1994-coffee-an-giang",
       "categoryLabel": "Other Projects",
       "categorySlug": "other-projects",
-      "description": "A stylish lounge bar combining a striking facade design with sophisticated interior spaces. The two-zone concept separates a vibrant street-level café from an intimate upper-floor cocktail bar, unified by a cohesive material language of dark metals and warm wood.",
+      "description": "A nostalgic coffee shop inspired by the aesthetics of 1994, blending retro charm with modern functionality in the heart of An Giang. Warm timber tones, exposed brick, and vintage signage evoke timelessness, while contemporary amenities ensure every visit feels both familiar and refreshingly new.",
       "details": {
         "INVESTOR": "Private Owner",
         "SCOPE OF WORK": [
-          "Architectural Design",
           "Interior Design",
           "Construction"
         ],
-        "SCALE": "220 sqm",
-        "LOCATION": "Ho Chi Minh City"
+        "SCALE": "250 sqm",
+        "LOCATION": "An Giang Province"
       }
     },
     "vi": {
-      "title": "The Foxie Lounge",
+      "title": "Quán Cà Phê 1994 – An Giang",
+      "slug": "quan-ca-phe-1994-an-giang",
       "categoryLabel": "Công trình khác",
       "categorySlug": "cong-trinh-khac",
-      "slug": "the-foxie-lounge",
-      "description": "Quán lounge phong cách kết hợp mặt tiền ấn tượng với không gian nội thất tinh tế. Concept hai vùng tách biệt quán cà phê sôi động tầng trệt khỏi bar cocktail ấm cúng tầng trên.",
+      "description": "Quán cà phê mang phong cách hoài cổ lấy cảm hứng từ thập niên 1994, kết hợp nét retro với công năng hiện đại tại trung tâm An Giang.",
       "details": {
         "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
         "PHẠM VI": [
-          "Thiết kế kiến trúc",
           "Thiết kế nội thất",
           "Thi công"
         ],
-        "QUY MÔ": "220 m²",
-        "VỊ TRÍ": "TP. Hồ Chí Minh"
+        "QUY MÔ": "250 m²",
+        "VỊ TRÍ": "Tỉnh An Giang"
       }
     }
   },
@@ -319,51 +319,6 @@
   {
     "id": "8",
     "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/01_1%20-%20Photo.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/01_1%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/01_3%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/01_5%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/02_11%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/02_13%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/02_15%20-%20Photo.jpg"
-    ],
-    "en": {
-      "title": "Pickle Ball Complex – Binh Chanh",
-      "slug": "pickle-ball-complex-binh-chanh",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "An expansive pickleball facility in Binh Chanh with multiple court configurations, spectator areas, and a bold structural canopy. The saw-tooth roof channels prevailing winds across the courts for comfortable playing conditions.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design",
-          "Construction"
-        ],
-        "SCALE": "800 sqm",
-        "LOCATION": "Binh Chanh District, Ho Chi Minh City"
-      }
-    },
-    "vi": {
-      "title": "Sân Pickle Ball – Bình Chánh",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "slug": "san-pickle-ball-binh-chanh",
-      "description": "Cơ sở pickleball quy mô lớn tại Bình Chánh với nhiều cấu hình sân và mái che kết cấu mạnh mẽ.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Thi công"
-        ],
-        "QUY MÔ": "800 m²",
-        "VỊ TRÍ": "Huyện Bình Chánh, TP. Hồ Chí Minh"
-      }
-    }
-  },
-  {
-    "id": "9",
-    "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/1_1%20-%20Photo.jpg",
     "gallery": [
       "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/1_1%20-%20Photo.jpg",
@@ -407,7 +362,7 @@
     }
   },
   {
-    "id": "10",
+    "id": "9",
     "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
     "gallery": [
@@ -452,7 +407,7 @@
     }
   },
   {
-    "id": "11",
+    "id": "10",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/KHACH%20SAN%20CAM/01.jpg",
     "gallery": [
@@ -491,6 +446,51 @@
         ],
         "QUY MÔ": "320 m²",
         "VỊ TRÍ": "TP. Hồ Chí Minh"
+      }
+    }
+  },
+  {
+    "id": "11",
+    "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_1%20-%20Photo.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_1%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_3%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_7%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_12%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_18%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_22%20-%20Photo.jpg"
+    ],
+    "en": {
+      "title": "Trung Nguyen Coffee – My Tho",
+      "slug": "trung-nguyen-coffee-my-tho",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A flagship Trung Nguyen coffee house in My Tho, Tien Giang Province, designed to reflect the brand's heritage through rich material palettes and immersive spatial experiences. The open-plan layout encourages social interaction while private alcoves offer quiet retreats.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Interior Design",
+          "Construction"
+        ],
+        "SCALE": "300 sqm",
+        "LOCATION": "My Tho, Tien Giang Province"
+      }
+    },
+    "vi": {
+      "title": "Cà Phê Trung Nguyên – Mỹ Tho",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "slug": "ca-phe-trung-nguyen-my-tho",
+      "description": "Quán cà phê Trung Nguyên tại Mỹ Tho, Tiền Giang, thiết kế phản ánh di sản thương hiệu qua bảng vật liệu phong phú và trải nghiệm không gian sống động.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế nội thất",
+          "Thi công"
+        ],
+        "QUY MÔ": "300 m²",
+        "VỊ TRÍ": "Mỹ Tho, Tỉnh Tiền Giang"
       }
     }
   },
@@ -815,6 +815,51 @@
   },
   {
     "id": "19",
+    "category": "Văn phòng",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/250213/AA_1%20-%20Photo.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/250213/AA_1%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/250213/AA_3%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/250213/AA_6%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/250216/01.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/HIEN%20DAI/02_13%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/CO%20DIEN/01_14%20-%20Photo.jpg"
+    ],
+    "en": {
+      "title": "Thanh Danh Manufacturing",
+      "slug": "thanh-danh-manufacturing",
+      "categoryLabel": "Office",
+      "categorySlug": "office",
+      "description": "An industrial production facility for a coconut processing company with efficient workflow layouts.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design",
+          "Construction Supervision"
+        ],
+        "SCALE": "1200 sqm",
+        "LOCATION": "Ho Chi Minh City"
+      }
+    },
+    "vi": {
+      "title": "Nhà Máy Thanh Danh",
+      "slug": "nha-may-thanh-danh",
+      "categoryLabel": "Văn phòng",
+      "categorySlug": "van-phong",
+      "description": "Nhà xưởng sản xuất cho công ty chế biến dừa với bố trí quy trình hiệu quả và thông gió tự nhiên tối ưu.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc",
+          "Giám sát thi công"
+        ],
+        "QUY MÔ": "1.200 m²",
+        "VỊ TRÍ": "TP. Hồ Chí Minh"
+      }
+    }
+  },
+  {
+    "id": "20",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20CHI%20NHA/ChiNha2506/Tret-1.png",
     "gallery": [
@@ -859,7 +904,7 @@
     }
   },
   {
-    "id": "20",
+    "id": "21",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20GO%20VAP/KIEN%20TRUC/OP1_1%20-%20Photo.jpg",
     "gallery": [
@@ -906,7 +951,7 @@
     }
   },
   {
-    "id": "21",
+    "id": "22",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20PHO%20DUC%20HUE/250209/01.jpg",
     "gallery": [
@@ -951,7 +996,7 @@
     }
   },
   {
-    "id": "22",
+    "id": "23",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20QUAN%205/z6797408947375_29aeb2325b926cba22138d5718640446.jpg",
     "gallery": [
@@ -997,7 +1042,7 @@
     }
   },
   {
-    "id": "23",
+    "id": "24",
     "category": "Villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/240904_VILLA%20BINH%20DAI/01.jpg",
     "gallery": [
@@ -1044,7 +1089,50 @@
     }
   },
   {
-    "id": "24",
+    "id": "25",
+    "category": "Văn phòng",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/1a-pts.png",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/1a-pts.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/2a-pts.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/aa_23%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/aa_25%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/aa_28%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/aa_31%20-%20Photo.jpg"
+    ],
+    "en": {
+      "title": "HH3 Ba Son Tower",
+      "slug": "hh3-ba-son-tower",
+      "categoryLabel": "Office",
+      "categorySlug": "office",
+      "description": "A high-rise office tower at Ba Son with contemporary architecture and premium curtain-wall facades.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design"
+        ],
+        "SCALE": "2000 sqm",
+        "LOCATION": "Ba Son, District 1, Ho Chi Minh City"
+      }
+    },
+    "vi": {
+      "title": "Tòa Nhà HH3 Ba Sơn",
+      "slug": "toa-nha-hh3-ba-son",
+      "categoryLabel": "Văn phòng",
+      "categorySlug": "van-phong",
+      "description": "Tòa văn phòng cao tầng tại Ba Sơn với kiến trúc hiện đại và mặt tiền vách kính cao cấp.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc"
+        ],
+        "QUY MÔ": "2.000 m²",
+        "VỊ TRÍ": "Ba Son, Quan 1, TP. Hồ Chí Minh"
+      }
+    }
+  },
+  {
+    "id": "26",
     "category": "Villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/01.%20PHONG%20KHACH/phong%20khach%20-%201.jpg",
     "gallery": [
@@ -1087,7 +1175,7 @@
     }
   },
   {
-    "id": "25",
+    "id": "27",
     "category": "villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%80%20AN%20D%C6%AF%E1%BB%A0NG-ANH%20T%C3%9A%20-%20V%C5%A8NG%20T%C3%80U/01.jpg",
     "gallery": [
@@ -1132,7 +1220,7 @@
     }
   },
   {
-    "id": "26",
+    "id": "28",
     "category": "villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%94NG%20TI%E1%BB%80N%20-%20ANH%20NGH%C4%A8A/01.jpg",
     "gallery": [
@@ -1177,7 +1265,7 @@
     }
   },
   {
-    "id": "27",
+    "id": "29",
     "category": "Villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/VILLA%20DUC%20HUE/01.jpg",
     "gallery": [
@@ -1222,7 +1310,7 @@
     }
   },
   {
-    "id": "28",
+    "id": "30",
     "category": "Villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/VILLA%20KOSH%20RONG/11_1%20-%20Photo.jpg",
     "gallery": [
@@ -1265,7 +1353,7 @@
     }
   },
   {
-    "id": "29",
+    "id": "31",
     "category": "Villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/VILLA%20MR%20KING/251104/a_1%20-%20Photo.jpg",
     "gallery": [
@@ -1312,7 +1400,7 @@
     }
   },
   {
-    "id": "30",
+    "id": "32",
     "category": "Nội thất",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/NHA%20CHI%20MINH/z6707317026488_a15caeefdf928fd8fa2963b8a3e7d791.jpg",
     "gallery": [
@@ -1356,7 +1444,7 @@
     }
   },
   {
-    "id": "31",
+    "id": "33",
     "category": "Nội thất",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/VCB%20QUAN%201/1.jpg",
     "gallery": [
@@ -1398,7 +1486,7 @@
     }
   },
   {
-    "id": "32",
+    "id": "34",
     "category": "Nội thất",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/VP%20ROBUSTA/01_1%20-%20Photo.jpg",
     "gallery": [
@@ -1443,7 +1531,7 @@
     }
   },
   {
-    "id": "33",
+    "id": "35",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NH%C3%80%20LI%C3%8AN%20K%E1%BA%BE%20QU%E1%BA%ACN%209/NHA%20PHO/01.jpg",
     "gallery": [
@@ -1484,7 +1572,7 @@
     }
   },
   {
-    "id": "34",
+    "id": "36",
     "category": "Văn phòng",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CIEC%20OFFICE/op1%20%281%29.png",
     "gallery": [
@@ -1529,7 +1617,7 @@
     }
   },
   {
-    "id": "35",
+    "id": "37",
     "category": "Văn phòng",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/BERNARD/8_1%20-%20Photo.jpg",
     "gallery": [
@@ -1573,50 +1661,7 @@
     }
   },
   {
-    "id": "36",
-    "category": "Văn phòng",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/1a-pts.png",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/1a-pts.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/2a-pts.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/aa_23%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/aa_25%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/aa_28%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/aa_31%20-%20Photo.jpg"
-    ],
-    "en": {
-      "title": "HH3 Ba Son Tower",
-      "slug": "hh3-ba-son-tower",
-      "categoryLabel": "Office",
-      "categorySlug": "office",
-      "description": "A high-rise office tower at Ba Son with contemporary architecture and premium curtain-wall facades.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design"
-        ],
-        "SCALE": "2000 sqm",
-        "LOCATION": "Ba Son, District 1, Ho Chi Minh City"
-      }
-    },
-    "vi": {
-      "title": "Tòa Nhà HH3 Ba Sơn",
-      "slug": "toa-nha-hh3-ba-son",
-      "categoryLabel": "Văn phòng",
-      "categorySlug": "van-phong",
-      "description": "Tòa văn phòng cao tầng tại Ba Sơn với kiến trúc hiện đại và mặt tiền vách kính cao cấp.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc"
-        ],
-        "QUY MÔ": "2.000 m²",
-        "VỊ TRÍ": "Ba Son, Quan 1, TP. Hồ Chí Minh"
-      }
-    }
-  },
-  {
-    "id": "37",
+    "id": "38",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/Tang%201/Tang%201/1_T1-1.png",
     "gallery": [
@@ -1656,51 +1701,6 @@
           "Thi công"
         ],
         "QUY MÔ": "500 m²",
-        "VỊ TRÍ": "TP. Hồ Chí Minh"
-      }
-    }
-  },
-  {
-    "id": "38",
-    "category": "Văn phòng",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/250213/AA_1%20-%20Photo.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/250213/AA_1%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/250213/AA_3%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/250213/AA_6%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/250216/01.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/HIEN%20DAI/02_13%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CONG%20TY%20THANH%20DANH/CO%20DIEN/01_14%20-%20Photo.jpg"
-    ],
-    "en": {
-      "title": "Thanh Danh Manufacturing",
-      "slug": "thanh-danh-manufacturing",
-      "categoryLabel": "Office",
-      "categorySlug": "office",
-      "description": "An industrial production facility for a coconut processing company with efficient workflow layouts.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design",
-          "Construction Supervision"
-        ],
-        "SCALE": "1200 sqm",
-        "LOCATION": "Ho Chi Minh City"
-      }
-    },
-    "vi": {
-      "title": "Nhà Máy Thanh Danh",
-      "slug": "nha-may-thanh-danh",
-      "categoryLabel": "Văn phòng",
-      "categorySlug": "van-phong",
-      "description": "Nhà xưởng sản xuất cho công ty chế biến dừa với bố trí quy trình hiệu quả và thông gió tự nhiên tối ưu.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Giám sát thi công"
-        ],
-        "QUY MÔ": "1.200 m²",
         "VỊ TRÍ": "TP. Hồ Chí Minh"
       }
     }

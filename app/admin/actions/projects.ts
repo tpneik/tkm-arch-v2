@@ -122,3 +122,46 @@ export async function deleteProject(
     return { success: false, error: error.message || "Failed to delete project" };
   }
 }
+
+/**
+ * Reorder projects by reassigning their IDs.
+ *
+ * Strategy: rename old IDs → temp IDs (prefixed with `__tmp_`) first,
+ * then rename temp IDs → final IDs. This avoids unique-constraint
+ * collisions when two projects need to swap IDs.
+ */
+export async function reorderProjects(
+  mapping: { oldId: string; newId: string }[]
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    await connectToDatabase();
+
+    // Phase 1: old → temp (avoid collisions)
+    for (const { oldId } of mapping) {
+      await ProjectModel.updateOne(
+        { id: oldId },
+        { $set: { id: `__tmp_${oldId}` } }
+      );
+    }
+
+    // Phase 2: temp → final
+    for (const { oldId, newId } of mapping) {
+      await ProjectModel.updateOne(
+        { id: `__tmp_${oldId}` },
+        { $set: { id: newId } }
+      );
+    }
+
+    await syncProjects();
+    revalidatePath("/admin/projects");
+    revalidatePath("/en/projects");
+    revalidatePath("/vi/du-an");
+    return { success: true };
+  } catch (error: any) {
+    console.error("Failed to reorder projects:", error);
+    return {
+      success: false,
+      error: error.message || "Failed to reorder projects",
+    };
+  }
+}
