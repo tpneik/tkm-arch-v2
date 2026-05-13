@@ -195,7 +195,7 @@ const ProjectsPage = () => {
             <button
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className="p-3 border border-brand-dark/10 hover:border-brand-blue hover:text-brand-blue transition-colors disabled:opacity-30 disabled:cursor-not-allowed rounded-full"
+              className="p-2 md:p-3 border border-brand-dark/10 hover:border-brand-blue hover:text-brand-blue transition-colors disabled:opacity-30 disabled:cursor-not-allowed rounded-full"
             >
               <ChevronLeft size={16} />
             </button>
@@ -204,11 +204,14 @@ const ProjectsPage = () => {
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
-                  className={`w-10 h-10 text-[11px] font-bold tracking-[0.16em] transition-all rounded-full ${
-                    currentPage === page
-                      ? "bg-brand-blue text-white"
-                      : "border border-brand-dark/10 hover:border-brand-blue text-brand-gray hover:text-brand-dark"
-                  }`}
+                  className={`text-[11px] font-bold tracking-[0.16em] transition-all
+                    w-auto px-1 py-1
+                    md:w-10 md:h-10 md:px-0 md:py-0 md:rounded-full
+                    ${
+                      currentPage === page
+                        ? "text-brand-blue md:bg-brand-blue md:text-white"
+                        : "text-brand-gray hover:text-brand-dark md:border md:border-brand-dark/10 md:hover:border-brand-blue"
+                    }`}
                 >
                   {page}
                 </button>
@@ -219,7 +222,7 @@ const ProjectsPage = () => {
                 setCurrentPage((p) => Math.min(totalPages, p + 1))
               }
               disabled={currentPage === totalPages}
-              className="p-3 border border-brand-dark/10 hover:border-brand-blue hover:text-brand-blue transition-colors disabled:opacity-30 disabled:cursor-not-allowed rounded-full"
+              className="p-2 md:p-3 border border-brand-dark/10 hover:border-brand-blue hover:text-brand-blue transition-colors disabled:opacity-30 disabled:cursor-not-allowed rounded-full"
             >
               <ChevronRight size={16} />
             </button>
