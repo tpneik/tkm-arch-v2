@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { useSearchParams, useRouter, useParams } from "next/navigation";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
@@ -12,6 +12,33 @@ import { projectHref, projects as allProjects } from "@/data/projects";
 const ITEMS_PER_PAGE = 6;
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
+
+/* ── Stagger animation variants ── */
+const gridVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.04 },
+  },
+  exit: {
+    transition: { staggerChildren: 0.04, staggerDirection: -1 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    scale: 0.97,
+    transition: { duration: 0.25, ease: "easeIn" },
+  },
+};
 
 const ProjectsPage = () => {
   const searchParams = useSearchParams();
@@ -66,15 +93,28 @@ const ProjectsPage = () => {
     ];
   }, [lang, t, projects]);
 
+  /* Unique key for AnimatePresence — changes trigger exit/enter */
+  const gridKey = `${filter}-${currentPage}`;
+
   return (
     <div className="pt-32 pb-20 min-h-screen bg-brand-light text-brand-dark">
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
-        <h1 className="text-4xl md:text-5xl font-serif mb-8 md:mb-14 uppercase tracking-wider">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-4xl md:text-5xl font-serif mb-8 md:mb-14 uppercase tracking-wider"
+        >
           {t("projects.pageTitle")}
-        </h1>
+        </motion.h1>
 
         {/* Filter Bar */}
-        <div className="flex flex-wrap gap-x-6 md:gap-x-10 gap-y-4 mb-8 md:mb-14 pb-7 md:pb-9 border-b border-brand-dark/10">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
+          className="flex flex-wrap gap-x-6 md:gap-x-10 gap-y-4 mb-8 md:mb-14 pb-7 md:pb-9 border-b border-brand-dark/10"
+        >
           {localizedCategories.map((cat) => (
             <button
               key={cat.key}
@@ -88,52 +128,70 @@ const ProjectsPage = () => {
               {cat.label}
             </button>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {paginatedProjects.map((project) => (
-            <Link
-              href={projectHref(project, lang)}
-              key={project.id}
-              className="group flex flex-col"
-            >
-              <div className="overflow-hidden aspect-[3/2] relative mb-6 rounded-lg bg-white shadow-sm border border-brand-dark/5">
-                <motion.img
-                  whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 0.8, ease: "circOut" }}
-                  src={project.thumbnail || DEFAULT_IMG}
-                  alt={project[lang].title}
-                  onError={(e) => { (e.target as HTMLImageElement).src = DEFAULT_IMG; }}
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-brand-dark/35 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                  <div className="w-12 h-12 border border-white flex items-center justify-center rounded-full">
-                    <div className="w-1 h-1 bg-white rounded-full"></div>
+        {/* Project Grid — animated on page/filter change */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={gridKey}
+            variants={gridVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {paginatedProjects.map((project) => (
+              <motion.div key={project.id} variants={cardVariants}>
+                <Link
+                  href={projectHref(project, lang)}
+                  className="group flex flex-col"
+                >
+                  <div className="overflow-hidden aspect-[3/2] relative mb-6 rounded-lg bg-white shadow-sm border border-brand-dark/5">
+                    <motion.img
+                      whileHover={{ scale: 1.08 }}
+                      transition={{ duration: 0.8, ease: "circOut" }}
+                      src={project.thumbnail || DEFAULT_IMG}
+                      alt={project[lang].title}
+                      onError={(e) => { (e.target as HTMLImageElement).src = DEFAULT_IMG; }}
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-brand-dark/35 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                      <div className="w-12 h-12 border border-white flex items-center justify-center rounded-full">
+                        <div className="w-1 h-1 bg-white rounded-full"></div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-blue">
-                  {project[lang].categoryLabel}
-                </p>
-                <h3 className="text-xl font-serif tracking-wide uppercase leading-tight group-hover:text-brand-blue transition-colors">
-                  {project[lang].title}
-                </h3>
-              </div>
-            </Link>
-          ))}
-          {filteredProjects.length === 0 && (
-            <div className="col-span-full py-20 text-center tracking-[0.3em] uppercase text-xs text-brand-gray">
-              {t("projects.noEntries")}
-            </div>
-          )}
-        </div>
+                  <div className="space-y-2">
+                    <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-blue">
+                      {project[lang].categoryLabel}
+                    </p>
+                    <h3 className="text-xl font-serif tracking-wide uppercase leading-tight group-hover:text-brand-blue transition-colors">
+                      {project[lang].title}
+                    </h3>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+            {filteredProjects.length === 0 && (
+              <motion.div
+                variants={cardVariants}
+                className="col-span-full py-20 text-center tracking-[0.3em] uppercase text-xs text-brand-gray"
+              >
+                {t("projects.noEntries")}
+              </motion.div>
+            )}
+          </motion.div>
+        </AnimatePresence>
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-4 mt-20">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            className="flex items-center justify-center gap-4 mt-20"
+          >
             <button
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={currentPage === 1}
@@ -165,7 +223,7 @@ const ProjectsPage = () => {
             >
               <ChevronRight size={16} />
             </button>
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

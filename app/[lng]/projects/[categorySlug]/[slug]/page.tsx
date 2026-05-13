@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
@@ -11,6 +12,19 @@ import { projectHref, projects } from "@/data/projects";
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
 
+/* ── Animation helpers ── */
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] },
+});
+
+const fadeIn = (delay = 0) => ({
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { duration: 0.5, delay, ease: "easeOut" },
+});
+
 const ProjectDetail = () => {
   const params = useParams<{ categorySlug: string; slug: string; lng: string }>();
   const { categorySlug, slug, lng } = params;
@@ -18,7 +32,6 @@ const ProjectDetail = () => {
   const { t } = useT("common");
   const lang = (lng || "en") as "en" | "vi";
   const [imgLoaded, setImgLoaded] = useState(false);
-
 
 
   const currentIndex = useMemo(() => {
@@ -81,36 +94,50 @@ const ProjectDetail = () => {
       {/* ─── HERO ─── */}
       <div className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden">
         {/* Back button */}
-        <Link
-          href={localizedHref("projects", lng)}
-          className="absolute top-32 left-6 md:left-12 lg:left-24 z-20 inline-flex items-center justify-center p-2 gap-2 text-white/75 hover:text-white transition-colors text-[10px] tracking-[0.3em] uppercase font-bold bg-brand-dark/20 backdrop-blur-sm rounded-full px-4"
-        >
-          <ArrowLeft size={14} />
-          {t("navbar.projects")}
-        </Link>
+        <motion.div {...fadeIn(0.3)} className="absolute top-32 left-6 md:left-12 lg:left-24 z-20">
+          <Link
+            href={localizedHref("projects", lng)}
+            className="inline-flex items-center justify-center p-2 gap-2 text-white/75 hover:text-white transition-colors text-[10px] tracking-[0.3em] uppercase font-bold bg-brand-dark/20 backdrop-blur-sm rounded-full px-4"
+          >
+            <ArrowLeft size={14} />
+            {t("navbar.projects")}
+          </Link>
+        </motion.div>
 
-        {/* Hero image */}
-        <img
+        {/* Hero image — zoom-in entrance */}
+        <motion.img
           key={`hero-${categorySlug}-${slug}`}
           src={project.thumbnail || DEFAULT_IMG}
           alt={pd.title}
           onLoad={() => setImgLoaded(true)}
           onError={(e) => { e.currentTarget.src = DEFAULT_IMG; }}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${imgLoaded ? "opacity-100" : "opacity-0"}`}
+          initial={{ scale: 1.15, opacity: 0 }}
+          animate={{
+            scale: imgLoaded ? 1 : 1.15,
+            opacity: imgLoaded ? 1 : 0,
+          }}
+          transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="absolute inset-0 w-full h-full object-cover"
           referrerPolicy="no-referrer"
         />
 
         {/* Gradient overlay */}
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-brand-dark/80 via-brand-dark/20 to-transparent" />
 
-        {/* Hero title overlay */}
+        {/* Hero title overlay — slide up */}
         <div className="absolute bottom-0 left-0 right-0 z-20 px-6 md:px-12 lg:px-24 pb-12 md:pb-20">
-          <p className="text-[10px] md:text-[11px] font-bold tracking-[0.32em] uppercase mb-4 text-white/70">
+          <motion.p
+            {...fadeUp(0.4)}
+            className="text-[10px] md:text-[11px] font-bold tracking-[0.32em] uppercase mb-4 text-white/70"
+          >
             {pd.category}
-          </p>
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif tracking-tight uppercase leading-tight max-w-4xl text-white">
+          </motion.p>
+          <motion.h1
+            {...fadeUp(0.55)}
+            className="text-3xl sm:text-4xl md:text-6xl font-serif tracking-tight uppercase leading-tight max-w-4xl text-white"
+          >
             {pd.title}
-          </h1>
+          </motion.h1>
         </div>
       </div>
 
@@ -119,11 +146,12 @@ const ProjectDetail = () => {
         {/* LEFT: Specs panel */}
         <div className="lg:w-[40%] border-r border-brand-dark/5 bg-white/50">
           <div className="lg:sticky lg:top-24 px-6 md:px-12 lg:px-16 py-12 md:py-20">
-            {/* Details grid */}
+            {/* Details grid — staggered entrance */}
             <div className="space-y-0">
               {Object.entries(pd.details).map(([key, value], i) => (
-                <div
+                <motion.div
                   key={key}
+                  {...fadeUp(0.5 + i * 0.08)}
                   className={`py-6 ${i !== 0 ? "border-t border-brand-dark/5" : ""}`}
                 >
                   <h6 className="text-[9px] font-bold tracking-[0.35em] uppercase mb-3 text-brand-gray">
@@ -132,22 +160,28 @@ const ProjectDetail = () => {
                   <p className="text-base font-medium tracking-wide text-brand-dark">
                     {Array.isArray(value) ? value.join(" · ") : value}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
 
             {/* Description */}
-            <div className="border-t border-brand-dark/5 pt-8 mt-4">
+            <motion.div
+              {...fadeUp(0.8)}
+              className="border-t border-brand-dark/5 pt-8 mt-4"
+            >
               <h6 className="text-[9px] font-bold tracking-[0.35em] uppercase mb-5 text-brand-gray">
                 {t("projectDetail.description")}
               </h6>
               <p className="text-base leading-relaxed font-light text-brand-dark/80">
                 {pd.description}
               </p>
-            </div>
+            </motion.div>
 
             {/* Prev / Next navigation */}
-            <div className="border-t border-brand-dark/5 mt-12 pt-8 flex gap-8">
+            <motion.div
+              {...fadeIn(1)}
+              className="border-t border-brand-dark/5 mt-12 pt-8 flex gap-8"
+            >
               {prevProject && (
                 <Link
                   href={projectHref(prevProject, lang)}
@@ -174,14 +208,25 @@ const ProjectDetail = () => {
                   </p>
                 </Link>
               )}
-            </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* RIGHT: Image gallery */}
+        {/* RIGHT: Image gallery — staggered reveal */}
         <div className="lg:w-[60%] p-6 md:p-12 lg:p-16 space-y-8 md:space-y-12">
           {project.gallery.map((img, i) => (
-            <div key={i} className="overflow-hidden rounded-xl shadow-lg">
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{
+                duration: 0.7,
+                delay: i < 3 ? i * 0.12 : 0,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+              className="overflow-hidden rounded-xl shadow-lg"
+            >
               <img
                 src={img || DEFAULT_IMG}
                 alt={`${pd.title} ${i + 1}`}
@@ -189,24 +234,41 @@ const ProjectDetail = () => {
                 className="w-full h-auto hover:scale-105 transition-transform duration-1000"
                 referrerPolicy="no-referrer"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
 
       {/* ─── RELATED PROJECTS ─── */}
       <div className="border-t border-brand-dark/5 px-6 md:px-12 lg:px-24 py-20 md:py-32 bg-white">
-        <p className="text-[10px] font-bold tracking-[0.45em] uppercase mb-12 text-brand-gray">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-[10px] font-bold tracking-[0.45em] uppercase mb-12 text-brand-gray"
+        >
           {t("projectDetail.otherProjects")}
-        </p>
+        </motion.p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
-          {related.map((p) => {
+          {related.map((p, i) => {
             const rt = {
               title: p[lang].title,
               category: p[lang].categoryLabel,
             };
             return (
-              <div key={p.id} className="group">
+              <motion.div
+                key={p.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: i * 0.1,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+                className="group"
+              >
                 <Link
                   href={projectHref(p, lang)}
                   className="block aspect-[4/3] overflow-hidden relative rounded-xl bg-brand-light shadow-md"
@@ -231,13 +293,19 @@ const ProjectDetail = () => {
                     {rt.title}
                   </h4>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
 
         {/* View all */}
-        <div className="mt-16 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-16 text-center"
+        >
           <Link
             href={localizedHref("projects", lng)}
             className="inline-flex items-center gap-4 text-[11px] font-bold tracking-[0.3em] uppercase border-2 border-brand-dark/10 hover:border-brand-blue hover:text-brand-blue transition-all px-10 py-5 group rounded-full"
@@ -248,7 +316,7 @@ const ProjectDetail = () => {
               className="group-hover:translate-x-2 transition-transform"
             />
           </Link>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
