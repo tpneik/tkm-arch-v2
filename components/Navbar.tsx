@@ -8,7 +8,7 @@ import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref, buildLangSwitchHref } from "@/i18n/routes";
-import { useProjectCategories } from "@/hooks/useDbData";
+import { projectCategories } from "@/data/categories";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,11 +26,8 @@ export default function Navbar() {
   const pathWithoutLng = pathname.replace(`/${lng}`, "") || "/";
   const isHome = pathWithoutLng === "/" || pathWithoutLng === "";
 
-  // Fetch project categories from MongoDB
-  const { categories: projectCats } = useProjectCategories();
-
-  // Build category list from DB using ASCII slug as filter key
-  const categoryItems = projectCats.map((cat) => ({
+  // Build category list from static JSON using ASCII slug as filter key
+  const categoryItems = projectCategories.map((cat) => ({
     slug: cat.slug,
     label: cat[lang]?.label ?? cat.vi.label,
   }));

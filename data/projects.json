@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "category": "Công trình khác",
+    "category": "cong-trinh-khac",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_2%20-%20Photo.jpg",
     "gallery": [
       "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_2%20-%20Photo.jpg",
@@ -29,9 +29,9 @@
     },
     "vi": {
       "title": "Quán Cà Phê 1994 – An Giang",
+      "slug": "quan-ca-phe-1994-an-giang",
       "categoryLabel": "Công trình khác",
       "categorySlug": "cong-trinh-khac",
-      "slug": "quan-ca-phe-1994-an-giang",
       "description": "Quán cà phê mang phong cách hoài cổ lấy cảm hứng từ thập niên 1994, kết hợp nét retro với công năng hiện đại tại trung tâm An Giang.",
       "details": {
         "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
@@ -543,15 +543,15 @@
   },
   {
     "id": "13",
-    "category": "Văn phòng",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%C3%A1%C2%BB%C2%B8%20THO-TI%C3%A1%C2%BB%E2%82%ACN%20GIANG/01.jpg",
+    "category": "van-phong",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%E1%BB%B8%20THO-TI%E1%BB%80N%20GIANG/01.jpg",
     "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%C3%A1%C2%BB%C2%B8%20THO-TI%C3%A1%C2%BB%E2%82%ACN%20GIANG/01.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%C3%A1%C2%BB%C2%B8%20THO-TI%C3%A1%C2%BB%E2%82%ACN%20GIANG/02.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%C3%A1%C2%BB%C2%B8%20THO-TI%C3%A1%C2%BB%E2%82%ACN%20GIANG/03.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%C3%A1%C2%BB%C2%B8%20THO-TI%C3%A1%C2%BB%E2%82%ACN%20GIANG/05.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%C3%A1%C2%BB%C2%B8%20THO-TI%C3%A1%C2%BB%E2%82%ACN%20GIANG/06.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%C3%A1%C2%BB%C2%B8%20THO-TI%C3%A1%C2%BB%E2%82%ACN%20GIANG/07.jpg"
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%E1%BB%B8%20THO-TI%E1%BB%80N%20GIANG/01.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%E1%BB%B8%20THO-TI%E1%BB%80N%20GIANG/02.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%E1%BB%B8%20THO-TI%E1%BB%80N%20GIANG/03.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%E1%BB%B8%20THO-TI%E1%BB%80N%20GIANG/04.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%E1%BB%B8%20THO-TI%E1%BB%80N%20GIANG/05.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%E1%BB%B8%20THO-TI%E1%BB%80N%20GIANG/06.jpg"
     ],
     "en": {
       "title": "My Tho Bookstore – Tien Giang",
@@ -571,9 +571,9 @@
     },
     "vi": {
       "title": "Nhà Sách Mỹ Tho – Tiền Giang",
+      "slug": "nha-sach-my-tho-tien-giang",
       "categoryLabel": "Văn phòng",
       "categorySlug": "van-phong",
-      "slug": "nha-sach-my-tho-tien-giang",
       "description": "Thiết kế nhà sách hiện đại tại Mỹ Tho tạo môi trường văn chương hấp dẫn qua kệ sách mở và ánh sáng ấm.",
       "details": {
         "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
@@ -723,15 +723,15 @@
   },
   {
     "id": "17",
-    "category": "Nhà phố",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%C3%A1%C2%BB%E2%80%BAi/b1.jpg",
+    "category": "nha-pho",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%E1%BB%9Bi/b1.jpg",
     "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%C3%A1%C2%BB%E2%80%BAi/b1.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%C3%A1%C2%BB%E2%80%BAi/b3.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%C3%A1%C2%BB%E2%80%BAi/k1%20m.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%C3%A1%C2%BB%E2%80%BAi/12m.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%C3%A1%C2%BB%E2%80%BAi/18m.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%C3%A1%C2%BB%E2%80%BAi/ng%C3%A1%C2%BB%C2%A7%201.jpg"
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%E1%BB%9Bi/b1.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%E1%BB%9Bi/b2.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%E1%BB%9Bi/b3.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%E1%BB%9Bi/b4.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%E1%BB%9Bi/b5.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%E1%BB%9Bi/b6.jpg"
     ],
     "en": {
       "title": "Townhouse – Binh Thanh",
@@ -752,9 +752,9 @@
     },
     "vi": {
       "title": "Nhà Phố Bình Thạnh",
+      "slug": "nha-pho-binh-thanh",
       "categoryLabel": "Nhà phố",
       "categorySlug": "nha-pho",
-      "slug": "nha-pho-binh-thanh",
       "description": "Nhà phố nhiều tầng tại Bình Thạnh với mặt tiền hiện đại và nội thất tinh tế, tối ưu ánh sáng tự nhiên.",
       "details": {
         "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
@@ -1088,15 +1088,15 @@
   },
   {
     "id": "25",
-    "category": "Villa",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%83%E2%82%AC%20AN%20D%C3%86%C2%AF%C3%A1%C2%BB%C2%A0NG-ANH%20T%C3%83%C5%A1%20-%20V%C3%85%C2%A8NG%20T%C3%83%E2%82%ACU/01.jpg",
+    "category": "villa",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%80%20AN%20D%C6%AF%E1%BB%A0NG-ANH%20T%C3%9A%20-%20V%C5%A8NG%20T%C3%80U/01.jpg",
     "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%83%E2%82%AC%20AN%20D%C3%86%C2%AF%C3%A1%C2%BB%C2%A0NG-ANH%20T%C3%83%C5%A1%20-%20V%C3%85%C2%A8NG%20T%C3%83%E2%82%ACU/01.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%83%E2%82%AC%20AN%20D%C3%86%C2%AF%C3%A1%C2%BB%C2%A0NG-ANH%20T%C3%83%C5%A1%20-%20V%C3%85%C2%A8NG%20T%C3%83%E2%82%ACU/02.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%83%E2%82%AC%20AN%20D%C3%86%C2%AF%C3%A1%C2%BB%C2%A0NG-ANH%20T%C3%83%C5%A1%20-%20V%C3%85%C2%A8NG%20T%C3%83%E2%82%ACU/03.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%83%E2%82%AC%20AN%20D%C3%86%C2%AF%C3%A1%C2%BB%C2%A0NG-ANH%20T%C3%83%C5%A1%20-%20V%C3%85%C2%A8NG%20T%C3%83%E2%82%ACU/04.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%83%E2%82%AC%20AN%20D%C3%86%C2%AF%C3%A1%C2%BB%C2%A0NG-ANH%20T%C3%83%C5%A1%20-%20V%C3%85%C2%A8NG%20T%C3%83%E2%82%ACU/05.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%83%E2%82%AC%20AN%20D%C3%86%C2%AF%C3%A1%C2%BB%C2%A0NG-ANH%20T%C3%83%C5%A1%20-%20V%C3%85%C2%A8NG%20T%C3%83%E2%82%ACU/06.jpg"
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%80%20AN%20D%C6%AF%E1%BB%A0NG-ANH%20T%C3%9A%20-%20V%C5%A8NG%20T%C3%80U/01.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%80%20AN%20D%C6%AF%E1%BB%A0NG-ANH%20T%C3%9A%20-%20V%C5%A8NG%20T%C3%80U/02.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%80%20AN%20D%C6%AF%E1%BB%A0NG-ANH%20T%C3%9A%20-%20V%C5%A8NG%20T%C3%80U/03.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%80%20AN%20D%C6%AF%E1%BB%A0NG-ANH%20T%C3%9A%20-%20V%C5%A8NG%20T%C3%80U/04.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%80%20AN%20D%C6%AF%E1%BB%A0NG-ANH%20T%C3%9A%20-%20V%C5%A8NG%20T%C3%80U/05.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%80%20AN%20D%C6%AF%E1%BB%A0NG-ANH%20T%C3%9A%20-%20V%C5%A8NG%20T%C3%80U/06.jpg"
     ],
     "en": {
       "title": "Retreat Villa – Vung Tau",
@@ -1116,9 +1116,9 @@
     },
     "vi": {
       "title": "Nhà An Dưỡng – Vũng Tàu",
+      "slug": "nha-an-duong-vung-tau",
       "categoryLabel": "Villa",
       "categorySlug": "villa",
-      "slug": "nha-an-duong-vung-tau",
       "description": "Biệt thự nghỉ dưỡng ven biển Vũng Tàu thiết kế cho thư giãn và chăm sóc sức khỏe.",
       "details": {
         "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
@@ -1133,15 +1133,15 @@
   },
   {
     "id": "26",
-    "category": "Villa",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%83%E2%80%9DNG%20TI%C3%A1%C2%BB%E2%82%ACN%20-%20ANH%20NGH%C3%84%C2%A8A/01.jpg",
+    "category": "villa",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%94NG%20TI%E1%BB%80N%20-%20ANH%20NGH%C4%A8A/01.jpg",
     "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%83%E2%80%9DNG%20TI%C3%A1%C2%BB%E2%82%ACN%20-%20ANH%20NGH%C3%84%C2%A8A/01.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%83%E2%80%9DNG%20TI%C3%A1%C2%BB%E2%82%ACN%20-%20ANH%20NGH%C3%84%C2%A8A/03.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%83%E2%80%9DNG%20TI%C3%A1%C2%BB%E2%82%ACN%20-%20ANH%20NGH%C3%84%C2%A8A/05.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%83%E2%80%9DNG%20TI%C3%A1%C2%BB%E2%82%ACN%20-%20ANH%20NGH%C3%84%C2%A8A/07.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%83%E2%80%9DNG%20TI%C3%A1%C2%BB%E2%82%ACN%20-%20ANH%20NGH%C3%84%C2%A8A/09.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%83%E2%80%9DNG%20TI%C3%A1%C2%BB%E2%82%ACN%20-%20ANH%20NGH%C3%84%C2%A8A/012.jpg"
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%94NG%20TI%E1%BB%80N%20-%20ANH%20NGH%C4%A8A/02.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%94NG%20TI%E1%BB%80N%20-%20ANH%20NGH%C4%A8A/03.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%94NG%20TI%E1%BB%80N%20-%20ANH%20NGH%C4%A8A/04.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%94NG%20TI%E1%BB%80N%20-%20ANH%20NGH%C4%A8A/05.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%94NG%20TI%E1%BB%80N%20-%20ANH%20NGH%C4%A8A/06.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%94NG%20TI%E1%BB%80N%20-%20ANH%20NGH%C4%A8A/07.jpg"
     ],
     "en": {
       "title": "Tien River Resort",
@@ -1161,9 +1161,9 @@
     },
     "vi": {
       "title": "Resort Sông Tiền",
+      "slug": "resort-song-tien",
       "categoryLabel": "Villa",
       "categorySlug": "villa",
-      "slug": "resort-song-tien",
       "description": "Resort ven sông Tiền với biệt thự kiểu pavilion và cảnh quan nhiệt đới xanh mát.",
       "details": {
         "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",

@@ -6,8 +6,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { blogHref, formatBlogDate } from "@/data/blogs";
-import { useBlogs } from "@/hooks/useDbData";
+import { blogHref, formatBlogDate, blogs } from "@/data/blogs";
 
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
@@ -20,7 +19,7 @@ const BlogDetail = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const heroImgRef = useRef<HTMLImageElement>(null);
 
-  const { blogs, loading } = useBlogs();
+
 
   const currentIndex = useMemo(
     () =>
@@ -61,16 +60,6 @@ const BlogDetail = () => {
     });
     return () => cancelAnimationFrame(timer);
   }, [categorySlug, slug]);
-
-  if (loading) {
-    return (
-      <div className="h-screen flex items-center justify-center">
-        <div className="animate-pulse text-sm uppercase tracking-[0.3em] text-brand-gray">
-          Loading...
-        </div>
-      </div>
-    );
-  }
 
   if (!blog)
     return (

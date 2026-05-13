@@ -5,13 +5,15 @@ import { connectToDatabase } from "@/lib/mongoose";
 import mongoose from "mongoose";
 import { ObjectId } from "mongodb";
 import type { Category } from "@/data/categories";
+import { syncCategories } from "@/data/sync";
 
 /** Strip Mongoose/BSON types so data is safe to pass to Client Components */
 function serialize<T>(doc: any): T {
   return JSON.parse(JSON.stringify(doc));
 }
 
-function revalidateAll() {
+async function revalidateAll() {
+  await syncCategories();
   revalidatePath("/admin");
   revalidatePath("/admin/categories");
   revalidatePath("/admin/projects");
@@ -68,7 +70,7 @@ export async function createProjectCategory(
       id: String(count + 1),
     });
 
-    revalidateAll();
+    await revalidateAll();
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message || "Failed to create category" };
@@ -104,7 +106,7 @@ export async function updateProjectCategory(
       return { success: false, error: "Category not found" };
     }
 
-    revalidateAll();
+    await revalidateAll();
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message || "Failed to update category" };
@@ -124,7 +126,7 @@ export async function deleteProjectCategory(
       return { success: false, error: "Category not found" };
     }
 
-    revalidateAll();
+    await revalidateAll();
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message || "Failed to delete category" };
@@ -166,7 +168,7 @@ export async function createBlogCategory(
       id: String(count + 1),
     });
 
-    revalidateAll();
+    await revalidateAll();
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message || "Failed to create category" };
@@ -201,7 +203,7 @@ export async function updateBlogCategory(
       return { success: false, error: "Category not found" };
     }
 
-    revalidateAll();
+    await revalidateAll();
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message || "Failed to update category" };
@@ -221,7 +223,7 @@ export async function deleteBlogCategory(
       return { success: false, error: "Category not found" };
     }
 
-    revalidateAll();
+    await revalidateAll();
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message || "Failed to delete category" };

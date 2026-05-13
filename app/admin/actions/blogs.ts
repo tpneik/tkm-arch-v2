@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { connectToDatabase } from "@/lib/mongoose";
 import BlogModel from "@/models/Blog";
 import type { Blog } from "@/data/blogs";
+import { syncBlogs } from "@/data/sync";
 
 /** Strip Mongoose/BSON types so data is safe to pass to Client Components */
 function serialize<T>(doc: any): T {
@@ -57,6 +58,7 @@ export async function createBlog(
     const blogData = { ...newBlog, id: String(count + 1) };
 
     await BlogModel.create(blogData);
+    await syncBlogs();
     revalidatePath("/admin/blogs");
     revalidatePath("/en/blogs");
     revalidatePath("/vi/bai-viet");
@@ -83,6 +85,7 @@ export async function updateBlog(
       return { success: false, error: "Blog not found" };
     }
 
+    await syncBlogs();
     revalidatePath("/admin/blogs");
     revalidatePath("/en/blogs");
     revalidatePath("/vi/bai-viet");
@@ -104,6 +107,7 @@ export async function deleteBlog(
       return { success: false, error: "Blog not found" };
     }
 
+    await syncBlogs();
     revalidatePath("/admin/blogs");
     revalidatePath("/en/blogs");
     revalidatePath("/vi/bai-viet");

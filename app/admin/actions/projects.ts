@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { connectToDatabase } from "@/lib/mongoose";
 import ProjectModel from "@/models/Project";
 import type { Project } from "@/data/projects";
+import { syncProjects } from "@/data/sync";
 
 /** Strip Mongoose/BSON types so data is safe to pass to Client Components */
 function serialize<T>(doc: any): T {
@@ -62,6 +63,7 @@ export async function createProject(
     const projectData = { ...newProject, id: String(count + 1) };
 
     await ProjectModel.create(projectData);
+    await syncProjects();
     revalidatePath("/admin/projects");
     revalidatePath("/en/projects");
     revalidatePath("/vi/du-an");
@@ -88,6 +90,7 @@ export async function updateProject(
       return { success: false, error: "Project not found" };
     }
 
+    await syncProjects();
     revalidatePath("/admin/projects");
     revalidatePath("/en/projects");
     revalidatePath("/vi/du-an");
@@ -109,6 +112,7 @@ export async function deleteProject(
       return { success: false, error: "Project not found" };
     }
 
+    await syncProjects();
     revalidatePath("/admin/projects");
     revalidatePath("/en/projects");
     revalidatePath("/vi/du-an");

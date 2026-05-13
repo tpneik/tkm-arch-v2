@@ -9,7 +9,7 @@ import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
 import { projectHref } from "@/data/projects";
 import type { Project } from "@/data/projects";
-import { useProjects } from "@/hooks/useDbData";
+import { projects as allProjects } from "@/data/projects";
 
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
@@ -19,30 +19,10 @@ export default function Portfolio() {
   const { lng } = useParams<{ lng: string }>();
   const lang = (lng || "en") as "en" | "vi";
 
-  const { projects, loading } = useProjects();
+  const projects = allProjects;
 
   // Show only first 6 projects on home page
   const featuredProjects = projects.slice(0, 6);
-
-  if (loading) {
-    return (
-      <section id="portfolio" className="section-padding bg-brand-light">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
-            <span className="text-brand-blue uppercase tracking-[0.3em] text-xs font-bold mb-4 block">
-              {t("portfolio.label")}
-            </span>
-            <h2 className="text-4xl md:text-5xl font-serif">{t("portfolio.title")}</h2>
-          </div>
-          <div className="flex items-center justify-center py-20">
-            <div className="animate-pulse text-sm uppercase tracking-[0.3em] text-brand-gray">
-              Loading...
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="portfolio" className="section-padding bg-brand-light">

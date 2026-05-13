@@ -1,7 +1,7 @@
 {
   "projectCategories": [
     {
-      "id": "1",
+      "id": "6a01f25621ac70265674a8b8",
       "slug": "cong-trinh-khac",
       "en": {
         "label": "Other Projects"
@@ -11,7 +11,7 @@
       }
     },
     {
-      "id": "2",
+      "id": "6a01f25621ac70265674a8b9",
       "slug": "nha-pho",
       "en": {
         "label": "Townhouse"
@@ -21,7 +21,7 @@
       }
     },
     {
-      "id": "3",
+      "id": "6a01f25621ac70265674a8ba",
       "slug": "van-phong",
       "en": {
         "label": "Office"
@@ -31,7 +31,7 @@
       }
     },
     {
-      "id": "4",
+      "id": "6a01f25621ac70265674a8bb",
       "slug": "chung-cu",
       "en": {
         "label": "Apartment"
@@ -41,7 +41,7 @@
       }
     },
     {
-      "id": "5",
+      "id": "6a01f25621ac70265674a8bc",
       "slug": "villa",
       "en": {
         "label": "Villa"
@@ -51,7 +51,7 @@
       }
     },
     {
-      "id": "6",
+      "id": "6a01f25621ac70265674a8bd",
       "slug": "noi-that",
       "en": {
         "label": "Interior"
@@ -61,7 +61,7 @@
       }
     },
     {
-      "id": "7",
+      "id": "6a01f25621ac70265674a8be",
       "slug": "truong-hoc",
       "en": {
         "label": "School"
@@ -73,7 +73,7 @@
   ],
   "blogCategories": [
     {
-      "id": "1",
+      "id": "6a01f25621ac70265674a8bf",
       "slug": "design",
       "en": {
         "label": "Design"
@@ -83,7 +83,7 @@
       }
     },
     {
-      "id": "2",
+      "id": "6a01f25621ac70265674a8c0",
       "slug": "construction",
       "en": {
         "label": "Construction"
@@ -93,7 +93,7 @@
       }
     },
     {
-      "id": "3",
+      "id": "6a01f25621ac70265674a8c1",
       "slug": "interior",
       "en": {
         "label": "Interior"
