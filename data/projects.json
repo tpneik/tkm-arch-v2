@@ -47,188 +47,6 @@
   {
     "id": "2",
     "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_3%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_5%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/01.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/05.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/10.jpg"
-    ],
-    "en": {
-      "title": "The Foxie Lounge",
-      "slug": "the-foxie-lounge",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "A stylish lounge bar combining a striking facade design with sophisticated interior spaces. The two-zone concept separates a vibrant street-level café from an intimate upper-floor cocktail bar, unified by a cohesive material language of dark metals and warm wood.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design",
-          "Interior Design",
-          "Construction"
-        ],
-        "SCALE": "220 sqm",
-        "LOCATION": "Ho Chi Minh City"
-      }
-    },
-    "vi": {
-      "title": "The Foxie Lounge",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "slug": "the-foxie-lounge",
-      "description": "Quán lounge phong cách kết hợp mặt tiền ấn tượng với không gian nội thất tinh tế. Concept hai vùng tách biệt quán cà phê sôi động tầng trệt khỏi bar cocktail ấm cúng tầng trên.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Thiết kế nội thất",
-          "Thi công"
-        ],
-        "QUY MÔ": "220 m²",
-        "VỊ TRÍ": "TP. Hồ Chí Minh"
-      }
-    }
-  },
-  {
-    "id": "3",
-    "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%281%29.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%281%29.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%285%29.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%2810%29.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/315425657_2757001181100305_466228183018202368_n.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/315537200_2757001244433632_3675359706152613803_n.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%2815%29.jpg"
-    ],
-    "en": {
-      "title": "The Fox Coffee",
-      "slug": "the-fox-coffee",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "A trendy coffee shop with bold branding and a playful atmosphere. The design balances industrial rawness with cozy warmth through exposed ceilings, custom lighting, and curated greenery that transforms every corner into an Instagram-worthy moment.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Interior Design",
-          "Construction"
-        ],
-        "SCALE": "180 sqm",
-        "LOCATION": "Ho Chi Minh City"
-      }
-    },
-    "vi": {
-      "title": "The Fox Coffee",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "slug": "the-fox-coffee",
-      "description": "Quán cà phê thời thượng với thương hiệu mạnh mẽ và bầu không khí vui tươi, cân bằng giữa sự thô mộc công nghiệp với sự ấm cúng.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế nội thất",
-          "Thi công"
-        ],
-        "QUY MÔ": "180 m²",
-        "VỊ TRÍ": "TP. Hồ Chí Minh"
-      }
-    }
-  },
-  {
-    "id": "4",
-    "category": "cong-trinh-khac",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_2%20-%20Photo.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_2%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_5%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/1_11%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/1_15%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/03_21%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/03_25%20-%20Photo.jpg"
-    ],
-    "en": {
-      "title": "1994 Coffee – An Giang",
-      "slug": "1994-coffee-an-giang",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "A nostalgic coffee shop inspired by the aesthetics of 1994, blending retro charm with modern functionality in the heart of An Giang. Warm timber tones, exposed brick, and vintage signage evoke timelessness, while contemporary amenities ensure every visit feels both familiar and refreshingly new.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Interior Design",
-          "Construction"
-        ],
-        "SCALE": "250 sqm",
-        "LOCATION": "An Giang Province"
-      }
-    },
-    "vi": {
-      "title": "Quán Cà Phê 1994 – An Giang",
-      "slug": "quan-ca-phe-1994-an-giang",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "description": "Quán cà phê mang phong cách hoài cổ lấy cảm hứng từ thập niên 1994, kết hợp nét retro với công năng hiện đại tại trung tâm An Giang.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế nội thất",
-          "Thi công"
-        ],
-        "QUY MÔ": "250 m²",
-        "VỊ TRÍ": "Tỉnh An Giang"
-      }
-    }
-  },
-  {
-    "id": "5",
-    "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/1_1%20-%20Photo.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/1_1%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/1_4%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/1_8%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/2_11%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/2_14%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/2_17%20-%20Photo.jpg"
-    ],
-    "en": {
-      "title": "Foxzone Entertainment – Can Tho",
-      "slug": "foxzone-entertainment-can-tho",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "A multi-functional entertainment complex in Can Tho featuring dynamic architectural volumes and energetic interior spaces. The facility offers diverse leisure zones unified by bold graphics, atmospheric lighting, and a youthful design identity.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design",
-          "Interior Design"
-        ],
-        "SCALE": "400 sqm",
-        "LOCATION": "Can Tho City"
-      }
-    },
-    "vi": {
-      "title": "Foxzone Giải Trí – Cần Thơ",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "slug": "foxzone-giai-tri-can-tho",
-      "description": "Khu phức hợp giải trí đa chức năng tại Cần Thơ với khối kiến trúc năng động và nội thất tràn đầy năng lượng.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Thiết kế nội thất"
-        ],
-        "QUY MÔ": "400 m²",
-        "VỊ TRÍ": "TP. Cần Thơ"
-      }
-    }
-  },
-  {
-    "id": "6",
-    "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/NHA%20HANG%20CAO%20NHO/06.png",
     "gallery": [
       "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/NHA%20HANG%20CAO%20NHO/06.png",
@@ -272,277 +90,7 @@
     }
   },
   {
-    "id": "7",
-    "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/1_1%20-%20Photo.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/1_1%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/1_2%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/2_11%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/2_14%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/2_17%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/2_20%20-%20Photo.jpg"
-    ],
-    "en": {
-      "title": "Minh Thu Shop – An Giang",
-      "slug": "minh-thu-shop-an-giang",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "A contemporary retail space designed to elevate the shopping experience through clean lines, strategic lighting, and an inviting storefront. Display walls with integrated LED strips guide customers through curated product zones.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design",
-          "Interior Design"
-        ],
-        "SCALE": "150 sqm",
-        "LOCATION": "An Giang Province"
-      }
-    },
-    "vi": {
-      "title": "Minh Thư Shop – An Giang",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "slug": "minh-thu-shop-an-giang",
-      "description": "Không gian bán lẻ hiện đại nâng tầm trải nghiệm mua sắm với đường nét tinh gọn và chiếu sáng chiến lược.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Thiết kế nội thất"
-        ],
-        "QUY MÔ": "150 m²",
-        "VỊ TRÍ": "Tỉnh An Giang"
-      }
-    }
-  },
-  {
-    "id": "8",
-    "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/1_1%20-%20Photo.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/1_1%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/Lounge%201.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/Lounge3.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/Relax1.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/Sanh1.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/giam%20doc%201.jpg"
-    ],
-    "en": {
-      "title": "Quang Ngai Spa",
-      "slug": "quang-ngai-spa",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "A tranquil spa retreat in Quang Ngai featuring serene treatment rooms, relaxation lounges, and consultation spaces. Natural materials and soft lighting create an atmosphere of harmony and rejuvenation throughout every zone.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Interior Design",
-          "Construction"
-        ],
-        "SCALE": "350 sqm",
-        "LOCATION": "Quang Ngai Province"
-      }
-    },
-    "vi": {
-      "title": "Spa Quảng Ngãi",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "slug": "spa-quang-ngai",
-      "description": "Không gian spa thanh tịnh tại Quảng Ngãi với phòng trị liệu yên bình, lounge thư giãn và phòng tư vấn.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế nội thất",
-          "Thi công"
-        ],
-        "QUY MÔ": "350 m²",
-        "VỊ TRÍ": "Tỉnh Quảng Ngãi"
-      }
-    }
-  },
-  {
-    "id": "9",
-    "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_2%20-%20Photo.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam1%20copy.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam3%20copy.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam5%20copy.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam7%20copy.png"
-    ],
-    "en": {
-      "title": "Victory Gym – Dong Thap",
-      "slug": "victory-gym-dong-thap",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "A dynamic fitness center in Dong Thap Province designed with bold architectural volumes and energetic interior spaces. High ceilings, industrial finishes, and zone-specific lighting create an atmosphere that motivates peak performance.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design",
-          "Interior Design"
-        ],
-        "SCALE": "500 sqm",
-        "LOCATION": "Dong Thap Province"
-      }
-    },
-    "vi": {
-      "title": "Victory Gym – Đồng Tháp",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "slug": "victory-gym-dong-thap",
-      "description": "Phòng tập thể hình năng động tại Đồng Tháp với khối kiến trúc mạnh mẽ và không gian nội thất tràn đầy năng lượng.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Thiết kế nội thất"
-        ],
-        "QUY MÔ": "500 m²",
-        "VỊ TRÍ": "Tỉnh Đồng Tháp"
-      }
-    }
-  },
-  {
-    "id": "10",
-    "category": "Nhà phố",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/KHACH%20SAN%20CAM/01.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/KHACH%20SAN%20CAM/01.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/KHACH%20SAN%20CAM/02.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/KHACH%20SAN%20CAM/03.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/KHACH%20SAN%20CAM/04.jpg"
-    ],
-    "en": {
-      "title": "Cam Hotel",
-      "slug": "cam-hotel",
-      "categoryLabel": "Townhouse",
-      "categorySlug": "townhouse",
-      "description": "A boutique hotel design featuring a distinctive facade, efficient room layouts, and welcoming common areas. The compact multi-story structure maximizes guest comfort within an urban setting through clever spatial planning.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design",
-          "Interior Design"
-        ],
-        "SCALE": "320 sqm",
-        "LOCATION": "Ho Chi Minh City"
-      }
-    },
-    "vi": {
-      "title": "Khách Sạn Cam",
-      "categoryLabel": "Nhà phố",
-      "categorySlug": "nha-pho",
-      "slug": "khach-san-cam",
-      "description": "Thiết kế khách sạn boutique với mặt tiền đặc trưng, bố trí phòng hiệu quả và khu vực chung ấm cúng.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Thiết kế nội thất"
-        ],
-        "QUY MÔ": "320 m²",
-        "VỊ TRÍ": "TP. Hồ Chí Minh"
-      }
-    }
-  },
-  {
-    "id": "11",
-    "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_1%20-%20Photo.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_1%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_3%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_7%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_12%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_18%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_22%20-%20Photo.jpg"
-    ],
-    "en": {
-      "title": "Trung Nguyen Coffee – My Tho",
-      "slug": "trung-nguyen-coffee-my-tho",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "A flagship Trung Nguyen coffee house in My Tho, Tien Giang Province, designed to reflect the brand's heritage through rich material palettes and immersive spatial experiences. The open-plan layout encourages social interaction while private alcoves offer quiet retreats.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Interior Design",
-          "Construction"
-        ],
-        "SCALE": "300 sqm",
-        "LOCATION": "My Tho, Tien Giang Province"
-      }
-    },
-    "vi": {
-      "title": "Cà Phê Trung Nguyên – Mỹ Tho",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "slug": "ca-phe-trung-nguyen-my-tho",
-      "description": "Quán cà phê Trung Nguyên tại Mỹ Tho, Tiền Giang, thiết kế phản ánh di sản thương hiệu qua bảng vật liệu phong phú và trải nghiệm không gian sống động.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế nội thất",
-          "Thi công"
-        ],
-        "QUY MÔ": "300 m²",
-        "VỊ TRÍ": "Mỹ Tho, Tỉnh Tiền Giang"
-      }
-    }
-  },
-  {
-    "id": "12",
-    "category": "Nhà phố",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/1.tang%20tret/V1.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/1.tang%20tret/V1.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/1.tang%20tret/V4.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/2.tang%20lung/V1.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/3.tang%202/V2.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/4.tang%203/V3.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/4.tang%203/V5.jpg"
-    ],
-    "en": {
-      "title": "Chi Dep Spa",
-      "slug": "chi-dep-spa",
-      "categoryLabel": "Townhouse",
-      "categorySlug": "townhouse",
-      "description": "A multi-story spa establishment featuring treatment rooms across five levels, each with a unique atmosphere. From the welcoming ground-floor reception to the serene rooftop relaxation area, the design guides guests on a vertical wellness journey.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design",
-          "Interior Design",
-          "Construction"
-        ],
-        "SCALE": "450 sqm",
-        "LOCATION": "Ho Chi Minh City"
-      }
-    },
-    "vi": {
-      "title": "Spa Chị Đẹp",
-      "categoryLabel": "Nhà phố",
-      "categorySlug": "nha-pho",
-      "slug": "spa-chi-dep",
-      "description": "Cơ sở spa nhiều tầng với phòng trị liệu trải dài năm tầng, mỗi tầng mang bầu không khí riêng.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Thiết kế nội thất",
-          "Thi công"
-        ],
-        "QUY MÔ": "450 m²",
-        "VỊ TRÍ": "TP. Hồ Chí Minh"
-      }
-    }
-  },
-  {
-    "id": "13",
+    "id": "3",
     "category": "van-phong",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%E1%BB%B8%20THO-TI%E1%BB%80N%20GIANG/01.jpg",
     "gallery": [
@@ -587,142 +135,7 @@
     }
   },
   {
-    "id": "14",
-    "category": "Văn phòng",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_1%20-%20Photo.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_1%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_2%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_3%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_4%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_5%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_6%20-%20Photo.jpg"
-    ],
-    "en": {
-      "title": "Hanayagi Spa",
-      "slug": "hanayagi-spa",
-      "categoryLabel": "Office",
-      "categorySlug": "office",
-      "description": "A Japanese-inspired spa sanctuary featuring serene treatment rooms, training facilities, and consultation spaces unified by a philosophy of harmony and tranquility. Natural hinoki wood and tatami accents immerse guests in an authentic onsen-inspired journey.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Interior Design",
-          "Construction"
-        ],
-        "SCALE": "600 sqm",
-        "LOCATION": "Ho Chi Minh City"
-      }
-    },
-    "vi": {
-      "title": "Hanayagi Spa",
-      "categoryLabel": "Văn phòng",
-      "categorySlug": "van-phong",
-      "slug": "hanayagi-spa",
-      "description": "Không gian spa cảm hứng Nhật Bản với phòng trị liệu thanh tịnh, khu đào tạo và phòng tư vấn thống nhất bởi triết lý hài hòa.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế nội thất",
-          "Thi công"
-        ],
-        "QUY MÔ": "600 m²",
-        "VỊ TRÍ": "TP. Hồ Chí Minh"
-      }
-    }
-  },
-  {
-    "id": "15",
-    "category": "Chung cư",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/01.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/01.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/03.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/06.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/10.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/14.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/17.jpg"
-    ],
-    "en": {
-      "title": "Cho Moi Apartment – An Giang",
-      "slug": "cho-moi-apartment-an-giang",
-      "categoryLabel": "Apartment",
-      "categorySlug": "apartment",
-      "description": "A contemporary apartment project in Cho Moi, An Giang featuring efficient layouts and modern finishes. Each unit maximizes natural light and cross-ventilation while maintaining privacy in a dense urban context.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design",
-          "Interior Design",
-          "Construction"
-        ],
-        "SCALE": "450 sqm",
-        "LOCATION": "Cho Moi, An Giang Province"
-      }
-    },
-    "vi": {
-      "title": "Căn Hộ Chợ Mới – An Giang",
-      "categoryLabel": "Chung cư",
-      "categorySlug": "chung-cu",
-      "slug": "can-ho-cho-moi-an-giang",
-      "description": "Dự án căn hộ hiện đại tại Chợ Mới, An Giang với bố trí hiệu quả và hoàn thiện hiện đại.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Thiết kế nội thất",
-          "Thi công"
-        ],
-        "QUY MÔ": "450 m²",
-        "VỊ TRÍ": "Chợ Mới, Tỉnh An Giang"
-      }
-    }
-  },
-  {
-    "id": "16",
-    "category": "Chung cư",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/ghe%20studio%20%20%281%29.png",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/ghe%20studio%20%20%281%29.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/ghe%20studio%20%20%282%29.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/ghe%20studio%20%20%283%29.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/khong%20co%20ghe%20%20%281%29.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/khong%20co%20ghe%20%20%282%29.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/khong%20co%20ghe%20%20%283%29.png"
-    ],
-    "en": {
-      "title": "Anh Hung Apartment",
-      "slug": "anh-hung-apartment",
-      "categoryLabel": "Apartment",
-      "categorySlug": "apartment",
-      "description": "A modern apartment interior with multiple layout configurations, exploring furniture placement options to optimize living comfort within a compact floor plan. Clean lines and neutral tones create a serene backdrop for everyday living.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Interior Design"
-        ],
-        "SCALE": "75 sqm",
-        "LOCATION": "Ho Chi Minh City"
-      }
-    },
-    "vi": {
-      "title": "Căn Hộ Anh Hùng",
-      "categoryLabel": "Chung cư",
-      "categorySlug": "chung-cu",
-      "slug": "can-ho-anh-hung",
-      "description": "Nội thất căn hộ hiện đại với nhiều phương án bố trí, tối ưu sự thoải mái trong mặt bằng nhỏ gọn.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế nội thất"
-        ],
-        "QUY MÔ": "75 m²",
-        "VỊ TRÍ": "TP. Hồ Chí Minh"
-      }
-    }
-  },
-  {
-    "id": "17",
+    "id": "4",
     "category": "nha-pho",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%E1%BB%9Bi/b1.jpg",
     "gallery": [
@@ -769,7 +182,99 @@
     }
   },
   {
-    "id": "18",
+    "id": "5",
+    "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_3%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_5%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/01.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/05.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/10.jpg"
+    ],
+    "en": {
+      "title": "The Foxie Lounge",
+      "slug": "the-foxie-lounge",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A stylish lounge bar combining a striking facade design with sophisticated interior spaces. The two-zone concept separates a vibrant street-level café from an intimate upper-floor cocktail bar, unified by a cohesive material language of dark metals and warm wood.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design",
+          "Interior Design",
+          "Construction"
+        ],
+        "SCALE": "220 sqm",
+        "LOCATION": "Ho Chi Minh City"
+      }
+    },
+    "vi": {
+      "title": "The Foxie Lounge",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "slug": "the-foxie-lounge",
+      "description": "Quán lounge phong cách kết hợp mặt tiền ấn tượng với không gian nội thất tinh tế. Concept hai vùng tách biệt quán cà phê sôi động tầng trệt khỏi bar cocktail ấm cúng tầng trên.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc",
+          "Thiết kế nội thất",
+          "Thi công"
+        ],
+        "QUY MÔ": "220 m²",
+        "VỊ TRÍ": "TP. Hồ Chí Minh"
+      }
+    }
+  },
+  {
+    "id": "6",
+    "category": "cong-trinh-khac",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_2%20-%20Photo.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_2%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_5%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/1_11%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/1_15%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/03_21%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/03_25%20-%20Photo.jpg"
+    ],
+    "en": {
+      "title": "1994 Coffee – An Giang",
+      "slug": "1994-coffee-an-giang",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A nostalgic coffee shop inspired by the aesthetics of 1994, blending retro charm with modern functionality in the heart of An Giang. Warm timber tones, exposed brick, and vintage signage evoke timelessness, while contemporary amenities ensure every visit feels both familiar and refreshingly new.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Interior Design",
+          "Construction"
+        ],
+        "SCALE": "250 sqm",
+        "LOCATION": "An Giang Province"
+      }
+    },
+    "vi": {
+      "title": "Quán Cà Phê 1994 – An Giang",
+      "slug": "quan-ca-phe-1994-an-giang",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "description": "Quán cà phê mang phong cách hoài cổ lấy cảm hứng từ thập niên 1994, kết hợp nét retro với công năng hiện đại tại trung tâm An Giang.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế nội thất",
+          "Thi công"
+        ],
+        "QUY MÔ": "250 m²",
+        "VỊ TRÍ": "Tỉnh An Giang"
+      }
+    }
+  },
+  {
+    "id": "7",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20CHI%20DAO/Tret/PK1_3.png",
     "gallery": [
@@ -809,6 +314,499 @@
           "Thi công"
         ],
         "QUY MÔ": "200 m²",
+        "VỊ TRÍ": "TP. Hồ Chí Minh"
+      }
+    }
+  },
+  {
+    "id": "8",
+    "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/1_1%20-%20Photo.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/1_1%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/1_4%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/1_8%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/2_11%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/2_14%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/2_17%20-%20Photo.jpg"
+    ],
+    "en": {
+      "title": "Foxzone Entertainment – Can Tho",
+      "slug": "foxzone-entertainment-can-tho",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A multi-functional entertainment complex in Can Tho featuring dynamic architectural volumes and energetic interior spaces. The facility offers diverse leisure zones unified by bold graphics, atmospheric lighting, and a youthful design identity.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design",
+          "Interior Design"
+        ],
+        "SCALE": "400 sqm",
+        "LOCATION": "Can Tho City"
+      }
+    },
+    "vi": {
+      "title": "Foxzone Giải Trí – Cần Thơ",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "slug": "foxzone-giai-tri-can-tho",
+      "description": "Khu phức hợp giải trí đa chức năng tại Cần Thơ với khối kiến trúc năng động và nội thất tràn đầy năng lượng.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc",
+          "Thiết kế nội thất"
+        ],
+        "QUY MÔ": "400 m²",
+        "VỊ TRÍ": "TP. Cần Thơ"
+      }
+    }
+  },
+  {
+    "id": "9",
+    "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/1_1%20-%20Photo.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/1_1%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/1_2%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/2_11%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/2_14%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/2_17%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/2_20%20-%20Photo.jpg"
+    ],
+    "en": {
+      "title": "Minh Thu Shop – An Giang",
+      "slug": "minh-thu-shop-an-giang",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A contemporary retail space designed to elevate the shopping experience through clean lines, strategic lighting, and an inviting storefront. Display walls with integrated LED strips guide customers through curated product zones.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design",
+          "Interior Design"
+        ],
+        "SCALE": "150 sqm",
+        "LOCATION": "An Giang Province"
+      }
+    },
+    "vi": {
+      "title": "Minh Thư Shop – An Giang",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "slug": "minh-thu-shop-an-giang",
+      "description": "Không gian bán lẻ hiện đại nâng tầm trải nghiệm mua sắm với đường nét tinh gọn và chiếu sáng chiến lược.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc",
+          "Thiết kế nội thất"
+        ],
+        "QUY MÔ": "150 m²",
+        "VỊ TRÍ": "Tỉnh An Giang"
+      }
+    }
+  },
+  {
+    "id": "10",
+    "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_7%20-%20Photo.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_7%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_8%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KHU%20B/v1.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KHU%20B/v4.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KHU%20C/AA_13%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KIEN%20TRUC/v2.jpg"
+    ],
+    "en": {
+      "title": "Cao Cuu Renovation",
+      "slug": "cao-cuu-renovation",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A comprehensive renovation of an existing industrial complex across multiple zones.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design",
+          "Renovation"
+        ],
+        "SCALE": "1000 sqm",
+        "LOCATION": "Ben Tre Province"
+      }
+    },
+    "vi": {
+      "title": "Cải Tạo Cao Cửu",
+      "slug": "cai-tao-cao-cuu",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "description": "Cải tạo toan dien khu cong nghiep hien huu tren nhieu khu vuc.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc",
+          "Cải tạo"
+        ],
+        "QUY MÔ": "1.000 m²",
+        "VỊ TRÍ": "Tỉnh Bến Tre"
+      }
+    }
+  },
+  {
+    "id": "11",
+    "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/1_1%20-%20Photo.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/1_1%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/Lounge%201.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/Lounge3.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/Relax1.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/Sanh1.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/giam%20doc%201.jpg"
+    ],
+    "en": {
+      "title": "Quang Ngai Spa",
+      "slug": "quang-ngai-spa",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A tranquil spa retreat in Quang Ngai featuring serene treatment rooms, relaxation lounges, and consultation spaces. Natural materials and soft lighting create an atmosphere of harmony and rejuvenation throughout every zone.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Interior Design",
+          "Construction"
+        ],
+        "SCALE": "350 sqm",
+        "LOCATION": "Quang Ngai Province"
+      }
+    },
+    "vi": {
+      "title": "Spa Quảng Ngãi",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "slug": "spa-quang-ngai",
+      "description": "Không gian spa thanh tịnh tại Quảng Ngãi với phòng trị liệu yên bình, lounge thư giãn và phòng tư vấn.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế nội thất",
+          "Thi công"
+        ],
+        "QUY MÔ": "350 m²",
+        "VỊ TRÍ": "Tỉnh Quảng Ngãi"
+      }
+    }
+  },
+  {
+    "id": "12",
+    "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_2%20-%20Photo.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam1%20copy.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam3%20copy.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam5%20copy.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam7%20copy.png"
+    ],
+    "en": {
+      "title": "Victory Gym – Dong Thap",
+      "slug": "victory-gym-dong-thap",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A dynamic fitness center in Dong Thap Province designed with bold architectural volumes and energetic interior spaces. High ceilings, industrial finishes, and zone-specific lighting create an atmosphere that motivates peak performance.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design",
+          "Interior Design"
+        ],
+        "SCALE": "500 sqm",
+        "LOCATION": "Dong Thap Province"
+      }
+    },
+    "vi": {
+      "title": "Victory Gym – Đồng Tháp",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "slug": "victory-gym-dong-thap",
+      "description": "Phòng tập thể hình năng động tại Đồng Tháp với khối kiến trúc mạnh mẽ và không gian nội thất tràn đầy năng lượng.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc",
+          "Thiết kế nội thất"
+        ],
+        "QUY MÔ": "500 m²",
+        "VỊ TRÍ": "Tỉnh Đồng Tháp"
+      }
+    }
+  },
+  {
+    "id": "13",
+    "category": "Nhà phố",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/KHACH%20SAN%20CAM/01.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/KHACH%20SAN%20CAM/01.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/KHACH%20SAN%20CAM/02.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/KHACH%20SAN%20CAM/03.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/KHACH%20SAN%20CAM/04.jpg"
+    ],
+    "en": {
+      "title": "Cam Hotel",
+      "slug": "cam-hotel",
+      "categoryLabel": "Townhouse",
+      "categorySlug": "townhouse",
+      "description": "A boutique hotel design featuring a distinctive facade, efficient room layouts, and welcoming common areas. The compact multi-story structure maximizes guest comfort within an urban setting through clever spatial planning.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design",
+          "Interior Design"
+        ],
+        "SCALE": "320 sqm",
+        "LOCATION": "Ho Chi Minh City"
+      }
+    },
+    "vi": {
+      "title": "Khách Sạn Cam",
+      "categoryLabel": "Nhà phố",
+      "categorySlug": "nha-pho",
+      "slug": "khach-san-cam",
+      "description": "Thiết kế khách sạn boutique với mặt tiền đặc trưng, bố trí phòng hiệu quả và khu vực chung ấm cúng.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc",
+          "Thiết kế nội thất"
+        ],
+        "QUY MÔ": "320 m²",
+        "VỊ TRÍ": "TP. Hồ Chí Minh"
+      }
+    }
+  },
+  {
+    "id": "14",
+    "category": "Nhà phố",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/1.tang%20tret/V1.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/1.tang%20tret/V1.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/1.tang%20tret/V4.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/2.tang%20lung/V1.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/3.tang%202/V2.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/4.tang%203/V3.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/SPA%20CHI%20DEP/4.tang%203/V5.jpg"
+    ],
+    "en": {
+      "title": "Chi Dep Spa",
+      "slug": "chi-dep-spa",
+      "categoryLabel": "Townhouse",
+      "categorySlug": "townhouse",
+      "description": "A multi-story spa establishment featuring treatment rooms across five levels, each with a unique atmosphere. From the welcoming ground-floor reception to the serene rooftop relaxation area, the design guides guests on a vertical wellness journey.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design",
+          "Interior Design",
+          "Construction"
+        ],
+        "SCALE": "450 sqm",
+        "LOCATION": "Ho Chi Minh City"
+      }
+    },
+    "vi": {
+      "title": "Spa Chị Đẹp",
+      "categoryLabel": "Nhà phố",
+      "categorySlug": "nha-pho",
+      "slug": "spa-chi-dep",
+      "description": "Cơ sở spa nhiều tầng với phòng trị liệu trải dài năm tầng, mỗi tầng mang bầu không khí riêng.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc",
+          "Thiết kế nội thất",
+          "Thi công"
+        ],
+        "QUY MÔ": "450 m²",
+        "VỊ TRÍ": "TP. Hồ Chí Minh"
+      }
+    }
+  },
+  {
+    "id": "15",
+    "category": "Văn phòng",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_1%20-%20Photo.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_1%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_2%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_3%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_4%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_5%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HANAYAGI%20SPA/BB_6%20-%20Photo.jpg"
+    ],
+    "en": {
+      "title": "Hanayagi Spa",
+      "slug": "hanayagi-spa",
+      "categoryLabel": "Office",
+      "categorySlug": "office",
+      "description": "A Japanese-inspired spa sanctuary featuring serene treatment rooms, training facilities, and consultation spaces unified by a philosophy of harmony and tranquility. Natural hinoki wood and tatami accents immerse guests in an authentic onsen-inspired journey.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Interior Design",
+          "Construction"
+        ],
+        "SCALE": "600 sqm",
+        "LOCATION": "Ho Chi Minh City"
+      }
+    },
+    "vi": {
+      "title": "Hanayagi Spa",
+      "categoryLabel": "Văn phòng",
+      "categorySlug": "van-phong",
+      "slug": "hanayagi-spa",
+      "description": "Không gian spa cảm hứng Nhật Bản với phòng trị liệu thanh tịnh, khu đào tạo và phòng tư vấn thống nhất bởi triết lý hài hòa.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế nội thất",
+          "Thi công"
+        ],
+        "QUY MÔ": "600 m²",
+        "VỊ TRÍ": "TP. Hồ Chí Minh"
+      }
+    }
+  },
+  {
+    "id": "16",
+    "category": "Chung cư",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/01.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/01.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/03.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/06.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/10.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/14.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/17.jpg"
+    ],
+    "en": {
+      "title": "Cho Moi Apartment – An Giang",
+      "slug": "cho-moi-apartment-an-giang",
+      "categoryLabel": "Apartment",
+      "categorySlug": "apartment",
+      "description": "A contemporary apartment project in Cho Moi, An Giang featuring efficient layouts and modern finishes. Each unit maximizes natural light and cross-ventilation while maintaining privacy in a dense urban context.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design",
+          "Interior Design",
+          "Construction"
+        ],
+        "SCALE": "450 sqm",
+        "LOCATION": "Cho Moi, An Giang Province"
+      }
+    },
+    "vi": {
+      "title": "Căn Hộ Chợ Mới – An Giang",
+      "categoryLabel": "Chung cư",
+      "categorySlug": "chung-cu",
+      "slug": "can-ho-cho-moi-an-giang",
+      "description": "Dự án căn hộ hiện đại tại Chợ Mới, An Giang với bố trí hiệu quả và hoàn thiện hiện đại.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc",
+          "Thiết kế nội thất",
+          "Thi công"
+        ],
+        "QUY MÔ": "450 m²",
+        "VỊ TRÍ": "Chợ Mới, Tỉnh An Giang"
+      }
+    }
+  },
+  {
+    "id": "17",
+    "category": "Chung cư",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/ghe%20studio%20%20%281%29.png",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/ghe%20studio%20%20%281%29.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/ghe%20studio%20%20%282%29.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/ghe%20studio%20%20%283%29.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/khong%20co%20ghe%20%20%281%29.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/khong%20co%20ghe%20%20%282%29.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/NHA%20ANH%20HUNG/khong%20co%20ghe%20%20%283%29.png"
+    ],
+    "en": {
+      "title": "Anh Hung Apartment",
+      "slug": "anh-hung-apartment",
+      "categoryLabel": "Apartment",
+      "categorySlug": "apartment",
+      "description": "A modern apartment interior with multiple layout configurations, exploring furniture placement options to optimize living comfort within a compact floor plan. Clean lines and neutral tones create a serene backdrop for everyday living.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Interior Design"
+        ],
+        "SCALE": "75 sqm",
+        "LOCATION": "Ho Chi Minh City"
+      }
+    },
+    "vi": {
+      "title": "Căn Hộ Anh Hùng",
+      "categoryLabel": "Chung cư",
+      "categorySlug": "chung-cu",
+      "slug": "can-ho-anh-hung",
+      "description": "Nội thất căn hộ hiện đại với nhiều phương án bố trí, tối ưu sự thoải mái trong mặt bằng nhỏ gọn.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế nội thất"
+        ],
+        "QUY MÔ": "75 m²",
+        "VỊ TRÍ": "TP. Hồ Chí Minh"
+      }
+    }
+  },
+  {
+    "id": "18",
+    "category": "Villa",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/01.%20PHONG%20KHACH/phong%20khach%20-%201.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/01.%20PHONG%20KHACH/phong%20khach%20-%201.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/01.%20PHONG%20KHACH/phong%20khach%20-%203.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/02.%20BEP%20-%20AN/bep-an-1.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/03.%20PHONG%20NGU%20MASTER/master-1.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/04.%20PHONG%20NGU%2002/PN2-view1.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/05.%20PHONG%20NGU%2003/PN3-view1.png"
+    ],
+    "en": {
+      "title": "Villa Cam",
+      "slug": "villa-cam",
+      "categoryLabel": "Villa",
+      "categorySlug": "villa",
+      "description": "A luxurious villa with meticulously designed interiors spanning living room, kitchen-dining, master bedroom, and multiple guest rooms. Each space features a distinctive palette while maintaining a cohesive whole.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Interior Design"
+        ],
+        "SCALE": "400 sqm",
+        "LOCATION": "Ho Chi Minh City"
+      }
+    },
+    "vi": {
+      "title": "Biệt Thự Cam",
+      "categoryLabel": "Villa",
+      "categorySlug": "villa",
+      "slug": "biet-thu-cam",
+      "description": "Biệt thự sang trọng với nội thất tỉ mỉ gồm phòng khách, bếp-phòng ăn, phòng ngủ master và nhiều phòng khách.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế nội thất"
+        ],
+        "QUY MÔ": "400 m²",
         "VỊ TRÍ": "TP. Hồ Chí Minh"
       }
     }
@@ -1133,49 +1131,6 @@
   },
   {
     "id": "26",
-    "category": "Villa",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/01.%20PHONG%20KHACH/phong%20khach%20-%201.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/01.%20PHONG%20KHACH/phong%20khach%20-%201.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/01.%20PHONG%20KHACH/phong%20khach%20-%203.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/02.%20BEP%20-%20AN/bep-an-1.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/03.%20PHONG%20NGU%20MASTER/master-1.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/04.%20PHONG%20NGU%2002/PN2-view1.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/250630_VILLA%20CAM%20-%20FINAL-SENT/05.%20PHONG%20NGU%2003/PN3-view1.png"
-    ],
-    "en": {
-      "title": "Villa Cam",
-      "slug": "villa-cam",
-      "categoryLabel": "Villa",
-      "categorySlug": "villa",
-      "description": "A luxurious villa with meticulously designed interiors spanning living room, kitchen-dining, master bedroom, and multiple guest rooms. Each space features a distinctive palette while maintaining a cohesive whole.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Interior Design"
-        ],
-        "SCALE": "400 sqm",
-        "LOCATION": "Ho Chi Minh City"
-      }
-    },
-    "vi": {
-      "title": "Biệt Thự Cam",
-      "categoryLabel": "Villa",
-      "categorySlug": "villa",
-      "slug": "biet-thu-cam",
-      "description": "Biệt thự sang trọng với nội thất tỉ mỉ gồm phòng khách, bếp-phòng ăn, phòng ngủ master và nhiều phòng khách.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế nội thất"
-        ],
-        "QUY MÔ": "400 m²",
-        "VỊ TRÍ": "TP. Hồ Chí Minh"
-      }
-    }
-  },
-  {
-    "id": "27",
     "category": "villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/NH%C3%80%20AN%20D%C6%AF%E1%BB%A0NG-ANH%20T%C3%9A%20-%20V%C5%A8NG%20T%C3%80U/01.jpg",
     "gallery": [
@@ -1220,7 +1175,7 @@
     }
   },
   {
-    "id": "28",
+    "id": "27",
     "category": "villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/RESORT%20S%C3%94NG%20TI%E1%BB%80N%20-%20ANH%20NGH%C4%A8A/01.jpg",
     "gallery": [
@@ -1265,7 +1220,7 @@
     }
   },
   {
-    "id": "29",
+    "id": "28",
     "category": "Villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/VILLA%20DUC%20HUE/01.jpg",
     "gallery": [
@@ -1310,7 +1265,7 @@
     }
   },
   {
-    "id": "30",
+    "id": "29",
     "category": "Villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/VILLA%20KOSH%20RONG/11_1%20-%20Photo.jpg",
     "gallery": [
@@ -1353,7 +1308,7 @@
     }
   },
   {
-    "id": "31",
+    "id": "30",
     "category": "Villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/VILLA%20MR%20KING/251104/a_1%20-%20Photo.jpg",
     "gallery": [
@@ -1400,7 +1355,7 @@
     }
   },
   {
-    "id": "32",
+    "id": "31",
     "category": "Nội thất",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/NHA%20CHI%20MINH/z6707317026488_a15caeefdf928fd8fa2963b8a3e7d791.jpg",
     "gallery": [
@@ -1444,7 +1399,7 @@
     }
   },
   {
-    "id": "33",
+    "id": "32",
     "category": "Nội thất",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/VCB%20QUAN%201/1.jpg",
     "gallery": [
@@ -1486,7 +1441,7 @@
     }
   },
   {
-    "id": "34",
+    "id": "33",
     "category": "Nội thất",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/VP%20ROBUSTA/01_1%20-%20Photo.jpg",
     "gallery": [
@@ -1531,7 +1486,7 @@
     }
   },
   {
-    "id": "35",
+    "id": "34",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NH%C3%80%20LI%C3%8AN%20K%E1%BA%BE%20QU%E1%BA%ACN%209/NHA%20PHO/01.jpg",
     "gallery": [
@@ -1572,7 +1527,7 @@
     }
   },
   {
-    "id": "36",
+    "id": "35",
     "category": "Văn phòng",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/CIEC%20OFFICE/op1%20%281%29.png",
     "gallery": [
@@ -1617,7 +1572,7 @@
     }
   },
   {
-    "id": "37",
+    "id": "36",
     "category": "Văn phòng",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/BERNARD/8_1%20-%20Photo.jpg",
     "gallery": [
@@ -1661,7 +1616,7 @@
     }
   },
   {
-    "id": "38",
+    "id": "37",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/Tang%201/Tang%201/1_T1-1.png",
     "gallery": [
@@ -1706,7 +1661,7 @@
     }
   },
   {
-    "id": "39",
+    "id": "38",
     "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%202026/V2_1%20-%20Photo.jpg",
     "gallery": [
@@ -1749,52 +1704,7 @@
     }
   },
   {
-    "id": "40",
-    "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_7%20-%20Photo.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_7%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_8%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KHU%20B/v1.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KHU%20B/v4.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KHU%20C/AA_13%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KIEN%20TRUC/v2.jpg"
-    ],
-    "en": {
-      "title": "Cao Cuu Renovation",
-      "slug": "cao-cuu-renovation",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "A comprehensive renovation of an existing industrial complex across multiple zones.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design",
-          "Renovation"
-        ],
-        "SCALE": "1000 sqm",
-        "LOCATION": "Ben Tre Province"
-      }
-    },
-    "vi": {
-      "title": "Cải Tạo Cao Cửu",
-      "slug": "cai-tao-cao-cuu",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "description": "Cải tạo toan dien khu cong nghiep hien huu tren nhieu khu vuc.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Cải tạo"
-        ],
-        "QUY MÔ": "1.000 m²",
-        "VỊ TRÍ": "Tỉnh Bến Tre"
-      }
-    }
-  },
-  {
-    "id": "41",
+    "id": "39",
     "category": "Trường học",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/TRUONG%20HOC/THCS%20TR%E1%BB%8ANH%20VI%E1%BA%BET%20B%C3%80N-%20B%C3%8CNH%20%C4%90%E1%BA%A0I-%20B%E1%BA%BEN%20TRE/01.jpg",
     "gallery": [
@@ -1838,7 +1748,7 @@
     }
   },
   {
-    "id": "42",
+    "id": "40",
     "category": "Trường học",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/TRUONG%20HOC/THCS%20VANG%20QU%E1%BB%9AI%20-%20B%C3%8CNH%20%C4%90%E1%BA%A0I%20-%20B%E1%BA%BEN%20TRE/01.jpg",
     "gallery": [
@@ -1882,7 +1792,7 @@
     }
   },
   {
-    "id": "43",
+    "id": "41",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/HUYEN%20UY%20BINH%20DAI/HIEN%20DAI/02_11%20-%20Photo.jpg",
     "gallery": [
@@ -1921,6 +1831,96 @@
         ],
         "QUY MÔ": "800 m²",
         "VỊ TRÍ": "Binh Dai, Tỉnh Bến Tre"
+      }
+    }
+  },
+  {
+    "id": "42",
+    "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_1%20-%20Photo.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_1%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_3%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_7%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_12%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_18%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_22%20-%20Photo.jpg"
+    ],
+    "en": {
+      "title": "Trung Nguyen Coffee – My Tho",
+      "slug": "trung-nguyen-coffee-my-tho",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A flagship Trung Nguyen coffee house in My Tho, Tien Giang Province, designed to reflect the brand's heritage through rich material palettes and immersive spatial experiences. The open-plan layout encourages social interaction while private alcoves offer quiet retreats.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Interior Design",
+          "Construction"
+        ],
+        "SCALE": "300 sqm",
+        "LOCATION": "My Tho, Tien Giang Province"
+      }
+    },
+    "vi": {
+      "title": "Cà Phê Trung Nguyên – Mỹ Tho",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "slug": "ca-phe-trung-nguyen-my-tho",
+      "description": "Quán cà phê Trung Nguyên tại Mỹ Tho, Tiền Giang, thiết kế phản ánh di sản thương hiệu qua bảng vật liệu phong phú và trải nghiệm không gian sống động.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế nội thất",
+          "Thi công"
+        ],
+        "QUY MÔ": "300 m²",
+        "VỊ TRÍ": "Mỹ Tho, Tỉnh Tiền Giang"
+      }
+    }
+  },
+  {
+    "id": "43",
+    "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%281%29.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%281%29.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%285%29.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%2810%29.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/315425657_2757001181100305_466228183018202368_n.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/315537200_2757001244433632_3675359706152613803_n.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%2815%29.jpg"
+    ],
+    "en": {
+      "title": "The Fox Coffee",
+      "slug": "the-fox-coffee",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A trendy coffee shop with bold branding and a playful atmosphere. The design balances industrial rawness with cozy warmth through exposed ceilings, custom lighting, and curated greenery that transforms every corner into an Instagram-worthy moment.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Interior Design",
+          "Construction"
+        ],
+        "SCALE": "180 sqm",
+        "LOCATION": "Ho Chi Minh City"
+      }
+    },
+    "vi": {
+      "title": "The Fox Coffee",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "slug": "the-fox-coffee",
+      "description": "Quán cà phê thời thượng với thương hiệu mạnh mẽ và bầu không khí vui tươi, cân bằng giữa sự thô mộc công nghiệp với sự ấm cúng.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế nội thất",
+          "Thi công"
+        ],
+        "QUY MÔ": "180 m²",
+        "VỊ TRÍ": "TP. Hồ Chí Minh"
       }
     }
   }

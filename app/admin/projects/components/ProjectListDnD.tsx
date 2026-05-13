@@ -1,77 +1,247 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useCallback, memo } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+
+/* ── dnd-kit ── */
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  KeyboardSensor,
+  useSensor,
+  useSensors,
+  DragOverlay,
+  type DragStartEvent,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+  useSortable,
+  arrayMove,
+  sortableKeyboardCoordinates,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+import type { DraggableAttributes } from "@dnd-kit/core";
+import type { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
+
 import DeleteProjectButton from "./DeleteProjectButton";
 import { reorderProjects } from "../../actions/projects";
 import type { Project } from "@/data/projects";
 
+/* ── Types ── */
 interface Props {
   initialProjects: Project[];
 }
 
+/* ═══════════════════════════════════════════
+   Drag Handle Icon — shared SVG
+   ═══════════════════════════════════════════ */
+function DragHandleIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="4" cy="2" r="1.5" />
+      <circle cx="10" cy="2" r="1.5" />
+      <circle cx="4" cy="7" r="1.5" />
+      <circle cx="10" cy="7" r="1.5" />
+      <circle cx="4" cy="12" r="1.5" />
+      <circle cx="10" cy="12" r="1.5" />
+    </svg>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   Project Card — shared rendering logic
+   Used by both SortableProjectRow and DragOverlay
+   ═══════════════════════════════════════════ */
+function ProjectCard({
+  project,
+  index,
+  handleListeners,
+  handleAttributes,
+  showActions = true,
+  isOverlay = false,
+}: {
+  project: Project;
+  index: number;
+  handleListeners?: SyntheticListenerMap;
+  handleAttributes?: DraggableAttributes;
+  showActions?: boolean;
+  isOverlay?: boolean;
+}) {
+  return (
+    <div className={`dnd-item${isOverlay ? " dnd-item--overlay" : ""}`}>
+      {/* Drag handle — only this triggers drag */}
+      <div
+        className={`dnd-handle${isOverlay ? " dnd-handle--active" : ""}`}
+        title="Drag to reorder"
+        {...handleListeners}
+        {...handleAttributes}
+      >
+        <DragHandleIcon />
+      </div>
+
+      {/* Index badge */}
+      <div className="dnd-index">{index + 1}</div>
+
+      {/* Thumbnail */}
+      <div className="dnd-thumb">
+        {project.thumbnail ? (
+          <Image
+            src={project.thumbnail}
+            alt={project.vi?.title || "Thumbnail"}
+            fill
+            className="object-cover"
+            sizes="64px"
+            unoptimized
+          />
+        ) : (
+          <span className="dnd-thumb-empty">—</span>
+        )}
+      </div>
+
+      {/* Info */}
+      <div className="dnd-info">
+        <div className="dnd-title">{project.vi?.title || "No Title"}</div>
+        <div className="dnd-subtitle">{project.en?.title || "No Title"}</div>
+      </div>
+
+      {/* Category */}
+      <div className="dnd-category">
+        <span className="dnd-badge">{project.category}</span>
+      </div>
+
+      {/* Actions — hidden in overlay to avoid interaction during drag */}
+      {showActions && (
+        <div className="dnd-actions">
+          <Link
+            href={`/admin/projects/${project.id}/edit`}
+            className="dnd-btn dnd-btn-edit"
+          >
+            Edit
+          </Link>
+          <DeleteProjectButton
+            id={project.id}
+            title={project.vi?.title || "Project"}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   SortableProjectRow — memoized for perf
+   Only re-renders when its own transform/transition
+   changes, not when other items move.
+   ═══════════════════════════════════════════ */
+const SortableProjectRow = memo(function SortableProjectRow({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: project.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.25 : 1,
+    zIndex: isDragging ? 50 : ("auto" as const),
+    borderStyle: isDragging ? "dashed" : ("solid" as const),
+    borderColor: isDragging ? "rgba(59, 130, 246, 0.3)" : undefined,
+    background: isDragging ? "rgba(59, 130, 246, 0.03)" : undefined,
+  };
+
+  return (
+    <div ref={setNodeRef} style={style}>
+      <ProjectCard
+        project={project}
+        index={index}
+        handleListeners={listeners}
+        handleAttributes={attributes}
+      />
+    </div>
+  );
+});
+
+/* ═══════════════════════════════════════════
+   Main Component
+   ═══════════════════════════════════════════ */
 export default function ProjectListDnD({ initialProjects }: Props) {
   const router = useRouter();
   const [projects, setProjects] = useState<Project[]>(initialProjects);
   const [hasChanges, setHasChanges] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
 
-  /* ── Drag state ── */
-  const dragIdx = useRef<number | null>(null);
-  const [overIdx, setOverIdx] = useState<number | null>(null);
-
-  /* ── Handlers ── */
-  const onDragStart = useCallback((idx: number) => {
-    dragIdx.current = idx;
-  }, []);
-
-  const onDragOver = useCallback(
-    (e: React.DragEvent, idx: number) => {
-      e.preventDefault();
-      e.dataTransfer.dropEffect = "move";
-      if (overIdx !== idx) setOverIdx(idx);
-    },
-    [overIdx]
+  /* ── Sensors ──
+     PointerSensor: distance: 5 prevents accidental drag on click
+     KeyboardSensor: arrow key support for accessibility */
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 5 },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
   );
 
-  const onDrop = useCallback(
-    (e: React.DragEvent, dropIdx: number) => {
-      e.preventDefault();
-      setOverIdx(null);
-      const fromIdx = dragIdx.current;
-      if (fromIdx === null || fromIdx === dropIdx) return;
+  /* ── Drag event handlers ── */
+  const handleDragStart = useCallback((event: DragStartEvent) => {
+    setActiveId(String(event.active.id));
+  }, []);
+
+  const handleDragEnd = useCallback(
+    (event: DragEndEvent) => {
+      const { active, over } = event;
+      setActiveId(null);
+
+      if (!over || active.id === over.id) return;
 
       setProjects((prev) => {
-        const next = [...prev];
-        const [moved] = next.splice(fromIdx, 1);
-        next.splice(dropIdx, 0, moved);
-        return next;
+        const oldIndex = prev.findIndex((p) => p.id === String(active.id));
+        const newIndex = prev.findIndex((p) => p.id === String(over.id));
+        if (oldIndex === -1 || newIndex === -1) return prev;
+        return arrayMove(prev, oldIndex, newIndex);
       });
       setHasChanges(true);
-      dragIdx.current = null;
     },
     []
   );
 
-  const onDragEnd = useCallback(() => {
-    dragIdx.current = null;
-    setOverIdx(null);
+  const handleDragCancel = useCallback(() => {
+    setActiveId(null);
   }, []);
 
+  /* ── Save / Reset ── */
   const handleSave = async () => {
     setIsSaving(true);
     try {
-      // Build mapping: current project id → new id (1-based position)
       const mapping = projects.map((p, i) => ({
         oldId: p.id,
         newId: String(i + 1),
       }));
-
       const result = await reorderProjects(mapping);
       if (result.success) {
-        // Update local state with new IDs
         setProjects((prev) =>
           prev.map((p, i) => ({ ...p, id: String(i + 1) }))
         );
@@ -93,59 +263,53 @@ export default function ProjectListDnD({ initialProjects }: Props) {
     setHasChanges(false);
   };
 
+  /* ── Active item for DragOverlay ── */
+  const activeProject = activeId
+    ? projects.find((p) => p.id === activeId)
+    : null;
+  const activeIndex = activeId
+    ? projects.findIndex((p) => p.id === activeId)
+    : -1;
+
   return (
     <div className="space-y-6 max-w-full overflow-hidden">
       {/* ── Header ── */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h1 className="text-2xl font-bold text-[var(--admin-text)] font-sans">
+        <h1
+          style={{
+            fontSize: 24,
+            fontWeight: 700,
+            color: "var(--admin-text)",
+          }}
+        >
           Projects Management
         </h1>
         <div className="flex items-center gap-2 flex-wrap">
           {hasChanges && (
             <>
-              <button
-                onClick={handleReset}
-                className="px-4 py-2 bg-[var(--admin-bg)] border border-[var(--admin-border)] text-[var(--admin-text-muted)] font-medium rounded hover:border-[var(--admin-text-muted)] transition-colors text-sm"
-              >
+              <button onClick={handleReset} className="dnd-btn dnd-btn-ghost">
                 Reset
               </button>
               <button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="px-4 py-2 bg-emerald-600 text-white font-medium rounded hover:bg-emerald-700 transition-colors text-sm disabled:opacity-50 flex items-center gap-2"
+                className="dnd-btn dnd-btn-save"
               >
                 {isSaving ? (
                   <>
-                    <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span className="dnd-spinner" />
                     Saving...
                   </>
                 ) : (
                   <>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
-                      <polyline points="17 21 17 13 7 13 7 21" />
-                      <polyline points="7 3 7 8 15 8" />
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" /><polyline points="17 21 17 13 7 13 7 21" /><polyline points="7 3 7 8 15 8" /></svg>
                     Save Order
                   </>
                 )}
               </button>
             </>
           )}
-          <Link
-            href="/admin/projects/create"
-            className="px-4 py-2 bg-[var(--admin-primary)] text-[var(--admin-bg)] font-medium rounded hover:opacity-90 transition-opacity whitespace-nowrap text-sm sm:text-base"
-          >
+          <Link href="/admin/projects/create" className="dnd-btn dnd-btn-primary">
             + Add New Project
           </Link>
         </div>
@@ -153,220 +317,61 @@ export default function ProjectListDnD({ initialProjects }: Props) {
 
       {/* ── Change indicator ── */}
       {hasChanges && (
-        <div className="flex items-center gap-2 px-4 py-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-400 text-sm">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="8" x2="12" y2="12" />
-            <line x1="12" y1="16" x2="12.01" y2="16" />
-          </svg>
-          You have unsaved changes. Drag rows to reorder, then click &quot;Save
-          Order&quot;.
+        <div className="dnd-change-banner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>
+          You have unsaved changes. Drag rows to reorder, then click &quot;Save Order&quot;.
         </div>
       )}
 
-      {/* ── Desktop Table ── */}
-      <div className="hidden md:block bg-[var(--admin-card)] border border-[var(--admin-border)] rounded-lg overflow-hidden">
-        <table className="w-full text-left border-collapse table-fixed">
-          <thead>
-            <tr className="bg-[var(--admin-bg)] border-b border-[var(--admin-border)]">
-              <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm w-12 text-center">
-                ⠿
-              </th>
-              <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm w-16 text-center">
-                #
-              </th>
-              <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">
-                Thumbnail
-              </th>
-              <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">
-                Title (VI)
-              </th>
-              <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">
-                Category
-              </th>
-              <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm text-right">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-[var(--admin-border)]">
+      {/* ── Sortable DnD List ── */}
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        onDragCancel={handleDragCancel}
+      >
+        <SortableContext
+          items={projects.map((p) => p.id)}
+          strategy={verticalListSortingStrategy}
+        >
+          <div className="dnd-container">
             {projects.map((project, idx) => (
-              <tr
+              <SortableProjectRow
                 key={project.id}
-                draggable
-                onDragStart={() => onDragStart(idx)}
-                onDragOver={(e) => onDragOver(e, idx)}
-                onDrop={(e) => onDrop(e, idx)}
-                onDragEnd={onDragEnd}
-                className={`transition-all cursor-grab active:cursor-grabbing
-                  ${
-                    overIdx === idx
-                      ? "bg-[var(--admin-primary)]/10 border-t-2 border-t-[var(--admin-primary)]"
-                      : "hover:bg-[var(--admin-bg)]/50"
-                  }`}
-              >
-                <td className="p-4 text-center text-[var(--admin-text-muted)]">
-                  <span className="text-lg select-none opacity-40 hover:opacity-100 transition-opacity">
-                    ⠿
-                  </span>
-                </td>
-                <td className="p-4 text-center text-sm font-mono text-[var(--admin-text-muted)]">
-                  {idx + 1}
-                </td>
-                <td className="p-4">
-                  <div className="relative w-16 h-12 rounded overflow-hidden bg-[var(--admin-bg)]">
-                    {project.thumbnail ? (
-                      <Image
-                        src={project.thumbnail}
-                        alt={project.vi?.title || "Thumbnail"}
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-[var(--admin-text-muted)] text-xs">
-                        No Img
-                      </div>
-                    )}
-                  </div>
-                </td>
-                <td className="p-4">
-                  <div className="font-medium text-[var(--admin-text)] truncate max-w-[200px]">
-                    {project.vi?.title || "No Title"}
-                  </div>
-                  <div className="text-xs text-[var(--admin-text-muted)] truncate max-w-[200px]">
-                    {project.en?.title || "No Title"}
-                  </div>
-                </td>
-                <td className="p-4 text-sm text-[var(--admin-text)]">
-                  <span className="inline-block px-2 py-1 bg-[var(--admin-primary)]/10 text-[var(--admin-primary)] rounded-full text-xs">
-                    {project.category}
-                  </span>
-                </td>
-                <td className="p-4 text-right space-x-2 whitespace-nowrap">
-                  <Link
-                    href={`/admin/projects/${project.id}/edit`}
-                    className="inline-block px-3 py-1 bg-[var(--admin-bg)] border border-[var(--admin-border)] text-[var(--admin-text)] hover:border-[var(--admin-primary)] hover:text-[var(--admin-primary)] rounded text-sm transition-colors"
-                  >
-                    Edit
-                  </Link>
-                  <DeleteProjectButton
-                    id={project.id}
-                    title={project.vi?.title || "Project"}
-                  />
-                </td>
-              </tr>
+                project={project}
+                index={idx}
+              />
             ))}
-            {projects.length === 0 && (
-              <tr>
-                <td
-                  colSpan={6}
-                  className="p-8 text-center text-[var(--admin-text-muted)]"
-                >
-                  No projects found. Click &quot;Add New Project&quot; to create
-                  one.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
 
-      {/* ── Mobile Card Layout ── */}
-      <div className="md:hidden space-y-1">
-        {projects.map((project, idx) => (
-          <div
-            key={project.id}
-            draggable
-            onDragStart={() => onDragStart(idx)}
-            onDragOver={(e) => onDragOver(e, idx)}
-            onDrop={(e) => onDrop(e, idx)}
-            onDragEnd={onDragEnd}
-            className={`bg-[var(--admin-card)] border rounded-lg p-3 overflow-hidden transition-all cursor-grab active:cursor-grabbing
-              ${
-                overIdx === idx
-                  ? "border-[var(--admin-primary)] bg-[var(--admin-primary)]/5 scale-[1.02]"
-                  : "border-[var(--admin-border)]"
-              }`}
-          >
-            <div className="flex gap-3 items-start min-w-0">
-              {/* Drag handle */}
-              <div className="flex flex-col items-center justify-center gap-1 pt-1 flex-shrink-0 select-none opacity-40">
-                <span className="text-lg text-[var(--admin-text-muted)]">
-                  ⠿
-                </span>
+            {projects.length === 0 && (
+              <div className="dnd-empty">
+                No projects found. Click &quot;Add New Project&quot; to create one.
               </div>
-              {/* Thumbnail */}
-              <div className="relative w-14 h-14 rounded-lg overflow-hidden bg-[var(--admin-bg)] flex-shrink-0">
-                {project.thumbnail ? (
-                  <Image
-                    src={project.thumbnail}
-                    alt={project.vi?.title || "Thumbnail"}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-[var(--admin-text-muted)] text-xs">
-                    No Img
-                  </div>
-                )}
-              </div>
-              {/* Info */}
-              <div className="flex-1 min-w-0 overflow-hidden">
-                <span className="inline-block px-1.5 py-0.5 bg-[var(--admin-bg)] border border-[var(--admin-border)] rounded text-xs font-mono text-[var(--admin-text-muted)] mb-1">
-                  #{idx + 1}
-                </span>
-                <div className="overflow-x-auto pb-1 scrollbar-thin">
-                  <div className="font-medium text-[var(--admin-text)] text-sm leading-tight whitespace-nowrap">
-                    {project.vi?.title || "No Title"}
-                  </div>
-                </div>
-                <div className="overflow-x-auto pb-0.5 scrollbar-thin">
-                  <div className="text-xs text-[var(--admin-text-muted)] mt-0.5 whitespace-nowrap">
-                    {project.en?.title || "No Title"}
-                  </div>
-                </div>
-                <div className="mt-2">
-                  <span className="inline-block px-2 py-0.5 bg-[var(--admin-primary)]/10 text-[var(--admin-primary)] rounded-full text-xs">
-                    {project.category}
-                  </span>
-                </div>
-              </div>
-            </div>
-            {/* Actions */}
-            <div className="flex gap-2 mt-3 pt-3 border-t border-[var(--admin-border)]">
-              <Link
-                href={`/admin/projects/${project.id}/edit`}
-                className="flex-1 text-center py-2 bg-[var(--admin-bg)] border border-[var(--admin-border)] text-[var(--admin-text)] hover:border-[var(--admin-primary)] hover:text-[var(--admin-primary)] rounded text-sm transition-colors truncate"
-              >
-                Edit
-              </Link>
-              <div className="flex-1 min-w-0">
-                <DeleteProjectButton
-                  id={project.id}
-                  title={project.vi?.title || "Project"}
-                />
-              </div>
-            </div>
+            )}
           </div>
-        ))}
-        {projects.length === 0 && (
-          <div className="p-8 text-center text-[var(--admin-text-muted)] bg-[var(--admin-card)] border border-[var(--admin-border)] rounded-lg">
-            No projects found. Click &quot;Add New Project&quot; to create one.
-          </div>
-        )}
-      </div>
+        </SortableContext>
+
+        {/* ── DragOverlay: floating ghost that follows pointer ──
+            Rendered in a portal, completely outside the list flow.
+            This is what makes dnd-kit buttery smooth — the list items
+            animate via CSS transforms while this overlay follows the pointer. */}
+        <DragOverlay
+          dropAnimation={{
+            duration: 200,
+            easing: "cubic-bezier(0.2, 0, 0, 1)",
+          }}
+        >
+          {activeProject ? (
+            <ProjectCard
+              project={activeProject}
+              index={activeIndex}
+              showActions={false}
+              isOverlay
+            />
+          ) : null}
+        </DragOverlay>
+      </DndContext>
     </div>
   );
 }

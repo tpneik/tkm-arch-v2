@@ -219,7 +219,7 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all var(--admin-transition);
 }
 
@@ -313,6 +313,7 @@
   :root {
     --admin-sidebar-w: 220px;
   }
+
   .admin-main {
     padding: 24px;
   }
@@ -459,5 +460,315 @@
 }
 
 @keyframes admin-gate-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   Drag & Drop — Project List
+   ═══════════════════════════════════════════════ */
+
+.dnd-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  touch-action: none;
+  /* Prevent browser gestures during drag */
+}
+
+/* ── Individual item row ── */
+.dnd-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--admin-card);
+  border: 1px solid var(--admin-border);
+  border-radius: 10px;
+  cursor: default;
+  position: relative;
+  transition: box-shadow 200ms, border-color 200ms, opacity 200ms;
+}
+
+.dnd-item:hover {
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+/* ── DragOverlay ghost (floating item that follows pointer) ── */
+.dnd-item--overlay {
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(59, 130, 246, 0.4);
+  transform: scale(1.02);
+  cursor: grabbing;
+  background: var(--admin-card);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 10px;
+}
+
+/* ── Drag handle ── */
+.dnd-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  color: var(--admin-muted);
+  opacity: 0.35;
+  cursor: grab;
+  flex-shrink: 0;
+  transition: opacity 200ms, background 200ms, color 200ms;
+  touch-action: none; /* Prevents browser gestures on drag handle */
+}
+
+.dnd-item:hover .dnd-handle {
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.dnd-handle:active,
+.dnd-handle--active {
+  cursor: grabbing;
+  opacity: 1;
+  color: var(--admin-accent);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+/* ── Index badge ── */
+.dnd-index {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: var(--admin-bg);
+  border: 1px solid var(--admin-border);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  color: var(--admin-muted);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* ── Thumbnail ── */
+.dnd-thumb {
+  position: relative;
+  width: 56px;
+  height: 40px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--admin-bg);
+  flex-shrink: 0;
+}
+
+.dnd-thumb-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--admin-muted);
+  font-size: 12px;
+}
+
+/* ── Info column ── */
+.dnd-info {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.dnd-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--admin-text);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dnd-subtitle {
+  font-size: 12px;
+  color: var(--admin-muted);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Category badge ── */
+.dnd-category {
+  flex-shrink: 0;
+}
+
+.dnd-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  background: rgba(59, 130, 246, 0.1);
+  color: #60A5FA;
+  white-space: nowrap;
+}
+
+/* ── Actions column ── */
+.dnd-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── Buttons ── */
+.dnd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+  line-height: 1.3;
+}
+
+.dnd-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dnd-btn-primary {
+  background: var(--admin-accent);
+  color: white;
+}
+
+.dnd-btn-primary:hover {
+  background: var(--admin-accent-hover);
+}
+
+.dnd-btn-save {
+  background: #059669;
+  color: white;
+}
+
+.dnd-btn-save:hover:not(:disabled) {
+  background: #047857;
+}
+
+.dnd-btn-ghost {
+  background: var(--admin-bg);
+  color: var(--admin-muted);
+  border: 1px solid var(--admin-border);
+}
+
+.dnd-btn-ghost:hover {
+  border-color: var(--admin-muted);
+  color: var(--admin-text);
+}
+
+.dnd-btn-edit {
+  background: var(--admin-bg);
+  color: var(--admin-text);
+  border: 1px solid var(--admin-border);
+  padding: 6px 14px;
+}
+
+.dnd-btn-edit:hover {
+  border-color: var(--admin-accent);
+  color: var(--admin-accent);
+}
+
+/* ── Change banner ── */
+.dnd-change-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 10px;
+  color: #FBBF24;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.dnd-change-banner svg {
+  flex-shrink: 0;
+}
+
+/* ── Empty state ── */
+.dnd-empty {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--admin-muted);
+  background: var(--admin-card);
+  border: 1px solid var(--admin-border);
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* ── Spinner ── */
+.dnd-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: admin-gate-spin 0.6s linear infinite;
+}
+
+/* ── Mobile adjustments ── */
+@media (max-width: 768px) {
+  .dnd-item {
+    padding: 10px 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .dnd-category {
+    display: none;
+  }
+
+  .dnd-actions {
+    width: 100%;
+    justify-content: stretch;
+    padding-top: 8px;
+    margin-top: 8px;
+    border-top: 1px solid var(--admin-border);
+  }
+
+  .dnd-actions>* {
+    flex: 1;
+  }
+
+  .dnd-info {
+    flex: 1 1 0;
+  }
+
+  .dnd-title {
+    font-size: 13px;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+
+  .dnd-item--shifting,
+  .dnd-dropzone {
+    transition-duration: 0ms !important;
+    animation: none !important;
+  }
 }

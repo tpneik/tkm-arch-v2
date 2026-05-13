@@ -32,8 +32,10 @@ export { projectCategories, getProjectCategorySlugs, getProjectCategoryLabels };
 
 /* ──────────────────── Data ──────────────────── */
 
-/** All projects — imported from projects.json (single source of truth) */
-export const projects: Project[] = projectData as Project[];
+/** All projects — imported from projects.json, sorted by numeric ID */
+export const projects: Project[] = (projectData as Project[]).sort(
+  (a, b) => Number(a.id) - Number(b.id)
+);
 
 /** Unique category list for filter UI (slugs) */
 export const categories: string[] = getProjectCategorySlugs();
