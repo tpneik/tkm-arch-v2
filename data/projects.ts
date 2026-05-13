@@ -67,7 +67,16 @@ export function findProjectBySlugs(
   slug: string,
   lang: "en" | "vi"
 ): number {
-  return projects.findIndex(
+  // Try current language first
+  let idx = projects.findIndex(
     (p) => p[lang].categorySlug === categorySlug && p[lang].slug === slug
   );
+  // Fallback: try the other language
+  if (idx < 0) {
+    const otherLang = lang === "en" ? "vi" : "en";
+    idx = projects.findIndex(
+      (p) => p[otherLang].categorySlug === categorySlug && p[otherLang].slug === slug
+    );
+  }
+  return idx;
 }

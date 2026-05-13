@@ -21,13 +21,20 @@ const BlogDetail = () => {
 
 
 
-  const currentIndex = useMemo(
-    () =>
-      blogs.findIndex(
-        (b) => b[lang].categorySlug === categorySlug && b[lang].slug === slug
-      ),
-    [blogs, categorySlug, slug, lang]
-  );
+  const currentIndex = useMemo(() => {
+    // Try current language first
+    let idx = blogs.findIndex(
+      (b) => b[lang].categorySlug === categorySlug && b[lang].slug === slug
+    );
+    // Fallback: try the other language (handles cross-language slug URLs)
+    if (idx < 0) {
+      const otherLang = lang === "en" ? "vi" : "en";
+      idx = blogs.findIndex(
+        (b) => b[otherLang].categorySlug === categorySlug && b[otherLang].slug === slug
+      );
+    }
+    return idx;
+  }, [blogs, categorySlug, slug, lang]);
 
   const blog = currentIndex >= 0 ? blogs[currentIndex] : undefined;
   const prevBlog = currentIndex > 0 ? blogs[currentIndex - 1] : null;

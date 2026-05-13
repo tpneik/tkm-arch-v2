@@ -21,13 +21,20 @@ const ProjectDetail = () => {
 
 
 
-  const currentIndex = useMemo(
-    () =>
-      projects.findIndex(
-        (p) => p[lang].categorySlug === categorySlug && p[lang].slug === slug
-      ),
-    [projects, categorySlug, slug, lang]
-  );
+  const currentIndex = useMemo(() => {
+    // Try current language first
+    let idx = projects.findIndex(
+      (p) => p[lang].categorySlug === categorySlug && p[lang].slug === slug
+    );
+    // Fallback: try the other language (handles cross-language slug URLs)
+    if (idx < 0) {
+      const otherLang = lang === "en" ? "vi" : "en";
+      idx = projects.findIndex(
+        (p) => p[otherLang].categorySlug === categorySlug && p[otherLang].slug === slug
+      );
+    }
+    return idx;
+  }, [projects, categorySlug, slug, lang]);
 
   const project = currentIndex >= 0 ? projects[currentIndex] : undefined;
   const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
