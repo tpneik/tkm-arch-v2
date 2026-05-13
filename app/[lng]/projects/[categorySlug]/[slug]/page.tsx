@@ -16,13 +16,13 @@ const DEFAULT_IMG =
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] },
+  transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
 });
 
 const fadeIn = (delay = 0) => ({
   initial: { opacity: 0 },
   animate: { opacity: 1 },
-  transition: { duration: 0.5, delay, ease: "easeOut" },
+  transition: { duration: 0.5, delay, ease: "easeOut" as const },
 });
 
 const ProjectDetail = () => {
@@ -116,7 +116,7 @@ const ProjectDetail = () => {
             scale: imgLoaded ? 1 : 1.15,
             opacity: imgLoaded ? 1 : 0,
           }}
-          transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] as const }}
           className="absolute inset-0 w-full h-full object-cover"
           referrerPolicy="no-referrer"
         />
@@ -223,7 +223,7 @@ const ProjectDetail = () => {
               transition={{
                 duration: 0.7,
                 delay: i < 3 ? i * 0.12 : 0,
-                ease: [0.25, 0.46, 0.45, 0.94],
+                ease: [0.25, 0.46, 0.45, 0.94] as const,
               }}
               className="overflow-hidden rounded-xl shadow-lg"
             >
@@ -265,7 +265,7 @@ const ProjectDetail = () => {
                 transition={{
                   duration: 0.6,
                   delay: i * 0.1,
-                  ease: [0.25, 0.46, 0.45, 0.94],
+                  ease: [0.25, 0.46, 0.45, 0.94] as const,
                 }}
                 className="group"
               >
