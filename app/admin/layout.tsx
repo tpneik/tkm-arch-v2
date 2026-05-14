@@ -13,6 +13,7 @@ import {
   FolderKanban,
   FileText,
   Tags,
+  Users,
   LogOut,
   Menu,
   X,
@@ -29,6 +30,7 @@ const NAV_ITEMS = [
   { href: "/admin/projects", label: "Projects", icon: FolderKanban },
   { href: "/admin/blogs", label: "Blogs", icon: FileText },
   { href: "/admin/categories", label: "Categories", icon: Tags },
+  { href: "/admin/users", label: "Quản trị viên", icon: Users },
 ] as const;
 
 /* ── Memoized nav link to avoid re-renders ── */
