@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { useSearchParams, useRouter, useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useT } from "next-i18next/client";
@@ -39,6 +40,73 @@ const cardVariants = {
     transition: { duration: 0.25, ease: "easeIn" as const },
   },
 };
+
+/* ── ProjectCard with image loading state ── */
+function ProjectCard({
+  project,
+  lang,
+  priority = false,
+}: {
+  project: (typeof allProjects)[number];
+  lang: "en" | "vi";
+  priority?: boolean;
+}) {
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  const src = error ? DEFAULT_IMG : project.thumbnail || DEFAULT_IMG;
+
+  const handleLoad = useCallback(() => setLoaded(true), []);
+  const handleError = useCallback(() => {
+    setError(true);
+    setLoaded(true);
+  }, []);
+
+  return (
+    <Link href={projectHref(project, lang)} className="group flex flex-col">
+      <div className="overflow-hidden aspect-[3/2] relative mb-6 rounded-lg bg-white shadow-sm border border-brand-dark/5">
+        {/* Shimmer skeleton — visible until image loads */}
+        <div
+          className={`absolute inset-0 z-[1] transition-opacity duration-500 ${
+            loaded ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          <div className="w-full h-full bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 animate-shimmer bg-[length:200%_100%]" />
+        </div>
+
+        {/* Actual image — fades in when loaded */}
+        <Image
+          src={src}
+          alt={project[lang].title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className={`object-cover transition-all duration-700 ease-out group-hover:scale-108 ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
+          priority={priority}
+          onLoad={handleLoad}
+          onError={handleError}
+          referrerPolicy="no-referrer"
+        />
+
+        {/* Hover overlay */}
+        <div className="absolute inset-0 z-[2] bg-brand-dark/35 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+          <div className="w-12 h-12 border border-white flex items-center justify-center rounded-full">
+            <div className="w-1 h-1 bg-white rounded-full"></div>
+          </div>
+        </div>
+      </div>
+      <div className="space-y-2">
+        <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-blue">
+          {project[lang].categoryLabel}
+        </p>
+        <h3 className="text-xl font-serif tracking-wide uppercase leading-tight group-hover:text-brand-blue transition-colors">
+          {project[lang].title}
+        </h3>
+      </div>
+    </Link>
+  );
+}
 
 const ProjectsPage = () => {
   const searchParams = useSearchParams();
@@ -140,37 +208,13 @@ const ProjectsPage = () => {
             exit="exit"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {paginatedProjects.map((project) => (
+            {paginatedProjects.map((project, index) => (
               <motion.div key={project.id} variants={cardVariants}>
-                <Link
-                  href={projectHref(project, lang)}
-                  className="group flex flex-col"
-                >
-                  <div className="overflow-hidden aspect-[3/2] relative mb-6 rounded-lg bg-white shadow-sm border border-brand-dark/5">
-                    <motion.img
-                      whileHover={{ scale: 1.08 }}
-                      transition={{ duration: 0.8, ease: "circOut" }}
-                      src={project.thumbnail || DEFAULT_IMG}
-                      alt={project[lang].title}
-                      onError={(e) => { (e.target as HTMLImageElement).src = DEFAULT_IMG; }}
-                      className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-brand-dark/35 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                      <div className="w-12 h-12 border border-white flex items-center justify-center rounded-full">
-                        <div className="w-1 h-1 bg-white rounded-full"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-blue">
-                      {project[lang].categoryLabel}
-                    </p>
-                    <h3 className="text-xl font-serif tracking-wide uppercase leading-tight group-hover:text-brand-blue transition-colors">
-                      {project[lang].title}
-                    </h3>
-                  </div>
-                </Link>
+                <ProjectCard
+                  project={project}
+                  lang={lang}
+                  priority={index < 3}
+                />
               </motion.div>
             ))}
             {filteredProjects.length === 0 && (

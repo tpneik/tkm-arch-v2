@@ -16,6 +16,10 @@ const CACHE_NAME = "tkm-image-cache-v1";
 
 /** @param {string} url */
 function isImageRequest(url) {
+  // Match Next.js optimized images (/_next/image?url=...)
+  if (url.includes("/_next/image")) {
+    return true;
+  }
   // Match common image extensions
   if (/\.(jpe?g|png|gif|webp|avif|svg|ico|bmp|tiff?)(\?.*)?$/i.test(url)) {
     return true;

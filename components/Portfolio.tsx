@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState, useRef, useEffect, useCallback } from "react";
@@ -14,6 +15,89 @@ import { projects as allProjects } from "@/data/projects";
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
 
+/* ── PortfolioCard with image loading state ── */
+function PortfolioCard({
+  project,
+  lang,
+  index,
+  viewLabel,
+}: {
+  project: Project;
+  lang: "en" | "vi";
+  index: number;
+  viewLabel: string;
+}) {
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  const src = error ? DEFAULT_IMG : project.thumbnail || DEFAULT_IMG;
+
+  return (
+    <Link
+      href={projectHref(project, lang)}
+      className="relative group overflow-hidden aspect-[4/5]"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: index * 0.1, duration: 0.5 }}
+        className="w-full h-full relative"
+      >
+        {/* Shimmer skeleton */}
+        <div
+          className={`absolute inset-0 z-[1] transition-opacity duration-500 ${
+            loaded ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          <div className="w-full h-full bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 animate-shimmer bg-[length:200%_100%]" />
+        </div>
+
+        {/* Actual image — fades in when loaded */}
+        <Image
+          src={src}
+          alt={project[lang].title}
+          fill
+          sizes="(max-width: 1024px) 100vw, 33vw"
+          className={`object-cover transition-all duration-700 group-hover:scale-110 ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
+          priority={index < 3}
+          onLoad={() => setLoaded(true)}
+          onError={() => {
+            setError(true);
+            setLoaded(true);
+          }}
+          referrerPolicy="no-referrer"
+        />
+
+        {/* Always-visible text overlay at bottom */}
+        <div className="absolute inset-x-0 bottom-0 z-10">
+          {/* Gradient that always shows at bottom, intensifies on hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/70 via-brand-dark/30 to-transparent transition-opacity duration-500 group-hover:from-brand-dark/85 group-hover:via-brand-dark/50" />
+          <div className="relative p-6 md:p-8">
+            <span className="text-brand-blue text-[10px] uppercase tracking-[0.25em] mb-2 font-bold block transition-transform duration-500 group-hover:translate-y-0 translate-y-0">
+              {project[lang].categoryLabel}
+            </span>
+            <h3 className="text-xl text-white font-serif leading-snug transition-transform duration-500 group-hover:-translate-y-0.5">
+              {project[lang].title}
+            </h3>
+            {/* Animated underline on hover */}
+            <div className="w-10 h-[2px] bg-brand-blue mt-3 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 delay-100" />
+            {/* Arrow that appears on hover */}
+            <div className="flex items-center gap-2 mt-3 text-white/0 group-hover:text-white/70 transition-all duration-500 translate-y-3 group-hover:translate-y-0">
+              <span className="text-[9px] uppercase tracking-[0.3em] font-bold">
+                {viewLabel}
+              </span>
+              <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </Link>
+  );
+}
+
 export default function Portfolio() {
   const { t } = useT("common");
   const { lng } = useParams<{ lng: string }>();
@@ -23,6 +107,7 @@ export default function Portfolio() {
 
   // Show only first 6 projects on home page
   const featuredProjects = projects.slice(0, 6);
+  const viewLabel = t("portfolio.viewProject") ?? "View Project";
 
   return (
     <section id="portfolio" className="section-padding bg-brand-light">
@@ -37,49 +122,13 @@ export default function Portfolio() {
         {/* ── Desktop Grid (lg+) ── */}
         <div className="hidden lg:grid grid-cols-3 gap-1">
           {featuredProjects.map((project, index) => (
-            <Link
-              href={projectHref(project, lang)}
+            <PortfolioCard
               key={project.id}
-              className="relative group overflow-hidden aspect-[4/5]"
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="w-full h-full"
-              >
-                <img
-                  src={project.thumbnail || DEFAULT_IMG}
-                  alt={project[lang].title}
-                  onError={(e) => { e.currentTarget.src = DEFAULT_IMG; }}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  referrerPolicy="no-referrer"
-                />
-                {/* Always-visible text overlay at bottom */}
-                <div className="absolute inset-x-0 bottom-0 z-10">
-                  {/* Gradient that always shows at bottom, intensifies on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/70 via-brand-dark/30 to-transparent transition-opacity duration-500 group-hover:from-brand-dark/85 group-hover:via-brand-dark/50" />
-                  <div className="relative p-6 md:p-8">
-                    <span className="text-brand-blue text-[10px] uppercase tracking-[0.25em] mb-2 font-bold block transition-transform duration-500 group-hover:translate-y-0 translate-y-0">
-                      {project[lang].categoryLabel}
-                    </span>
-                    <h3 className="text-xl text-white font-serif leading-snug transition-transform duration-500 group-hover:-translate-y-0.5">
-                      {project[lang].title}
-                    </h3>
-                    {/* Animated underline on hover */}
-                    <div className="w-10 h-[2px] bg-brand-blue mt-3 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 delay-100" />
-                    {/* Arrow that appears on hover */}
-                    <div className="flex items-center gap-2 mt-3 text-white/0 group-hover:text-white/70 transition-all duration-500 translate-y-3 group-hover:translate-y-0">
-                      <span className="text-[9px] uppercase tracking-[0.3em] font-bold">
-                        {t("portfolio.viewProject") ?? "View Project"}
-                      </span>
-                      <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </Link>
+              project={project}
+              lang={lang}
+              index={index}
+              viewLabel={viewLabel}
+            />
           ))}
         </div>
 
@@ -89,7 +138,7 @@ export default function Portfolio() {
             projects={featuredProjects}
             lang={lang}
             lng={lng}
-            viewLabel={t("portfolio.viewProject") ?? "View Project"}
+            viewLabel={viewLabel}
           />
         </div>
 
@@ -119,6 +168,7 @@ interface SliderProps {
 
 function MobileSlider({ projects: items, lang, lng, viewLabel }: SliderProps) {
   const [current, setCurrent] = useState(0);
+  const [imgLoaded, setImgLoaded] = useState(false);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -127,6 +177,7 @@ function MobileSlider({ projects: items, lang, lng, viewLabel }: SliderProps) {
 
   const goTo = useCallback(
     (idx: number) => {
+      setImgLoaded(false);
       setCurrent((idx + total) % total);
     },
     [total]
@@ -176,18 +227,37 @@ function MobileSlider({ projects: items, lang, lng, viewLabel }: SliderProps) {
     >
       {/* Slide images */}
       <AnimatePresence mode="wait">
-        <motion.img
+        <motion.div
           key={`slide-${current}`}
-          src={project.thumbnail || DEFAULT_IMG}
-          alt={pd.title}
-          onError={(e) => { e.currentTarget.src = DEFAULT_IMG; }}
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.98 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="absolute inset-0 w-full h-full object-cover"
-          referrerPolicy="no-referrer"
-        />
+          className="absolute inset-0 w-full h-full"
+        >
+          {/* Shimmer skeleton for slider */}
+          <div
+            className={`absolute inset-0 z-[1] transition-opacity duration-500 ${
+              imgLoaded ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
+          >
+            <div className="w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-shimmer bg-[length:200%_100%]" />
+          </div>
+
+          <Image
+            src={project.thumbnail || DEFAULT_IMG}
+            alt={pd.title}
+            fill
+            sizes="100vw"
+            className={`object-cover transition-opacity duration-500 ${
+              imgLoaded ? "opacity-100" : "opacity-0"
+            }`}
+            priority={current === 0}
+            onLoad={() => setImgLoaded(true)}
+            onError={() => setImgLoaded(true)}
+            referrerPolicy="no-referrer"
+          />
+        </motion.div>
       </AnimatePresence>
 
       {/* Gradient overlay */}

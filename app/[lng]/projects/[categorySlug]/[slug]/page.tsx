@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useT } from "next-i18next/client";
@@ -25,6 +26,141 @@ const fadeIn = (delay = 0) => ({
   transition: { duration: 0.5, delay, ease: "easeOut" as const },
 });
 
+/* ── Gallery image with loading state ── */
+function GalleryImage({
+  src,
+  alt,
+  index,
+}: {
+  src: string;
+  alt: string;
+  index: number;
+}) {
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  const imgSrc = error ? DEFAULT_IMG : src || DEFAULT_IMG;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{
+        duration: 0.7,
+        delay: index < 3 ? index * 0.12 : 0,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      }}
+      className="overflow-hidden rounded-xl shadow-lg"
+    >
+      <div className="relative w-full aspect-[16/9]">
+        {/* Shimmer skeleton */}
+        <div
+          className={`absolute inset-0 z-[1] transition-opacity duration-500 ${
+            loaded ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          <div className="w-full h-full bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 animate-shimmer bg-[length:200%_100%]" />
+        </div>
+
+        <Image
+          src={imgSrc}
+          alt={alt}
+          fill
+          sizes="(max-width: 1024px) 100vw, 60vw"
+          className={`object-cover hover:scale-105 transition-all duration-1000 ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
+          loading={index < 2 ? "eager" : "lazy"}
+          onLoad={() => setLoaded(true)}
+          onError={() => {
+            setError(true);
+            setLoaded(true);
+          }}
+          referrerPolicy="no-referrer"
+        />
+      </div>
+    </motion.div>
+  );
+}
+
+/* ── Related project card with loading state ── */
+function RelatedCard({
+  project,
+  lang,
+  index,
+}: {
+  project: (typeof projects)[number];
+  lang: "en" | "vi";
+  index: number;
+}) {
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  const src = error ? DEFAULT_IMG : project.thumbnail || DEFAULT_IMG;
+  const rt = {
+    title: project[lang].title,
+    category: project[lang].categoryLabel,
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      }}
+      className="group"
+    >
+      <Link
+        href={projectHref(project, lang)}
+        className="block aspect-[4/3] overflow-hidden relative rounded-xl bg-brand-light shadow-md"
+      >
+        {/* Shimmer */}
+        <div
+          className={`absolute inset-0 z-[1] transition-opacity duration-500 ${
+            loaded ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          <div className="w-full h-full bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 animate-shimmer bg-[length:200%_100%]" />
+        </div>
+
+        <Image
+          src={src}
+          alt={rt.title}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+          className={`object-cover group-hover:scale-110 transition-all duration-700 ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
+          onLoad={() => setLoaded(true)}
+          onError={() => {
+            setError(true);
+            setLoaded(true);
+          }}
+          referrerPolicy="no-referrer"
+        />
+
+        <div className="absolute inset-0 z-[2] bg-brand-dark/0 group-hover:bg-brand-dark/40 transition-colors duration-500" />
+        <div className="absolute top-4 right-4 z-[3] w-10 h-10 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+          <ArrowUpRight size={18} className="text-brand-dark" />
+        </div>
+      </Link>
+      <div className="pt-6">
+        <p className="text-[9px] tracking-[0.35em] uppercase mb-2 text-brand-blue font-bold">
+          {rt.category}
+        </p>
+        <h4 className="text-lg font-serif tracking-wide uppercase group-hover:text-brand-blue transition-colors leading-snug">
+          {rt.title}
+        </h4>
+      </div>
+    </motion.div>
+  );
+}
+
 const ProjectDetail = () => {
   const params = useParams<{ categorySlug: string; slug: string; lng: string }>();
   const { categorySlug, slug, lng } = params;
@@ -32,6 +168,7 @@ const ProjectDetail = () => {
   const { t } = useT("common");
   const lang = (lng || "en") as "en" | "vi";
   const [imgLoaded, setImgLoaded] = useState(false);
+  const [heroError, setHeroError] = useState(false);
 
 
   const currentIndex = useMemo(() => {
@@ -70,9 +207,7 @@ const ProjectDetail = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     setImgLoaded(false);
-    // Fallback: if onLoad doesn't fire within 1s, force the image visible
-    const timer = setTimeout(() => setImgLoaded(true), 1000);
-    return () => clearTimeout(timer);
+    setHeroError(false);
   }, [categorySlug, slug]);
 
   if (!project)
@@ -89,6 +224,8 @@ const ProjectDetail = () => {
     category: project[lang].categoryLabel,
   };
 
+  const heroSrc = heroError ? DEFAULT_IMG : project.thumbnail || DEFAULT_IMG;
+
   return (
     <div className="bg-brand-light text-brand-dark min-h-screen">
       {/* ─── HERO ─── */}
@@ -104,22 +241,41 @@ const ProjectDetail = () => {
           </Link>
         </motion.div>
 
+        {/* Shimmer skeleton for hero */}
+        <div
+          className={`absolute inset-0 z-[1] transition-opacity duration-700 ${
+            imgLoaded ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          <div className="w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-shimmer bg-[length:200%_100%]" />
+        </div>
+
         {/* Hero image — zoom-in entrance */}
-        <motion.img
+        <motion.div
           key={`hero-${categorySlug}-${slug}`}
-          src={project.thumbnail || DEFAULT_IMG}
-          alt={pd.title}
-          onLoad={() => setImgLoaded(true)}
-          onError={(e) => { e.currentTarget.src = DEFAULT_IMG; }}
           initial={{ scale: 1.15, opacity: 0 }}
           animate={{
             scale: imgLoaded ? 1 : 1.15,
             opacity: imgLoaded ? 1 : 0,
           }}
           transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] as const }}
-          className="absolute inset-0 w-full h-full object-cover"
-          referrerPolicy="no-referrer"
-        />
+          className="absolute inset-0 w-full h-full"
+        >
+          <Image
+            src={heroSrc}
+            alt={pd.title}
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+            onLoad={() => setImgLoaded(true)}
+            onError={() => {
+              setHeroError(true);
+              setImgLoaded(true);
+            }}
+            referrerPolicy="no-referrer"
+          />
+        </motion.div>
 
         {/* Gradient overlay */}
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-brand-dark/80 via-brand-dark/20 to-transparent" />
@@ -215,26 +371,12 @@ const ProjectDetail = () => {
         {/* RIGHT: Image gallery — staggered reveal */}
         <div className="lg:w-[60%] p-6 md:p-12 lg:p-16 space-y-8 md:space-y-12">
           {project.gallery.map((img, i) => (
-            <motion.div
+            <GalleryImage
               key={i}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{
-                duration: 0.7,
-                delay: i < 3 ? i * 0.12 : 0,
-                ease: [0.25, 0.46, 0.45, 0.94] as const,
-              }}
-              className="overflow-hidden rounded-xl shadow-lg"
-            >
-              <img
-                src={img || DEFAULT_IMG}
-                alt={`${pd.title} ${i + 1}`}
-                onError={(e) => { e.currentTarget.src = DEFAULT_IMG; }}
-                className="w-full h-auto hover:scale-105 transition-transform duration-1000"
-                referrerPolicy="no-referrer"
-              />
-            </motion.div>
+              src={img}
+              alt={`${pd.title} ${i + 1}`}
+              index={i}
+            />
           ))}
         </div>
       </div>
@@ -251,51 +393,9 @@ const ProjectDetail = () => {
           {t("projectDetail.otherProjects")}
         </motion.p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
-          {related.map((p, i) => {
-            const rt = {
-              title: p[lang].title,
-              category: p[lang].categoryLabel,
-            };
-            return (
-              <motion.div
-                key={p.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{
-                  duration: 0.6,
-                  delay: i * 0.1,
-                  ease: [0.25, 0.46, 0.45, 0.94] as const,
-                }}
-                className="group"
-              >
-                <Link
-                  href={projectHref(p, lang)}
-                  className="block aspect-[4/3] overflow-hidden relative rounded-xl bg-brand-light shadow-md"
-                >
-                  <img
-                    src={p.thumbnail || DEFAULT_IMG}
-                    alt={rt.title}
-                    onError={(e) => { e.currentTarget.src = DEFAULT_IMG; }}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/40 transition-colors duration-500" />
-                  <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    <ArrowUpRight size={18} className="text-brand-dark" />
-                  </div>
-                </Link>
-                <div className="pt-6">
-                  <p className="text-[9px] tracking-[0.35em] uppercase mb-2 text-brand-blue font-bold">
-                    {rt.category}
-                  </p>
-                  <h4 className="text-lg font-serif tracking-wide uppercase group-hover:text-brand-blue transition-colors leading-snug">
-                    {rt.title}
-                  </h4>
-                </div>
-              </motion.div>
-            );
-          })}
+          {related.map((p, i) => (
+            <RelatedCard key={p.id} project={p} lang={lang} index={i} />
+          ))}
         </div>
 
         {/* View all */}
