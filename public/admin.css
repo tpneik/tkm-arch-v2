@@ -575,6 +575,47 @@
   font-size: 12px;
 }
 
+/* Skeleton shimmer while image loads */
+.dnd-thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--admin-bg) 0%,
+    var(--admin-surface) 40%,
+    var(--admin-bg) 80%
+  );
+  background-size: 200% 100%;
+  animation: dnd-shimmer 1.5s ease-in-out infinite;
+  z-index: 0;
+  border-radius: 6px;
+}
+
+/* Fade in image over skeleton */
+.dnd-thumb-img {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.dnd-thumb img[data-nimg] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+/* When next/image finishes loading, it gets this attribute */
+.dnd-thumb img[data-nimg][decoding="async"],
+.dnd-thumb img[data-nimg]:not([src=""]) {
+  opacity: 1;
+}
+
+@keyframes dnd-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 /* ── Info column ── */
 .dnd-info {
   flex: 1;

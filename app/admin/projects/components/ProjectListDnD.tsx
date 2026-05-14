@@ -101,9 +101,14 @@ function ProjectCard({
             src={project.thumbnail}
             alt={project.vi?.title || "Thumbnail"}
             fill
-            className="object-cover"
+            className="object-cover dnd-thumb-img"
             sizes="64px"
-            unoptimized
+            quality={60}
+            loading="lazy"
+            onLoad={(e) => {
+              const img = e.currentTarget;
+              img.style.opacity = "1";
+            }}
           />
         ) : (
           <span className="dnd-thumb-empty">—</span>

@@ -8,6 +8,7 @@ import { createProject, updateProject } from "../../actions/projects";
 import { createProjectCategory } from "../../actions/categories";
 import { Save, Plus, Trash2, ArrowLeft, X, Check } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface DetailField {
   key: string;
@@ -434,7 +435,14 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
               </div>
               {thumbnail && (
                 <div className="mt-3 aspect-video relative rounded-lg overflow-hidden border border-[var(--admin-border)]">
-                  <img src={thumbnail} alt="Thumbnail preview" className="object-cover w-full h-full" />
+                  <Image
+                    src={thumbnail}
+                    alt="Thumbnail preview"
+                    fill
+                    className="object-cover"
+                    sizes="400px"
+                    quality={75}
+                  />
                 </div>
               )}
             </div>
@@ -469,8 +477,15 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
                       />
                     </div>
                     {url && (
-                      <div className="w-10 h-10 rounded overflow-hidden flex-shrink-0 border border-[var(--admin-border)]">
-                        <img src={url} alt="" className="w-full h-full object-cover" />
+                      <div className="w-10 h-10 rounded overflow-hidden flex-shrink-0 border border-[var(--admin-border)] relative">
+                        <Image
+                          src={url}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          sizes="40px"
+                          quality={60}
+                        />
                       </div>
                     )}
                     <button

@@ -45,6 +45,51 @@
   {
     "id": "2",
     "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_2%20-%20Photo.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam1%20copy.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam3%20copy.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam5%20copy.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam7%20copy.png"
+    ],
+    "en": {
+      "title": "Victory Gym – Dong Thap",
+      "slug": "victory-gym-dong-thap",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A dynamic fitness center in Dong Thap Province designed with bold architectural volumes and energetic interior spaces. High ceilings, industrial finishes, and zone-specific lighting create an atmosphere that motivates peak performance.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design",
+          "Interior Design"
+        ],
+        "SCALE": "500 sqm",
+        "LOCATION": "Dong Thap Province"
+      }
+    },
+    "vi": {
+      "title": "Victory Gym – Đồng Tháp",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "slug": "victory-gym-dong-thap",
+      "description": "Phòng tập thể hình năng động tại Đồng Tháp với khối kiến trúc mạnh mẽ và không gian nội thất tràn đầy năng lượng.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc",
+          "Thiết kế nội thất"
+        ],
+        "QUY MÔ": "500 m²",
+        "VỊ TRÍ": "Tỉnh Đồng Tháp"
+      }
+    }
+  },
+  {
+    "id": "3",
+    "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
     "gallery": [
       "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
@@ -90,7 +135,7 @@
     }
   },
   {
-    "id": "3",
+    "id": "4",
     "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CF%20TRUNG%20NGUYEN%20MY%20THO/1_1%20-%20Photo.jpg",
     "gallery": [
@@ -135,7 +180,7 @@
     }
   },
   {
-    "id": "4",
+    "id": "5",
     "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/NHA%20HANG%20CAO%20NHO/06.png",
     "gallery": [
@@ -180,7 +225,7 @@
     }
   },
   {
-    "id": "5",
+    "id": "6",
     "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_7%20-%20Photo.jpg",
     "gallery": [
@@ -225,7 +270,7 @@
     }
   },
   {
-    "id": "6",
+    "id": "7",
     "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/1_1%20-%20Photo.jpg",
     "gallery": [
@@ -270,7 +315,7 @@
     }
   },
   {
-    "id": "7",
+    "id": "8",
     "category": "Trường học",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/TRUONG%20HOC/THCS%20TR%E1%BB%8ANH%20VI%E1%BA%BET%20B%C3%80N-%20B%C3%8CNH%20%C4%90%E1%BA%A0I-%20B%E1%BA%BEN%20TRE/01.jpg",
     "gallery": [
@@ -314,7 +359,7 @@
     }
   },
   {
-    "id": "8",
+    "id": "9",
     "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%281%29.jpg",
     "gallery": [
@@ -359,7 +404,7 @@
     }
   },
   {
-    "id": "9",
+    "id": "10",
     "category": "Chung cư",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CHUNG%20CU/240929_NhaChoMoi/01.jpg",
     "gallery": [
@@ -406,7 +451,7 @@
     }
   },
   {
-    "id": "10",
+    "id": "11",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20GO%20VAP/KIEN%20TRUC/OP1_1%20-%20Photo.jpg",
     "gallery": [
@@ -453,7 +498,7 @@
     }
   },
   {
-    "id": "11",
+    "id": "12",
     "category": "Villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/VILLA%20DUC%20HUE/01.jpg",
     "gallery": [
@@ -498,7 +543,7 @@
     }
   },
   {
-    "id": "12",
+    "id": "13",
     "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%202026/V2_1%20-%20Photo.jpg",
     "gallery": [
@@ -541,7 +586,7 @@
     }
   },
   {
-    "id": "13",
+    "id": "14",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/HUYEN%20UY%20BINH%20DAI/HIEN%20DAI/02_11%20-%20Photo.jpg",
     "gallery": [
@@ -584,7 +629,7 @@
     }
   },
   {
-    "id": "14",
+    "id": "15",
     "category": "Trường học",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/TRUONG%20HOC/THCS%20VANG%20QU%E1%BB%9AI%20-%20B%C3%8CNH%20%C4%90%E1%BA%A0I%20-%20B%E1%BA%BEN%20TRE/01.jpg",
     "gallery": [
@@ -628,7 +673,7 @@
     }
   },
   {
-    "id": "15",
+    "id": "16",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20CHI%20NHA/ChiNha2506/Tret-1.png",
     "gallery": [
@@ -673,7 +718,7 @@
     }
   },
   {
-    "id": "16",
+    "id": "17",
     "category": "Villa",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VILLA/240904_VILLA%20BINH%20DAI/01.jpg",
     "gallery": [
@@ -720,7 +765,7 @@
     }
   },
   {
-    "id": "17",
+    "id": "18",
     "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/PICKLE%20BALL%20BINH%20CHANH/01_1%20-%20Photo.jpg",
     "gallery": [
@@ -765,7 +810,7 @@
     }
   },
   {
-    "id": "18",
+    "id": "19",
     "category": "van-phong",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/NHA%20SACH%20M%E1%BB%B8%20THO-TI%E1%BB%80N%20GIANG/01.jpg",
     "gallery": [
@@ -810,7 +855,7 @@
     }
   },
   {
-    "id": "19",
+    "id": "20",
     "category": "nha-pho",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20BINH%20THANH/ren%20m%E1%BB%9Bi/b1.jpg",
     "gallery": [
@@ -857,7 +902,7 @@
     }
   },
   {
-    "id": "20",
+    "id": "21",
     "category": "cong-trinh-khac",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/1994%20COFFEE/01_2%20-%20Photo.jpg",
     "gallery": [
@@ -902,7 +947,7 @@
     }
   },
   {
-    "id": "21",
+    "id": "22",
     "category": "Nhà phố",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/NHA%20CHI%20DAO/Tret/PK1_3.png",
     "gallery": [
@@ -947,7 +992,7 @@
     }
   },
   {
-    "id": "22",
+    "id": "23",
     "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/MINH%20THU%20SHOP/1_1%20-%20Photo.jpg",
     "gallery": [
@@ -992,7 +1037,7 @@
     }
   },
   {
-    "id": "23",
+    "id": "24",
     "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/QUANG%20NGAI%20SPA/1_1%20-%20Photo.jpg",
     "gallery": [
@@ -1033,51 +1078,6 @@
         ],
         "QUY MÔ": "350 m²",
         "VỊ TRÍ": "Tỉnh Quảng Ngãi"
-      }
-    }
-  },
-  {
-    "id": "24",
-    "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_2%20-%20Photo.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam1%20copy.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam3%20copy.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam5%20copy.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam7%20copy.png"
-    ],
-    "en": {
-      "title": "Victory Gym – Dong Thap",
-      "slug": "victory-gym-dong-thap",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "A dynamic fitness center in Dong Thap Province designed with bold architectural volumes and energetic interior spaces. High ceilings, industrial finishes, and zone-specific lighting create an atmosphere that motivates peak performance.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design",
-          "Interior Design"
-        ],
-        "SCALE": "500 sqm",
-        "LOCATION": "Dong Thap Province"
-      }
-    },
-    "vi": {
-      "title": "Victory Gym – Đồng Tháp",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "slug": "victory-gym-dong-thap",
-      "description": "Phòng tập thể hình năng động tại Đồng Tháp với khối kiến trúc mạnh mẽ và không gian nội thất tràn đầy năng lượng.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Thiết kế nội thất"
-        ],
-        "QUY MÔ": "500 m²",
-        "VỊ TRÍ": "Tỉnh Đồng Tháp"
       }
     }
   },
