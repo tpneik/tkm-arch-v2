@@ -54,6 +54,106 @@ interface ProjectFormProps {
   initialCategories?: Category[];
 }
 
+/* ── Form field components (module scope — must NOT be defined inside the
+   form component, or every render remounts the inputs and steals focus). ── */
+
+interface FieldProps {
+  label: string;
+  value: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  required?: boolean;
+}
+
+function InputField({ label, value, onChange, required = false }: FieldProps) {
+  return (
+    <div className="mb-4">
+      <label className="block text-sm font-semibold text-[var(--admin-muted)] mb-1 uppercase tracking-wide">
+        {label} {required && <span className="text-red-500">*</span>}
+      </label>
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        required={required}
+        className="w-full px-4 py-2 bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)] transition-all"
+      />
+    </div>
+  );
+}
+
+function TextAreaField({ label, value, onChange, required = false }: FieldProps) {
+  return (
+    <div className="mb-4">
+      <label className="block text-sm font-semibold text-[var(--admin-muted)] mb-1 uppercase tracking-wide">
+        {label} {required && <span className="text-red-500">*</span>}
+      </label>
+      <textarea
+        value={value}
+        onChange={onChange}
+        required={required}
+        rows={4}
+        className="w-full px-4 py-2 bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)] transition-all"
+      />
+    </div>
+  );
+}
+
+interface DetailsEditorProps {
+  title: string;
+  fields: DetailField[];
+  setFields: (fields: DetailField[]) => void;
+}
+
+function DetailsEditor({ title, fields, setFields }: DetailsEditorProps) {
+  return (
+    <div className="mb-6 p-4 border border-[var(--admin-border)] rounded-lg bg-[var(--admin-content-bg)]">
+      <div className="flex justify-between items-center mb-4">
+        <h4 className="font-semibold text-sm uppercase text-[var(--admin-muted)]">{title}</h4>
+        <button
+          type="button"
+          onClick={() => setFields([...fields, { key: "", value: "" }])}
+          className="flex items-center gap-1 text-sm text-[var(--admin-accent)] hover:text-[var(--admin-accent-hover)] font-medium"
+        >
+          <Plus size={16} /> Add Field
+        </button>
+      </div>
+      {fields.map((field: DetailField, index: number) => (
+        <div key={index} className="flex flex-col sm:flex-row gap-2 mb-3 items-start">
+          <input
+            type="text"
+            placeholder="Key (e.g. SCALE)"
+            value={field.key}
+            onChange={(e) => {
+              const newFields = [...fields];
+              newFields[index] = { ...newFields[index], key: e.target.value };
+              setFields(newFields);
+            }}
+            className="w-full sm:w-1/3 px-3 py-2 text-sm border border-[var(--admin-border)] rounded focus:ring-1 focus:ring-[var(--admin-accent)] outline-none"
+          />
+          <textarea
+            placeholder="Value (use newlines for lists)"
+            value={field.value}
+            onChange={(e) => {
+              const newFields = [...fields];
+              newFields[index] = { ...newFields[index], value: e.target.value };
+              setFields(newFields);
+            }}
+            rows={2}
+            className="w-full sm:w-2/3 px-3 py-2 text-sm border border-[var(--admin-border)] rounded focus:ring-1 focus:ring-[var(--admin-accent)] outline-none"
+          />
+          <button
+            type="button"
+            onClick={() => setFields(fields.filter((_, i) => i !== index))}
+            className="p-2 text-red-500 hover:bg-red-50 rounded transition-colors mt-1"
+          >
+            <Trash2 size={16} />
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function ProjectForm({ initialData, initialCategories = [] }: ProjectFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -223,83 +323,10 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
     }
   };
 
-  const InputField = ({ label, value, onChange, required = false }: any) => (
-    <div className="mb-4">
-      <label className="block text-sm font-semibold text-[var(--admin-muted)] mb-1 uppercase tracking-wide">
-        {label} {required && <span className="text-red-500">*</span>}
-      </label>
-      <input
-        type="text"
-        value={value}
-        onChange={onChange}
-        required={required}
-        className="w-full px-4 py-2 bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)] transition-all"
-      />
-    </div>
-  );
-
-  const TextAreaField = ({ label, value, onChange, required = false }: any) => (
-    <div className="mb-4">
-      <label className="block text-sm font-semibold text-[var(--admin-muted)] mb-1 uppercase tracking-wide">
-        {label} {required && <span className="text-red-500">*</span>}
-      </label>
-      <textarea
-        value={value}
-        onChange={onChange}
-        required={required}
-        rows={4}
-        className="w-full px-4 py-2 bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)] transition-all"
-      />
-    </div>
-  );
-
-  const DetailsEditor = ({ title, fields, setFields }: any) => (
-    <div className="mb-6 p-4 border border-[var(--admin-border)] rounded-lg bg-[var(--admin-content-bg)]">
-      <div className="flex justify-between items-center mb-4">
-        <h4 className="font-semibold text-sm uppercase text-[var(--admin-muted)]">{title}</h4>
-        <button
-          type="button"
-          onClick={() => setFields([...fields, { key: "", value: "" }])}
-          className="flex items-center gap-1 text-sm text-[var(--admin-accent)] hover:text-[var(--admin-accent-hover)] font-medium"
-        >
-          <Plus size={16} /> Add Field
-        </button>
-      </div>
-      {fields.map((field: DetailField, index: number) => (
-        <div key={index} className="flex flex-col sm:flex-row gap-2 mb-3 items-start">
-          <input
-            type="text"
-            placeholder="Key (e.g. SCALE)"
-            value={field.key}
-            onChange={(e) => {
-              const newFields = [...fields];
-              newFields[index].key = e.target.value;
-              setFields(newFields);
-            }}
-            className="w-full sm:w-1/3 px-3 py-2 text-sm border border-[var(--admin-border)] rounded focus:ring-1 focus:ring-[var(--admin-accent)] outline-none"
-          />
-          <textarea
-            placeholder="Value (use newlines for lists)"
-            value={field.value}
-            onChange={(e) => {
-              const newFields = [...fields];
-              newFields[index].value = e.target.value;
-              setFields(newFields);
-            }}
-            rows={2}
-            className="w-full sm:w-2/3 px-3 py-2 text-sm border border-[var(--admin-border)] rounded focus:ring-1 focus:ring-[var(--admin-accent)] outline-none"
-          />
-          <button
-            type="button"
-            onClick={() => setFields(fields.filter((_: any, i: number) => i !== index))}
-            className="p-2 text-red-500 hover:bg-red-50 rounded transition-colors mt-1"
-          >
-            <Trash2 size={16} />
-          </button>
-        </div>
-      ))}
-    </div>
-  );
+  // InputField / TextAreaField / DetailsEditor are defined at MODULE scope
+  // (below the component). Defining them inside the component recreated the
+  // component type on every render, remounting the <input> and dropping focus
+  // after one keystroke.
 
   return (
     <form onSubmit={handleSave} className="max-w-5xl mx-auto pb-20 px-0">

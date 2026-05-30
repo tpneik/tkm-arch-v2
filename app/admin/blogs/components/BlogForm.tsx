@@ -29,6 +29,52 @@ interface BlogFormProps {
   initialCategories?: Category[];
 }
 
+/* ── Form field components (module scope — must NOT be defined inside the
+   form component, or every render remounts the inputs and steals focus). ── */
+
+interface FieldProps {
+  label: string;
+  value: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  required?: boolean;
+  type?: string;
+  rows?: number;
+}
+
+function InputField({ label, value, onChange, required = false, type = "text" }: FieldProps) {
+  return (
+    <div className="mb-4">
+      <label className="block text-sm font-semibold text-[var(--admin-muted)] mb-1 uppercase tracking-wide">
+        {label} {required && <span className="text-red-500">*</span>}
+      </label>
+      <input
+        type={type}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className="w-full px-4 py-2 bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)] transition-all"
+      />
+    </div>
+  );
+}
+
+function TextAreaField({ label, value, onChange, required = false, rows = 4 }: FieldProps) {
+  return (
+    <div className="mb-4">
+      <label className="block text-sm font-semibold text-[var(--admin-muted)] mb-1 uppercase tracking-wide">
+        {label} {required && <span className="text-red-500">*</span>}
+      </label>
+      <textarea
+        value={value}
+        onChange={onChange}
+        required={required}
+        rows={rows}
+        className="w-full px-4 py-2 bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)] transition-all"
+      />
+    </div>
+  );
+}
+
 export default function BlogForm({ initialData, initialCategories = [] }: BlogFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -187,35 +233,9 @@ export default function BlogForm({ initialData, initialCategories = [] }: BlogFo
     }
   };
 
-  const InputField = ({ label, value, onChange, required = false, type = "text" }: any) => (
-    <div className="mb-4">
-      <label className="block text-sm font-semibold text-[var(--admin-muted)] mb-1 uppercase tracking-wide">
-        {label} {required && <span className="text-red-500">*</span>}
-      </label>
-      <input
-        type={type}
-        value={value}
-        onChange={onChange}
-        required={required}
-        className="w-full px-4 py-2 bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)] transition-all"
-      />
-    </div>
-  );
-
-  const TextAreaField = ({ label, value, onChange, required = false, rows = 4 }: any) => (
-    <div className="mb-4">
-      <label className="block text-sm font-semibold text-[var(--admin-muted)] mb-1 uppercase tracking-wide">
-        {label} {required && <span className="text-red-500">*</span>}
-      </label>
-      <textarea
-        value={value}
-        onChange={onChange}
-        required={required}
-        rows={rows}
-        className="w-full px-4 py-2 bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)] transition-all"
-      />
-    </div>
-  );
+  // InputField / TextAreaField are defined at MODULE scope (below the
+  // component). Defining them inside recreated the component type on every
+  // render, remounting the <input> and dropping focus after one keystroke.
 
   return (
     <form onSubmit={handleSave} className="max-w-5xl mx-auto pb-20 px-0">
