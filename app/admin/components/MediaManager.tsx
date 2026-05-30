@@ -88,8 +88,12 @@ export default function MediaManager({
   const base = (basePrefix || "TKM/CONGTRINH").replace(/^\/+|\/+$/g, "");
   const folderDepth = base.split("/").length + 2; // base + category + project
   const computedPrefix = buildFolderPrefix({ basePrefix, categoryLabel, projectName });
+  // Lock the folder to where the project's images actually live (derived from
+  // their URLs) so renaming the project NEVER moves the folder. Once any image
+  // exists, the folder is fixed regardless of the title. Falls back to the
+  // computed prefix only for a brand-new project with no images yet.
   const derivedPrefix = (() => {
-    for (const u of persistedUrls) {
+    for (const u of [...persistedUrls, thumbnail, ...gallery]) {
       const k = keyFromUrl(u);
       if (k) return folderAtDepth(k, folderDepth);
     }

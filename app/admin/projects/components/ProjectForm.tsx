@@ -282,6 +282,12 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
       setError("Cần chọn 1 ảnh bìa (bấm ngôi sao trên ảnh).");
       return;
     }
+    // Slug is derived from the title and drives the public URL — a rename MUST
+    // produce a valid slug or the project page would 404.
+    if (!viSlug || !enSlug) {
+      setError("Tiêu đề không tạo được đường dẫn (slug) hợp lệ. Đổi lại tiêu đề.");
+      return;
+    }
 
     setLoading(true);
 
@@ -369,6 +375,11 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
               <span className="text-2xl">🇺🇸</span> English Content
             </h2>
             <InputField label="Title" value={enTitle} onChange={(e: any) => setEnTitle(e.target.value)} required />
+            {enTitle && (
+              <p className="-mt-3 mb-4 text-xs text-[var(--admin-muted)] font-mono">
+                slug: <span className="text-[var(--admin-accent)]">{enSlug || "—"}</span>
+              </p>
+            )}
             <TextAreaField label="Description" value={enDescription} onChange={(e: any) => setEnDescription(e.target.value)} required />
             <DetailsEditor title="Project Details (EN)" fields={enDetails} setFields={setEnDetails} />
           </div>
@@ -379,6 +390,11 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
               <span className="text-2xl">🇻🇳</span> Vietnamese Content
             </h2>
             <InputField label="Title" value={viTitle} onChange={(e: any) => setViTitle(e.target.value)} required />
+            {viTitle && (
+              <p className="-mt-3 mb-4 text-xs text-[var(--admin-muted)] font-mono">
+                slug: <span className="text-[var(--admin-accent)]">{viSlug || "—"}</span>
+              </p>
+            )}
             <TextAreaField label="Description" value={viDescription} onChange={(e: any) => setViDescription(e.target.value)} required />
             <DetailsEditor title="Project Details (VI)" fields={viDetails} setFields={setViDetails} />
           </div>

@@ -2,13 +2,12 @@
   {
     "id": "1",
     "category": "noi-that",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/VCB%20QUAN%201/4.jpg",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/NGAN%20HANG%20VCB%20QUAN%201/4.jpg",
     "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/VCB%20QUAN%201/1.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/VCB%20QUAN%201/2.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/VCB%20QUAN%201/3.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/VCB%20QUAN%201/4.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/VCB%20QUAN%201/5.jpg"
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/NGAN%20HANG%20VCB%20QUAN%201/1.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/NGAN%20HANG%20VCB%20QUAN%201/2.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/NGAN%20HANG%20VCB%20QUAN%201/3.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NOI%20THAT/NGAN%20HANG%20VCB%20QUAN%201/4.jpg"
     ],
     "en": {
       "title": "VCB Bank - District 1",
@@ -1825,7 +1824,7 @@
   },
   {
     "id": "42",
-    "category": "Văn phòng",
+    "category": "van-phong",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/BERNARD/8_1%20-%20Photo.jpg",
     "gallery": [
       "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/BERNARD/8_1%20-%20Photo.jpg",
@@ -1869,15 +1868,19 @@
   },
   {
     "id": "43",
-    "category": "Nhà phố",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/Tang%201/Tang%201/1_T1-1.png",
+    "category": "nha-pho",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/SAN%20THUONG/z6649293242344_48c03ff4753aaa2bf9a0a40bd02c24d2.jpg",
     "gallery": [
       "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/Tang%201/Tang%201/1_T1-1.png",
       "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/Tang%201/Tang%201/1_T1-5.png",
       "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/Tang%202/Tang%202/T2_1.png",
       "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/Tang%203/Tang%203/1.png",
       "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/SAN%20THUONG/z6649293242344_48c03ff4753aaa2bf9a0a40bd02c24d2.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/v1.jpg"
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/v1.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/Tang%201/Tang%201/1_T1-12.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/SAN%20THUONG/z6649293271785_e30b6b76a1025a4c0bcb6be969a43eee.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/SAN%20THUONG/z6649293286587_08da2e3d92411396030e6d70c0380453.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/NHA%20PHO/CONNELL%20OFFICE/Tang%201/Tang%201/1_T1-14.png"
     ],
     "en": {
       "title": "Connell Office",
@@ -1909,6 +1912,36 @@
         ],
         "QUY MÔ": "500 m²",
         "VỊ TRÍ": "TP. Hồ Chí Minh"
+      }
+    }
+  },
+  {
+    "id": "44",
+    "category": "cong-trinh-khac",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/DU%20AN%20TEST/hinh-anh-nha-dep-1.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/DU%20AN%20TEST/hinh-anh-nha-dep-1.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/DU%20AN%20TEST/mat-tien-anh-nam-vhh.jpg"
+    ],
+    "en": {
+      "title": "Test project",
+      "slug": "test-project",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "This is tes prod",
+      "details": {
+        "Scale": "100m2",
+        "Docs": "Yes"
+      }
+    },
+    "vi": {
+      "title": "DỰ ÁN TEST - ĐỔI LẦN 2",
+      "slug": "du-an-test-doi-lan-2",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "description": "Test description",
+      "details": {
+        "Phạm vi": "Công trình khác"
       }
     }
   }

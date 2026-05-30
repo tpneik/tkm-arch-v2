@@ -10,7 +10,11 @@
  * DELETEs the originals only after the DB update succeeds.
  */
 import "server-only";
-import { CopyObjectCommand, ListObjectsV2Command } from "@aws-sdk/client-s3";
+import {
+  CopyObjectCommand,
+  DeleteObjectCommand,
+  ListObjectsV2Command,
+} from "@aws-sdk/client-s3";
 import { r2, R2_BUCKET, R2_PUBLIC_BASE } from "./r2";
 import { encodeKeyToPublicUrl, toFolderName } from "./r2Key";
 
@@ -127,5 +131,52 @@ export async function relocateImagesByCategory(opts: {
   } catch (err) {
     console.warn("[relocateImagesByCategory] skipped:", err);
     return empty;
+  }
+}
+
+/**
+ * Delete the ENTIRE R2 folder a project's/blog's images live in (derived from
+ * their URLs). Used when a project/blog is deleted so no orphaned image folder
+ * is left behind. Best-effort; returns the number of objects removed.
+ */
+export async function deleteFolderByUrls(opts: {
+  urls: string[];
+  basePrefix: string;
+}): Promise<number> {
+  try {
+    const base = (opts.basePrefix || "").replace(/^\/+|\/+$/g, "");
+    if (!base || !R2_BUCKET || !PUBLIC_BASE) return 0;
+    const depth = base.split("/").length + 2; // base + category + project
+
+    // Find the project folder from the first bucket image.
+    let folder = "";
+    for (const u of opts.urls) {
+      const k = keyFromUrl(u);
+      if (k && k.startsWith(base + "/")) {
+        folder = folderAtDepth(k, depth);
+        break;
+      }
+    }
+    if (!folder) return 0;
+
+    const out = await r2.send(
+      new ListObjectsV2Command({ Bucket: R2_BUCKET, Prefix: folder, MaxKeys: 1000 })
+    );
+    const keys = (out.Contents ?? [])
+      .map((o) => o.Key)
+      .filter((k): k is string => !!k && k.startsWith(folder));
+    if (keys.length === 0) return 0;
+
+    await Promise.all(
+      keys.map((Key) =>
+        r2
+          .send(new DeleteObjectCommand({ Bucket: R2_BUCKET, Key }))
+          .catch((err) => console.warn(`[deleteFolderByUrls] ${Key}:`, err))
+      )
+    );
+    return keys.length;
+  } catch (err) {
+    console.warn("[deleteFolderByUrls] skipped:", err);
+    return 0;
   }
 }

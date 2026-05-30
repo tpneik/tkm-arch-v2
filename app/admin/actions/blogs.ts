@@ -6,7 +6,7 @@ import { connectToDatabase } from "@/lib/mongoose";
 import BlogModel from "@/models/Blog";
 import type { Blog } from "@/data/blogs";
 import { syncBlogs } from "@/data/sync";
-import { relocateImagesByCategory } from "@/lib/r2Move";
+import { relocateImagesByCategory, deleteFolderByUrls } from "@/lib/r2Move";
 import { r2, R2_BUCKET } from "@/lib/r2";
 
 /** Strip Mongoose/BSON types so data is safe to pass to Client Components */
@@ -154,6 +154,10 @@ export async function deleteBlog(
     if (!result) {
       return { success: false, error: "Blog not found" };
     }
+
+    // Remove the blog's entire R2 image folder (no orphaned images left).
+    const urls = [result.thumbnail].filter(Boolean);
+    await deleteFolderByUrls({ urls, basePrefix: "TKM/BLOG" });
 
     await syncBlogs();
     revalidateTag("blogs", "max"); // bust the cached public loader (@/lib/getBlogs)

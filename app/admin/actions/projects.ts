@@ -7,7 +7,7 @@ import ProjectModel from "@/models/Project";
 import type { Project } from "@/data/projects";
 import { syncProjects } from "@/data/sync";
 import { DEFAULT_BASE_PREFIX } from "@/lib/r2Key";
-import { relocateImagesByCategory } from "@/lib/r2Move";
+import { relocateImagesByCategory, deleteFolderByUrls } from "@/lib/r2Move";
 import { r2, R2_BUCKET } from "@/lib/r2";
 
 /** Strip Mongoose/BSON types so data is safe to pass to Client Components */
@@ -164,6 +164,10 @@ export async function deleteProject(
     if (!result) {
       return { success: false, error: "Project not found" };
     }
+
+    // Remove the project's entire R2 image folder (no orphaned images left).
+    const urls = [result.thumbnail, ...(result.gallery ?? [])].filter(Boolean);
+    await deleteFolderByUrls({ urls, basePrefix: DEFAULT_BASE_PREFIX });
 
     await syncProjects();
     revalidateTag("projects", "max"); // bust the cached public loader (@/lib/getProjects)
