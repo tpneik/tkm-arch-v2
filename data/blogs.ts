@@ -55,7 +55,9 @@ export function blogHref(blog: Blog, lng: string): string {
   const lang = (lng || "en") as "en" | "vi";
   const baseSlug =
     (routeMap.blogs as Record<string, string>)[lang] ?? "blogs";
-  const b = blog[lang];
+  // Defensive: a malformed record (missing en/vi) must not crash rendering.
+  const b = blog?.[lang];
+  if (!b?.categorySlug || !b?.slug) return `/${lang}/${baseSlug}`;
   return `/${lang}/${baseSlug}/${b.categorySlug}/${b.slug}`;
 }
 

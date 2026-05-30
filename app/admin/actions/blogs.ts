@@ -1,14 +1,60 @@
 "use server";
 
 import { revalidatePath, revalidateTag } from "next/cache";
+import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { connectToDatabase } from "@/lib/mongoose";
 import BlogModel from "@/models/Blog";
 import type { Blog } from "@/data/blogs";
 import { syncBlogs } from "@/data/sync";
+import { buildFolderPrefix } from "@/lib/r2Key";
+import { relocateImagesToFolder } from "@/lib/r2Move";
+import { r2, R2_BUCKET } from "@/lib/r2";
 
 /** Strip Mongoose/BSON types so data is safe to pass to Client Components */
 function serialize<T>(doc: any): T {
   return JSON.parse(JSON.stringify(doc));
+}
+
+/**
+ * Move a blog's cover image into the folder implied by its (category, title)
+ * under TKM/BLOG, returning the blog data with remapped URL + old R2 keys to
+ * delete once the DB write succeeds. Best-effort: on any error it returns the
+ * data unchanged so the save still proceeds.
+ */
+async function relocateBlogImages(
+  data: Omit<Blog, "id">
+): Promise<{ data: Omit<Blog, "id">; oldKeys: string[] }> {
+  try {
+    const newPrefix = buildFolderPrefix({
+      basePrefix: "TKM/BLOG",
+      categoryLabel: data.vi?.categoryLabel || data.en?.categoryLabel,
+      projectName: data.vi?.title || data.en?.title,
+    });
+    if (!newPrefix) return { data, oldKeys: [] };
+
+    const urls = [data.thumbnail].filter(Boolean);
+    const { map, oldKeys } = await relocateImagesToFolder(urls, newPrefix);
+    if (oldKeys.length === 0) return { data, oldKeys: [] };
+
+    return {
+      data: { ...data, thumbnail: map[data.thumbnail] || data.thumbnail },
+      oldKeys,
+    };
+  } catch (err) {
+    console.warn("[relocateBlogImages] skipped:", err);
+    return { data, oldKeys: [] };
+  }
+}
+
+/** Delete old R2 objects after a successful save (best-effort). */
+async function deleteOldKeys(oldKeys: string[]): Promise<void> {
+  await Promise.all(
+    oldKeys.map((Key) =>
+      r2
+        .send(new DeleteObjectCommand({ Bucket: R2_BUCKET, Key }))
+        .catch((err) => console.warn(`[deleteOldKeys] ${Key}:`, err))
+    )
+  );
 }
 
 export async function getBlogs(): Promise<Blog[]> {
@@ -54,10 +100,14 @@ export async function createBlog(
   try {
     await connectToDatabase();
 
+    // Move cover image into the folder matching the chosen category/title.
+    const { data: relocated, oldKeys } = await relocateBlogImages(newBlog);
+
     const count = await BlogModel.countDocuments();
-    const blogData = { ...newBlog, id: String(count + 1) };
+    const blogData = { ...relocated, id: String(count + 1) };
 
     await BlogModel.create(blogData);
+    await deleteOldKeys(oldKeys);
     await syncBlogs();
     revalidateTag("blogs", "max"); // bust the cached public loader (@/lib/getBlogs)
     revalidatePath("/admin/blogs");
@@ -76,9 +126,13 @@ export async function updateBlog(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     await connectToDatabase();
+
+    // Move cover image into the folder matching the (possibly changed) category/title.
+    const { data: relocated, oldKeys } = await relocateBlogImages(updatedBlog);
+
     const result = await BlogModel.findOneAndUpdate(
       { id },
-      updatedBlog,
+      relocated,
       { returnDocument: 'after', runValidators: true }
     );
 
@@ -86,6 +140,7 @@ export async function updateBlog(
       return { success: false, error: "Blog not found" };
     }
 
+    await deleteOldKeys(oldKeys);
     await syncBlogs();
     revalidateTag("blogs", "max"); // bust the cached public loader (@/lib/getBlogs)
     revalidatePath("/admin/blogs");

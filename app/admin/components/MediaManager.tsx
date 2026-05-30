@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { AlertCircle, Loader2, RefreshCw, Star, Trash2 } from "lucide-react";
+import { AlertCircle, Check, Loader2, RefreshCw, Star, Trash2 } from "lucide-react";
 import { buildFolderPrefix } from "@/lib/r2Key";
 import ImageUploader from "./ImageUploader";
 
@@ -10,9 +10,14 @@ interface MediaManagerProps {
   categoryLabel: string;
   projectName: string;
   thumbnail: string;
-  gallery: string[];
   onChangeThumbnail: (url: string) => void;
-  onChangeGallery: (urls: string[]) => void;
+  /**
+   * "gallery" (default): pick multiple images + a cover (projects).
+   * "cover": pick a single cover image only (blogs — no gallery).
+   */
+  mode?: "gallery" | "cover";
+  gallery?: string[];
+  onChangeGallery?: (urls: string[]) => void;
   disabled?: boolean;
 }
 
@@ -43,11 +48,13 @@ export default function MediaManager({
   categoryLabel,
   projectName,
   thumbnail,
-  gallery,
   onChangeThumbnail,
-  onChangeGallery,
+  mode = "gallery",
+  gallery = [],
+  onChangeGallery = () => {},
   disabled = false,
 }: MediaManagerProps) {
+  const isCover = mode === "cover";
   const [folderImages, setFolderImages] = useState<FolderImage[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -98,10 +105,15 @@ export default function MediaManager({
     ...extras.map((url) => ({ url, inFolder: false, key: keyFromUrl(url) })),
   ];
 
-  const toggleGallery = (url: string) => {
+  // Click a tile: cover mode toggles the single thumbnail; gallery mode toggles
+  // gallery membership (and clears the cover if you un-tick the cover image).
+  const onTileClick = (url: string) => {
+    if (isCover) {
+      onChangeThumbnail(thumbnail === url ? "" : url);
+      return;
+    }
     if (gallery.includes(url)) {
       onChangeGallery(gallery.filter((u) => u !== url));
-      // Un-ticking the cover image clears the cover (a note then shows below).
       if (thumbnail === url) onChangeThumbnail("");
     } else {
       onChangeGallery([...gallery, url]);
@@ -113,16 +125,21 @@ export default function MediaManager({
   };
 
   const handleUploaded = (urls: string[]) => {
-    // Optimistically show + auto-select uploaded images, then reconcile.
+    // Optimistically show uploaded images, then reconcile with the folder.
     setFolderImages((prev) => {
       const have = new Set(prev.map((i) => i.url));
       const added = urls.filter((u) => !have.has(u)).map((u) => ({ key: u, url: u }));
       return [...prev, ...added];
     });
-    const merged = [...gallery];
-    for (const u of urls) if (!merged.includes(u)) merged.push(u);
-    onChangeGallery(merged);
-    if (!thumbnail && urls[0]) onChangeThumbnail(urls[0]);
+    if (isCover) {
+      // Single cover: adopt the first uploaded image if none is set yet.
+      if (!thumbnail && urls[0]) onChangeThumbnail(urls[0]);
+    } else {
+      const merged = [...gallery];
+      for (const u of urls) if (!merged.includes(u)) merged.push(u);
+      onChangeGallery(merged);
+      if (!thumbnail && urls[0]) onChangeThumbnail(urls[0]);
+    }
     fetchFolder();
   };
 
@@ -159,16 +176,19 @@ export default function MediaManager({
         basePrefix={basePrefix}
         categoryLabel={categoryLabel}
         projectName={projectName}
-        multiple
+        multiple={!isCover}
         disabled={disabled}
         onUploaded={handleUploaded}
       />
 
-      {/* Header: count + refresh */}
+      {/* Header: status + refresh */}
       <div className="flex items-center justify-between mb-2">
         <span className="text-xs text-[var(--admin-muted)]">
-          Đã chọn {gallery.length} ảnh (cần tối thiểu 2)
-          {thumbnail ? " · đã đặt ảnh bìa" : ""}
+          {isCover
+            ? thumbnail
+              ? "Đã chọn ảnh bìa"
+              : "Chưa chọn ảnh bìa"
+            : `Đã chọn ${gallery.length} ảnh (cần tối thiểu 2)${thumbnail ? " · đã đặt ảnh bìa" : ""}`}
         </span>
         <button
           type="button"
@@ -184,10 +204,13 @@ export default function MediaManager({
       {/* Constraint notes */}
       {!thumbnail && (
         <div className="mb-2 flex items-center gap-1.5 text-xs text-amber-600 bg-amber-50 border border-amber-100 rounded p-2">
-          <AlertCircle size={14} /> Chưa có ảnh bìa — bấm ngôi sao trên một ảnh để đặt làm ảnh bìa.
+          <AlertCircle size={14} />
+          {isCover
+            ? "Chưa có ảnh bìa — bấm vào một ảnh để chọn làm ảnh bìa."
+            : "Chưa có ảnh bìa — bấm ngôi sao trên một ảnh để đặt làm ảnh bìa."}
         </div>
       )}
-      {gallery.length < 2 && (
+      {!isCover && gallery.length < 2 && (
         <div className="mb-2 flex items-center gap-1.5 text-xs text-amber-600 bg-amber-50 border border-amber-100 rounded p-2">
           <AlertCircle size={14} /> Cần chọn ít nhất 2 ảnh cho dự án.
         </div>
@@ -214,8 +237,8 @@ export default function MediaManager({
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2">
           {allImages.map(({ url, key }) => {
             const order = gallery.indexOf(url); // -1 if not selected
-            const selected = order >= 0;
             const isThumb = thumbnail === url;
+            const selected = isCover ? isThumb : order >= 0;
             const isDeleting = deletingUrl === url;
             return (
               <div
@@ -226,36 +249,46 @@ export default function MediaManager({
                     ? "border-[var(--admin-accent)]"
                     : "border-[var(--admin-border)] hover:border-[var(--admin-muted)]",
                 ].join(" ")}
-                onClick={() => !isDeleting && toggleGallery(url)}
-                title={selected ? "Bỏ chọn khỏi project" : "Chọn vào project"}
+                onClick={() => !isDeleting && onTileClick(url)}
+                title={
+                  isCover
+                    ? selected
+                      ? "Bỏ chọn ảnh bìa"
+                      : "Chọn làm ảnh bìa"
+                    : selected
+                      ? "Bỏ chọn khỏi project"
+                      : "Chọn vào project"
+                }
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={url} alt="" loading="lazy" className="w-full h-full object-cover" />
 
-                {/* Selection order number */}
+                {/* Selection indicator: order number (gallery) or check (cover) */}
                 {selected && (
                   <div className="absolute top-1 left-1 bg-[var(--admin-accent)] text-white rounded-full w-5 h-5 flex items-center justify-center text-[11px] font-bold shadow">
-                    {order + 1}
+                    {isCover ? <Check size={12} strokeWidth={3} /> : order + 1}
                   </div>
                 )}
 
-                {/* Set-as-thumbnail star */}
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setThumb(url);
-                  }}
-                  className={[
-                    "absolute top-1 right-1 rounded-full p-1 shadow transition-colors",
-                    isThumb
-                      ? "bg-yellow-400 text-white"
-                      : "bg-black/40 text-white opacity-0 group-hover:opacity-100 hover:bg-black/70",
-                  ].join(" ")}
-                  title={isThumb ? "Đang là ảnh bìa (bấm để bỏ)" : "Đặt làm ảnh bìa"}
-                >
-                  <Star size={12} fill={isThumb ? "currentColor" : "none"} />
-                </button>
+                {/* Set-as-thumbnail star — gallery mode only (cover = click selects) */}
+                {!isCover && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setThumb(url);
+                    }}
+                    className={[
+                      "absolute top-1 right-1 rounded-full p-1 shadow transition-colors",
+                      isThumb
+                        ? "bg-yellow-400 text-white"
+                        : "bg-black/40 text-white opacity-0 group-hover:opacity-100 hover:bg-black/70",
+                    ].join(" ")}
+                    title={isThumb ? "Đang là ảnh bìa (bấm để bỏ)" : "Đặt làm ảnh bìa"}
+                  >
+                    <Star size={12} fill={isThumb ? "currentColor" : "none"} />
+                  </button>
+                )}
 
                 {/* Delete (R2) — for any image stored under our bucket key */}
                 {key && (

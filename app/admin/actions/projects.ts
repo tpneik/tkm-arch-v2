@@ -1,14 +1,63 @@
 "use server";
 
 import { revalidatePath, revalidateTag } from "next/cache";
+import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { connectToDatabase } from "@/lib/mongoose";
 import ProjectModel from "@/models/Project";
 import type { Project } from "@/data/projects";
 import { syncProjects } from "@/data/sync";
+import { buildFolderPrefix } from "@/lib/r2Key";
+import { relocateImagesToFolder } from "@/lib/r2Move";
+import { r2, R2_BUCKET } from "@/lib/r2";
 
 /** Strip Mongoose/BSON types so data is safe to pass to Client Components */
 function serialize<T>(doc: any): T {
   return JSON.parse(JSON.stringify(doc));
+}
+
+/**
+ * Move a project's images into the folder implied by its (category, title),
+ * returning the project data with remapped URLs + the old R2 keys to delete
+ * once the DB write succeeds. Best-effort: on any R2 error it returns the data
+ * unchanged so the save still proceeds.
+ */
+async function relocateProjectImages(
+  data: Omit<Project, "id">
+): Promise<{ data: Omit<Project, "id">; oldKeys: string[] }> {
+  try {
+    const newPrefix = buildFolderPrefix({
+      categoryLabel: data.vi?.categoryLabel || data.en?.categoryLabel,
+      projectName: data.vi?.title || data.en?.title,
+    });
+    if (!newPrefix) return { data, oldKeys: [] };
+
+    const urls = [data.thumbnail, ...(data.gallery ?? [])].filter(Boolean);
+    const { map, oldKeys } = await relocateImagesToFolder(urls, newPrefix);
+    if (oldKeys.length === 0) return { data, oldKeys: [] };
+
+    return {
+      data: {
+        ...data,
+        thumbnail: map[data.thumbnail] || data.thumbnail,
+        gallery: (data.gallery ?? []).map((u) => map[u] || u),
+      },
+      oldKeys,
+    };
+  } catch (err) {
+    console.warn("[relocateProjectImages] skipped:", err);
+    return { data, oldKeys: [] };
+  }
+}
+
+/** Delete old R2 objects after a successful save (best-effort). */
+async function deleteOldKeys(oldKeys: string[]): Promise<void> {
+  await Promise.all(
+    oldKeys.map((Key) =>
+      r2
+        .send(new DeleteObjectCommand({ Bucket: R2_BUCKET, Key }))
+        .catch((err) => console.warn(`[deleteOldKeys] ${Key}:`, err))
+    )
+  );
 }
 
 export async function getProjects(): Promise<Project[]> {
@@ -58,11 +107,15 @@ export async function createProject(
   try {
     await connectToDatabase();
 
+    // Move images into the folder matching the chosen category/title.
+    const { data: relocated, oldKeys } = await relocateProjectImages(newProject);
+
     // Auto-generate id
     const count = await ProjectModel.countDocuments();
-    const projectData = { ...newProject, id: String(count + 1) };
+    const projectData = { ...relocated, id: String(count + 1) };
 
     await ProjectModel.create(projectData);
+    await deleteOldKeys(oldKeys);
     await syncProjects();
     revalidateTag("projects", "max"); // bust the cached public loader (@/lib/getProjects)
     revalidatePath("/admin/projects");
@@ -81,9 +134,13 @@ export async function updateProject(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     await connectToDatabase();
+
+    // Move images into the folder matching the (possibly changed) category/title.
+    const { data: relocated, oldKeys } = await relocateProjectImages(updatedProject);
+
     const result = await ProjectModel.findOneAndUpdate(
       { id },
-      updatedProject,
+      relocated,
       { returnDocument: 'after', runValidators: true }
     );
 
@@ -91,6 +148,7 @@ export async function updateProject(
       return { success: false, error: "Project not found" };
     }
 
+    await deleteOldKeys(oldKeys);
     await syncProjects();
     revalidateTag("projects", "max"); // bust the cached public loader (@/lib/getProjects)
     revalidatePath("/admin/projects");

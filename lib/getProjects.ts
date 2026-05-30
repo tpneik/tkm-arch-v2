@@ -26,7 +26,7 @@ async function queryProjects(): Promise<Project[]> {
     { $project: { _numId: 0 } },
   ]);
 
-  return docs.map((d) =>
+  const projects = docs.map((d) =>
     // JSON round-trip strips ObjectId / Mongoose internals → plain serializable.
     JSON.parse(
       JSON.stringify({
@@ -39,6 +39,14 @@ async function queryProjects(): Promise<Project[]> {
       })
     )
   ) as Project[];
+
+  // Drop malformed docs (missing en/vi) — `aggregate` does NOT apply schema
+  // defaults, so a document lacking these fields would crash rendering.
+  return projects.filter((p) => {
+    const ok = p && p.en && p.vi;
+    if (!ok) console.warn(`[getProjects] skipping malformed project id=${p?.id}`);
+    return ok;
+  });
 }
 
 /** Cached + tagged. Bust via `revalidateTag("projects")` after any mutation. */

@@ -21,7 +21,7 @@ async function queryBlogs(): Promise<Blog[]> {
   await connectToDatabase();
   const docs = await BlogModel.find({}).sort({ date: -1 }).lean();
 
-  return docs.map((d) =>
+  const blogs = docs.map((d) =>
     // JSON round-trip strips ObjectId / Mongoose internals → plain serializable.
     JSON.parse(
       JSON.stringify({
@@ -34,6 +34,14 @@ async function queryBlogs(): Promise<Blog[]> {
       })
     )
   ) as Blog[];
+
+  // Drop malformed docs (missing en/vi) — `.lean()` does NOT apply schema
+  // defaults, so a document lacking these fields would crash rendering.
+  return blogs.filter((b) => {
+    const ok = b && b.en && b.vi;
+    if (!ok) console.warn(`[getBlogs] skipping malformed blog id=${b?.id}`);
+    return ok;
+  });
 }
 
 /** Cached + tagged. Bust via `revalidateTag("blogs")` after any mutation. */

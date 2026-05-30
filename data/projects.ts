@@ -56,7 +56,9 @@ export function projectHref(project: Project, lng: string): string {
   const lang = (lng || "en") as "en" | "vi";
   const baseSlug =
     (routeMap.projects as Record<string, string>)[lang] ?? "projects";
-  const p = project[lang];
+  // Defensive: a malformed record (missing en/vi) must not crash rendering.
+  const p = project?.[lang];
+  if (!p?.categorySlug || !p?.slug) return `/${lang}/${baseSlug}`;
   return `/${lang}/${baseSlug}/${p.categorySlug}/${p.slug}`;
 }
 

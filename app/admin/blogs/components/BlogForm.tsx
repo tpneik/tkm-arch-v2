@@ -8,7 +8,7 @@ import { createBlog, updateBlog } from "../../actions/blogs";
 import { createBlogCategory } from "../../actions/categories";
 import { Save, Plus, ArrowLeft, X, Check } from "lucide-react";
 import Link from "next/link";
-import ImageUploader from "@/app/admin/components/ImageUploader";
+import MediaManager from "@/app/admin/components/MediaManager";
 
 // Auto-generate slug from title
 const generateSlug = (title: string): string => {
@@ -139,8 +139,15 @@ export default function BlogForm({ initialData, initialCategories = [] }: BlogFo
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
+
+    // Blog needs a cover image.
+    if (!thumbnail.trim()) {
+      setError("Cần chọn 1 ảnh bìa (bấm vào một ảnh trong phần Media).");
+      return;
+    }
+
+    setLoading(true);
 
     const blogData: Omit<Blog, "id"> = {
       category,
@@ -264,6 +271,34 @@ export default function BlogForm({ initialData, initialCategories = [] }: BlogFo
             <TextAreaField label="Excerpt" value={viExcerpt} onChange={(e: any) => setViExcerpt(e.target.value)} required rows={3} />
             <TextAreaField label="Content (Markdown)" value={viContent} onChange={(e: any) => setViContent(e.target.value)} required rows={12} />
           </div>
+
+          {/* Media (cover) */}
+          <div className="bg-[var(--admin-card-bg)] p-4 sm:p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)]">
+            <h2 className="text-lg font-bold mb-6 pb-2 border-b border-[var(--admin-border)] flex items-center gap-2">
+              <span className="text-2xl">🖼️</span> Ảnh bìa
+            </h2>
+
+            {/* Current cover preview */}
+            {thumbnail && (
+              <div className="mb-4">
+                <p className="text-xs text-[var(--admin-muted)] mb-1 uppercase tracking-wide">Ảnh bìa</p>
+                <div className="aspect-video relative rounded-lg overflow-hidden border border-[var(--admin-border)] max-w-md">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={thumbnail} alt="Cover" className="w-full h-full object-cover" />
+                </div>
+              </div>
+            )}
+
+            <MediaManager
+              basePrefix="TKM/BLOG"
+              categoryLabel={uploadCategory}
+              projectName={uploadTitle}
+              thumbnail={thumbnail}
+              onChangeThumbnail={setThumbnail}
+              mode="cover"
+              disabled={uploadDisabled}
+            />
+          </div>
         </div>
 
         {/* Sidebar Column */}
@@ -353,30 +388,6 @@ export default function BlogForm({ initialData, initialCategories = [] }: BlogFo
             />
           </div>
 
-          {/* Thumbnail */}
-          <div className="bg-[var(--admin-card-bg)] p-4 sm:p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)]">
-            <h3 className="text-lg font-bold mb-4 pb-2 border-b border-[var(--admin-border)]">Thumbnail</h3>
-            <ImageUploader
-              basePrefix="TKM/BLOG"
-              categoryLabel={uploadCategory}
-              projectName={uploadTitle}
-              multiple={false}
-              disabled={uploadDisabled}
-              onUploaded={(urls) => setThumbnail(urls[0])}
-            />
-            <input
-              type="text"
-              value={thumbnail}
-              onChange={(e) => setThumbnail(e.target.value)}
-              placeholder="https://... (hoặc tải ảnh lên ở trên)"
-              className="w-full px-3 py-2 text-sm bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)]"
-            />
-            {thumbnail && (
-              <div className="mt-3 aspect-video relative rounded-lg overflow-hidden border border-[var(--admin-border)]">
-                <img src={thumbnail} alt="Thumbnail preview" className="object-cover w-full h-full" />
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </form>
