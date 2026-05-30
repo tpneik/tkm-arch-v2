@@ -15,6 +15,19 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      // /admin has no page of its own — route it straight to the projects view.
+      // Done here (routing layer) rather than via a redirect() server component,
+      // which renders in ~0ms and trips React dev's perf measurement
+      // ("cannot have a negative time stamp").
+      {
+        source: "/admin",
+        destination: "/admin/projects",
+        permanent: false,
+      },
+    ];
+  },
   async rewrites() {
     // Auto-generate rewrites from the route map
     const rewrites: { source: string; destination: string }[] = [];
