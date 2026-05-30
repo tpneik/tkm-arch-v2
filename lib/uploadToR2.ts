@@ -14,6 +14,8 @@ export interface UploadOpts {
   basePrefix?: string; // e.g. "TKM/BLOG"; defaults server-side to TKM/CONGTRINH
   categoryLabel: string;
   projectName: string;
+  /** Explicit target folder (project's real R2 folder); overrides category/title. */
+  folderPrefix?: string;
 }
 
 /** Allowed image MIME types (kept in sync with the server allowlist). */
@@ -57,6 +59,7 @@ export async function uploadFileToR2(file: File, opts: UploadOpts): Promise<stri
       basePrefix: opts.basePrefix,
       categoryLabel: opts.categoryLabel,
       projectName: opts.projectName,
+      folderPrefix: opts.folderPrefix,
       filename: file.name,
       contentType,
     }),

@@ -11,6 +11,8 @@ interface ImageUploaderProps {
   categoryLabel: string;
   /** Project/blog title (used to build the bucket folder). */
   projectName: string;
+  /** Explicit target folder (project's real R2 folder); overrides category/title. */
+  folderPrefix?: string;
   /** Allow selecting multiple files (gallery). */
   multiple?: boolean;
   /** Called with the public URL(s) of successfully uploaded image(s). */
@@ -25,6 +27,7 @@ export default function ImageUploader({
   basePrefix,
   categoryLabel,
   projectName,
+  folderPrefix,
   multiple = false,
   onUploaded,
   disabled = false,
@@ -63,7 +66,7 @@ export default function ImageUploader({
     const results = await Promise.all(
       valid.map(async (file) => {
         try {
-          const url = await uploadFileToR2(file, { basePrefix, categoryLabel, projectName });
+          const url = await uploadFileToR2(file, { basePrefix, categoryLabel, projectName, folderPrefix });
           return { url };
         } catch (err) {
           const msg = err instanceof Error ? err.message : "tải lên thất bại.";

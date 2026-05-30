@@ -38,7 +38,14 @@ export async function GET(req: NextRequest) {
     sp.get("categoryLabel") ||
     (sp.get("categorySlug") ? labelFromSlug(sp.get("categorySlug")!) : "");
 
-  const prefix = buildFolderPrefix({ basePrefix, categoryLabel, projectName });
+  // Prefer an explicit folder prefix (the project's real R2 folder, derived
+  // client-side from its existing image URLs). Fall back to building one from
+  // category + title (used for brand-new projects with no images yet).
+  const explicit = (sp.get("prefix") || "").trim();
+  const prefix =
+    explicit && explicit.startsWith("TKM/") && !explicit.includes("..")
+      ? explicit.replace(/\/+$/g, "") + "/"
+      : buildFolderPrefix({ basePrefix, categoryLabel, projectName });
   if (!prefix) {
     // Folder not determinable yet (missing category/title) — return empty.
     return NextResponse.json({ prefix: "", images: [] });

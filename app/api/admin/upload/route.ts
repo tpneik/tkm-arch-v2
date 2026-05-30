@@ -3,7 +3,7 @@ import { HeadObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { requireAdmin } from "@/lib/requireAdmin";
 import { r2, R2_BUCKET, R2_PUBLIC_BASE, assertR2Env } from "@/lib/r2";
-import { buildObjectKey, encodeKeyToPublicUrl } from "@/lib/r2Key";
+import { buildObjectKey, encodeKeyToPublicUrl, sanitizeFilename } from "@/lib/r2Key";
 import categoriesData from "@/data/categories.json";
 
 const ALLOWED_TYPES = new Set([
@@ -21,6 +21,9 @@ interface UploadBody {
   projectName?: string;
   filename?: string;
   contentType?: string;
+  /** Explicit target folder (e.g. a project's real R2 folder). Overrides the
+   *  category/title-derived key so uploads land in the folder being browsed. */
+  folderPrefix?: string;
 }
 
 const errMsg = (e: unknown): string => (e instanceof Error ? e.message : String(e));
@@ -87,10 +90,16 @@ export async function POST(req: NextRequest) {
   }
 
   let key: string;
-  try {
-    key = buildObjectKey({ basePrefix, categoryLabel, projectName, filename });
-  } catch (err) {
-    return NextResponse.json({ error: errMsg(err) }, { status: 400 });
+  const folderPrefix = body?.folderPrefix?.trim();
+  if (folderPrefix && folderPrefix.startsWith("TKM/") && !folderPrefix.includes("..")) {
+    // Upload into the explicit folder being browsed (project's real folder).
+    key = folderPrefix.replace(/\/+$/g, "") + "/" + sanitizeFilename(filename);
+  } else {
+    try {
+      key = buildObjectKey({ basePrefix, categoryLabel, projectName, filename });
+    } catch (err) {
+      return NextResponse.json({ error: errMsg(err) }, { status: 400 });
+    }
   }
 
   const publicUrl = encodeKeyToPublicUrl(key, R2_PUBLIC_BASE);

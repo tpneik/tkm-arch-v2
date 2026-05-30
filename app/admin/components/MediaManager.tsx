@@ -43,6 +43,21 @@ function keyFromUrl(url: string): string | undefined {
   }
 }
 
+/**
+ * The project's root folder = the first `depth` segments of an object key
+ * (basePrefix + category + project). Used to list the project's REAL folder
+ * — legacy bucket folders were named by hand and don't match the
+ * title-derived prefix, so we derive it from existing image keys instead.
+ */
+function folderAtDepth(key: string, depth: number): string {
+  const segs = key.split("/");
+  if (segs.length <= depth) {
+    const dir = segs.slice(0, -1);
+    return dir.length ? dir.join("/") + "/" : "";
+  }
+  return segs.slice(0, depth).join("/") + "/";
+}
+
 export default function MediaManager({
   basePrefix,
   categoryLabel,
@@ -66,7 +81,21 @@ export default function MediaManager({
     Array.from(new Set([...gallery, thumbnail].filter(Boolean)))
   );
 
-  const prefix = buildFolderPrefix({ basePrefix, categoryLabel, projectName });
+  // Resolve the folder to browse. Prefer the project's REAL folder, derived
+  // from its existing image keys (legacy folders were named by hand and don't
+  // match the title-derived prefix). Fall back to the computed prefix for new
+  // projects that have no images yet.
+  const base = (basePrefix || "TKM/CONGTRINH").replace(/^\/+|\/+$/g, "");
+  const folderDepth = base.split("/").length + 2; // base + category + project
+  const computedPrefix = buildFolderPrefix({ basePrefix, categoryLabel, projectName });
+  const derivedPrefix = (() => {
+    for (const u of persistedUrls) {
+      const k = keyFromUrl(u);
+      if (k) return folderAtDepth(k, folderDepth);
+    }
+    return "";
+  })();
+  const prefix = derivedPrefix || computedPrefix;
 
   const fetchFolder = useCallback(async () => {
     if (!prefix) {
@@ -76,8 +105,7 @@ export default function MediaManager({
     setLoading(true);
     setError(null);
     try {
-      const params = new URLSearchParams({ categoryLabel, projectName });
-      if (basePrefix) params.set("basePrefix", basePrefix);
+      const params = new URLSearchParams({ prefix });
       const res = await fetch(`/api/admin/media?${params.toString()}`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Không tải được danh sách ảnh.");
@@ -87,7 +115,7 @@ export default function MediaManager({
     } finally {
       setLoading(false);
     }
-  }, [prefix, basePrefix, categoryLabel, projectName]);
+  }, [prefix]);
 
   // Debounce fetch so typing the title doesn't fire a request per keystroke.
   useEffect(() => {
@@ -176,6 +204,7 @@ export default function MediaManager({
         basePrefix={basePrefix}
         categoryLabel={categoryLabel}
         projectName={projectName}
+        folderPrefix={prefix}
         multiple={!isCover}
         disabled={disabled}
         onUploaded={handleUploaded}

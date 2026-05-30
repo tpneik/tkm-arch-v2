@@ -6,8 +6,8 @@ import { connectToDatabase } from "@/lib/mongoose";
 import ProjectModel from "@/models/Project";
 import type { Project } from "@/data/projects";
 import { syncProjects } from "@/data/sync";
-import { buildFolderPrefix } from "@/lib/r2Key";
-import { relocateImagesToFolder } from "@/lib/r2Move";
+import { DEFAULT_BASE_PREFIX } from "@/lib/r2Key";
+import { relocateImagesByCategory } from "@/lib/r2Move";
 import { r2, R2_BUCKET } from "@/lib/r2";
 
 /** Strip Mongoose/BSON types so data is safe to pass to Client Components */
@@ -24,29 +24,22 @@ function serialize<T>(doc: any): T {
 async function relocateProjectImages(
   data: Omit<Project, "id">
 ): Promise<{ data: Omit<Project, "id">; oldKeys: string[] }> {
-  try {
-    const newPrefix = buildFolderPrefix({
-      categoryLabel: data.vi?.categoryLabel || data.en?.categoryLabel,
-      projectName: data.vi?.title || data.en?.title,
-    });
-    if (!newPrefix) return { data, oldKeys: [] };
+  const urls = [data.thumbnail, ...(data.gallery ?? [])].filter(Boolean);
+  const { map, oldKeys } = await relocateImagesByCategory({
+    urls,
+    basePrefix: DEFAULT_BASE_PREFIX,
+    newCategoryLabel: data.vi?.categoryLabel || data.en?.categoryLabel,
+  });
+  if (oldKeys.length === 0) return { data, oldKeys: [] };
 
-    const urls = [data.thumbnail, ...(data.gallery ?? [])].filter(Boolean);
-    const { map, oldKeys } = await relocateImagesToFolder(urls, newPrefix);
-    if (oldKeys.length === 0) return { data, oldKeys: [] };
-
-    return {
-      data: {
-        ...data,
-        thumbnail: map[data.thumbnail] || data.thumbnail,
-        gallery: (data.gallery ?? []).map((u) => map[u] || u),
-      },
-      oldKeys,
-    };
-  } catch (err) {
-    console.warn("[relocateProjectImages] skipped:", err);
-    return { data, oldKeys: [] };
-  }
+  return {
+    data: {
+      ...data,
+      thumbnail: map[data.thumbnail] || data.thumbnail,
+      gallery: (data.gallery ?? []).map((u) => map[u] || u),
+    },
+    oldKeys,
+  };
 }
 
 /** Delete old R2 objects after a successful save (best-effort). */
