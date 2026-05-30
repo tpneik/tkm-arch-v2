@@ -8,7 +8,8 @@ import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { projectHref, projects } from "@/data/projects";
+import { projectHref } from "@/data/projects";
+import type { Project } from "@/data/projects";
 
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
@@ -90,7 +91,7 @@ function RelatedCard({
   lang,
   index,
 }: {
-  project: (typeof projects)[number];
+  project: Project;
   lang: "en" | "vi";
   index: number;
 }) {
@@ -161,7 +162,7 @@ function RelatedCard({
   );
 }
 
-const ProjectDetail = () => {
+const ProjectDetailClient = ({ projects }: { projects: Project[] }) => {
   const params = useParams<{ categorySlug: string; slug: string; lng: string }>();
   const { categorySlug, slug, lng } = params;
   const router = useRouter();
@@ -422,4 +423,4 @@ const ProjectDetail = () => {
   );
 };
 
-export default ProjectDetail;
+export default ProjectDetailClient;

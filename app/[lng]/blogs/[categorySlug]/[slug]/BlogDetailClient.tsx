@@ -6,12 +6,13 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { blogHref, formatBlogDate, blogs } from "@/data/blogs";
+import { blogHref, formatBlogDate } from "@/data/blogs";
+import type { Blog } from "@/data/blogs";
 
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
 
-const BlogDetail = () => {
+const BlogDetailClient = ({ blogs }: { blogs: Blog[] }) => {
   const params = useParams<{ categorySlug: string; slug: string; lng: string }>();
   const { categorySlug, slug, lng } = params;
   const { t } = useT("common");
@@ -255,4 +256,4 @@ const BlogDetail = () => {
   );
 };
 
-export default BlogDetail;
+export default BlogDetailClient;

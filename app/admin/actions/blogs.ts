@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { connectToDatabase } from "@/lib/mongoose";
 import BlogModel from "@/models/Blog";
 import type { Blog } from "@/data/blogs";
@@ -59,6 +59,7 @@ export async function createBlog(
 
     await BlogModel.create(blogData);
     await syncBlogs();
+    revalidateTag("blogs", "max"); // bust the cached public loader (@/lib/getBlogs)
     revalidatePath("/admin/blogs");
     revalidatePath("/en/blogs");
     revalidatePath("/vi/bai-viet");
@@ -86,6 +87,7 @@ export async function updateBlog(
     }
 
     await syncBlogs();
+    revalidateTag("blogs", "max"); // bust the cached public loader (@/lib/getBlogs)
     revalidatePath("/admin/blogs");
     revalidatePath("/en/blogs");
     revalidatePath("/vi/bai-viet");
@@ -108,6 +110,7 @@ export async function deleteBlog(
     }
 
     await syncBlogs();
+    revalidateTag("blogs", "max"); // bust the cached public loader (@/lib/getBlogs)
     revalidatePath("/admin/blogs");
     revalidatePath("/en/blogs");
     revalidatePath("/vi/bai-viet");

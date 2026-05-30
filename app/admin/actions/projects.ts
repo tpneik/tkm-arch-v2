@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { connectToDatabase } from "@/lib/mongoose";
 import ProjectModel from "@/models/Project";
 import type { Project } from "@/data/projects";
@@ -64,6 +64,7 @@ export async function createProject(
 
     await ProjectModel.create(projectData);
     await syncProjects();
+    revalidateTag("projects", "max"); // bust the cached public loader (@/lib/getProjects)
     revalidatePath("/admin/projects");
     revalidatePath("/en/projects");
     revalidatePath("/vi/du-an");
@@ -91,6 +92,7 @@ export async function updateProject(
     }
 
     await syncProjects();
+    revalidateTag("projects", "max"); // bust the cached public loader (@/lib/getProjects)
     revalidatePath("/admin/projects");
     revalidatePath("/en/projects");
     revalidatePath("/vi/du-an");
@@ -113,6 +115,7 @@ export async function deleteProject(
     }
 
     await syncProjects();
+    revalidateTag("projects", "max"); // bust the cached public loader (@/lib/getProjects)
     revalidatePath("/admin/projects");
     revalidatePath("/en/projects");
     revalidatePath("/vi/du-an");
@@ -153,6 +156,7 @@ export async function reorderProjects(
     }
 
     await syncProjects();
+    revalidateTag("projects", "max"); // bust the cached public loader (@/lib/getProjects)
     revalidatePath("/admin/projects");
     revalidatePath("/en/projects");
     revalidatePath("/vi/du-an");

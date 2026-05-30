@@ -7,20 +7,19 @@ import { motion } from "motion/react";
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { blogHref, formatBlogDate, blogs as allBlogs, blogCategoryList } from "@/data/blogs";
+import { blogHref, formatBlogDate, blogCategoryList } from "@/data/blogs";
+import type { Blog } from "@/data/blogs";
 
 const ITEMS_PER_PAGE = 6;
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
 
-const BlogsPage = () => {
+const BlogsClient = ({ blogs }: { blogs: Blog[] }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { lng } = useParams<{ lng: string }>();
   const { t } = useT("common");
   const lang = (lng || "en") as "en" | "vi";
-
-  const blogs = allBlogs;
 
   const filter = searchParams.get("filter") || "all";
   const [currentPage, setCurrentPage] = useState(1);
@@ -175,4 +174,4 @@ const BlogsPage = () => {
   );
 };
 
-export default BlogsPage;
+export default BlogsClient;

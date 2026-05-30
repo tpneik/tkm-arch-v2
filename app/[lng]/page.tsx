@@ -2,13 +2,15 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
+import { getProjects } from "@/lib/getProjects";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjects();
   return (
     <>
       <Hero />
       <Services />
-      <Portfolio />
+      <Portfolio projects={projects} />
       <Contact />
     </>
   );

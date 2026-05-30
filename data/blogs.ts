@@ -1,5 +1,4 @@
 import { routeMap } from "@/i18n/routes";
-import blogData from "./blogs.json";
 import {
   blogCategories as blogCategoryList,
   getBlogCategorySlugs,
@@ -32,8 +31,10 @@ export { blogCategoryList, getBlogCategorySlugs, getBlogCategoryLabels };
 
 /* ──────────────────── Data ──────────────────── */
 
-/** All blogs — imported from blogs.json (single source of truth) */
-export const blogs: Blog[] = blogData as Blog[];
+// NOTE: Blog data is no longer statically imported here. The public site loads
+// it at runtime via the cached server loader `@/lib/getBlogs` (reads MongoDB,
+// cached + tagged "blogs"). This module now only holds pure types/helpers so it
+// stays safe to import from Client Components without bundling any dataset.
 
 /** Unique category list for filter UI (slugs) */
 export const blogCategories: string[] = getBlogCategorySlugs();
@@ -56,20 +57,6 @@ export function blogHref(blog: Blog, lng: string): string {
     (routeMap.blogs as Record<string, string>)[lang] ?? "blogs";
   const b = blog[lang];
   return `/${lang}/${baseSlug}/${b.categorySlug}/${b.slug}`;
-}
-
-/**
- * Find a blog index by categorySlug + slug combo for a given language.
- * Returns -1 if not found.
- */
-export function findBlogBySlugs(
-  categorySlug: string,
-  slug: string,
-  lang: "en" | "vi"
-): number {
-  return blogs.findIndex(
-    (b) => b[lang].categorySlug === categorySlug && b[lang].slug === slug
-  );
 }
 
 /**

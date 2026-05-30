@@ -1,5 +1,4 @@
 import { routeMap } from "@/i18n/routes";
-import projectData from "./projects.json";
 import {
   projectCategories,
   getProjectCategorySlugs,
@@ -32,10 +31,11 @@ export { projectCategories, getProjectCategorySlugs, getProjectCategoryLabels };
 
 /* ──────────────────── Data ──────────────────── */
 
-/** All projects — imported from projects.json, sorted by numeric ID */
-export const projects: Project[] = (projectData as Project[]).sort(
-  (a, b) => Number(a.id) - Number(b.id)
-);
+// NOTE: Project data is no longer statically imported here. The public site
+// loads it at runtime via the cached server loader `@/lib/getProjects`
+// (reads MongoDB, cached + tagged "projects"). This module now only holds
+// pure types/helpers so it stays safe to import from Client Components
+// without bundling any dataset.
 
 /** Unique category list for filter UI (slugs) */
 export const categories: string[] = getProjectCategorySlugs();
@@ -60,25 +60,3 @@ export function projectHref(project: Project, lng: string): string {
   return `/${lang}/${baseSlug}/${p.categorySlug}/${p.slug}`;
 }
 
-/**
- * Find a project index by categorySlug + slug combo for a given language.
- * Returns -1 if not found.
- */
-export function findProjectBySlugs(
-  categorySlug: string,
-  slug: string,
-  lang: "en" | "vi"
-): number {
-  // Try current language first
-  let idx = projects.findIndex(
-    (p) => p[lang].categorySlug === categorySlug && p[lang].slug === slug
-  );
-  // Fallback: try the other language
-  if (idx < 0) {
-    const otherLang = lang === "en" ? "vi" : "en";
-    idx = projects.findIndex(
-      (p) => p[otherLang].categorySlug === categorySlug && p[otherLang].slug === slug
-    );
-  }
-  return idx;
-}

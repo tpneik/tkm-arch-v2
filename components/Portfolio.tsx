@@ -10,7 +10,6 @@ import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
 import { projectHref } from "@/data/projects";
 import type { Project } from "@/data/projects";
-import { projects as allProjects } from "@/data/projects";
 
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
@@ -98,12 +97,10 @@ function PortfolioCard({
   );
 }
 
-export default function Portfolio() {
+export default function Portfolio({ projects }: { projects: Project[] }) {
   const { t } = useT("common");
   const { lng } = useParams<{ lng: string }>();
   const lang = (lng || "en") as "en" | "vi";
-
-  const projects = allProjects;
 
   // Show only first 6 projects on home page
   const featuredProjects = projects.slice(0, 6);

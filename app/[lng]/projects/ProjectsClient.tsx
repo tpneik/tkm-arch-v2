@@ -8,7 +8,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { projectHref, projects as allProjects } from "@/data/projects";
+import { projectHref } from "@/data/projects";
+import type { Project } from "@/data/projects";
 
 const ITEMS_PER_PAGE = 6;
 const DEFAULT_IMG =
@@ -47,7 +48,7 @@ function ProjectCard({
   lang,
   priority = false,
 }: {
-  project: (typeof allProjects)[number];
+  project: Project;
   lang: "en" | "vi";
   priority?: boolean;
 }) {
@@ -108,14 +109,12 @@ function ProjectCard({
   );
 }
 
-const ProjectsPage = () => {
+const ProjectsClient = ({ projects }: { projects: Project[] }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { lng } = useParams<{ lng: string }>();
   const { t } = useT("common");
   const lang = (lng || "en") as "en" | "vi";
-
-  const projects = allProjects;
 
   const filter = searchParams.get("filter") || "all";
   const [currentPage, setCurrentPage] = useState(1);
@@ -277,4 +276,4 @@ const ProjectsPage = () => {
   );
 };
 
-export default ProjectsPage;
+export default ProjectsClient;
