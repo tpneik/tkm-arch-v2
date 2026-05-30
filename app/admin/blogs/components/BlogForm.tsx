@@ -8,6 +8,7 @@ import { createBlog, updateBlog } from "../../actions/blogs";
 import { createBlogCategory } from "../../actions/categories";
 import { Save, Plus, ArrowLeft, X, Check } from "lucide-react";
 import Link from "next/link";
+import ImageUploader from "@/app/admin/components/ImageUploader";
 
 // Auto-generate slug from title
 const generateSlug = (title: string): string => {
@@ -72,6 +73,12 @@ export default function BlogForm({ initialData, initialCategories = [] }: BlogFo
   const viCategoryLabel = selectedCat?.vi.label ?? "";
   const enCategorySlug = generateSlug(enCategoryLabel);
   const viCategorySlug = generateSlug(viCategoryLabel);
+
+  // For R2 upload folders: prefer VI, fall back to EN so the uploader unlocks
+  // as soon as a category + either title is filled.
+  const uploadCategory = viCategoryLabel || enCategoryLabel;
+  const uploadTitle = viTitle || enTitle;
+  const uploadDisabled = !uploadCategory || !uploadTitle;
 
   // ── Dirty tracking ──
   const isDirty = (() => {
@@ -349,11 +356,19 @@ export default function BlogForm({ initialData, initialCategories = [] }: BlogFo
           {/* Thumbnail */}
           <div className="bg-[var(--admin-card-bg)] p-4 sm:p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)]">
             <h3 className="text-lg font-bold mb-4 pb-2 border-b border-[var(--admin-border)]">Thumbnail</h3>
+            <ImageUploader
+              basePrefix="TKM/BLOG"
+              categoryLabel={uploadCategory}
+              projectName={uploadTitle}
+              multiple={false}
+              disabled={uploadDisabled}
+              onUploaded={(urls) => setThumbnail(urls[0])}
+            />
             <input
               type="text"
               value={thumbnail}
               onChange={(e) => setThumbnail(e.target.value)}
-              placeholder="https://..."
+              placeholder="https://... (hoặc tải ảnh lên ở trên)"
               className="w-full px-3 py-2 text-sm bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)]"
             />
             {thumbnail && (

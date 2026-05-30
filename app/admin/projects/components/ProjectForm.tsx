@@ -8,7 +8,7 @@ import { createProject, updateProject } from "../../actions/projects";
 import { createProjectCategory } from "../../actions/categories";
 import { Save, Plus, Trash2, ArrowLeft, X, Check } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import MediaManager from "@/app/admin/components/MediaManager";
 
 interface DetailField {
   key: string;
@@ -104,6 +104,12 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
   const enCategorySlug = generateSlug(enCategoryLabel);
   const viCategorySlug = generateSlug(viCategoryLabel);
 
+  // For R2 upload folders: prefer VI, fall back to EN so the uploader unlocks
+  // as soon as a category + either title is filled.
+  const uploadCategory = viCategoryLabel || enCategoryLabel;
+  const uploadTitle = viTitle || enTitle;
+  const uploadDisabled = !uploadCategory || !uploadTitle;
+
   // ── Dirty tracking: only enable Save when something changed ──
   const isDirty = (() => {
     if (!initialData) return true; // create mode — always saveable
@@ -164,8 +170,20 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
+
+    // Media constraints: at least 2 images selected + a cover image.
+    const selectedImages = gallery.filter((url) => url.trim() !== "");
+    if (selectedImages.length < 2) {
+      setError("Cần chọn ít nhất 2 ảnh cho dự án.");
+      return;
+    }
+    if (!thumbnail.trim()) {
+      setError("Cần chọn 1 ảnh bìa (bấm ngôi sao trên ảnh).");
+      return;
+    }
+
+    setLoading(true);
 
     const projectData: Omit<Project, "id"> = {
       category,
@@ -337,6 +355,34 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
             <TextAreaField label="Description" value={viDescription} onChange={(e: any) => setViDescription(e.target.value)} required />
             <DetailsEditor title="Project Details (VI)" fields={viDetails} setFields={setViDetails} />
           </div>
+
+          {/* Media */}
+          <div className="bg-[var(--admin-card-bg)] p-4 sm:p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)]">
+            <h2 className="text-lg font-bold mb-6 pb-2 border-b border-[var(--admin-border)] flex items-center gap-2">
+              <span className="text-2xl">🖼️</span> Media
+            </h2>
+
+            {/* Current cover preview */}
+            {thumbnail && (
+              <div className="mb-4">
+                <p className="text-xs text-[var(--admin-muted)] mb-1 uppercase tracking-wide">Ảnh bìa</p>
+                <div className="aspect-video relative rounded-lg overflow-hidden border border-[var(--admin-border)] max-w-md">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={thumbnail} alt="Cover" className="w-full h-full object-cover" />
+                </div>
+              </div>
+            )}
+
+            <MediaManager
+              categoryLabel={uploadCategory}
+              projectName={uploadTitle}
+              thumbnail={thumbnail}
+              gallery={gallery}
+              onChangeThumbnail={setThumbnail}
+              onChangeGallery={setGallery}
+              disabled={uploadDisabled}
+            />
+          </div>
         </div>
 
         {/* Sidebar Column */}
@@ -415,90 +461,6 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
                 </button>
               </div>
             )}
-          </div>
-
-          <div className="bg-[var(--admin-card-bg)] p-4 sm:p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)]">
-            <h3 className="text-lg font-bold mb-6 pb-2 border-b border-[var(--admin-border)]">Media</h3>
-            
-            <div className="mb-6">
-              <label className="block text-sm font-semibold text-[var(--admin-muted)] mb-2 uppercase tracking-wide">
-                Thumbnail URL
-              </label>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={thumbnail}
-                  onChange={(e) => setThumbnail(e.target.value)}
-                  placeholder="https://..."
-                  className="w-full px-3 py-2 text-sm bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)]"
-                />
-              </div>
-              {thumbnail && (
-                <div className="mt-3 aspect-video relative rounded-lg overflow-hidden border border-[var(--admin-border)]">
-                  <Image
-                    src={thumbnail}
-                    alt="Thumbnail preview"
-                    fill
-                    className="object-cover"
-                    sizes="400px"
-                    quality={75}
-                  />
-                </div>
-              )}
-            </div>
-
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <label className="block text-sm font-semibold text-[var(--admin-muted)] uppercase tracking-wide">
-                  Gallery URLs
-                </label>
-                <button
-                  type="button"
-                  onClick={() => setGallery([...gallery, ""])}
-                  className="text-[var(--admin-accent)] hover:text-[var(--admin-accent-hover)]"
-                >
-                  <Plus size={18} />
-                </button>
-              </div>
-              <div className="space-y-3">
-                {gallery.map((url, i) => (
-                  <div key={i} className="flex gap-2 items-center">
-                    <div className="flex-1">
-                      <input
-                        type="text"
-                        value={url}
-                        onChange={(e) => {
-                          const newG = [...gallery];
-                          newG[i] = e.target.value;
-                          setGallery(newG);
-                        }}
-                        placeholder="https://..."
-                        className="w-full px-3 py-2 text-sm bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--admin-accent)]"
-                      />
-                    </div>
-                    {url && (
-                      <div className="w-10 h-10 rounded overflow-hidden flex-shrink-0 border border-[var(--admin-border)] relative">
-                        <Image
-                          src={url}
-                          alt=""
-                          fill
-                          className="object-cover"
-                          sizes="40px"
-                          quality={60}
-                        />
-                      </div>
-                    )}
-                    <button
-                      type="button"
-                      onClick={() => setGallery(gallery.filter((_, idx) => idx !== i))}
-                      className="text-red-500 p-1 hover:bg-red-50 rounded"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>
