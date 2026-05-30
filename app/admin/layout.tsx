@@ -193,7 +193,7 @@ export default function AdminLayout({
           <title>TKM Admin</title>
           <meta name="description" content="Admin panel for TKM Group" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="stylesheet" href="/admin.css" />
+          <link rel="stylesheet" href="/admin.css?v=2" />
         </head>
         <body className="admin-body">
           <AdminGate>

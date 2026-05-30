@@ -473,8 +473,10 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  touch-action: none;
-  /* Prevent browser gestures during drag */
+  /* NOTE: do NOT set `touch-action: none` here — it would block touch
+     scrolling over the whole list on mobile. Only the drag handle
+     (.dnd-handle) disables touch-action, so the row body stays scrollable
+     while the handle still initiates a drag. */
 }
 
 /* ── Individual item row ── */
@@ -489,6 +491,9 @@
   cursor: default;
   position: relative;
   transition: box-shadow 200ms, border-color 200ms, opacity 200ms;
+  /* Allow vertical touch-scrolling over the row body on mobile; only the
+     drag handle (.dnd-handle) sets touch-action: none to capture drags. */
+  touch-action: pan-y;
 }
 
 .dnd-item:hover {

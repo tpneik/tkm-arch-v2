@@ -277,7 +277,7 @@ export default function ProjectListDnD({ initialProjects }: Props) {
     : -1;
 
   return (
-    <div className="space-y-6 max-w-full overflow-hidden">
+    <div className="space-y-6 max-w-full overflow-x-hidden">
       {/* ── Header ── */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <h1
