@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "category": "Văn phòng",
+    "category": "van-phong",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/1a-pts.png",
     "gallery": [
       "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/VAN%20PHONG/HH3%20BA%20SON/1a-pts.png",
@@ -19,24 +19,20 @@
       "description": "A high-rise office tower at Ba Son with contemporary architecture and premium curtain-wall facades.",
       "details": {
         "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design"
-        ],
+        "SCOPE OF WORK": "Architectural Design",
         "SCALE": "2000 sqm",
         "LOCATION": "Ba Son, District 1, Ho Chi Minh City"
       }
     },
     "vi": {
-      "title": "Tòa Nhà HH3 Ba Sơn",
+      "title": "Tòa Nhà HH3 Ba son",
       "slug": "toa-nha-hh3-ba-son",
       "categoryLabel": "Văn phòng",
       "categorySlug": "van-phong",
       "description": "Tòa văn phòng cao tầng tại Ba Sơn với kiến trúc hiện đại và mặt tiền vách kính cao cấp.",
       "details": {
         "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc"
-        ],
+        "PHẠM VI": "Thiết kế kiến trúc",
         "QUY MÔ": "2.000 m²",
         "VỊ TRÍ": "Ba Son, Quan 1, TP. Hồ Chí Minh"
       }
@@ -45,92 +41,90 @@
   {
     "id": "2",
     "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%281%29.jpg",
     "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_2%20-%20Photo.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam1%20copy.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam3%20copy.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam5%20copy.png",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam7%20copy.png"
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%281%29.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%285%29.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%2810%29.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/315425657_2757001181100305_466228183018202368_n.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/315537200_2757001244433632_3675359706152613803_n.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%2815%29.jpg"
     ],
     "en": {
-      "title": "Victory Gym – Dong Thap",
-      "slug": "victory-gym-dong-thap",
+      "title": "The Fox Coffee",
+      "slug": "the-fox-coffee",
       "categoryLabel": "Other Projects",
       "categorySlug": "other-projects",
-      "description": "A dynamic fitness center in Dong Thap Province designed with bold architectural volumes and energetic interior spaces. High ceilings, industrial finishes, and zone-specific lighting create an atmosphere that motivates peak performance.",
+      "description": "A trendy coffee shop with bold branding and a playful atmosphere. The design balances industrial rawness with cozy warmth through exposed ceilings, custom lighting, and curated greenery that transforms every corner into an Instagram-worthy moment.",
       "details": {
         "INVESTOR": "Private Owner",
         "SCOPE OF WORK": [
-          "Architectural Design",
-          "Interior Design"
+          "Interior Design",
+          "Construction"
         ],
-        "SCALE": "500 sqm",
-        "LOCATION": "Dong Thap Province"
+        "SCALE": "180 sqm",
+        "LOCATION": "Ho Chi Minh City"
       }
     },
     "vi": {
-      "title": "Victory Gym – Đồng Tháp",
+      "title": "The Fox Coffee",
       "categoryLabel": "Công trình khác",
       "categorySlug": "cong-trinh-khac",
-      "slug": "victory-gym-dong-thap",
-      "description": "Phòng tập thể hình năng động tại Đồng Tháp với khối kiến trúc mạnh mẽ và không gian nội thất tràn đầy năng lượng.",
+      "slug": "the-fox-coffee",
+      "description": "Quán cà phê thời thượng với thương hiệu mạnh mẽ và bầu không khí vui tươi, cân bằng giữa sự thô mộc công nghiệp với sự ấm cúng.",
       "details": {
         "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
         "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Thiết kế nội thất"
+          "Thiết kế nội thất",
+          "Thi công"
         ],
-        "QUY MÔ": "500 m²",
-        "VỊ TRÍ": "Tỉnh Đồng Tháp"
+        "QUY MÔ": "180 m²",
+        "VỊ TRÍ": "TP. Hồ Chí Minh"
       }
     }
   },
   {
     "id": "3",
     "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_7%20-%20Photo.jpg",
     "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_3%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_5%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/01.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/05.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/10.jpg"
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_7%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_8%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KHU%20B/v1.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KHU%20B/v4.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KHU%20C/AA_13%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KIEN%20TRUC/v2.jpg"
     ],
     "en": {
-      "title": "The Foxie Lounge",
-      "slug": "the-foxie-lounge",
+      "title": "Cao Cuu Renovation",
+      "slug": "cao-cuu-renovation",
       "categoryLabel": "Other Projects",
       "categorySlug": "other-projects",
-      "description": "A stylish lounge bar combining a striking facade design with sophisticated interior spaces. The two-zone concept separates a vibrant street-level café from an intimate upper-floor cocktail bar, unified by a cohesive material language of dark metals and warm wood.",
+      "description": "A comprehensive renovation of an existing industrial complex across multiple zones.",
       "details": {
         "INVESTOR": "Private Owner",
         "SCOPE OF WORK": [
           "Architectural Design",
-          "Interior Design",
-          "Construction"
+          "Renovation"
         ],
-        "SCALE": "220 sqm",
-        "LOCATION": "Ho Chi Minh City"
+        "SCALE": "1000 sqm",
+        "LOCATION": "Ben Tre Province"
       }
     },
     "vi": {
-      "title": "The Foxie Lounge",
+      "title": "Cải Tạo Cao Cửu",
+      "slug": "cai-tao-cao-cuu",
       "categoryLabel": "Công trình khác",
       "categorySlug": "cong-trinh-khac",
-      "slug": "the-foxie-lounge",
-      "description": "Quán lounge phong cách kết hợp mặt tiền ấn tượng với không gian nội thất tinh tế. Concept hai vùng tách biệt quán cà phê sôi động tầng trệt khỏi bar cocktail ấm cúng tầng trên.",
+      "description": "Cải tạo toan dien khu cong nghiep hien huu tren nhieu khu vuc.",
       "details": {
         "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
         "PHẠM VI": [
           "Thiết kế kiến trúc",
-          "Thiết kế nội thất",
-          "Thi công"
+          "Cải tạo"
         ],
-        "QUY MÔ": "220 m²",
-        "VỊ TRÍ": "TP. Hồ Chí Minh"
+        "QUY MÔ": "1.000 m²",
+        "VỊ TRÍ": "Tỉnh Bến Tre"
       }
     }
   },
@@ -182,6 +176,98 @@
   {
     "id": "5",
     "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_1%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_3%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/FACADE/1_5%20-%20Photo.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/01.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/05.jpg",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOXIE/INTERIOR/10.jpg"
+    ],
+    "en": {
+      "title": "The Foxie Lounge",
+      "slug": "the-foxie-lounge",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A stylish lounge bar combining a striking facade design with sophisticated interior spaces. The two-zone concept separates a vibrant street-level café from an intimate upper-floor cocktail bar, unified by a cohesive material language of dark metals and warm wood.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design",
+          "Interior Design",
+          "Construction"
+        ],
+        "SCALE": "220 sqm",
+        "LOCATION": "Ho Chi Minh City"
+      }
+    },
+    "vi": {
+      "title": "The Foxie Lounge",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "slug": "the-foxie-lounge",
+      "description": "Quán lounge phong cách kết hợp mặt tiền ấn tượng với không gian nội thất tinh tế. Concept hai vùng tách biệt quán cà phê sôi động tầng trệt khỏi bar cocktail ấm cúng tầng trên.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc",
+          "Thiết kế nội thất",
+          "Thi công"
+        ],
+        "QUY MÔ": "220 m²",
+        "VỊ TRÍ": "TP. Hồ Chí Minh"
+      }
+    }
+  },
+  {
+    "id": "6",
+    "category": "Công trình khác",
+    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
+    "gallery": [
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_1%20-%20Photo.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/1_2%20-%20Photo.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam1%20copy.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam3%20copy.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam5%20copy.png",
+      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/VICTORY%20GYM%20DONG%20THAP/cam7%20copy.png"
+    ],
+    "en": {
+      "title": "Victory Gym – Dong Thap",
+      "slug": "victory-gym-dong-thap",
+      "categoryLabel": "Other Projects",
+      "categorySlug": "other-projects",
+      "description": "A dynamic fitness center in Dong Thap Province designed with bold architectural volumes and energetic interior spaces. High ceilings, industrial finishes, and zone-specific lighting create an atmosphere that motivates peak performance.",
+      "details": {
+        "INVESTOR": "Private Owner",
+        "SCOPE OF WORK": [
+          "Architectural Design",
+          "Interior Design"
+        ],
+        "SCALE": "500 sqm",
+        "LOCATION": "Dong Thap Province"
+      }
+    },
+    "vi": {
+      "title": "Victory Gym – Đồng Tháp",
+      "categoryLabel": "Công trình khác",
+      "categorySlug": "cong-trinh-khac",
+      "slug": "victory-gym-dong-thap",
+      "description": "Phòng tập thể hình năng động tại Đồng Tháp với khối kiến trúc mạnh mẽ và không gian nội thất tràn đầy năng lượng.",
+      "details": {
+        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
+        "PHẠM VI": [
+          "Thiết kế kiến trúc",
+          "Thiết kế nội thất"
+        ],
+        "QUY MÔ": "500 m²",
+        "VỊ TRÍ": "Tỉnh Đồng Tháp"
+      }
+    }
+  },
+  {
+    "id": "7",
+    "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/NHA%20HANG%20CAO%20NHO/06.png",
     "gallery": [
       "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/NHA%20HANG%20CAO%20NHO/06.png",
@@ -225,52 +311,7 @@
     }
   },
   {
-    "id": "6",
-    "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_7%20-%20Photo.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_7%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/TONG%20THE/AA_8%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KHU%20B/v1.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KHU%20B/v4.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KHU%20C/AA_13%20-%20Photo.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/CAO%20CUU%20CAI%20TAO/KIEN%20TRUC/v2.jpg"
-    ],
-    "en": {
-      "title": "Cao Cuu Renovation",
-      "slug": "cao-cuu-renovation",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "A comprehensive renovation of an existing industrial complex across multiple zones.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Architectural Design",
-          "Renovation"
-        ],
-        "SCALE": "1000 sqm",
-        "LOCATION": "Ben Tre Province"
-      }
-    },
-    "vi": {
-      "title": "Cải Tạo Cao Cửu",
-      "slug": "cai-tao-cao-cuu",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "description": "Cải tạo toan dien khu cong nghiep hien huu tren nhieu khu vuc.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế kiến trúc",
-          "Cải tạo"
-        ],
-        "QUY MÔ": "1.000 m²",
-        "VỊ TRÍ": "Tỉnh Bến Tre"
-      }
-    }
-  },
-  {
-    "id": "7",
+    "id": "8",
     "category": "Công trình khác",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/FOXZONE%20CAN%20THO/1_1%20-%20Photo.jpg",
     "gallery": [
@@ -315,7 +356,7 @@
     }
   },
   {
-    "id": "8",
+    "id": "9",
     "category": "Trường học",
     "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/TRUONG%20HOC/THCS%20TR%E1%BB%8ANH%20VI%E1%BA%BET%20B%C3%80N-%20B%C3%8CNH%20%C4%90%E1%BA%A0I-%20B%E1%BA%BEN%20TRE/01.jpg",
     "gallery": [
@@ -355,51 +396,6 @@
         ],
         "QUY MÔ": "1.500 m²",
         "VỊ TRÍ": "Binh Dai, Tỉnh Bến Tre"
-      }
-    }
-  },
-  {
-    "id": "9",
-    "category": "Công trình khác",
-    "thumbnail": "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%281%29.jpg",
-    "gallery": [
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%281%29.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%285%29.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%2810%29.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/315425657_2757001181100305_466228183018202368_n.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/315537200_2757001244433632_3675359706152613803_n.jpg",
-      "https://pub-3ab4be4721d74fc9b1b1e7de44e65381.r2.dev/TKM/CONGTRINH/CONG%20TRINH%20KHAC/THE%20FOX%20COFFEE/6%20%2815%29.jpg"
-    ],
-    "en": {
-      "title": "The Fox Coffee",
-      "slug": "the-fox-coffee",
-      "categoryLabel": "Other Projects",
-      "categorySlug": "other-projects",
-      "description": "A trendy coffee shop with bold branding and a playful atmosphere. The design balances industrial rawness with cozy warmth through exposed ceilings, custom lighting, and curated greenery that transforms every corner into an Instagram-worthy moment.",
-      "details": {
-        "INVESTOR": "Private Owner",
-        "SCOPE OF WORK": [
-          "Interior Design",
-          "Construction"
-        ],
-        "SCALE": "180 sqm",
-        "LOCATION": "Ho Chi Minh City"
-      }
-    },
-    "vi": {
-      "title": "The Fox Coffee",
-      "categoryLabel": "Công trình khác",
-      "categorySlug": "cong-trinh-khac",
-      "slug": "the-fox-coffee",
-      "description": "Quán cà phê thời thượng với thương hiệu mạnh mẽ và bầu không khí vui tươi, cân bằng giữa sự thô mộc công nghiệp với sự ấm cúng.",
-      "details": {
-        "CHỦ ĐẦU TƯ": "Chủ sở hữu tư nhân",
-        "PHẠM VI": [
-          "Thiết kế nội thất",
-          "Thi công"
-        ],
-        "QUY MÔ": "180 m²",
-        "VỊ TRÍ": "TP. Hồ Chí Minh"
       }
     }
   },
