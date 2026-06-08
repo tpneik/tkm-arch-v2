@@ -3,13 +3,14 @@ import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
 import { getProjects } from "@/lib/getProjects";
+import { getHomepage } from "@/lib/getHomepage";
 
 export default async function Home() {
-  const projects = await getProjects();
+  const [projects, homepage] = await Promise.all([getProjects(), getHomepage()]);
   return (
     <>
-      <Hero />
-      <Services />
+      <Hero heroImage={homepage.heroImage} />
+      <Services images={homepage.serviceImages} />
       <Portfolio projects={projects} />
       <Contact />
     </>

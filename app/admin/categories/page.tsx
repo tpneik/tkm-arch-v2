@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import type { Category } from "@/data/categories";
+import { slugify } from "@/data/categories";
 import {
   getProjectCategories,
   createProjectCategory,
@@ -49,16 +50,26 @@ function CategoryModal({
 
   if (!isOpen) return null;
 
+  const isEdit = !!initial;
+  // On add, the slug is derived automatically from the Vietnamese label
+  // (matches the existing convention: "Nội thất" → "noi-that"). On edit, the
+  // admin keeps full manual control so a rename stays intentional.
+  const effectiveSlug = isEdit ? slug.trim() : slugify(viLabel);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!slug.trim() || !enLabel.trim() || !viLabel.trim()) {
-      setError("All fields are required");
+    if (!enLabel.trim() || !viLabel.trim() || !effectiveSlug) {
+      setError(
+        !effectiveSlug
+          ? "Nhãn tiếng Việt không tạo được slug hợp lệ."
+          : "Vui lòng nhập đầy đủ các trường."
+      );
       return;
     }
     setSaving(true);
     setError("");
     try {
-      await onSave({ slug: slug.trim(), en: { label: enLabel.trim() }, vi: { label: viLabel.trim() } });
+      await onSave({ slug: effectiveSlug, en: { label: enLabel.trim() }, vi: { label: viLabel.trim() } });
       onClose();
     } catch (err: any) {
       setError(err.message || "Failed to save");
@@ -73,17 +84,6 @@ function CategoryModal({
       <div className="relative bg-[var(--admin-card)] border border-[var(--admin-border)] rounded-xl p-6 w-full max-w-md shadow-2xl">
         <h2 className="text-lg font-semibold text-[var(--admin-text)] mb-4">{title}</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-[var(--admin-text-muted)] mb-1">Slug</label>
-            <input
-              type="text"
-              value={slug}
-              onChange={(e) => setSlug(e.target.value)}
-              placeholder="e.g. nha-pho"
-              className="w-full px-3 py-2 rounded-lg bg-[var(--admin-bg)] border border-[var(--admin-border)] text-[var(--admin-text)] text-sm focus:outline-none focus:border-[var(--admin-primary)] transition-colors"
-              disabled={saving}
-            />
-          </div>
           <div>
             <label className="block text-sm font-medium text-[var(--admin-text-muted)] mb-1">English Label</label>
             <input
@@ -106,6 +106,27 @@ function CategoryModal({
               disabled={saving}
             />
           </div>
+          {isEdit ? (
+            <div>
+              <label className="block text-sm font-medium text-[var(--admin-text-muted)] mb-1">Slug</label>
+              <input
+                type="text"
+                value={slug}
+                onChange={(e) => setSlug(e.target.value)}
+                placeholder="e.g. nha-pho"
+                className="w-full px-3 py-2 rounded-lg bg-[var(--admin-bg)] border border-[var(--admin-border)] text-[var(--admin-text)] text-sm focus:outline-none focus:border-[var(--admin-primary)] transition-colors"
+                disabled={saving}
+              />
+            </div>
+          ) : (
+            <p className="text-xs text-[var(--admin-text-muted)] font-mono">
+              Slug:{" "}
+              <span className="text-[var(--admin-primary)]">
+                {effectiveSlug || "—"}
+              </span>{" "}
+              <span className="opacity-60">(tự sinh từ nhãn tiếng Việt)</span>
+            </p>
+          )}
           {error && <p className="text-sm text-[var(--admin-danger)]">{error}</p>}
           <div className="flex justify-end gap-3 pt-2">
             <button
@@ -138,12 +159,15 @@ function CategoryTable({
   onAdd,
   onEdit,
   onDelete,
+  dualSlug = false,
 }: {
   title: string;
   categories: Category[];
   onAdd: () => void;
   onEdit: (cat: Category) => void;
   onDelete: (cat: Category) => void;
+  /** Show both the EN-derived and VI-derived slug (used for blog categories). */
+  dualSlug?: boolean;
 }) {
   return (
     <div>
@@ -160,7 +184,6 @@ function CategoryTable({
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-[var(--admin-bg)] border-b border-[var(--admin-border)]">
-              <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm w-12">ID</th>
               <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">Slug</th>
               <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">English</th>
               <th className="p-4 font-semibold text-[var(--admin-text-muted)] text-sm">Tiếng Việt</th>
@@ -170,11 +193,21 @@ function CategoryTable({
           <tbody className="divide-y divide-[var(--admin-border)]">
             {categories.map((cat) => (
               <tr key={cat.id} className="hover:bg-[var(--admin-bg)]/50 transition-colors">
-                <td className="p-4 text-sm text-[var(--admin-text-muted)]">{cat.id}</td>
                 <td className="p-4">
-                  <span className="inline-block px-2 py-1 bg-[var(--admin-primary)]/10 text-[var(--admin-primary)] rounded-full text-xs font-mono">
-                    {cat.slug}
-                  </span>
+                  {dualSlug ? (
+                    <div className="flex flex-col gap-1">
+                      <span className="inline-flex items-center gap-1 w-fit px-2 py-1 bg-[var(--admin-primary)]/10 text-[var(--admin-primary)] rounded-full text-xs font-mono">
+                        🇺🇸 {slugify(cat.en.label)}
+                      </span>
+                      <span className="inline-flex items-center gap-1 w-fit px-2 py-1 bg-[var(--admin-primary)]/10 text-[var(--admin-primary)] rounded-full text-xs font-mono">
+                        🇻🇳 {slugify(cat.vi.label)}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="inline-block px-2 py-1 bg-[var(--admin-primary)]/10 text-[var(--admin-primary)] rounded-full text-xs font-mono">
+                      {cat.slug}
+                    </span>
+                  )}
                 </td>
                 <td className="p-4 text-sm text-[var(--admin-text)]">{cat.en.label}</td>
                 <td className="p-4 text-sm text-[var(--admin-text)]">{cat.vi.label}</td>
@@ -196,7 +229,7 @@ function CategoryTable({
             ))}
             {categories.length === 0 && (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-[var(--admin-text-muted)]">
+                <td colSpan={4} className="p-8 text-center text-[var(--admin-text-muted)]">
                   No categories found. Click &quot;+ Add Category&quot; to create one.
                 </td>
               </tr>
@@ -317,6 +350,7 @@ export default function CategoriesPage() {
         onAdd={() => openAddModal("blog")}
         onEdit={(cat) => openEditModal("blog", cat)}
         onDelete={(cat) => handleDelete("blog", cat)}
+        dualSlug
       />
 
       {/* Modal */}

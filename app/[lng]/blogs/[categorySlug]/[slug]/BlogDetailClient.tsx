@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
+import { useRegisterLangSwitch } from "@/i18n/LangSwitchContext";
 import { blogHref, formatBlogDate } from "@/data/blogs";
 import type { Blog } from "@/data/blogs";
 
@@ -38,6 +39,13 @@ const BlogDetailClient = ({ blogs }: { blogs: Blog[] }) => {
   }, [blogs, categorySlug, slug, lang]);
 
   const blog = currentIndex >= 0 ? blogs[currentIndex] : undefined;
+
+  // Point the Navbar's language switcher at this post's URL in the other
+  // language (its category + post slug are translated), so switching language
+  // lands on the right slug instead of keeping the current-language one.
+  const otherLng = lang === "en" ? "vi" : "en";
+  useRegisterLangSwitch(blog ? blogHref(blog, otherLng) : null);
+
   const prevBlog = currentIndex > 0 ? blogs[currentIndex - 1] : null;
   const nextBlog = currentIndex >= 0 && currentIndex < blogs.length - 1 ? blogs[currentIndex + 1] : null;
 

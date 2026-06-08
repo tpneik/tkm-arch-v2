@@ -7,7 +7,7 @@ import { motion } from "motion/react";
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { blogHref, formatBlogDate, blogCategoryList } from "@/data/blogs";
+import { blogHref, formatBlogDate, blogCategoryList, blogCategorySlug } from "@/data/blogs";
 import type { Blog } from "@/data/blogs";
 
 const ITEMS_PER_PAGE = 6;
@@ -28,7 +28,7 @@ const BlogsClient = ({ blogs }: { blogs: Blog[] }) => {
     () =>
       filter === "all"
         ? blogs
-        : blogs.filter((b) => b.vi.categorySlug === filter),
+        : blogs.filter((b) => blogCategorySlug(b) === filter),
     [filter, blogs]
   );
 

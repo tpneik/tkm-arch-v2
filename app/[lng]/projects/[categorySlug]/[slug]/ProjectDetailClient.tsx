@@ -8,8 +8,10 @@ import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { projectHref } from "@/data/projects";
+import { projectHref, normalizeProjectCategories } from "@/data/projects";
 import type { Project } from "@/data/projects";
+import { categoryLocaleSlug, findProjectCategory } from "@/data/categories";
+import { useRegisterLangSwitch } from "@/i18n/LangSwitchContext";
 
 const DEFAULT_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
@@ -39,6 +41,9 @@ function GalleryImage({
 }) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
+  // Natural aspect ratio (w/h) of the loaded image. Until known, fall back to
+  // 16/9 so the skeleton reserves space without forcing a crop.
+  const [ratio, setRatio] = useState<number | null>(null);
 
   const imgSrc = error ? DEFAULT_IMG : src || DEFAULT_IMG;
 
@@ -54,7 +59,12 @@ function GalleryImage({
       }}
       className="overflow-hidden rounded-xl shadow-lg"
     >
-      <div className="relative w-full aspect-[16/9]">
+      {/* The box takes the image's real aspect ratio once loaded, so the full
+          image is shown — never cropped. */}
+      <div
+        className="relative w-full"
+        style={{ aspectRatio: ratio ?? 16 / 9 }}
+      >
         {/* Shimmer skeleton */}
         <div
           className={`absolute inset-0 z-[1] transition-opacity duration-500 ${
@@ -69,11 +79,17 @@ function GalleryImage({
           alt={alt}
           fill
           sizes="(max-width: 1024px) 100vw, 60vw"
-          className={`object-cover hover:scale-105 transition-all duration-1000 ${
+          className={`object-contain hover:scale-105 transition-all duration-1000 ${
             loaded ? "opacity-100" : "opacity-0"
           }`}
           loading={index < 2 ? "eager" : "lazy"}
-          onLoad={() => setLoaded(true)}
+          onLoad={(e) => {
+            const img = e.currentTarget;
+            if (img.naturalWidth && img.naturalHeight) {
+              setRatio(img.naturalWidth / img.naturalHeight);
+            }
+            setLoaded(true);
+          }}
           onError={() => {
             setError(true);
             setLoaded(true);
@@ -173,15 +189,24 @@ const ProjectDetailClient = ({ projects }: { projects: Project[] }) => {
 
 
   const currentIndex = useMemo(() => {
+    // A project matches the URL category slug when it equals the primary locale
+    // slug OR the locale slug of ANY category the project belongs to — so a
+    // multi-category project is reachable under every one of its categories.
+    const matchesCategory = (p: Project, l: "en" | "vi") =>
+      p[l].categorySlug === categorySlug ||
+      normalizeProjectCategories(p).some(
+        (s) => categoryLocaleSlug(s, l) === categorySlug
+      );
+
     // Try current language first
     let idx = projects.findIndex(
-      (p) => p[lang].categorySlug === categorySlug && p[lang].slug === slug
+      (p) => matchesCategory(p, lang) && p[lang].slug === slug
     );
     // Fallback: try the other language (handles cross-language slug URLs)
     if (idx < 0) {
       const otherLang = lang === "en" ? "vi" : "en";
       idx = projects.findIndex(
-        (p) => p[otherLang].categorySlug === categorySlug && p[otherLang].slug === slug
+        (p) => matchesCategory(p, otherLang) && p[otherLang].slug === slug
       );
     }
     return idx;
@@ -191,19 +216,36 @@ const ProjectDetailClient = ({ projects }: { projects: Project[] }) => {
   const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
   const nextProject = currentIndex >= 0 && currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 
-  // Related: 3 other projects (same category first, then others)
-  const related = useMemo(
-    () =>
-      projects
-        .filter((p) => p.id !== project?.id)
-        .sort((a, b) => {
-          if (a.category === project?.category && b.category !== project?.category) return -1;
-          if (a.category !== project?.category && b.category === project?.category) return 1;
-          return 0;
-        })
-        .slice(0, 3),
-    [projects, project]
+  // Which of the project's categories does the URL slug point to? Drives both
+  // the displayed category label and the language-switch target below.
+  const otherLng = lang === "en" ? "vi" : "en";
+  const activeCategorySlug = project
+    ? (() => {
+        const cats = normalizeProjectCategories(project);
+        for (const l of [lang, otherLng] as const) {
+          const found = cats.find((s) => categoryLocaleSlug(s, l) === categorySlug);
+          if (found) return found;
+        }
+        return cats[0] ?? "";
+      })()
+    : "";
+
+  // Translate the Navbar language switcher to this project's other-language URL
+  // (category + slug differ per language), preserving the viewed category.
+  useRegisterLangSwitch(
+    project ? projectHref(project, otherLng, activeCategorySlug) : null
   );
+
+  // Related: 3 other projects (those sharing any category first, then others)
+  const related = useMemo(() => {
+    const currentCats = project ? normalizeProjectCategories(project) : [];
+    const sharesCategory = (p: Project) =>
+      normalizeProjectCategories(p).some((s) => currentCats.includes(s));
+    return projects
+      .filter((p) => p.id !== project?.id)
+      .sort((a, b) => Number(sharesCategory(b)) - Number(sharesCategory(a)))
+      .slice(0, 3);
+  }, [projects, project]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -218,11 +260,16 @@ const ProjectDetailClient = ({ projects }: { projects: Project[] }) => {
       </div>
     );
 
+  // Label for the category the URL points to (falls back to the primary one).
+  const activeCategoryLabel =
+    findProjectCategory(activeCategorySlug)?.[lang].label ??
+    project[lang].categoryLabel;
+
   const pd = {
     title: project[lang].title,
     description: project[lang].description,
     details: project[lang].details,
-    category: project[lang].categoryLabel,
+    category: activeCategoryLabel,
   };
 
   const heroSrc = heroError ? DEFAULT_IMG : project.thumbnail || DEFAULT_IMG;

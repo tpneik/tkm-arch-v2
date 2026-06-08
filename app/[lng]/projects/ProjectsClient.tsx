@@ -8,8 +8,9 @@ import { motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref } from "@/i18n/routes";
-import { projectHref } from "@/data/projects";
+import { projectHref, normalizeProjectCategories } from "@/data/projects";
 import type { Project } from "@/data/projects";
+import { findProjectCategory } from "@/data/categories";
 
 const ITEMS_PER_PAGE = 6;
 const DEFAULT_IMG =
@@ -47,15 +48,26 @@ function ProjectCard({
   project,
   lang,
   priority = false,
+  activeCategory,
 }: {
   project: Project;
   lang: "en" | "vi";
   priority?: boolean;
+  /** Canonical category slug currently being filtered (undefined = "all"). */
+  activeCategory?: string;
 }) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
   const src = error ? DEFAULT_IMG : project.thumbnail || DEFAULT_IMG;
+
+  // When viewing under a specific category, render that category (link + label)
+  // rather than the project's primary one.
+  const href = projectHref(project, lang, activeCategory);
+  const categoryLabel = activeCategory
+    ? findProjectCategory(activeCategory)?.[lang].label ??
+      project[lang].categoryLabel
+    : project[lang].categoryLabel;
 
   const handleLoad = useCallback(() => setLoaded(true), []);
   const handleError = useCallback(() => {
@@ -64,7 +76,7 @@ function ProjectCard({
   }, []);
 
   return (
-    <Link href={projectHref(project, lang)} className="group flex flex-col">
+    <Link href={href} className="group flex flex-col">
       <div className="overflow-hidden aspect-[3/2] relative mb-6 rounded-lg bg-white shadow-sm border border-brand-dark/5">
         {/* Shimmer skeleton — visible until image loads */}
         <div
@@ -99,7 +111,7 @@ function ProjectCard({
       </div>
       <div className="space-y-2">
         <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-blue">
-          {project[lang].categoryLabel}
+          {categoryLabel}
         </p>
         <h3 className="text-xl font-serif tracking-wide uppercase leading-tight group-hover:text-brand-blue transition-colors">
           {project[lang].title}
@@ -123,7 +135,9 @@ const ProjectsClient = ({ projects }: { projects: Project[] }) => {
     () =>
       filter === "all"
         ? projects
-        : projects.filter((p) => p.vi.categorySlug === filter),
+        : projects.filter((p) =>
+            normalizeProjectCategories(p).includes(filter)
+          ),
     [filter, projects]
   );
 
@@ -145,14 +159,19 @@ const ProjectsClient = ({ projects }: { projects: Project[] }) => {
     else router.push(`${base}?filter=${slug}`);
   };
 
-  // key = p.vi.categorySlug (ASCII slug, e.g. 'nha-pho') — used in ?filter= URL param
+  // key = canonical category slug (e.g. 'nha-pho') — used in ?filter= URL param.
+  // Built from the union of every project's category slugs so a project that
+  // belongs to several categories surfaces under each of them. Matches the slug
+  // keys used by the Navbar links.
   const localizedCategories = useMemo(() => {
     const map = new Map<string, string>();
     projects.forEach((p) => {
-      const slug = p.vi.categorySlug;
-      if (!map.has(slug)) {
-        map.set(slug, p[lang].categoryLabel);
-      }
+      normalizeProjectCategories(p).forEach((slug) => {
+        if (!map.has(slug)) {
+          const cat = findProjectCategory(slug);
+          map.set(slug, cat ? cat[lang].label : slug);
+        }
+      });
     });
     return [
       { key: "all", label: t("projects.allFilter") ?? "All" },
@@ -213,6 +232,7 @@ const ProjectsClient = ({ projects }: { projects: Project[] }) => {
                   project={project}
                   lang={lang}
                   priority={index < 3}
+                  activeCategory={filter === "all" ? undefined : filter}
                 />
               </motion.div>
             ))}

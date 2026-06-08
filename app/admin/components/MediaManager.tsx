@@ -19,6 +19,16 @@ interface MediaManagerProps {
   gallery?: string[];
   onChangeGallery?: (urls: string[]) => void;
   disabled?: boolean;
+  /**
+   * Gallery mode only: whether a cover/thumbnail is part of the selection
+   * (shows the star + "cover" warnings). Set false for plain ordered lists
+   * like the homepage slider. Defaults to true (project behavior).
+   */
+  showCover?: boolean;
+  /** Gallery mode only: minimum images required (0 disables the warning). */
+  minImages?: number;
+  /** Gallery mode only: maximum images selectable (0 = unlimited). */
+  maxImages?: number;
 }
 
 interface FolderImage {
@@ -68,8 +78,12 @@ export default function MediaManager({
   gallery = [],
   onChangeGallery = () => {},
   disabled = false,
+  showCover = true,
+  minImages = 2,
+  maxImages = 0,
 }: MediaManagerProps) {
   const isCover = mode === "cover";
+  const atMax = !isCover && maxImages > 0 && gallery.length >= maxImages;
   const [folderImages, setFolderImages] = useState<FolderImage[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -148,6 +162,8 @@ export default function MediaManager({
       onChangeGallery(gallery.filter((u) => u !== url));
       if (thumbnail === url) onChangeThumbnail("");
     } else {
+      // Enforce the max-selection cap (e.g. the homepage slider allows only 4).
+      if (maxImages > 0 && gallery.length >= maxImages) return;
       onChangeGallery([...gallery, url]);
     }
   };
@@ -177,6 +193,12 @@ export default function MediaManager({
 
   const handleDelete = async (url: string, key?: string) => {
     if (!key) return; // external/legacy images aren't stored under our key
+    // Block deleting an image that is currently in use (selected/cover) — the
+    // admin must deselect it first.
+    if (gallery.includes(url) || thumbnail === url) {
+      setError("Ảnh đang được dùng — hãy bỏ chọn trước khi xóa.");
+      return;
+    }
     if (!confirm("Xóa hẳn ảnh này khỏi kho lưu trữ? Hành động không thể hoàn tác.")) return;
 
     setDeletingUrl(url);
@@ -221,7 +243,7 @@ export default function MediaManager({
             ? thumbnail
               ? "Đã chọn ảnh bìa"
               : "Chưa chọn ảnh bìa"
-            : `Đã chọn ${gallery.length} ảnh (cần tối thiểu 2)${thumbnail ? " · đã đặt ảnh bìa" : ""}`}
+            : `Đã chọn ${gallery.length}${maxImages > 0 ? `/${maxImages}` : ""} ảnh${minImages > 0 ? ` (cần tối thiểu ${minImages})` : ""}${showCover && thumbnail ? " · đã đặt ảnh bìa" : ""}`}
         </span>
         <button
           type="button"
@@ -235,7 +257,7 @@ export default function MediaManager({
       </div>
 
       {/* Constraint notes */}
-      {!thumbnail && (
+      {showCover && !thumbnail && (
         <div className="mb-2 flex items-center gap-1.5 text-xs text-amber-600 bg-amber-50 border border-amber-100 rounded p-2">
           <AlertCircle size={14} />
           {isCover
@@ -243,9 +265,9 @@ export default function MediaManager({
             : "Chưa có ảnh bìa — bấm ngôi sao trên một ảnh để đặt làm ảnh bìa."}
         </div>
       )}
-      {!isCover && gallery.length < 2 && (
+      {!isCover && minImages > 0 && gallery.length < minImages && (
         <div className="mb-2 flex items-center gap-1.5 text-xs text-amber-600 bg-amber-50 border border-amber-100 rounded p-2">
-          <AlertCircle size={14} /> Cần chọn ít nhất 2 ảnh cho dự án.
+          <AlertCircle size={14} /> Cần chọn ít nhất {minImages} ảnh.
         </div>
       )}
 
@@ -273,24 +295,29 @@ export default function MediaManager({
             const isThumb = thumbnail === url;
             const selected = isCover ? isThumb : order >= 0;
             const isDeleting = deletingUrl === url;
+            const inUse = selected || isThumb; // selected/cover → cannot delete
+            const blockedByMax = !selected && atMax; // can't add more
             return (
               <div
                 key={url}
                 className={[
-                  "relative aspect-square rounded-lg overflow-hidden border-2 cursor-pointer group transition-all",
+                  "relative aspect-square rounded-lg overflow-hidden border-2 group transition-all",
+                  blockedByMax ? "cursor-not-allowed opacity-50" : "cursor-pointer",
                   selected
                     ? "border-[var(--admin-accent)]"
                     : "border-[var(--admin-border)] hover:border-[var(--admin-muted)]",
                 ].join(" ")}
                 onClick={() => !isDeleting && onTileClick(url)}
                 title={
-                  isCover
-                    ? selected
-                      ? "Bỏ chọn ảnh bìa"
-                      : "Chọn làm ảnh bìa"
-                    : selected
-                      ? "Bỏ chọn khỏi project"
-                      : "Chọn vào project"
+                  blockedByMax
+                    ? `Đã đạt tối đa ${maxImages} ảnh — bỏ chọn bớt để chọn ảnh khác.`
+                    : isCover
+                      ? selected
+                        ? "Bỏ chọn ảnh bìa"
+                        : "Chọn làm ảnh bìa"
+                      : selected
+                        ? "Bỏ chọn"
+                        : "Chọn"
                 }
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -304,7 +331,7 @@ export default function MediaManager({
                 )}
 
                 {/* Set-as-thumbnail star — gallery mode only (cover = click selects) */}
-                {!isCover && (
+                {!isCover && showCover && (
                   <button
                     type="button"
                     onClick={(e) => {
@@ -323,7 +350,8 @@ export default function MediaManager({
                   </button>
                 )}
 
-                {/* Delete (R2) — for any image stored under our bucket key */}
+                {/* Delete (R2) — for any image stored under our bucket key.
+                    Disabled while the image is in use (selected/cover). */}
                 {key && (
                   <button
                     type="button"
@@ -331,9 +359,18 @@ export default function MediaManager({
                       e.stopPropagation();
                       handleDelete(url, key);
                     }}
-                    disabled={isDeleting}
-                    className="absolute bottom-1 right-1 rounded-full p-1 shadow bg-black/40 text-white opacity-0 group-hover:opacity-100 hover:bg-red-600 transition-colors disabled:opacity-100"
-                    title="Xóa ảnh khỏi kho lưu trữ"
+                    disabled={isDeleting || inUse}
+                    className={[
+                      "absolute bottom-1 right-1 rounded-full p-1 shadow text-white transition-colors",
+                      inUse
+                        ? "bg-black/20 opacity-0 group-hover:opacity-60 cursor-not-allowed"
+                        : "bg-black/40 opacity-0 group-hover:opacity-100 hover:bg-red-600",
+                    ].join(" ")}
+                    title={
+                      inUse
+                        ? "Ảnh đang được dùng — bỏ chọn trước khi xóa."
+                        : "Xóa ảnh khỏi kho lưu trữ"
+                    }
                   >
                     {isDeleting ? (
                       <Loader2 size={12} className="animate-spin" />

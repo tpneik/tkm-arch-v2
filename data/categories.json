@@ -1,6 +1,16 @@
 {
   "projectCategories": [
     {
+      "id": "6a01f25621ac70265674a8b8",
+      "slug": "cong-trinh-khac",
+      "en": {
+        "label": "Other Projects"
+      },
+      "vi": {
+        "label": "Công trình khác"
+      }
+    },
+    {
       "id": "6a01f25621ac70265674a8b9",
       "slug": "nha-pho",
       "en": {
@@ -58,16 +68,6 @@
       },
       "vi": {
         "label": "Trường học"
-      }
-    },
-    {
-      "id": "6a01f25621ac70265674a8b8",
-      "slug": "cong-trinh-khac",
-      "en": {
-        "label": "Other Projects"
-      },
-      "vi": {
-        "label": "Công trình khác"
       }
     }
   ],

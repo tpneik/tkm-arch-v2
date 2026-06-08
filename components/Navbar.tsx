@@ -8,6 +8,7 @@ import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { useT } from "next-i18next/client";
 import { localizedHref, buildLangSwitchHref } from "@/i18n/routes";
+import { useLangSwitchOverride } from "@/i18n/LangSwitchContext";
 import { projectCategories } from "@/data/categories";
 
 export default function Navbar() {
@@ -105,8 +106,12 @@ export default function Navbar() {
     })
   };
 
-  // Build the lang switch URL with translated slugs
-  const langSwitchHref = buildLangSwitchHref(pathWithoutLng, lng, otherLng);
+  // Build the lang switch URL with translated slugs. Detail pages register a
+  // fully-translated href (category + post slug differ per language) via
+  // LangSwitchContext; fall back to the path-based translation otherwise.
+  const langSwitchOverride = useLangSwitchOverride();
+  const langSwitchHref =
+    langSwitchOverride ?? buildLangSwitchHref(pathWithoutLng, lng, otherLng);
 
   return (
     <>

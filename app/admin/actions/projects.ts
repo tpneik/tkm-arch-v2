@@ -5,6 +5,7 @@ import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { connectToDatabase } from "@/lib/mongoose";
 import ProjectModel from "@/models/Project";
 import type { Project } from "@/data/projects";
+import { normalizeProjectCategories } from "@/data/projects";
 import { syncProjects } from "@/data/sync";
 import { DEFAULT_BASE_PREFIX } from "@/lib/r2Key";
 import { relocateImagesByCategory, deleteFolderByUrls } from "@/lib/r2Move";
@@ -64,6 +65,7 @@ export async function getProjects(): Promise<Project[]> {
     return docs.map((d: any) => serialize<Project>({
       id: d.id,
       category: d.category,
+      categories: normalizeProjectCategories(d),
       thumbnail: d.thumbnail,
       gallery: d.gallery,
       en: d.en,
@@ -83,6 +85,7 @@ export async function getProjectById(id: string): Promise<Project | null> {
     return serialize<Project>({
       id: doc.id,
       category: doc.category,
+      categories: normalizeProjectCategories(doc),
       thumbnail: doc.thumbnail,
       gallery: doc.gallery,
       en: doc.en,

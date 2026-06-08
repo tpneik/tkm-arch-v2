@@ -161,17 +161,27 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
 
   // ── Category state ──
   const [categories, setCategories] = useState<Category[]>(initialCategories);
-  // initialData.category may be a Vietnamese label (legacy) or a slug — resolve to slug
-  const [category, setCategory] = useState(() => {
+
+  // Resolve the project's initial category slugs.
+  // Prefers the multi-category `categories` array; falls back to the legacy
+  // single `category` (which may be a slug or a Vietnamese label).
+  const resolveInitialCategories = (): string[] => {
+    if (initialData?.categories?.length) return initialData.categories;
     const raw = initialData?.category || "";
-    // If it already matches a slug, use it directly
-    if (initialCategories.find((c) => c.slug === raw)) return raw;
-    // Otherwise try to match by label (legacy data stores the Vietnamese label)
+    if (raw && initialCategories.find((c) => c.slug === raw)) return [raw];
     const match = initialCategories.find(
       (c) => c.vi.label === raw || c.en.label === raw
     );
-    return match?.slug || (initialCategories[0]?.slug ?? "");
-  });
+    const slug = match?.slug || (initialCategories[0]?.slug ?? "");
+    return slug ? [slug] : [];
+  };
+
+  // Ordered list of selected category slugs. selectedCategories[0] = primary
+  // (drives the public URL, image folder and the derived category labels/slugs).
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(
+    resolveInitialCategories
+  );
+  const primaryCategory = selectedCategories[0] ?? "";
   const [showAddCategory, setShowAddCategory] = useState(false);
   const [newCatEN, setNewCatEN] = useState("");
   const [newCatVI, setNewCatVI] = useState("");
@@ -197,8 +207,8 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
   const enSlug = generateSlug(enTitle);
   const viSlug = generateSlug(viTitle);
 
-  // Category labels & slugs derived from selected category — NOT manual input
-  const selectedCat = categories.find((c) => c.slug === category);
+  // Category labels & slugs derived from the PRIMARY category — NOT manual input
+  const selectedCat = categories.find((c) => c.slug === primaryCategory);
   const enCategoryLabel = selectedCat?.en.label ?? "";
   const viCategoryLabel = selectedCat?.vi.label ?? "";
   const enCategorySlug = generateSlug(enCategoryLabel);
@@ -213,14 +223,9 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
   // ── Dirty tracking: only enable Save when something changed ──
   const isDirty = (() => {
     if (!initialData) return true; // create mode — always saveable
-    // Compare slug-to-slug (initialData.category may be a label)
-    const initCatSlug = (() => {
-      const raw = initialData.category || "";
-      if (categories.find((c) => c.slug === raw)) return raw;
-      const m = categories.find((c) => c.vi.label === raw || c.en.label === raw);
-      return m?.slug || "";
-    })();
-    if (category !== initCatSlug) return true;
+    // Compare the ordered category slug list (handles primary changes too).
+    if (selectedCategories.join("|") !== resolveInitialCategories().join("|"))
+      return true;
     if (thumbnail !== (initialData.thumbnail || "")) return true;
     if (enTitle !== (initialData.en?.title || "")) return true;
     if (enDescription !== (initialData.en?.description || "")) return true;
@@ -234,9 +239,22 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
     return false;
   })();
 
-  // ── When a category is selected from dropdown ──
-  const handleCategorySelect = (slug: string) => {
-    setCategory(slug);
+  // ── Toggle a category on/off (multi-select) ──
+  const toggleCategory = (slug: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(slug)
+        ? prev.filter((s) => s !== slug)
+        : [...prev, slug]
+    );
+  };
+
+  // ── Make a (selected) category the primary one (move to front) ──
+  const makePrimary = (slug: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(slug)
+        ? [slug, ...prev.filter((s) => s !== slug)]
+        : [slug, ...prev]
+    );
   };
 
   // ── Add new category inline ──
@@ -261,7 +279,7 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
       vi: { label: newCatVI.trim() },
     };
     setCategories((prev) => [...prev, newCat]);
-    handleCategorySelect(slug);
+    setSelectedCategories((prev) => (prev.includes(slug) ? prev : [...prev, slug]));
     setNewCatEN("");
     setNewCatVI("");
     setShowAddCategory(false);
@@ -288,11 +306,16 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
       setError("Tiêu đề không tạo được đường dẫn (slug) hợp lệ. Đổi lại tiêu đề.");
       return;
     }
+    if (selectedCategories.length === 0) {
+      setError("Cần chọn ít nhất 1 danh mục.");
+      return;
+    }
 
     setLoading(true);
 
     const projectData: Omit<Project, "id"> = {
-      category,
+      category: primaryCategory,
+      categories: Array.from(new Set(selectedCategories)),
       thumbnail,
       gallery: gallery.filter(url => url.trim() !== ""),
       en: {
@@ -431,22 +454,8 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
         {/* Sidebar Column */}
         <div className="space-y-8">
           <div className="bg-[var(--admin-card-bg)] p-4 sm:p-6 rounded-xl shadow-[var(--admin-card-shadow)] border border-[var(--admin-border)] overflow-hidden">
-            <h3 className="text-lg font-bold mb-4 pb-2 border-b border-[var(--admin-border)]">Category</h3>
-
-            {/* Category dropdown + add button */}
-            <div className="flex gap-2 items-center mb-3">
-              <select
-                value={category}
-                onChange={(e) => handleCategorySelect(e.target.value)}
-                required
-                className="flex-1 min-w-0 pl-3 pr-8 py-2 bg-[var(--admin-content-bg)] border border-[var(--admin-border)] rounded-md text-[var(--admin-content-text)] text-sm truncate focus:outline-none focus:ring-2 focus:ring-[var(--admin-accent)] transition-all"
-              >
-                {categories.map((cat) => (
-                  <option key={cat.slug} value={cat.slug}>
-                    {cat.vi.label} / {cat.en.label}
-                  </option>
-                ))}
-              </select>
+            <div className="flex items-center justify-between mb-1">
+              <h3 className="text-lg font-bold">Categories</h3>
               <button
                 type="button"
                 onClick={() => { setShowAddCategory((v) => !v); setAddCatError(null); }}
@@ -456,9 +465,57 @@ export default function ProjectForm({ initialData, initialCategories = [] }: Pro
                 {showAddCategory ? <X size={16} /> : <Plus size={16} />}
               </button>
             </div>
+            <p className="text-xs text-[var(--admin-muted)] mb-3 pb-3 border-b border-[var(--admin-border)]">
+              Tick để chọn nhiều danh mục. Danh mục <span className="font-semibold">Chính</span> quyết định đường dẫn &amp; ảnh.
+            </p>
 
-            {/* Selected category preview */}
-            {category && (
+            {/* Multi-select category list */}
+            <div className="space-y-1.5 mb-3">
+              {categories.map((cat) => {
+                const checked = selectedCategories.includes(cat.slug);
+                const isPrimary = primaryCategory === cat.slug;
+                return (
+                  <div
+                    key={cat.slug}
+                    className={[
+                      "flex items-center gap-2 px-2.5 py-2 rounded-md border transition-colors",
+                      checked
+                        ? "border-[var(--admin-accent)] bg-[var(--admin-accent)]/5"
+                        : "border-[var(--admin-border)]",
+                    ].join(" ")}
+                  >
+                    <label className="flex items-center gap-2 flex-1 min-w-0 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => toggleCategory(cat.slug)}
+                        className="accent-[var(--admin-accent)] flex-shrink-0"
+                      />
+                      <span className="text-sm text-[var(--admin-content-text)] truncate">
+                        {cat.vi.label} / {cat.en.label}
+                      </span>
+                    </label>
+                    {isPrimary && (
+                      <span className="text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded bg-[var(--admin-accent)] text-white flex-shrink-0">
+                        Chính
+                      </span>
+                    )}
+                    {checked && !isPrimary && (
+                      <button
+                        type="button"
+                        onClick={() => makePrimary(cat.slug)}
+                        className="text-[10px] font-semibold uppercase tracking-wide text-[var(--admin-accent)] hover:underline flex-shrink-0"
+                      >
+                        Đặt làm chính
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Primary category slug preview */}
+            {primaryCategory && (
               <div className="text-xs text-[var(--admin-muted)] mb-3 font-mono space-y-1">
                 <div>🇺🇸 EN slug: <span className="text-[var(--admin-accent)]">{enCategorySlug}</span></div>
                 <div>🇻🇳 VI slug: <span className="text-[var(--admin-accent)]">{viCategorySlug}</span></div>

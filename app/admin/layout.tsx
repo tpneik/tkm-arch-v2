@@ -10,6 +10,7 @@ import {
   useClerk,
 } from "@clerk/nextjs";
 import {
+  Home,
   FolderKanban,
   FileText,
   Tags,
@@ -27,6 +28,7 @@ const inter = Inter({
 });
 
 const NAV_ITEMS = [
+  { href: "/admin/homepage", label: "Trang chủ", icon: Home },
   { href: "/admin/projects", label: "Projects", icon: FolderKanban },
   { href: "/admin/blogs", label: "Blogs", icon: FileText },
   { href: "/admin/categories", label: "Categories", icon: Tags },

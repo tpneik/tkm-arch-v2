@@ -647,9 +647,14 @@
   text-overflow: ellipsis;
 }
 
-/* ── Category badge ── */
+/* ── Category badges ── */
 .dnd-category {
   flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: flex-end;
+  max-width: 240px;
 }
 
 .dnd-badge {

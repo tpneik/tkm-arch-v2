@@ -4,7 +4,10 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useT } from "next-i18next/client";
 
-export default function Hero() {
+const DEFAULT_HERO_IMAGE =
+  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
+
+export default function Hero({ heroImage }: { heroImage?: string }) {
   const { t } = useT("common");
 
   return (
@@ -12,7 +15,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+          src={heroImage || DEFAULT_HERO_IMAGE}
           alt="Modern Architecture"
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"

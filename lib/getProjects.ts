@@ -15,7 +15,7 @@ import "server-only";
 import { unstable_cache } from "next/cache";
 import { connectToDatabase } from "@/lib/mongoose";
 import ProjectModel from "@/models/Project";
-import type { Project } from "@/data/projects";
+import { normalizeProjectCategories, type Project } from "@/data/projects";
 
 async function queryProjects(): Promise<Project[]> {
   await connectToDatabase();
@@ -32,6 +32,7 @@ async function queryProjects(): Promise<Project[]> {
       JSON.stringify({
         id: d.id,
         category: d.category,
+        categories: normalizeProjectCategories(d),
         thumbnail: d.thumbnail,
         gallery: d.gallery,
         en: d.en,

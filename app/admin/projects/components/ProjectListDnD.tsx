@@ -32,6 +32,8 @@ import type { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 import DeleteProjectButton from "./DeleteProjectButton";
 import { reorderProjects } from "../../actions/projects";
 import type { Project } from "@/data/projects";
+import { normalizeProjectCategories } from "@/data/projects";
+import { findProjectCategory } from "@/data/categories";
 
 /* ── Types ── */
 interface Props {
@@ -121,9 +123,13 @@ function ProjectCard({
         <div className="dnd-subtitle">{project.en?.title || "No Title"}</div>
       </div>
 
-      {/* Category */}
+      {/* Categories — all of them, shown as Vietnamese labels */}
       <div className="dnd-category">
-        <span className="dnd-badge">{project.category}</span>
+        {normalizeProjectCategories(project).map((slug) => (
+          <span key={slug} className="dnd-badge">
+            {findProjectCategory(slug)?.vi.label ?? slug}
+          </span>
+        ))}
       </div>
 
       {/* Actions — hidden in overlay to avoid interaction during drag */}

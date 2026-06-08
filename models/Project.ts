@@ -18,6 +18,10 @@ const ProjectSchema = new mongoose.Schema(
   {
     id: { type: String, required: true, unique: true, index: true },
     category: { type: String, default: '' },
+    // Canonical category slugs this project belongs to. categories[0] is the
+    // "primary" category (drives the URL, image folder and the `category` /
+    // en-vi.categorySlug fields). A project may belong to several categories.
+    categories: { type: [String], default: [] },
     thumbnail: { type: String, default: '' },
     gallery: { type: [String], default: [] },
     en: { type: ProjectLocaleSchema, default: () => ({}) },

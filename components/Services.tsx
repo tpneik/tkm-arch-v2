@@ -3,14 +3,16 @@ import { useState, useRef, useEffect } from "react";
 import { motion, useAnimationFrame, useMotionValue } from "motion/react";
 import { useT } from "next-i18next/client";
 
-const serviceImages = [
+const DEFAULT_SERVICE_IMAGES = [
   "/service1.jpg",
   "/service2.jpg",
   "/service3.jpg",
   "/service4.png",
 ];
 
-export default function Services() {
+export default function Services({ images }: { images?: string[] }) {
+  const serviceImages =
+    images && images.length ? images : DEFAULT_SERVICE_IMAGES;
   const [isPaused, setIsPaused] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [isResuming, setIsResuming] = useState(false);

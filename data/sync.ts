@@ -18,6 +18,7 @@ import { connectToDatabase } from "@/lib/mongoose";
 import mongoose from "mongoose";
 import ProjectModel from "@/models/Project";
 import BlogModel from "@/models/Blog";
+import { normalizeProjectCategories } from "@/data/projects";
 
 /* ──── Helpers ──── */
 
@@ -52,6 +53,7 @@ export async function syncProjects(): Promise<void> {
     serialize({
       id: d.id,
       category: d.category,
+      categories: normalizeProjectCategories(d),
       thumbnail: d.thumbnail,
       gallery: d.gallery,
       en: d.en,

@@ -3,6 +3,8 @@ import {
   blogCategories as blogCategoryList,
   getBlogCategorySlugs,
   getBlogCategoryLabels,
+  findBlogCategory,
+  slugify,
 } from "./categories";
 
 /* ──────────────────── Types ──────────────────── */
@@ -40,6 +42,35 @@ export { blogCategoryList, getBlogCategorySlugs, getBlogCategoryLabels };
 export const blogCategories: string[] = getBlogCategorySlugs();
 
 /* ──────────────────── Helpers ──────────────────── */
+
+/**
+ * Resolve a blog's CANONICAL category slug (the key used by filter buttons and
+ * Navbar links, e.g. "design").
+ *
+ * Properly-saved blogs store the canonical slug in `category`. This also rescues
+ * older data where `category` might be a localized label, or where only the
+ * per-locale `categorySlug` (e.g. "thiet-ke") is reliable — by matching it back
+ * to a known category.
+ */
+export function blogCategorySlug(
+  b: Pick<Blog, "category" | "vi" | "en">
+): string {
+  const raw = b?.category || "";
+  // Already a canonical slug.
+  if (raw && findBlogCategory(raw)) return raw;
+  // Match a category by either locale's derived slug.
+  const byLocaleSlug = blogCategoryList.find(
+    (c) =>
+      slugify(c.vi.label) === b?.vi?.categorySlug ||
+      slugify(c.en.label) === b?.en?.categorySlug
+  );
+  if (byLocaleSlug) return byLocaleSlug.slug;
+  // Match a category by a stored localized label.
+  const byLabel = blogCategoryList.find(
+    (c) => c.vi.label === raw || c.en.label === raw
+  );
+  return byLabel?.slug || b?.vi?.categorySlug || raw || "";
+}
 
 /**
  * Build a full SEO-friendly blog URL (without numeric ID).
