@@ -27,11 +27,18 @@ export default function Navbar() {
   const pathWithoutLng = pathname.replace(`/${lng}`, "") || "/";
   const isHome = pathWithoutLng === "/" || pathWithoutLng === "";
 
-  // Build category list from static JSON using ASCII slug as filter key
-  const categoryItems = projectCategories.map((cat) => ({
-    slug: cat.slug,
-    label: cat[lang]?.label ?? cat.vi.label,
-  }));
+  // Build category list from static JSON using ASCII slug as filter key.
+  // Keep "Công trình khác" last in the list (but still above "View All").
+  const categoryItems = projectCategories
+    .map((cat) => ({
+      slug: cat.slug,
+      label: cat[lang]?.label ?? cat.vi.label,
+    }))
+    .sort((a, b) => {
+      if (a.slug === "cong-trinh-khac") return 1;
+      if (b.slug === "cong-trinh-khac") return -1;
+      return 0;
+    });
 
   const handleDropdownEnter = () => {
     if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
